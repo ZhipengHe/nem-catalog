@@ -8,7 +8,10 @@
     "timestamp": {"format": "yyyymmddhhmm", "example": "202504070445", "regex": "\\d{12}"},
     "aemo_id": {"format": "16-digit AEMO identifier", "example": "0000000513144978", "regex": "\\d{16}"},
     "year": {"format": "yyyy", "example": "2025", "regex": "\\d{4}"},
-    "yyyymm": {"format": "yyyymm", "example": "202504", "regex": "\\d{6}"}
+    "month": {"format": "mm", "example": "04", "regex": "\\d{2}"},
+    "yyyymm": {"format": "yyyymm", "example": "202504", "regex": "\\d{6}"},
+    "yyyymmddHHMM": {"format": "yyyymmddHHMM", "example": "202504070445", "regex": "\\d{12}"},
+    "nn": {"format": "zero-padded 2-digit", "example": "00", "regex": "\\d{2}"}
   },
   "dataset_keys": [
     "Reports:DispatchIS_Reports",

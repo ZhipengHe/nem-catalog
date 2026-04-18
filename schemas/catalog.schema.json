@@ -50,11 +50,13 @@
     "dataset_keys": {
       "type": "array",
       "items": {"type": "string"},
+      "uniqueItems": true,
       "description": "Curated user-facing subset of dataset keys. Excludes extractor AUX placeholder entries and utility file types. Index into `datasets` map."
     },
     "raw_keys": {
       "type": "array",
       "items": {"type": "string"},
+      "uniqueItems": true,
       "description": "Full set of dataset keys the extractor emitted, including AUX and utility entries. Index into `datasets` map. For tool-builders and debugging."
     },
     "datasets": {

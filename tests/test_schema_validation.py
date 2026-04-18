@@ -1,10 +1,13 @@
 """Validate the sample catalog fixture against the JSON Schema."""
 
 import json
+import re
 from pathlib import Path
 
 import jsonschema
 import pytest
+
+_TOKEN_RE = re.compile(r"\{(\w+)\}")
 
 REPO_ROOT = Path(__file__).parent.parent
 SCHEMA_PATH = REPO_ROOT / "schemas" / "catalog.schema.json"
@@ -69,3 +72,36 @@ def test_mmsdm_dispatchprice_has_multiple_tiers_with_different_granularity(sampl
     assert "CTL" in tiers
     assert tiers["DATA"]["time_granularity"] == "yyyymmddHHMM"
     assert tiers["CTL"]["time_granularity"] == "yyyymm"
+
+
+def test_schema_validator_is_draft_2020_12(schema):
+    validator_cls = jsonschema.validators.validator_for(schema)
+    assert validator_cls is jsonschema.Draft202012Validator
+
+
+def test_template_tokens_are_defined_in_placeholders(sample):
+    placeholders = set(sample["placeholders"].keys())
+    missing = []
+    for key, ds in sample["datasets"].items():
+        for tier_name, tier in ds["tiers"].items():
+            for field in ("path_template", "filename_template"):
+                template = tier.get(field)
+                if template is None:
+                    continue
+                for token in _TOKEN_RE.findall(template):
+                    if token not in placeholders:
+                        missing.append(f"{key}.tiers.{tier_name}.{field}: {{{token}}}")
+    assert not missing, (
+        f"Templates reference tokens not in placeholders: {missing}"
+    )
+
+
+def test_filename_template_and_regex_null_together(sample):
+    for key, ds in sample["datasets"].items():
+        for tier_name, tier in ds["tiers"].items():
+            tmpl = tier.get("filename_template")
+            regex = tier.get("filename_regex")
+            assert (tmpl is None) == (regex is None), (
+                f"{key}.tiers.{tier_name}: filename_template and filename_regex "
+                f"must both be null or both be non-null; got tmpl={tmpl!r} regex={regex!r}"
+            )
