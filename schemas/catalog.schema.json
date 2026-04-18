@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://zhipenghe.github.io/nem-catalog/catalog.schema.json",
+  "title": "nem-catalog v1",
+  "description": "Machine-readable URL catalog for AEMO NEMWEB. Maps (dataset, time_range) to candidate URLs for the four NEMWEB repositories: Reports, MMSDM, NEMDE, FCAS_Causer_Pays.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "catalog_version",
+    "as_of",
+    "placeholders",
+    "dataset_keys",
+    "raw_keys",
+    "datasets"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "SemVer of the JSON Schema itself. MAJOR bump is breaking; SDKs reject unknown major versions."
+    },
+    "catalog_version": {
+      "type": "string",
+      "pattern": "^\\d{4}\\.\\d{2}\\.\\d{2}(\\.\\d+)?$",
+      "description": "CalVer of this catalog artifact. Corresponds to the crawl date. Optional .N suffix for multiple releases on the same day."
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the mirror crawl that produced this catalog completed."
+    },
+    "source_mirror_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{7,40}$",
+      "description": "Git commit hash of nemweb-mirror/ used to generate this catalog. Enables provenance auditing."
+    },
+    "placeholders": {
+      "type": "object",
+      "description": "Global vocabulary mapping each placeholder name (used in path_template and filename_template) to its format, example, and regex. Non-Python consumers use this to expand templates.",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["format", "example", "regex"],
+        "properties": {
+          "format": {"type": "string", "description": "Human-readable format label (e.g., 'yyyymmdd')."},
+          "example": {"type": "string", "description": "Concrete example value conforming to the format."},
+          "regex": {"type": "string", "description": "Regular expression matching the placeholder's valid values."}
+        }
+      }
+    },
+    "dataset_keys": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Curated user-facing subset of dataset keys. Excludes extractor AUX placeholder entries and utility file types. Index into `datasets` map."
+    },
+    "raw_keys": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Full set of dataset keys the extractor emitted, including AUX and utility entries. Index into `datasets` map. For tool-builders and debugging."
+    },
+    "datasets": {
+      "type": "object",
+      "description": "Map of dataset key to record. Every entry in dataset_keys and raw_keys has a corresponding entry here.",
+      "additionalProperties": {"$ref": "#/$defs/Dataset"}
+    }
+  },
+  "$defs": {
+    "Dataset": {
+      "type": "object",
+      "required": ["repo", "intra_repo_id", "resolvable", "tiers"],
+      "properties": {
+        "repo": {
+          "type": "string",
+          "enum": ["Reports", "MMSDM", "NEMDE", "FCAS_Causer_Pays"],
+          "description": "Top-level NEMWEB repository."
+        },
+        "intra_repo_id": {
+          "type": "string",
+          "description": "Repo-specific identifier. For MMSDM: uppercase table token. For Reports: stream subdir name. For NEMDE: filename prefix before first digit run. For FCAS_Causer_Pays: always CAUSER_PAYS."
+        },
+        "resolvable": {
+          "type": "boolean",
+          "description": "True if the catalog can produce concrete URLs for this dataset. False for directory-level anomalies (e.g., NEXT_DAY_OFFER_ENERGY)SPARSE) or AUX placeholder entries. resolve() raises UnresolvableDatasetError on resolvable=false."
+        },
+        "tiers": {
+          "type": "object",
+          "description": "Map of tier name to pattern record. Tier names are repo-specific (CURRENT/ARCHIVE for Reports; DATA/CTL/BCP_FMT/MYSQL/DOCUMENTATION/etc for MMSDM; NEMDE_Files/File_Readers for NEMDE; ANNUAL for FCAS_Causer_Pays). Single-tier repos have a map of one entry.",
+          "additionalProperties": {"$ref": "#/$defs/Tier"}
+        },
+        "query_shape": {
+          "type": ["object", "null"],
+          "description": "What inputs are required to resolve this dataset and what the output looks like. Per-record user affordance; complements the global placeholders dictionary.",
+          "properties": {
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name", "format"],
+                "properties": {
+                  "name": {"type": "string"},
+                  "format": {"type": "string"},
+                  "example": {"type": "string"}
+                }
+              }
+            },
+            "example_resolve": {"type": "string", "description": "Copy-paste Python example."},
+            "output_count_hint": {"type": "string", "description": "Rough cardinality signal (e.g., 'daily', '5min', 'monthly')."}
+          }
+        },
+        "schema_source": {
+          "type": ["string", "null"],
+          "description": "URL to authoritative schema documentation for this dataset. Populated for MMSDM (portal root); null for Reports and NEMDE in v0.1."
+        },
+        "anomaly_note": {
+          "type": ["string", "null"],
+          "description": "Human-written note for edge cases: malformed names, case variance, multi-view granularity splits, deprecation, etc."
+        }
+      }
+    },
+    "Tier": {
+      "type": "object",
+      "description": "A single (tier, pattern) record. For Reports CURRENT: rolling 5-min data. For Reports ARCHIVE: daily rollups. For MMSDM views: per-view data files.",
+      "properties": {
+        "path_template": {
+          "type": "string",
+          "description": "URL path template with placeholder tokens (e.g., /Reports/ARCHIVE/DispatchIS_Reports/). Prefix with https://nemweb.com.au to build absolute URLs."
+        },
+        "filename_template": {
+          "type": ["string", "null"],
+          "description": "Filename template with placeholder tokens. Null for directory-level anomalies with no resolvable files."
+        },
+        "filename_regex": {
+          "type": ["string", "null"],
+          "description": "Regex matching valid filenames. Null if filename_template is null."
+        },
+        "example": {
+          "type": "string",
+          "description": "Concrete example filename to eyeball the template."
+        },
+        "cadence": {
+          "type": "string",
+          "description": "How often new files appear (5min, daily, daily_rollup, monthly_bulk, annual, etc.)."
+        },
+        "time_granularity": {
+          "type": "string",
+          "description": "Which placeholder carries the content timestamp (e.g., yyyymmdd, yyyymmddHHMM, yyyymm, yyyy)."
+        },
+        "retention_hint_unverified_days": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Approximate retention window for rolling tiers, derived from a single mirror snapshot. NOT a guarantee. Applies only to Reports/CURRENT; omitted for append-only tiers."
+        },
+        "observed_range": {
+          "type": ["object", "null"],
+          "description": "Min/max of content-time token observed in mirrored filenames. Does NOT imply continuity or completeness.",
+          "properties": {
+            "from": {"type": "string"},
+            "to": {"type": "string"}
+          }
+        }
+      }
+    }
+  }
+}
