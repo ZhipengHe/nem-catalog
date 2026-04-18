@@ -766,7 +766,9 @@ def write_json(
                 "tiers": {},
                 "query_shape": None,
                 "schema_source": None,
-                "anomaly_note": _anomaly_note_from_flag(row.get("anomaly_flag", ""), row),
+                "anomaly_note": _anomaly_note_from_flag(
+                    row.get("anomaly") or row.get("anomaly_flag", ""), row
+                ),
             }
 
         tier_record = {
