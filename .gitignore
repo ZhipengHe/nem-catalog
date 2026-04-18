@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# uv
+.venv/
+uv.lock
+
+# Generated catalog artifacts
+patterns/auto/
+
+# Editor
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
