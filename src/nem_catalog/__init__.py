@@ -11,24 +11,19 @@ Convenience:
 See https://zhipenghe.github.io/nem-catalog/ for docs.
 """
 
-from nem_catalog.catalog import Catalog
 from nem_catalog.errors import (
     IncompatibleCatalogError,
     NemCatalogError,
     NemCatalogFetchError,
     UnresolvableDatasetError,
 )
-from nem_catalog.loader import fetch_latest, load
 
 __version__ = "0.1.0"
 
 __all__ = [
-    "Catalog",
     "IncompatibleCatalogError",
     "NemCatalogError",
     "NemCatalogFetchError",
     "UnresolvableDatasetError",
     "__version__",
-    "fetch_latest",
-    "load",
 ]
