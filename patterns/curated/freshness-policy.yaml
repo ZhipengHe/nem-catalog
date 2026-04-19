@@ -116,5 +116,8 @@ rules:
   #   - the monthly policy-audit surfaces as a `new_path` finding.
 
   # Static — frozen historical archives. Zero HREF change observed.
-  - pattern: "/Data_Archive/**"
+  # Pattern requires at least one segment after /Data_Archive/ so the bare
+  # /Data_Archive/ index continues to match the parent_index rule above
+  # (needed for discovery of new top-level siblings of Wholesale_Electricity).
+  - pattern: "/Data_Archive/*/**"
     class: static
