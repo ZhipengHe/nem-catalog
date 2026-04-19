@@ -89,11 +89,24 @@ jobs:
         run: uv run python scripts/extract_patterns.py
 
       - name: Merge catalog
+        id: merge
+        continue-on-error: true
         run: |
           uv run python scripts/merge_catalog.py \
             --auto patterns/auto/catalog.json \
             --curated patterns/curated/ \
             --out catalog.json
+
+      - name: Open issue if merge step failed
+        if: steps.merge.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "weekly-refresh: merge_catalog.py failed ($(date -u +%Y-%m-%dT%H:%MZ))" \
+            --body "merge_catalog.py exited non-zero. The auto-extracted patterns and/or curated overlays produced an invalid merge. See workflow run for details. Catalog continues serving last-good artifact until this is resolved." \
+            --label "weekly-refresh,merge,p0"
+          exit 1
 
       # Design line 320: bump the README crawl badge only after every preceding step succeeded.
       - name: Update README crawl badge

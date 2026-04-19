@@ -7,6 +7,7 @@ on:
 permissions:
   contents: write
   id-token: write   # for PyPI trusted publishing
+  issues: write     # for failure-notification issue creation
 
 jobs:
   build-and-publish:
@@ -26,3 +27,13 @@ jobs:
         uses: pypa/gh-action-pypi-publish@6733eb7d741f0b11ec6a39b58540dab7590f9b7d # v1.14.0
         with:
           skip-existing: true
+
+      - name: Open issue on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "release: ${{ github.ref_name }} failed to publish" \
+            --body "release.yml failed during PyPI publish for tag \`${{ github.ref_name }}\`. See run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. Note: PyPI rejects re-uploads of the same version, so re-running may not recover; you likely need a v0.x.y+1 patch release." \
+            --label "release,p0"
