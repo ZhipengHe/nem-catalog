@@ -52,11 +52,13 @@ jobs:
           # nemweb_download.py uses the repo-relative OUT=nemweb-mirror path;
           # override via a symlink swap so the fresh tree lands elsewhere
           # and the main mirror is not disturbed.
+          # trap ensures cleanup runs even if the crawl crashes mid-run —
+          # otherwise GHA's bash -eo pipefail exits immediately and the
+          # subsequent audit step sees a broken symlink / missing mirror.
+          trap 'rm -f nemweb-mirror; [ -d nemweb-mirror.bak ] && mv nemweb-mirror.bak nemweb-mirror' EXIT
           mv nemweb-mirror nemweb-mirror.bak
           ln -s /tmp/audit-fresh nemweb-mirror
           uv run python scripts/nemweb_download.py --force 10000 2>&1 | tee /tmp/audit-fresh/download.log
-          rm nemweb-mirror
-          mv nemweb-mirror.bak nemweb-mirror
 
       - name: Run audit
         id: audit
