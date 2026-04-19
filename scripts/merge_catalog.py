@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 import copy
 import json
+import os
 import sys
 from pathlib import Path
 from typing import Any
@@ -133,6 +134,16 @@ def merge(
                 file=sys.stderr,
             )
         raise SystemExit(1)
+
+    # Inject catalog-level crawl timestamps from workflow env vars.
+    # Present only when the workflow explicitly exports them (i.e. real
+    # weekly/audit runs, not local development merges).
+    attempted = os.environ.get("LAST_CRAWL_ATTEMPTED_AT")
+    completed = os.environ.get("LAST_CRAWL_COMPLETED_AT")
+    if attempted:
+        merged["last_crawl_attempted_at"] = attempted
+    if completed:
+        merged["last_crawl_completed_at"] = completed
 
     return merged
 

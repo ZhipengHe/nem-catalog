@@ -539,3 +539,46 @@ def test_curated_only_without_tiers_fails_schema_validation(tmp_path: Path) -> N
     assert r.returncode != 0, "malformed curated_only entry must fail"
     # The schema validator reports the missing required field:
     assert "tiers" in r.stderr
+
+
+def test_last_crawl_fields_from_env(tmp_path, monkeypatch):
+    """merge() copies LAST_CRAWL_ATTEMPTED_AT/COMPLETED_AT env vars into catalog."""
+    from scripts.merge_catalog import merge
+
+    auto = {
+        "schema_version": "1.0.0",
+        "catalog_version": "2026.04.20",
+        "as_of": "2026-04-20T03:00:00Z",
+        "source_mirror_commit": "abcd1234",
+        "placeholders": {},
+        "dataset_keys": [],
+        "raw_keys": [],
+        "datasets": {},
+    }
+    monkeypatch.setenv("LAST_CRAWL_ATTEMPTED_AT", "2026-04-20T03:00:00Z")
+    monkeypatch.setenv("LAST_CRAWL_COMPLETED_AT", "2026-04-20T03:05:00Z")
+
+    merged = merge(auto, overlays={}, defaults={})
+    assert merged["last_crawl_attempted_at"] == "2026-04-20T03:00:00Z"
+    assert merged["last_crawl_completed_at"] == "2026-04-20T03:05:00Z"
+
+
+def test_last_crawl_fields_absent_when_env_unset(tmp_path, monkeypatch):
+    from scripts.merge_catalog import merge
+
+    auto = {
+        "schema_version": "1.0.0",
+        "catalog_version": "2026.04.20",
+        "as_of": "2026-04-20T03:00:00Z",
+        "source_mirror_commit": "abcd1234",
+        "placeholders": {},
+        "dataset_keys": [],
+        "raw_keys": [],
+        "datasets": {},
+    }
+    monkeypatch.delenv("LAST_CRAWL_ATTEMPTED_AT", raising=False)
+    monkeypatch.delenv("LAST_CRAWL_COMPLETED_AT", raising=False)
+
+    merged = merge(auto, overlays={}, defaults={})
+    assert "last_crawl_attempted_at" not in merged
+    assert "last_crawl_completed_at" not in merged
