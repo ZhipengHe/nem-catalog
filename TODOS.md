@@ -47,11 +47,8 @@ Items surfaced during v0.1.1 plan review or per-task code review that were inten
 
 ### T2 — `scripts/policy.py`
 
-**T2-I1. `/Data_Archive/` classified as `static`, should be `parent_index`** [important, cross-file fix]
-- **What:** `/Data_Archive/**` in the policy YAML matches the bare `/Data_Archive/` (compiled regex `^/Data_Archive/.*$` matches empty tail). Longest-match (16 > 14) gives `static`, so the walker skips the bare index and can't discover a hypothetical new top-level Data_Archive sibling of `Wholesale_Electricity/`.
-- **Why deferred:** Only affects the bare `/Data_Archive/` path; `Wholesale_Electricity/` (the sole existing child) still classifies correctly. Monthly `policy-audit.yml` force-refetches everything and surfaces new siblings within ~30 days. AEMO has not added a top-level Data_Archive category in years.
-- **Fix:** Change `/Data_Archive/**` → `/Data_Archive/*/**` in `patterns/curated/freshness-policy.yaml`. Add pin-test: `class_for("/Data_Archive/") == "parent_index"` when both rules coexist.
-- **When:** v0.1.2, combined with T2-I2.
+**T2-I1. ~~`/Data_Archive/` classified as `static`, should be `parent_index`~~** [FIXED in v0.1.1, commit `21fce89`]
+- Closed during pre-landing review convergence (codex + gstack both HIGH). Policy catchall changed `/Data_Archive/**` → `/Data_Archive/*/**` and pinned by `test_data_archive_bare_path_is_parent_index_not_static`. Left in this section only as a historical record of what the reviewers found.
 
 **T2-I2. No `version` compatibility guard in `Policy.load`** [important]
 - **What:** `Policy.load` parses and stores `version` but never validates it. A future `version: 2` policy with different schema loads silently.
