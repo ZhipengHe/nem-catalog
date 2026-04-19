@@ -205,16 +205,99 @@ def find_gaps() -> list[str]:
 # ----- Walk (BFS, wave-batched, threaded) -----
 
 
+def parse_args(
+    argv: list[str],
+) -> tuple[bool, bool, str | None, int, int]:
+    gaps = False
+    force = False
+    policy_path: str | None = None
+    threads = 1
+    max_fetches = 10_000
+    i = 0
+    while i < len(argv):
+        a = argv[i]
+        if a == "--gaps":
+            gaps = True
+        elif a == "--force":
+            force = True
+        elif a == "--policy":
+            policy_path = argv[i + 1]
+            i += 1
+        elif a.startswith("--policy="):
+            policy_path = a.split("=", 1)[1]
+        elif a == "--threads":
+            threads = int(argv[i + 1])
+            i += 1
+        elif a.startswith("--threads="):
+            threads = int(a.split("=", 1)[1])
+        elif a.isdigit():
+            max_fetches = int(a)
+        else:
+            raise SystemExit(f"Unknown argument: {a}")
+        i += 1
+    return gaps, force, policy_path, threads, max_fetches
+
+
+def _should_refetch(path: str, force: bool, policy: object | None) -> bool:
+    """Decide whether a cached file should be bypassed.
+
+    Returns True if the walker must fetch the path from the network.
+    Returns False if the walker may reuse the cached file.
+    """
+    if force:
+        return True
+    if policy is None:
+        return False
+    # Local import to avoid circular import at module load.
+    from scripts.policy import Policy as _Policy  # noqa: F401
+
+    cls = policy.class_for(path)  # type: ignore[attr-defined]
+    # static paths reuse cache; everything else refetches when the policy
+    # is supplied. unclassified errs on the side of refetch (conservative).
+    return cls != "static"
+
+
+def _process_one_for_test(
+    path: str, force: bool, policy: object | None
+) -> tuple[str, str, list[str]]:
+    """Test harness: exposes the process_one decision logic without the
+    closure state (budget, visited). Only used by unit tests."""
+    cached = local_path(path)
+    if cached.is_file() and not _should_refetch(path, force, policy):
+        try:
+            data = cached.read_bytes()
+        except OSError:
+            return (path, "skip", [])
+        return (path, "reuse", extract_children(path, data))
+    url = urllib.parse.urljoin(BASE, path)
+    data, status = throttled_fetch(url)
+    if data is None or status != 200:
+        return (path, "skip", [])
+    # Mark outcome as fetch_noop if content-aware write short-circuits
+    # by catching the early return in save_listing without mtime change.
+    before_mtime = cached.stat().st_mtime_ns if cached.is_file() else None
+    save_listing(path, data)
+    after_mtime = cached.stat().st_mtime_ns if cached.is_file() else None
+    outcome = "fetch_noop" if before_mtime == after_mtime else "fetch"
+    return (path, outcome, extract_children(path, data))
+
+
 def walk(
-    seeds: list[str], threads: int, max_fetches: int, force: bool = False
+    seeds: list[str],
+    threads: int,
+    max_fetches: int,
+    force: bool = False,
+    policy: object | None = None,
 ) -> tuple[int, int, int]:
     """Wave-batched BFS. Each wave dispatches current frontier to a thread pool;
     children discovered become the next wave. Terminates when frontier is empty or
     max_fetches budget exhausted.
 
-    When ``force`` is True, cached listings are bypassed and re-fetched from the
-    live server. This is required for rolling directories (``Reports/CURRENT/*``)
-    whose contents roll over independently of the mirror.
+    When ``force`` is True, every path is re-fetched regardless of policy.
+    When ``policy`` is non-None, paths classified `static` with an on-disk
+    cached file are reused; all other paths are re-fetched.
+    When ``policy`` is None and ``force`` is False, all cached paths are
+    reused (legacy behaviour — matches original --gaps semantics).
 
     Returns: (fetched, reused, skipped)
     """
@@ -228,7 +311,7 @@ def walk(
     def process_one(path: str) -> tuple[str, str, list[str]]:
         """Returns (path, outcome, children). Outcome: 'fetch' | 'reuse' | 'skip'."""
         cached = local_path(path)
-        if cached.is_file() and not force:
+        if cached.is_file() and not _should_refetch(path, force, policy):
             try:
                 data = cached.read_bytes()
             except OSError:
@@ -276,34 +359,19 @@ def walk(
 # ----- CLI -----
 
 
-def parse_args(argv: list[str]) -> tuple[bool, bool, int, int]:
-    gaps = False
-    force = False
-    threads = 1
-    max_fetches = 10_000
-    i = 0
-    while i < len(argv):
-        a = argv[i]
-        if a == "--gaps":
-            gaps = True
-        elif a == "--force":
-            force = True
-        elif a == "--threads":
-            threads = int(argv[i + 1])
-            i += 1
-        elif a.startswith("--threads="):
-            threads = int(a.split("=", 1)[1])
-        elif a.isdigit():
-            max_fetches = int(a)
-        else:
-            raise SystemExit(f"Unknown argument: {a}")
-        i += 1
-    return gaps, force, threads, max_fetches
-
-
 def main(argv: list[str]) -> int:
-    gaps_mode, force, threads, max_fetches = parse_args(argv)
+    gaps_mode, force, policy_path, threads, max_fetches = parse_args(argv)
     OUT.mkdir(parents=True, exist_ok=True)
+
+    policy = None
+    if policy_path:
+        from scripts.policy import Policy, PolicyLoadError
+
+        try:
+            policy = Policy.load(policy_path)
+        except PolicyLoadError as e:
+            print(f"ERROR: policy load failed: {e}", file=sys.stderr)
+            return 2
 
     if gaps_mode:
         print("Scanning mirror for gaps…")
@@ -315,9 +383,22 @@ def main(argv: list[str]) -> int:
     else:
         seeds = list(SEEDS)
 
-    mode_str = "force-refresh" if force else ("gap-fill" if gaps_mode else "walk")
+    if force:
+        mode_str = "force-refresh"
+    elif policy is not None:
+        mode_str = f"policy-driven (v{policy.version})"
+    elif gaps_mode:
+        mode_str = "gap-fill"
+    else:
+        mode_str = "walk"
     print(f"Seeds: {len(seeds)}  threads: {threads}  max_fetches: {max_fetches}  mode: {mode_str}")
-    fetched, reused, skipped = walk(seeds, threads, max_fetches, force=force)
+
+    try:
+        fetched, reused, skipped = walk(seeds, threads, max_fetches, force=force, policy=policy)
+    except HREFExtractionShiftError as e:
+        print(f"ERROR: {e}", file=sys.stderr)
+        return 2
+
     print(f"\nDone. fetched={fetched}  reused={reused}  skipped={skipped}  under {OUT}/")
     return 0
 
