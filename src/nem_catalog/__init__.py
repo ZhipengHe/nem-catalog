@@ -18,7 +18,7 @@ from nem_catalog.errors import (
     NemCatalogFetchError,
     UnresolvableDatasetError,
 )
-from nem_catalog.loader import load
+from nem_catalog.loader import fetch_latest, load
 
 __version__ = "0.1.0"
 
@@ -29,5 +29,6 @@ __all__ = [
     "NemCatalogFetchError",
     "UnresolvableDatasetError",
     "__version__",
+    "fetch_latest",
     "load",
 ]
