@@ -10,6 +10,10 @@ permissions:
   pull-requests: write
   issues: write
 
+concurrency:
+  group: nemweb-mirror-refresh
+  cancel-in-progress: false
+
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -37,32 +41,47 @@ jobs:
             --label "aemo-coordination,robots-halt"
           exit 1
 
-      - name: Determine crawl mode
-        id: mode
+      - name: Record crawl-attempted timestamp
+        id: crawl_attempted
         run: |
-          DATE=$(date +%d)
-          if [ "$DATE" -le 7 ]; then
-            echo "mode=full" >> $GITHUB_OUTPUT
-          else
-            echo "mode=gaps" >> $GITHUB_OUTPUT
-          fi
+          TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          echo "LAST_CRAWL_ATTEMPTED_AT=$TS" >> $GITHUB_ENV
+          echo "ts=$TS" >> $GITHUB_OUTPUT
 
-      - name: Crawl NEMWEB (incremental or full)
+      - name: Crawl NEMWEB (policy-driven)
         id: crawl
+        continue-on-error: true
         run: |
           set -e
-          if [ "${{ steps.mode.outputs.mode }}" = "full" ]; then
-            uv run python scripts/nemweb_download.py 10000 2>&1 | tee nemweb-mirror/download.log
-          else
-            uv run python scripts/nemweb_download.py --gaps 10000 2>&1 | tee nemweb-mirror/download.log
-          fi
+          uv run python scripts/nemweb_download.py \
+            --policy patterns/curated/freshness-policy.yaml \
+            10000 \
+            2>&1 | tee nemweb-mirror/download.log
           FAILED=$(grep -c "status=" nemweb-mirror/download.log || true)
           TOTAL=$(grep -c "fetch\[" nemweb-mirror/download.log || true)
           echo "failed=$FAILED" >> $GITHUB_OUTPUT
           echo "total=$TOTAL" >> $GITHUB_OUTPUT
 
+      - name: Open P0 issue if crawl step failed
+        if: steps.crawl.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "weekly-refresh: crawl step failed $(date -u +%Y-%m-%dT%H:%MZ)" \
+            --body "scripts/nemweb_download.py exited non-zero (exit 2 indicates PolicyLoadError or HREFExtractionShiftError; see run log). extract/merge/PR are skipped and the previously-published catalog keeps serving. Investigate, patch, and re-trigger via workflow_dispatch." \
+            --label "weekly-refresh,crawl-failure,p0"
+          exit 1
+
+      - name: Record crawl-completed timestamp
+        if: steps.crawl.outcome == 'success'
+        run: |
+          TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          echo "LAST_CRAWL_COMPLETED_AT=$TS" >> $GITHUB_ENV
+
       - name: Check WAF / block indicators (>5% non-200)
         id: block_check
+        if: steps.crawl.outcome == 'success'
         run: |
           FAILED=${{ steps.crawl.outputs.failed }}
           TOTAL=${{ steps.crawl.outputs.total }}
@@ -75,7 +94,7 @@ jobs:
           fi
 
       - name: Open GH issue if blocked
-        if: steps.block_check.outputs.blocked == 'true'
+        if: steps.crawl.outcome == 'success' && steps.block_check.outputs.blocked == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -86,10 +105,12 @@ jobs:
           exit 1
 
       - name: Regenerate auto patterns
-        run: uv run python scripts/extract_patterns.py
+        if: steps.crawl.outcome == 'success'
+        run: uv run python -m scripts.extract_patterns --policy patterns/curated/freshness-policy.yaml
 
       - name: Merge catalog
         id: merge
+        if: steps.crawl.outcome == 'success'
         continue-on-error: true
         run: |
           uv run python scripts/merge_catalog.py \
@@ -98,7 +119,7 @@ jobs:
             --out catalog.json
 
       - name: Open issue if merge step failed
-        if: steps.merge.outcome == 'failure'
+        if: steps.crawl.outcome == 'success' && steps.merge.outcome == 'failure'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -110,6 +131,7 @@ jobs:
 
       # Design line 320: bump the README crawl badge only after every preceding step succeeded.
       - name: Update README crawl badge
+        if: steps.crawl.outcome == 'success'
         run: |
           chmod +x scripts/update_crawl_badge.sh
           bash scripts/update_crawl_badge.sh
@@ -117,6 +139,7 @@ jobs:
       # Test plan line 55: dataset-level before/after in PR body with threshold flag.
       - name: Compute dataset diff for PR body
         id: dataset_diff
+        if: steps.crawl.outcome == 'success'
         run: |
           {
             echo 'body<<DIFF_EOF'
@@ -126,6 +149,7 @@ jobs:
 
       - name: Detect diff
         id: diff
+        if: steps.crawl.outcome == 'success'
         run: |
           if git diff --quiet nemweb-mirror/ patterns/auto/ catalog.json README.md; then
             echo "changed=false" >> $GITHUB_OUTPUT
@@ -135,11 +159,11 @@ jobs:
 
       - name: Compute refresh date
         id: refresh_date
-        if: steps.diff.outputs.changed == 'true'
+        if: steps.crawl.outcome == 'success' && steps.diff.outputs.changed == 'true'
         run: echo "date=$(date -u +%Y-%m-%d)" >> $GITHUB_OUTPUT
 
       - name: Create PR on changes
-        if: steps.diff.outputs.changed == 'true'
+        if: steps.crawl.outcome == 'success' && steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           commit-message: "chore(data): weekly catalog refresh"
