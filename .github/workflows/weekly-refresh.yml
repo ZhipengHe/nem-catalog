@@ -142,12 +142,17 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
+      - name: Compute refresh date
+        id: refresh_date
+        if: steps.diff.outputs.changed == 'true'
+        run: echo "date=$(date -u +%Y-%m-%d)" >> $GITHUB_OUTPUT
+
       - name: Create PR on changes
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: "chore(data): weekly catalog refresh"
-          title: "chore(data): weekly catalog refresh ($(date -u +%Y-%m-%d))"
+          title: "chore(data): weekly catalog refresh (${{ steps.refresh_date.outputs.date }})"
           body: |
             Weekly auto-refresh from `weekly-refresh.yml`.
 
