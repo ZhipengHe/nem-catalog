@@ -46,6 +46,62 @@ def test_unresolvable_dataset_raises(catalog):
         )
 
 
+def test_resolve_returns_empty_when_all_tiers_miss_observed_range():
+    """Preserved-behavior regression for Copilot PR #1 review (catalog.py:190).
+
+    The fix tightened the empty-list short-circuit to only fire when EVERY
+    selected tier has observed_range AND none overlap. This test pins the
+    OTHER direction of that gate: when every tier DOES have observed_range
+    and none overlaps the request, resolve() must still return [] + emit
+    the 'requested range is outside observed_range' warning.
+
+    Without this test, a future refactor could drop the
+    `tiers_with_obs == len(selected)` guard entirely. The bug-case test
+    (test_resolve_returns_urls_when_tier_has_no_observed_range) would
+    still pass — but resolve() would silently start returning URLs for
+    out-of-range requests against fully-observed tiers. Both directions
+    of the gate need explicit pinning.
+    """
+    from nem_catalog.catalog import Catalog
+
+    data = {
+        "schema_version": "1.0.0",
+        "catalog_version": "2026.04.18",
+        "as_of": "2026-04-18T00:00:00Z",
+        "placeholders": {},
+        "dataset_keys": ["Test:AllObsMiss"],
+        "raw_keys": ["Test:AllObsMiss"],
+        "datasets": {
+            "Test:AllObsMiss": {
+                "repo": "Reports",
+                "intra_repo_id": "AllObsMiss",
+                "resolvable": True,
+                "tiers": {
+                    "TIER_A": {
+                        "path_template": "/a/",
+                        "filename_template": "a_{date}.zip",
+                        "observed_range": {"from": "2020-01-01", "to": "2020-12-31"},
+                    },
+                    "TIER_B": {
+                        "path_template": "/b/",
+                        "filename_template": "b_{date}.zip",
+                        "observed_range": {"from": "2021-01-01", "to": "2021-12-31"},
+                    },
+                },
+            }
+        },
+    }
+    c = Catalog(data)
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        # Request a range that misses both observed_range windows
+        urls = c.resolve("Test:AllObsMiss", from_="2025-06-01", to_="2025-06-03")
+    assert urls == []
+    assert any(
+        "outside" in str(rec.message) and "observed_range" in str(rec.message) for rec in w
+    ), f"expected outside-observed_range warning, got: {[str(r.message) for r in w]}"
+
+
 def test_resolve_returns_urls_when_tier_has_no_observed_range():
     """Regression for Copilot PR #1 review (catalog.py:190).
 
