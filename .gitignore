@@ -26,3 +26,4 @@ patterns/auto/
 
 # OS
 .DS_Store
+dist/

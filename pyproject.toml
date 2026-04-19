@@ -5,7 +5,7 @@ description = "Machine-readable URL catalog for AEMO NEMWEB (JSON + JSON Schema 
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
-authors = [{name = "Zhipeng He"}]
+authors = [{name = "Zhipeng He", email = "zippo.he@qut.edu.au"}]
 keywords = ["aemo", "nemweb", "nem", "australian-energy-market", "electricity-market-data", "json-schema", "data-catalog"]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -43,6 +43,22 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/nem_catalog"]
+
+[tool.hatch.build.targets.sdist]
+# Explicit allowlist — the repo contains a 58 MB nemweb-mirror/ research
+# artifact + plans/ + reference/ that are NOT runtime dependencies. Default
+# hatch sdist would ship them all to PyPI permanently.
+include = [
+  "/src",
+  "/tests",
+  "/schemas",
+  "/docs",
+  "/README.md",
+  "/LICENSE",
+  "/CHANGELOG.md",
+  "/CONTRIBUTING.md",
+  "/catalog.json",
+]
 
 [tool.ruff]
 line-length = 100
