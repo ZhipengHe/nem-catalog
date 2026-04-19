@@ -104,15 +104,39 @@ def test_resolve_raises_when_current_tier_has_aemo_id(catalog):
     assert "aemo_id" in ei.value.tokens
 
 
-def test_resolve_raises_when_straddle_includes_current_tier(catalog):
-    """Straddle → router selects both tiers → CURRENT has {aemo_id} → raise.
+def test_resolve_straddle_serves_archive_warns_about_unresolvable_current(catalog):
+    """Straddle with one non-resolvable tier: serve what we can, warn on the rest.
 
-    Replaces the pre-STRICT test that asserted both-tier URL emission. Under
-    STRICT the router still straddles (both tiers selected), but the CURRENT
-    tier raises before URL building.
+    Under the post-review STRICT-per-tier contract, resolve() no longer hard-raises
+    when a straddle selects both a pure-temporal ARCHIVE and a non-resolvable
+    CURRENT. It returns the ARCHIVE partition URLs and emits a warning for the
+    skipped CURRENT tier. This prevents users from losing valid pre-cutoff data
+    because of a post-cutoff tier's template shape.
     """
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        urls = catalog.resolve(
+            "Reports:DispatchIS_Reports", from_="2026-04-15", to_="2026-04-18"
+        )
+    # ARCHIVE partition is [dt_from, cutoff - 1 day] = [2026-04-15, 2026-04-15]
+    # → exactly 1 URL, from the pure-temporal ARCHIVE tier.
+    archive_urls = [u for u in urls if "/ARCHIVE/" in u]
+    current_urls = [u for u in urls if "/CURRENT/" in u]
+    assert len(archive_urls) == 1, f"expected 1 ARCHIVE URL, got {archive_urls}"
+    assert current_urls == [], "CURRENT is non-resolvable; must not emit URLs"
+    # Warning must mention the skipped tier + its non-temporal token
+    skip_warnings = [rec for rec in w if "skipped tier" in str(rec.message)]
+    assert skip_warnings, "expected a skipped-tier warning for CURRENT"
+    msg = str(skip_warnings[0].message)
+    assert "CURRENT" in msg
+    assert "aemo_id" in msg
+
+
+def test_resolve_raises_when_all_tiers_are_non_resolvable(catalog):
+    """When ZERO tiers can resolve, raise with the first skipped tier's info."""
+    # DispatchIS_Reports inside retention window → CURRENT only → non-resolvable.
     with pytest.raises(NonResolvableTemplateError) as ei:
-        catalog.resolve("Reports:DispatchIS_Reports", from_="2026-04-15", to_="2026-04-18")
+        catalog.resolve("Reports:DispatchIS_Reports", from_="2026-04-17", to_="2026-04-18")
     assert ei.value.tier == "CURRENT"
     assert "aemo_id" in ei.value.tokens
 
@@ -164,6 +188,79 @@ def test_resolve_nemde_still_returns_urls_under_strict(catalog):
     urls = catalog.resolve("NEMDE:NemPriceSetter", from_="2024-06-01", to_="2024-06-03")
     assert len(urls) == 3
     assert all("{" not in u for u in urls)
+
+
+def test_resolve_substitutes_extended_temporal_tokens():
+    """Regression guard: tokens {yearmonth}, {datetime}, {yyyymmddhh} ARE temporal.
+    The extractor emits them; the SDK must substitute them, not raise STRICT.
+
+    Uses a synthetic catalog dict to isolate the token-substitution behavior
+    from observed_range / retention routing.
+    """
+    from nem_catalog.catalog import Catalog
+
+    raw = {
+        "schema_version": "1.0.0",
+        "catalog_version": "test",
+        "as_of": "2026-04-19T00:00:00Z",
+        "placeholders": {},
+        "dataset_keys": ["Reports:YearMonthOnly", "Reports:DatetimeOnly", "Reports:HourOnly"],
+        "raw_keys": ["Reports:YearMonthOnly", "Reports:DatetimeOnly", "Reports:HourOnly"],
+        "datasets": {
+            "Reports:YearMonthOnly": {
+                "repo": "Reports", "intra_repo_id": "YearMonthOnly", "resolvable": True,
+                "tiers": {
+                    "ARCHIVE": {
+                        "path_template": "/test/",
+                        "filename_template": "MONTHLY_{yearmonth}.zip",
+                        "time_granularity": "yearmonth",
+                        "observed_range": {"from": "2020-01", "to": "2026-12"},
+                    }
+                },
+            },
+            "Reports:DatetimeOnly": {
+                "repo": "Reports", "intra_repo_id": "DatetimeOnly", "resolvable": True,
+                "tiers": {
+                    "ARCHIVE": {
+                        "path_template": "/test/",
+                        "filename_template": "EVENT_{datetime}.zip",
+                        "time_granularity": "datetime",
+                        "observed_range": {"from": "2026-04-15", "to": "2026-04-20"},
+                    }
+                },
+            },
+            "Reports:HourOnly": {
+                "repo": "Reports", "intra_repo_id": "HourOnly", "resolvable": True,
+                "tiers": {
+                    "ARCHIVE": {
+                        "path_template": "/test/",
+                        "filename_template": "HOURLY_{yyyymmddhh}.zip",
+                        "time_granularity": "yyyymmddhh",
+                        "observed_range": {"from": "2026-04-15", "to": "2026-04-20"},
+                    }
+                },
+            },
+        },
+    }
+    c = Catalog(raw)
+
+    # yearmonth: monthly iteration, 6-digit yyyymm substitution
+    urls = c.resolve("Reports:YearMonthOnly", from_="2025-01-01", to_="2025-03-31")
+    assert len(urls) == 3
+    assert "MONTHLY_202501.zip" in urls[0]
+    assert "MONTHLY_202503.zip" in urls[-1]
+
+    # datetime: 5-minute iteration, 14-digit yyyymmddhhmmss substitution
+    urls = c.resolve("Reports:DatetimeOnly", from_="2026-04-16T00:00:00", to_="2026-04-16T00:10:00")
+    assert len(urls) == 3  # 00:00, 00:05, 00:10
+    assert "EVENT_20260416000000.zip" in urls[0]
+    assert "EVENT_20260416001000.zip" in urls[-1]
+
+    # yyyymmddhh: hourly iteration, 10-digit substitution
+    urls = c.resolve("Reports:HourOnly", from_="2026-04-16T00:00:00", to_="2026-04-16T02:00:00")
+    assert len(urls) == 3  # 00, 01, 02
+    assert "HOURLY_2026041600.zip" in urls[0]
+    assert "HOURLY_2026041602.zip" in urls[-1]
 
 
 # ---- B5: straddle partitions at cutoff (no cross-tier date overlap) ---------

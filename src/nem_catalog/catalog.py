@@ -20,13 +20,21 @@ from nem_catalog.errors import NonResolvableTemplateError, UnresolvableDatasetEr
 _NEMWEB_BASE = "https://nemweb.com.au"
 
 # The complete set of placeholder names v0.1 resolve() can compute from a
-# (dt_from, dt_to) pair. Anything outside this set in a selected tier's
+# (dt_from, dt_to) pair. Anything outside this set in a SELECTED tier's
 # filename_template or path_template causes resolve() to raise
-# NonResolvableTemplateError. Keep in sync with _placeholders() below.
+# NonResolvableTemplateError for THAT tier only. Other tiers continue to
+# expand normally.
+#
+# Keep in sync with _placeholders() and _infer_granularity() below, AND
+# with the token vocabulary the extractor emits (scripts/extract_patterns.py
+# DIGIT_LABELS + _BASE_LABEL_REGEX). Missing a name here silently strands
+# datasets that would otherwise resolve.
 _TEMPORAL_TOKENS: frozenset[str] = frozenset({
     "date", "yyyymmdd",
     "timestamp", "yyyymmddHHMM", "yyyymmddhhmm",
-    "yyyymm",
+    "datetime",
+    "yyyymmddhh",
+    "yearmonth", "yyyymm",
     "year", "yyyy",
     "month",
 })
@@ -120,16 +128,6 @@ class Catalog:
         if view is not None:
             selected = {n: t for n, t in selected.items() if n == view}
 
-        # STRICT pre-flight: every selected tier's template must use only
-        # temporal placeholders. Fail fast before building any URL so callers
-        # never see a URL string with unsubstituted `{token}` literals.
-        for tier_name, tier in selected.items():
-            leftover = _non_temporal_tokens(tier)
-            if leftover:
-                raise NonResolvableTemplateError(
-                    dataset_key=key, tier=tier_name, tokens=leftover
-                )
-
         if pre_retention:
             warnings.warn(
                 f"resolve({key!r}, {from_!r}, {to_!r}): from_ is older than "
@@ -138,24 +136,36 @@ class Catalog:
                 stacklevel=2,
             )
 
-        # Rolling-tier records skip observed_range filtering: the retention
-        # warning already communicates near-live reachability risk, and ARCHIVE
-        # observed_range upper bound lags CURRENT by design.
-        #
-        # B5: when a straddle selects both tiers, partition the range at cutoff
-        # so CURRENT covers [cutoff, dt_to] and ARCHIVE covers [dt_from, cutoff).
-        # Previously both tiers expanded over the full (dt_from, dt_to) range
-        # and produced overlapping URLs for every date in the intersection.
+        # STRICT is applied per-tier at expansion time, AFTER observed_range
+        # and straddle-partition filtering. If a tier has non-temporal tokens
+        # AND that tier would actually emit URLs for this range, skip it with
+        # a warning. If every candidate tier was skipped, raise. Rationale: a
+        # request that falls entirely in a pure-temporal ARCHIVE window must
+        # not be denied because the rolling CURRENT tier has {aemo_id}.
         urls: list[str] = []
+        skipped_tiers: list[tuple[str, frozenset[str]]] = []
+
         if rolling_name is not None:
             for n, t in selected.items():
                 if n == rolling_name:
                     tier_from = max(dt_from, cutoff)
-                    urls.extend(_expand_tier(t, tier_from, dt_to))
+                    if tier_from > dt_to:
+                        continue
+                    expand_from, expand_to = tier_from, dt_to
                 else:
                     tier_to = min(dt_to, cutoff - timedelta(days=1))
-                    if tier_to >= dt_from:
-                        urls.extend(_expand_tier(t, dt_from, tier_to))
+                    if tier_to < dt_from:
+                        continue
+                    expand_from, expand_to = dt_from, tier_to
+                leftover = _non_temporal_tokens(t)
+                if leftover:
+                    skipped_tiers.append((n, leftover))
+                    continue
+                urls.extend(_expand_tier(t, expand_from, expand_to))
+            _warn_skipped_tiers(key, skipped_tiers)
+            if not urls and skipped_tiers:
+                n, leftover = skipped_tiers[0]
+                raise NonResolvableTemplateError(dataset_key=key, tier=n, tokens=leftover)
             return urls
 
         any_overlap = False
@@ -165,7 +175,12 @@ class Catalog:
                 continue
             if obs:
                 any_overlap = True
+            leftover = _non_temporal_tokens(t)
+            if leftover:
+                skipped_tiers.append((n, leftover))
+                continue
             urls.extend(_expand_tier(t, dt_from, dt_to))
+        _warn_skipped_tiers(key, skipped_tiers)
         if selected and not any_overlap:
             warnings.warn(
                 f"resolve({key!r}, {from_!r}, {to_!r}): requested range is outside "
@@ -173,6 +188,9 @@ class Catalog:
                 stacklevel=2,
             )
             return []
+        if not urls and skipped_tiers:
+            n, leftover = skipped_tiers[0]
+            raise NonResolvableTemplateError(dataset_key=key, tier=n, tokens=leftover)
         return urls
 
     def count(self, key: str, from_: str, to_: str, *, view: str | None = None) -> int:
@@ -246,8 +264,39 @@ def _expand_tier(tier: dict[str, Any], dt_from: datetime, dt_to: datetime) -> li
     return urls
 
 
+def _warn_skipped_tiers(
+    key: str, skipped: list[tuple[str, frozenset[str]]]
+) -> None:
+    """Emit one UserWarning per tier skipped due to non-temporal placeholders.
+
+    A tier is skipped when it was a router candidate but its template contains
+    tokens the SDK cannot compute from a date range. The warning tells the
+    caller which tier was bypassed and which tokens were unresolvable — so
+    they know the returned URL set is partial.
+    """
+    for tier_name, tokens in skipped:
+        tok_str = ", ".join(sorted(tokens))
+        warnings.warn(
+            f"resolve({key!r}): skipped tier {tier_name!r} — template contains "
+            f"non-temporal placeholder(s) {{{tok_str}}} that v0.1 cannot substitute. "
+            f"Inspect catalog.datasets[{key!r}]['tiers'][{tier_name!r}] for the raw "
+            f"template.",
+            stacklevel=3,
+        )
+
+
 def _infer_granularity(template: str) -> str:
-    for g in ("yyyymmddHHMM", "yyyymmddhhmm", "timestamp", "yyyymmdd", "date", "yyyymm", "month", "yyyy", "year"):
+    # Order matters: check longer/more-specific token names first so, e.g.,
+    # "{datetime}" isn't matched by the "{date}" substring test.
+    for g in (
+        "yyyymmddHHMM", "yyyymmddhhmm", "timestamp",
+        "datetime",
+        "yyyymmddhh",
+        "yyyymmdd", "date",
+        "yearmonth", "yyyymm",
+        "month",
+        "yyyy", "year",
+    ):
         if "{" + g + "}" in template:
             return g
     return "yyyymmdd"
@@ -257,16 +306,21 @@ def _iterate_dates(dt_from: datetime, dt_to: datetime, granularity: str) -> Iter
     if granularity in {"yyyy", "year"}:
         for y in range(dt_from.year, dt_to.year + 1):
             yield datetime(y, 1, 1)
-    elif granularity in {"yyyymm", "month"}:
+    elif granularity in {"yyyymm", "month", "yearmonth"}:
         y, m = dt_from.year, dt_from.month
         while (y, m) <= (dt_to.year, dt_to.month):
             yield datetime(y, m, 1)
             y, m = (y + 1, 1) if m == 12 else (y, m + 1)
-    elif granularity in {"yyyymmddhhmm", "timestamp"}:
+    elif granularity in {"yyyymmddhhmm", "timestamp", "datetime"}:
         cur = dt_from
         while cur <= dt_to:
             yield cur
             cur += timedelta(minutes=5)
+    elif granularity == "yyyymmddhh":
+        cur = dt_from
+        while cur <= dt_to:
+            yield cur
+            cur += timedelta(hours=1)
     else:
         cur = dt_from
         while cur <= dt_to:
@@ -277,11 +331,17 @@ def _iterate_dates(dt_from: datetime, dt_to: datetime, granularity: str) -> Iter
 def _placeholders(dt: datetime) -> dict[str, str]:
     ymd = dt.strftime("%Y%m%d")
     ts = dt.strftime("%Y%m%d%H%M")
+    ym = dt.strftime("%Y%m")
+    y4 = dt.strftime("%Y")
     return {
         "date": ymd, "yyyymmdd": ymd,
         "timestamp": ts, "yyyymmddHHMM": ts, "yyyymmddhhmm": ts,
-        "yyyymm": dt.strftime("%Y%m"),
-        "year": dt.strftime("%Y"), "yyyy": dt.strftime("%Y"),
+        # 14-digit yyyymmddhhmmss — AEMO dispatch files publish with ss=00;
+        # seconds-level cadence isn't observed in any shipped dataset.
+        "datetime": dt.strftime("%Y%m%d%H%M%S"),
+        "yyyymmddhh": dt.strftime("%Y%m%d%H"),
+        "yearmonth": ym, "yyyymm": ym,
+        "year": y4, "yyyy": y4,
         "month": dt.strftime("%m"),
     }
 
