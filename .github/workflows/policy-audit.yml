@@ -1,0 +1,104 @@
+name: policy-audit
+
+# First Monday of each month at 02:00 UTC — 1h before the weekly-refresh cron.
+# cron fields day-of-month AND day-of-week: runs only on 2026-05-04, 2026-06-01, etc.
+
+on:
+  schedule:
+    - cron: "0 2 1-7 * 1"   # first Monday of month, 02:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  # Shared with .github/workflows/weekly-refresh.yml so the monthly
+  # audit never races the weekly crawl on nemweb-mirror/. Design
+  # "Failure Modes" item 6.
+  group: nemweb-mirror-refresh
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+      - name: Install uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b  # v8.1.0
+      - name: Install project
+        run: uv sync --extra dev
+
+      - name: Robots check (halt on disallow, same contract as weekly-refresh)
+        id: robots
+        continue-on-error: true
+        run: uv run python scripts/check_robots.py
+
+      - name: Halt + open issue if robots.txt disallows
+        if: steps.robots.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "policy-audit halted: robots.txt disallowed $(date -u +%Y-%m-%dT%H:%MZ)" \
+            --body "The policy-audit workflow was halted because check_robots.py returned non-zero. Coordinate with AEMO per docs/aemo-coordination.md before re-enabling." \
+            --label "aemo-coordination,robots-halt"
+          exit 1
+
+      - name: Force-refetch into a side directory
+        run: |
+          mkdir -p /tmp/audit-fresh
+          # nemweb_download.py uses the repo-relative OUT=nemweb-mirror path;
+          # override via a symlink swap so the fresh tree lands elsewhere
+          # and the main mirror is not disturbed.
+          mv nemweb-mirror nemweb-mirror.bak
+          ln -s /tmp/audit-fresh nemweb-mirror
+          uv run python scripts/nemweb_download.py --force 10000 2>&1 | tee /tmp/audit-fresh/download.log
+          rm nemweb-mirror
+          mv nemweb-mirror.bak nemweb-mirror
+
+      - name: Run audit
+        id: audit
+        continue-on-error: true
+        run: |
+          set +e
+          uv run python -m scripts.audit_policy \
+            --policy patterns/curated/freshness-policy.yaml \
+            --mirror-root nemweb-mirror \
+            --fresh-dir /tmp/audit-fresh > audit-report.md
+          echo "audit_rc=$?" >> $GITHUB_OUTPUT
+
+      - name: Open P1 issue on findings
+        if: steps.audit.outputs.audit_rc != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "policy-audit: classification drift $(date -u +%Y-%m-%d)" \
+            --body-file audit-report.md \
+            --label "policy-audit,p1"
+
+      - name: Bump last_reviewed on clean audit
+        if: steps.audit.outputs.audit_rc == '0'
+        run: |
+          TODAY=$(date -u +%Y-%m-%d)
+          sed -i "s/^last_reviewed: .*/last_reviewed: $TODAY/" patterns/curated/freshness-policy.yaml
+          echo "Policy last_reviewed advanced to $TODAY (no drift)."
+
+      - name: Compute audit date tokens
+        id: date
+        if: steps.audit.outputs.audit_rc == '0'
+        run: |
+          echo "ym=$(date -u +%Y-%m)" >> $GITHUB_OUTPUT
+
+      - name: Open clean-audit bump PR
+        if: steps.audit.outputs.audit_rc == '0'
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1  # v8.1.1
+        with:
+          commit-message: "chore(policy): audit clean, bump last_reviewed"
+          title: "chore(policy): audit clean ${{ steps.date.outputs.ym }}"
+          body: |
+            Monthly policy-audit ran with no findings. Advancing
+            `last_reviewed` in freshness-policy.yaml.
+          branch: policy-audit-clean-${{ github.run_id }}
+          labels: policy-audit,chore
