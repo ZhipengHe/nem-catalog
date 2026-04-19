@@ -60,6 +60,10 @@ def load_curated(
     overlay_sources: dict[str, Path] = {}
     defaults: dict[str, dict[str, Any]] = {}
     for yml in sorted(curated_dir.glob("*.yaml")):
+        # freshness-policy.yaml is a curated artifact but not a dataset overlay;
+        # it's consumed by scripts/policy.py + scripts/audit_policy.py, not here.
+        if yml.name == "freshness-policy.yaml":
+            continue
         repo_name = yml.stem
         raw = yaml.safe_load(yml.read_text())
         content: dict[str, Any] = raw or {}
