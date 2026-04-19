@@ -157,6 +157,25 @@ Items surfaced during v0.1.1 plan review or per-task code review that were inten
 - **Fix:** Add 2 tests — one for empty findings (asserts "# Policy Audit — clean" in output), one for multi-kind findings (asserts all 3 section headers present).
 - **When:** v0.1.2.
 
+### T-release — `release.yml`
+
+**T-release-M1. Workflow doesn't create a GitHub Release page** [minor, release ergonomics]
+- **What:** `release.yml` has `permissions: contents: write` but no `gh release create` step — only the PyPI publish step runs. v0.1.1 needed a manual `gh release create v0.1.1 --notes-from-tag` after the workflow finished to populate https://github.com/ZhipengHe/nem-catalog/releases/tag/v0.1.1.
+- **Fix:** Add a step after `Publish to PyPI` (and before `Open issue on failure`):
+  ```yaml
+  - name: Create GitHub Release
+    env:
+      GH_TOKEN: ${{ github.token }}
+    run: |
+      gh release create "${{ github.ref_name }}" \
+        --title "${{ github.ref_name }}" \
+        --notes-from-tag \
+        --verify-tag
+  ```
+  Use `--notes-from-tag` to reuse the annotated tag message (which already exists per v0.1.0 + v0.1.1 release discipline). Falls back to `--generate-notes` if a tag is ever pushed without an annotation.
+- **Why deferred:** Discovered post-tag during v0.1.1 release. Cosmetic for users (PyPI install works), but the GitHub side looks unfinished without it. Manual workaround is one command per release.
+- **When:** v0.1.2 — fix before pushing v0.1.2 tag so the workflow self-creates the Release page.
+
 ## v0.2 catalog refinements
 
 ### Retention hint → observed range with confidence
