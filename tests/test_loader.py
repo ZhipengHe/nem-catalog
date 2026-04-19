@@ -55,7 +55,35 @@ def test_load_accepts_compatible_minor_bump(tmp_path):
     assert c.schema_version == "1.5.0"
 
 
-def test_load_from_http_url_not_implemented_yet():
-    """load() should accept an https:// URL in v0.1. Placeholder test for future expansion."""
-    # We don't want to hit the network in unit tests; tested via integration.
-    pass
+def test_load_accepts_http_url():
+    """load() must fetch from an HTTP(S) URL using a local test server.
+
+    Mirrors the local-server pattern in tests/test_fetch_latest.py — exercises
+    the URL branch in load() that splits on `path_or_url.startswith(("http://",
+    "https://"))`. Without this, the URL branch only runs in production.
+    """
+    import http.server
+    import threading
+
+    body = FIXTURE.read_bytes()
+
+    class _H(http.server.BaseHTTPRequestHandler):
+        def do_GET(self):
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(body)
+
+        def log_message(self, *a, **kw):
+            pass
+
+    srv = http.server.HTTPServer(("127.0.0.1", 0), _H)
+    host, port = srv.server_address
+    thread = threading.Thread(target=srv.serve_forever, daemon=True)
+    thread.start()
+    try:
+        c = load(f"http://{host}:{port}/catalog.json")
+        assert isinstance(c, Catalog)
+        assert c.schema_version == "1.0.0"
+    finally:
+        srv.shutdown()

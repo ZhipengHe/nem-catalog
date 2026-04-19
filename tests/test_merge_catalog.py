@@ -390,6 +390,52 @@ def test_curated_only_inserts_placeholder_entry(tmp_path: Path) -> None:
     )
 
 
+def test_curated_only_with_conflicting_repo_field_fails(tmp_path: Path) -> None:
+    """Regression for Copilot PR #1 review: a curated_only entry that explicitly
+    sets a `repo` field different from the key must fail loudly. Pre-fix, the
+    insert used `setdefault`, so a typo silently kept the YAML value and produced
+    an inconsistent record (key says one thing, fields say another).
+    """
+    auto = _write_auto(tmp_path, {})
+    _write_curated(
+        tmp_path,
+        "reports",
+        {
+            "Reports:Conflicty": {
+                "curated_only": True,
+                "repo": "MMSDM",  # WRONG — key says Reports
+                "resolvable": False,
+                "tiers": {},
+            }
+        },
+    )
+    out = tmp_path / "catalog.json"
+    r = _run_merge(auto, tmp_path / "curated", out)
+    assert r.returncode != 0
+    assert "conflicting repo" in r.stderr.lower(), r.stderr
+
+
+def test_curated_only_with_conflicting_intra_repo_id_fails(tmp_path: Path) -> None:
+    """Same regression for the intra_repo_id field."""
+    auto = _write_auto(tmp_path, {})
+    _write_curated(
+        tmp_path,
+        "reports",
+        {
+            "Reports:RealName": {
+                "curated_only": True,
+                "intra_repo_id": "WrongName",  # WRONG — key says RealName
+                "resolvable": False,
+                "tiers": {},
+            }
+        },
+    )
+    out = tmp_path / "catalog.json"
+    r = _run_merge(auto, tmp_path / "curated", out)
+    assert r.returncode != 0
+    assert "conflicting intra_repo_id" in r.stderr.lower(), r.stderr
+
+
 def test_override_missing_auto_key_fails_immediately(tmp_path: Path) -> None:
     """B2: unmarked curated entry (override) whose key is not in auto catalog → FAIL on
     first run. No --prior-fail-count tolerance. This replaces the pre-B2 2-run counter.

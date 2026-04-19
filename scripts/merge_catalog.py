@@ -163,10 +163,19 @@ def _insert_curated_only(
         raise SystemExit(f"FAIL: curated_only key {key!r} is not in 'Repo:intra_repo_id' form")
     repo, intra_repo_id = key.split(":", 1)
     record = {k: v for k, v in overlay.items() if k != "curated_only"}
-    # Derive ONLY the key-encoded fields. Everything else is from YAML.
-    # Schema validate() at the end of merge catches missing required fields.
-    record.setdefault("repo", repo)
-    record.setdefault("intra_repo_id", intra_repo_id)
+    # repo + intra_repo_id are derived from the key. If the YAML also sets
+    # them, the values MUST match — accepting a divergent YAML value would
+    # silently produce an inconsistent record (key says one thing, fields
+    # say another). Validate, then overwrite unconditionally so the key
+    # is the single source of truth.
+    for field, expected in (("repo", repo), ("intra_repo_id", intra_repo_id)):
+        if field in record and record[field] != expected:
+            raise SystemExit(
+                f"FAIL: curated_only key {key!r} has conflicting "
+                f"{field}={record[field]!r}; expected {expected!r} (derived from key)"
+            )
+    record["repo"] = repo
+    record["intra_repo_id"] = intra_repo_id
     datasets[key] = record
     # Make the placeholder discoverable via list_datasets(include_raw=True).
     # dataset_keys is the curated user-facing subset; raw_keys is "everything

@@ -10,7 +10,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-# Threshold for "significant" diff per test plan line 55. Configurable via CLI.
+# Threshold for "significant" diff per test plan line 55.
 THRESHOLD_PCT = 5
 
 

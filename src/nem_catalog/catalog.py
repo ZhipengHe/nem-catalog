@@ -174,11 +174,13 @@ class Catalog:
             return urls
 
         any_overlap = False
+        tiers_with_obs = 0
         for n, t in selected.items():
             obs = t.get("observed_range")
-            if obs and not _overlaps(dt_from, dt_to, obs):
-                continue
             if obs:
+                tiers_with_obs += 1
+                if not _overlaps(dt_from, dt_to, obs):
+                    continue
                 any_overlap = True
             leftover = _non_temporal_tokens(t)
             if leftover:
@@ -186,7 +188,13 @@ class Catalog:
                 continue
             urls.extend(_expand_tier(t, dt_from, dt_to))
         _warn_skipped_tiers(key, skipped_tiers)
-        if selected and not any_overlap:
+        # Only short-circuit to empty when EVERY selected tier had an
+        # observed_range AND none overlapped the request window. If any
+        # tier omits observed_range, treat coverage as unknown and trust
+        # the URL set we built — gating on partial coverage data would
+        # silently drop legitimate URLs from curated tiers that opt out
+        # of observed_range.
+        if selected and tiers_with_obs == len(selected) and not any_overlap:
             warnings.warn(
                 f"resolve({key!r}, {from_!r}, {to_!r}): requested range is outside "
                 f"observed_range for all selected tiers — returning empty list.",

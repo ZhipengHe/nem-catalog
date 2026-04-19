@@ -46,6 +46,51 @@ def test_unresolvable_dataset_raises(catalog):
         )
 
 
+def test_resolve_returns_urls_when_tier_has_no_observed_range():
+    """Regression for Copilot PR #1 review (catalog.py:190).
+
+    Pre-fix: the non-rolling branch only set `any_overlap = True` when a tier
+    HAD observed_range and overlapped. If every selected tier omitted
+    observed_range, `any_overlap` stayed False, and the function returned []
+    + warning — silently discarding URLs that resolve had already built.
+
+    Post-fix: short-circuit to empty only when EVERY selected tier has
+    observed_range AND none overlap. Tiers without observed_range are
+    treated as "coverage unknown" and trusted.
+    """
+    from nem_catalog.catalog import Catalog
+
+    data = {
+        "schema_version": "1.0.0",
+        "catalog_version": "2026.04.18",
+        "as_of": "2026-04-18T00:00:00Z",
+        "placeholders": {},
+        "dataset_keys": ["Test:NoObs"],
+        "raw_keys": ["Test:NoObs"],
+        "datasets": {
+            "Test:NoObs": {
+                "repo": "Reports",
+                "intra_repo_id": "NoObs",
+                "resolvable": True,
+                "tiers": {
+                    "ARCHIVE": {
+                        "path_template": "/test/",
+                        "filename_template": "file_{date}.zip",
+                        # observed_range deliberately omitted — curated tiers
+                        # can legitimately opt out (e.g. annual aggregates).
+                    }
+                },
+            }
+        },
+    }
+    c = Catalog(data)
+    urls = c.resolve("Test:NoObs", from_="2025-01-01", to_="2025-01-03")
+    assert len(urls) == 3
+    assert all("/test/file_" in u for u in urls)
+    assert urls[0].endswith("file_20250101.zip")
+    assert urls[-1].endswith("file_20250103.zip")
+
+
 def test_resolve_archive_daily_rollup_returns_one_url_per_day(catalog):
     # from_=2025-04-01 is far older than (as_of=2026-04-18 - retention_hint_unverified_days=2),
     # so the router returns ARCHIVE-only per design doc line 38.

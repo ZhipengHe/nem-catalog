@@ -26,7 +26,12 @@ _USER_AGENT = "nem-catalog-sdk/0.1"
 
 
 def load(path_or_url: str | Path) -> Catalog:
-    """Load a catalog from a local path or HTTPS URL. Pure: no cache, no fallback."""
+    """Load a catalog from a local path or HTTP(S) URL. Pure: no cache, no fallback.
+
+    URL loading accepts both `http://` and `https://`. Production consumers
+    should use `https://` (the canonical Pages URL is HTTPS); plain HTTP is
+    accepted to support local test servers and air-gapped mirrors.
+    """
     if isinstance(path_or_url, Path) or not str(path_or_url).startswith(("http://", "https://")):
         raw = Path(path_or_url).read_text()
     else:

@@ -209,8 +209,8 @@ Same dataset, different time-granularity in the filename depending on the view. 
 
 See `scripts/merge_catalog.py:merge`. Five rules:
 
-1. Field overlap → curated wins, build warns with both values.
-2. Curated-only field → accept unconditionally.
-3. Auto-only field → pass through untouched.
-4. Orphan curated key → warn on first occurrence, fail on 2 consecutive weekly runs.
-5. Auto-only key → flows through to catalog.
+1. Field overlap on auto-discovered key → curated wins, build warns with both values.
+2. Curated-only field on an existing auto-discovered key → accept unconditionally.
+3. Auto-only field or key → pass through untouched to the catalog.
+4. Orphan curated key without `curated_only: true` → fail immediately.
+5. Curated placeholder key with `curated_only: true` → keep it in the catalog as a curated-only entry.
