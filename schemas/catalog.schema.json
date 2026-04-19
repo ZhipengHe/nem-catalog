@@ -34,6 +34,16 @@
       "pattern": "^[0-9a-f]{7,40}$",
       "description": "Git commit hash of nemweb-mirror/ used to generate this catalog. Enables provenance auditing."
     },
+    "last_crawl_attempted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp when the weekly workflow last entered the crawl step. Populated by CI env var LAST_CRAWL_ATTEMPTED_AT. Optional: absent in locally-built catalogs."
+    },
+    "last_crawl_completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp when the crawl step exited with code 0. Absent when the most recent crawl failed (partial-crawl catalogs are never published). In any published catalog, equals as_of."
+    },
     "placeholders": {
       "type": "object",
       "description": "Global vocabulary mapping each placeholder name (used in path_template and filename_template) to its format, example, and regex. Non-Python consumers use this to expand templates.",
@@ -115,6 +125,16 @@
         "anomaly_note": {
           "type": ["string", "null"],
           "description": "Human-written note for edge cases: malformed names, case variance, multi-view granularity splits, deprecation, etc."
+        },
+        "freshness_class": {
+          "type": "string",
+          "enum": ["rolling", "append_only", "static", "parent_index", "unclassified"],
+          "description": "Classification from patterns/curated/freshness-policy.yaml. 'rolling' = 5-min cadence; 'append_only' = weekly archive rollup or slow-cycle; 'static' = frozen archive; 'parent_index' = directory index force-refetched for new-child discovery; 'unclassified' = not covered by any policy rule (conservative refetch)."
+        },
+        "last_observed_change_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "ISO 8601 UTC timestamp of the last observed HREF change, sourced from git log on the corresponding nemweb-mirror index.html. Null when the path is untracked or git log unavailable."
         }
       }
     },
