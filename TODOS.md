@@ -31,6 +31,20 @@ Items surfaced during v0.1.1 plan review or per-task code review that were inten
 - **Why deferred:** Green paths verified; red-path test is ~5 min but not in verbatim spec. Both exit-2 paths reviewed and correct by inspection.
 - **When:** v0.1.2 test-coverage PR.
 
+### T1 — `patterns/curated/freshness-policy.yaml`
+
+**T1-I1. `/Reports/ARCHIVE/**` classification is too loose — AEMO retains ~1 year of data, items roll off** [important, classification accuracy]
+- **What:** The current policy classifies `/Reports/ARCHIVE/**` as `append_only`, implying pure growth (items only added, never removed). In reality, AEMO's ARCHIVE directory has a ~1-year retention window — weekly rollups are appended at the head AND older items drop off the tail. The correct semantic is closer to "long-rolling" (365-day window) than "append_only".
+- **Why this matters:** `append_only` tells downstream consumers (and the audit logic) that older references are stable. If a consumer bookmarks an ARCHIVE URL from 14 months ago expecting it to still resolve, they'll hit a 404. The audit's `reclassify_down` logic (fires only for `rolling` with zero change) also won't catch misclassification drift on ARCHIVE.
+- **Why deferred:** Fixing requires empirical measurement of the actual retention window per ARCHIVE stream — probably 1 year on average but variance likely exists (e.g., Billing vs. DISPATCHFCST). Not in scope for the v0.1.1 critical fix (weekly crawler works, signals exposed).
+- **Investigation scope (v0.1.2):**
+  1. For each of the ~40 `/Reports/ARCHIVE/*/` streams: measure oldest vs. newest listing date; record the observed retention window.
+  2. Decide: introduce a new class (e.g., `rolling_long`, `retention_window`, `bounded_rolling`) OR keep `append_only` with a documented caveat that "append-only within a retention window".
+  3. If a new class is introduced: update `Policy.VALID_CLASSES`, `scripts/audit_policy.py` finding logic (the current 3-branch check doesn't cover append_only/parent_index at all — see T10-I1), and JSON Schema's `freshness_class` enum.
+  4. Update `patterns/curated/freshness-policy.yaml` classification for `/Reports/ARCHIVE/**` accordingly.
+  5. Document the retention window as a separate dataset-level field (e.g., `retention_window_days`) so catalog consumers know how far back to expect data.
+- **When:** v0.1.2 policy-accuracy pass.
+
 ### T2 — `scripts/policy.py`
 
 **T2-I1. `/Data_Archive/` classified as `static`, should be `parent_index`** [important, cross-file fix]
