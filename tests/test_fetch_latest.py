@@ -1,6 +1,7 @@
 """Tests for nem_catalog.fetch_latest() — opt-in convenience with cache + fallback."""
 
 import http.server
+import re
 import threading
 from pathlib import Path
 
@@ -96,3 +97,30 @@ def test_catalog_version_pin_uses_release_url(server, tmp_path, monkeypatch):
     # Serve it anyway (our fake server returns the same body for any path)
     c = fetch_latest(cache_dir=tmp_path, catalog_version="2026.04.18")
     assert c.catalog_version == "2026.04.18"
+
+
+def test_release_url_template_matches_publish_workflow():
+    """Contract: loader's release URL template must match what publish-catalog.yml
+    actually creates. If TAG= or the asset filename drifts, fetch_latest(catalog_version=...)
+    404s silently on every call. Parse the workflow file and compare.
+    """
+    workflow = (REPO_ROOT / ".github" / "workflows" / "publish-catalog.yml").read_text()
+
+    tag_match = re.search(r'TAG="([^"]+)"', workflow)
+    assert tag_match, "could not find TAG= assignment in publish-catalog.yml"
+    tag_pattern = tag_match.group(1).replace("$VERSION", "{version}")
+
+    asset_match = re.search(r'cp catalog\.json "([^"]+)"', workflow)
+    assert asset_match, "could not find asset filename (cp catalog.json ...) in publish-catalog.yml"
+    asset_pattern = asset_match.group(1).replace("$VERSION", "{version}")
+
+    from nem_catalog.loader import _DEFAULT_RELEASE_URL_TEMPLATE
+
+    version = "2026.04.19"
+    expected_path = f"{tag_pattern}/{asset_pattern}".format(version=version)
+    actual = _DEFAULT_RELEASE_URL_TEMPLATE.format(version=version)
+    assert actual.endswith(expected_path), (
+        f"release URL contract mismatch:\n"
+        f"  publish-catalog.yml produces path: .../{expected_path}\n"
+        f"  loader constructs:                 {actual}"
+    )

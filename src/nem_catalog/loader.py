@@ -20,7 +20,7 @@ _SUPPORTED_MAJOR = 1
 _DEFAULT_URL = "https://zhipenghe.github.io/nem-catalog/catalog.json"
 _DEFAULT_RELEASE_URL_TEMPLATE = (
     "https://github.com/ZhipengHe/nem-catalog/releases/download/"
-    "v{version}/catalog-{version}.json"
+    "catalog-{version}/catalog-{version}.json"
 )
 _USER_AGENT = "nem-catalog-sdk/0.1"
 
