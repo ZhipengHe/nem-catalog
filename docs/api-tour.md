@@ -14,6 +14,13 @@ urls = catalog.resolve(
 # 30 URLs (daily rollups)
 ```
 
+**v0.1 limit:** `resolve()` only returns URLs when the tier's filename can be
+built from a date range alone. Rolling CURRENT filenames that embed a
+participant ID (`{aemo_id}`) or file sequence (`{nn}`) raise
+`NonResolvableTemplateError` — see [`troubleshooting.md#non-resolvable-template`](troubleshooting.md#non-resolvable-template).
+Workaround for v0.1: query an ARCHIVE-covered date range, or inspect the raw
+template via `catalog.datasets[key]['tiers']` and build URLs yourself.
+
 ## 2. Non-Python shell user: grep for datasets, expand template
 
 ```bash

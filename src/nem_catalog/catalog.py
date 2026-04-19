@@ -9,14 +9,29 @@ records with resolvable=false (directory-level anomalies).
 from __future__ import annotations
 
 import difflib
+import re
 import warnings
 from collections.abc import Iterator
 from datetime import datetime, timedelta
 from typing import Any
 
-from nem_catalog.errors import UnresolvableDatasetError
+from nem_catalog.errors import NonResolvableTemplateError, UnresolvableDatasetError
 
 _NEMWEB_BASE = "https://nemweb.com.au"
+
+# The complete set of placeholder names v0.1 resolve() can compute from a
+# (dt_from, dt_to) pair. Anything outside this set in a selected tier's
+# filename_template or path_template causes resolve() to raise
+# NonResolvableTemplateError. Keep in sync with _placeholders() below.
+_TEMPORAL_TOKENS: frozenset[str] = frozenset({
+    "date", "yyyymmdd",
+    "timestamp", "yyyymmddHHMM", "yyyymmddhhmm",
+    "yyyymm",
+    "year", "yyyy",
+    "month",
+})
+
+_TOKEN_RE = re.compile(r"\{(\w+)\}")
 
 
 class Catalog:
@@ -105,6 +120,16 @@ class Catalog:
         if view is not None:
             selected = {n: t for n, t in selected.items() if n == view}
 
+        # STRICT pre-flight: every selected tier's template must use only
+        # temporal placeholders. Fail fast before building any URL so callers
+        # never see a URL string with unsubstituted `{token}` literals.
+        for tier_name, tier in selected.items():
+            leftover = _non_temporal_tokens(tier)
+            if leftover:
+                raise NonResolvableTemplateError(
+                    dataset_key=key, tier=tier_name, tokens=leftover
+                )
+
         if pre_retention:
             warnings.warn(
                 f"resolve({key!r}, {from_!r}, {to_!r}): from_ is older than "
@@ -156,6 +181,20 @@ class Catalog:
 
 
 # ---- module-level helpers ------------------------------------------------
+
+
+def _non_temporal_tokens(tier: dict[str, Any]) -> frozenset[str]:
+    """Return the set of non-temporal placeholder names in a tier's templates.
+
+    Scans both `filename_template` and `path_template` for `{name}` tokens
+    and returns any name not in `_TEMPORAL_TOKENS`. Returns an empty frozenset
+    when the tier is pure-temporal (resolve() can build concrete URLs).
+    """
+    tokens: set[str] = set()
+    for key in ("filename_template", "path_template"):
+        value = tier.get(key) or ""
+        tokens.update(_TOKEN_RE.findall(value))
+    return frozenset(tokens - _TEMPORAL_TOKENS)
 
 
 def _parse_date(s: str) -> datetime:

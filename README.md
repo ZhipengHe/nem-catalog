@@ -60,8 +60,28 @@ urls = catalog.resolve(
 catalog = nem_catalog.fetch_latest()
 
 # Preview cardinality before materializing:
-n = catalog.count("MMSDM:DISPATCHPRICE", from_="2024-01-01", to_="2024-12-31")
+n = catalog.count("Reports:DispatchIS_Reports", from_="2024-01-01", to_="2024-12-31")
 ```
+
+### Not every dataset resolves to concrete URLs in v0.1
+
+`resolve()` only returns URLs when the tier's filename template can be built
+from a date range alone. AEMO filenames in rolling CURRENT tiers often embed a
+participant ID (e.g. `{aemo_id}`) or a file-sequence suffix (e.g. `{nn}`) that
+the SDK cannot compute without extra input. For those, `resolve()` raises
+`NonResolvableTemplateError` rather than return a broken URL string.
+
+```python
+# Raises NonResolvableTemplateError — CURRENT filename has {aemo_id}
+catalog.resolve("Reports:DispatchIS_Reports", from_="2026-04-17", to_="2026-04-18")
+
+# Works — ARCHIVE filename is pure temporal
+catalog.resolve("Reports:DispatchIS_Reports", from_="2025-04-01", to_="2025-04-02")
+```
+
+Inspect the raw template for any dataset via `catalog.datasets[key]['tiers']`
+and build the URL yourself, or pin the query to an ARCHIVE-covered date range.
+A future release will add an enumeration API for these datasets.
 
 ## Not for you if...
 

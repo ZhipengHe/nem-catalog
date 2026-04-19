@@ -29,6 +29,20 @@ def test_resolve_example():
 
 def test_count_example():
     catalog = nem_catalog.load(str(FIXTURE))
-    n = catalog.count("MMSDM:DISPATCHPRICE", from_="2024-01-01", to_="2024-12-31")
+    n = catalog.count("Reports:DispatchIS_Reports", from_="2024-01-01", to_="2024-12-31")
     assert isinstance(n, int)
     assert n >= 0
+
+
+def test_readme_strict_raise_example():
+    """The README documents that resolve() raises on CURRENT tier filenames
+    with non-temporal placeholders. Keep that claim honest."""
+    from nem_catalog.errors import NonResolvableTemplateError
+    catalog = nem_catalog.load(str(FIXTURE))
+    import pytest
+    with pytest.raises(NonResolvableTemplateError):
+        catalog.resolve(
+            "Reports:DispatchIS_Reports",
+            from_="2026-04-17",
+            to_="2026-04-18",
+        )

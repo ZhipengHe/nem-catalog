@@ -56,3 +56,39 @@ class UnresolvableDatasetError(_WithDocsUrl):
     """
 
     _anchor = "unresolvable-dataset"
+
+
+class NonResolvableTemplateError(NemCatalogError):
+    """A selected tier's filename/path template contains a placeholder the SDK
+    cannot compute from a date range.
+
+    v0.1 resolve() only substitutes temporal placeholders (date, timestamp,
+    yyyymm, year, month, and their aliases). Templates with non-temporal
+    tokens like `{aemo_id}` (per-participant), `{nn}` (file sequence), or
+    `{d2}` (MMSDM day marker) raise this error to avoid returning URLs
+    containing unsubstituted `{...}` literals.
+
+    Inspect the raw template via `catalog.datasets[dataset_key]["tiers"]`.
+    A future SDK release will add an enumeration API for these datasets.
+    """
+
+    _anchor = "non-resolvable-template"
+
+    def __init__(
+        self,
+        dataset_key: str,
+        tier: str,
+        tokens: frozenset[str],
+    ) -> None:
+        self.dataset_key = dataset_key
+        self.tier = tier
+        self.tokens = tokens
+        token_str = ", ".join(sorted(tokens))
+        msg = (
+            f"dataset {dataset_key!r} tier {tier!r} template has non-temporal "
+            f"placeholder(s) {{{token_str}}} which resolve() cannot substitute "
+            f"from a date range. Inspect the raw template via "
+            f"catalog.datasets[{dataset_key!r}]['tiers'][{tier!r}]. "
+            f"See: {docs_url(self._anchor)}"
+        )
+        super().__init__(msg)
