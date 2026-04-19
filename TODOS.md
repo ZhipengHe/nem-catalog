@@ -105,10 +105,8 @@ Items surfaced during v0.1.1 plan review or per-task code review that were inten
 - **Fix:** Remove or replace with a comment: `# GHA default shell is -eo pipefail`.
 - **When:** v0.1.2 or whenever the workflow is next touched.
 
-**T9-M2. `crawl-failure` GitHub label may not exist on the repo** [minor, ops]
-- **What:** The P0-issue step creates an issue with labels `weekly-refresh,crawl-failure,p0`. If `crawl-failure` doesn't exist, `gh issue create` will fail with a confusing error that masks the underlying crawl failure.
-- **Fix:** Create the label via `gh label create crawl-failure --color c04000 --description "weekly-refresh crawl step exited non-zero"` before the next cron fires. Same exposure pre-existed for the `merge,p0` label combo.
-- **When:** Pre-ship checklist (before merging v0.1.1).
+**T9-M2. ~~`crawl-failure` GitHub label may not exist on the repo~~** [DONE — pre-ship checklist closed 2026-04-20]
+- All labels referenced by `weekly-refresh.yml` and `policy-audit.yml` are now created on the repo: `crawl-failure`, `p0`, `p1`, `policy-audit`, `weekly-refresh`, `chore`, `aemo-coordination`, `robots-halt`, `merge`, `data-catalog`. `bug` pre-existed. Verified via `gh label list`.
 
 **T9-M3. `crawl_attempted.outputs.ts` is set but never read** [minor]
 - **What:** Line 49 writes `ts=$TS` to `$GITHUB_OUTPUT`; no downstream step references `steps.crawl_attempted.outputs.ts`. The consumed path is the env var `LAST_CRAWL_ATTEMPTED_AT`.
