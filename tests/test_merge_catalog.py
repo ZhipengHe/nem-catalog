@@ -78,7 +78,6 @@ def _run_merge(
     auto_path: Path,
     curated_dir: Path,
     out_path: Path,
-    prior_fail_count: int = 0,
 ) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         [
@@ -87,7 +86,6 @@ def _run_merge(
             "--auto", str(auto_path),
             "--curated", str(curated_dir),
             "--out", str(out_path),
-            "--prior-fail-count", str(prior_fail_count),
         ],
         capture_output=True,
         text=True,
@@ -156,7 +154,7 @@ def test_field_overlap_curated_wins_with_warning(tmp_path: Path) -> None:
     assert r.returncode == 0
     data = json.loads(out.read_text())
     assert data["datasets"]["Reports:Foo"]["anomaly_note"] == "Curated override"
-    assert "WARNING: field overlap" in r.stderr
+    assert "WARNING:" in r.stderr
     assert "Reports:Foo.anomaly_note" in r.stderr
 
 
@@ -193,6 +191,7 @@ def test_auto_only_dataset_key_passes_through(tmp_path: Path) -> None:
 
 
 def test_orphan_curated_key_warns_on_first_occurrence(tmp_path: Path) -> None:
+    """B2: orphan override → fail immediately (no 2-run tolerance)."""
     auto = _write_auto(
         tmp_path,
         {
@@ -218,19 +217,20 @@ def test_orphan_curated_key_warns_on_first_occurrence(tmp_path: Path) -> None:
     )
     _write_curated(tmp_path, "reports", {"Reports:GhostDataset": {"anomaly_note": "stale"}})
     out = tmp_path / "catalog.json"
-    r = _run_merge(auto, tmp_path / "curated", out, prior_fail_count=0)
-    assert r.returncode == 0, r.stderr
+    r = _run_merge(auto, tmp_path / "curated", out)
+    assert r.returncode != 0
     assert "ORPHAN CURATED KEY" in r.stderr
     assert "Reports:GhostDataset" in r.stderr
 
 
 def test_orphan_curated_key_fails_on_second_consecutive(tmp_path: Path) -> None:
+    """B2: orphan override fails immediately regardless of prior runs."""
     auto = _write_auto(tmp_path, {})
     _write_curated(tmp_path, "reports", {"Reports:GhostDataset": {"anomaly_note": "still stale"}})
     out = tmp_path / "catalog.json"
-    r = _run_merge(auto, tmp_path / "curated", out, prior_fail_count=1)
+    r = _run_merge(auto, tmp_path / "curated", out)
     assert r.returncode == 1
-    assert "FAIL" in r.stderr
+    assert "ORPHAN CURATED KEY" in r.stderr
 
 
 def test_merge_applies_mmsdm_default_schema_source(tmp_path: Path) -> None:
@@ -341,3 +341,148 @@ def test_duplicate_curated_key_across_files_fails(tmp_path: Path) -> None:
     assert r.returncode == 1
     assert "duplicate curated key" in r.stderr.lower()
     assert "a.yaml" in r.stderr and "b.yaml" in r.stderr
+
+
+def test_curated_only_inserts_placeholder_entry(tmp_path: Path) -> None:
+    """B2: curated_only: true entries insert into catalog without needing an auto base."""
+    auto = _write_auto(tmp_path, {})  # empty auto catalog
+    _write_curated(
+        tmp_path,
+        "reports",
+        {
+            "Reports:FakePlaceholder": {
+                "curated_only": True,
+                "resolvable": False,
+                "tiers": {
+                    "ARCHIVE": {
+                        "path_template": "/Reports/ARCHIVE/FakePlaceholder/",
+                        "filename_template": None,
+                        "filename_regex": None,
+                        "example": "",
+                        "cadence": "none",
+                        "observed_range": None,
+                    }
+                },
+                "anomaly_note": "Empty directory on AEMO; fixture test.",
+            }
+        },
+    )
+    out = tmp_path / "catalog.json"
+    r = _run_merge(auto, tmp_path / "curated", out)
+    assert r.returncode == 0, r.stderr
+    data = json.loads(out.read_text())
+    assert "Reports:FakePlaceholder" in data["datasets"]
+    ds = data["datasets"]["Reports:FakePlaceholder"]
+    assert ds["repo"] == "Reports"
+    assert ds["intra_repo_id"] == "FakePlaceholder"
+    assert ds["resolvable"] is False
+    assert "curated_only" not in ds, "curated_only is a YAML-layer marker; must not leak into catalog.json"
+    assert "Reports:FakePlaceholder" in data["raw_keys"], "placeholder must be discoverable via raw_keys"
+    assert "Reports:FakePlaceholder" not in data["dataset_keys"], (
+        "resolvable=false placeholders are intentionally excluded from dataset_keys (user-facing list)"
+    )
+
+
+def test_override_missing_auto_key_fails_immediately(tmp_path: Path) -> None:
+    """B2: unmarked curated entry (override) whose key is not in auto catalog → FAIL on
+    first run. No --prior-fail-count tolerance. This replaces the pre-B2 2-run counter.
+    """
+    auto = _write_auto(tmp_path, {})  # empty auto
+    _write_curated(
+        tmp_path,
+        "reports",
+        {
+            # No curated_only → treated as override
+            "Reports:DeletedByAemo": {
+                "anomaly_note": "We used to override this but AEMO removed the dir.",
+            }
+        },
+    )
+    out = tmp_path / "catalog.json"
+    r = _run_merge(auto, tmp_path / "curated", out)
+    assert r.returncode != 0, "override for missing auto key must fail"
+    assert "ORPHAN" in r.stderr or "AEMO deletion" in r.stderr
+    assert not out.exists(), "failed merge must not write catalog.json"
+
+
+def test_curated_only_shadows_auto_emits_warning(tmp_path: Path) -> None:
+    """B2: curated_only: true for a key that ALSO exists in auto → curated wins, but
+    emit a warning so maintainers notice the unusual overlap."""
+    auto = _write_auto(
+        tmp_path,
+        {
+            "Reports:Collision": {
+                "repo": "Reports",
+                "intra_repo_id": "Collision",
+                "resolvable": True,
+                "tiers": {
+                    "CURRENT": {
+                        "path_template": "/Reports/CURRENT/Collision/",
+                        "filename_template": "collision_{date}.zip",
+                        "filename_regex": r"^collision_\d{8}\.zip$",
+                        "example": "collision_20240101.zip",
+                        "cadence": "5min",
+                        "observed_range": None,
+                    }
+                },
+                "query_shape": None,
+                "schema_source": None,
+                "anomaly_note": None,
+            }
+        },
+    )
+    _write_curated(
+        tmp_path,
+        "reports",
+        {
+            "Reports:Collision": {
+                "curated_only": True,
+                "resolvable": False,
+                "tiers": {
+                    "ARCHIVE": {
+                        "path_template": "/Reports/ARCHIVE/Collision/",
+                        "filename_template": None,
+                        "filename_regex": None,
+                        "example": "",
+                        "cadence": "none",
+                        "observed_range": None,
+                    }
+                },
+                "anomaly_note": "Curated wins here.",
+            }
+        },
+    )
+    out = tmp_path / "catalog.json"
+    r = _run_merge(auto, tmp_path / "curated", out)
+    assert r.returncode == 0, r.stderr
+    assert "shadows" in r.stderr.lower() or "curated_only" in r.stderr.lower(), (
+        "must warn when curated_only entry overwrites an auto record"
+    )
+    data = json.loads(out.read_text())
+    ds = data["datasets"]["Reports:Collision"]
+    assert ds["resolvable"] is False  # curated won
+    assert list(ds["tiers"].keys()) == ["ARCHIVE"]  # auto's CURRENT tier is replaced
+
+
+def test_curated_only_without_tiers_fails_schema_validation(tmp_path: Path) -> None:
+    """B2: curated_only: true entries must declare tiers (schema requires it).
+    If YAML omits tiers, the inserted record fails validate() → SystemExit(1).
+    """
+    auto = _write_auto(tmp_path, {})
+    _write_curated(
+        tmp_path,
+        "reports",
+        {
+            "Reports:BrokenPlaceholder": {
+                "curated_only": True,
+                "resolvable": False,
+                # Intentionally no tiers — should fail schema validation
+                "anomaly_note": "Oops, forgot tiers.",
+            }
+        },
+    )
+    out = tmp_path / "catalog.json"
+    r = _run_merge(auto, tmp_path / "curated", out)
+    assert r.returncode != 0, "malformed curated_only entry must fail"
+    # The schema validator reports the missing required field:
+    assert "tiers" in r.stderr

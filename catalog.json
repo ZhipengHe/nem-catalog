@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "catalog_version": "2026.04.19",
-  "as_of": "2026-04-19T06:16:12Z",
-  "source_mirror_commit": "8a1611b",
+  "as_of": "2026-04-19T07:05:11Z",
+  "source_mirror_commit": "9be2e9f",
   "placeholders": {
     "date": {
       "format": "yyyymmdd",
@@ -779,6 +779,7 @@
     "Reports:DWGM",
     "Reports:Daily_Reports",
     "Reports:Directions_Reconciliation",
+    "Reports:DispatchIS_FCAS_Fix",
     "Reports:DispatchIS_Reports",
     "Reports:Dispatch_IRSR",
     "Reports:Dispatch_Negative_Residue",
@@ -808,6 +809,7 @@
     "Reports:NEXT_DAY_AVAIL_SUBMISS_CLUSTER",
     "Reports:NEXT_DAY_AVAIL_SUBMISS_DAY",
     "Reports:NEXT_DAY_MCCDISPATCH",
+    "Reports:NEXT_DAY_OFFER_ENERGY)SPARSE",
     "Reports:Network",
     "Reports:Next_Day_Actual_Gen",
     "Reports:Next_Day_Dispatch",
@@ -17833,6 +17835,38 @@
       },
       "schema_source": null,
       "anomaly_note": "Frozen archive — only 2011 and 2012 files present as of 2026-04-18.\nFilename is literally {year}.txt (e.g., 2011.txt), no 'CAUSER_PAYS_' prefix,\nextension is .txt not .zip.\n"
+    },
+    "Reports:NEXT_DAY_OFFER_ENERGY)SPARSE": {
+      "resolvable": false,
+      "tiers": {
+        "ARCHIVE": {
+          "path_template": "/Reports/ARCHIVE/NEXT_DAY_OFFER_ENERGY)SPARSE/",
+          "filename_template": null,
+          "filename_regex": null,
+          "example": "",
+          "cadence": "none",
+          "observed_range": null
+        }
+      },
+      "anomaly_note": "Directory-level anomaly: AEMO published this stream with a malformed ')' in the name\nand the directory contains zero files. URL is correct as stated — do NOT URL-encode\nthe ')' character. Entry exists for catalog completeness; do not expect file resolution.\nresolve() will raise UnresolvableDatasetError.\n",
+      "repo": "Reports",
+      "intra_repo_id": "NEXT_DAY_OFFER_ENERGY)SPARSE"
+    },
+    "Reports:DispatchIS_FCAS_Fix": {
+      "resolvable": false,
+      "tiers": {
+        "ARCHIVE": {
+          "path_template": "/Reports/ARCHIVE/DispatchIS_FCAS_Fix/",
+          "filename_template": null,
+          "filename_regex": null,
+          "example": "",
+          "cadence": "none",
+          "observed_range": null
+        }
+      },
+      "anomaly_note": "Directory exists on NEMWEB under /Reports/ARCHIVE/ but contains zero files\n(verified 2026-04-19 against local nemweb-mirror). Likely a one-off historical\ncorrection AEMO published and subsequently emptied. Entry exists for catalog\ncompleteness; resolve() will raise UnresolvableDatasetError.\n",
+      "repo": "Reports",
+      "intra_repo_id": "DispatchIS_FCAS_Fix"
     }
   }
 }

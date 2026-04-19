@@ -11,6 +11,7 @@ Human-authored overlays on top of the machine-generated `patterns/auto/` catalog
 - `schema_source` — URLs to authoritative AEMO schema documentation.
 - `query_shape` — per-record user affordance (what inputs does THIS dataset take).
 - Deprecation markers for datasets AEMO is retiring.
+- Placeholder entries (`curated_only: true`) for datasets AEMO publishes without crawlable files — directory exists, zero content. Requires full tiers block.
 
 ## What does NOT go here
 
@@ -21,11 +22,18 @@ Human-authored overlays on top of the machine-generated `patterns/auto/` catalog
 
 See `scripts/merge_catalog.py` and `docs/architecture.md`:
 
-1. Field overlap with auto → curated wins, build warns with both values.
-2. Curated-only field → accept unconditionally.
-3. Auto-only field → pass through.
-4. Orphan curated key (not in auto) → warn on first occurrence, fail on 2 consecutive weekly runs.
-5. Auto-only key → flow through to catalog.
+1. **Placeholder entry** (`curated_only: true`): insert into the catalog as-is.
+   Requires full record shape (tiers in particular). Warns and overwrites if
+   the key also exists in auto. Use for AEMO directories that exist but have
+   zero files (e.g., directory-level anomalies, one-off corrections).
+2. **Override entry** (no `curated_only` flag):
+   - Field overlap with auto: curated wins, build warns with both values.
+   - Curated-only field: accept unconditionally.
+   - Auto-only field: pass through.
+   - Key missing from auto: FAIL immediately (suspected AEMO deletion —
+     investigate the cause, then either restore the curated field or remove
+     the YAML entry).
+3. Auto-only key: flows through to catalog unchanged.
 
 ## File format
 

@@ -2,20 +2,20 @@
 
 Merge semantics (see docs/architecture.md):
 
-1. Field overlap (same field in auto + curated for same dataset key):
-   curated wins; emit WARNING with both values.
-2. Curated-only field: accept unconditionally, no warning.
-3. Auto-only field: pass through untouched.
-4. Orphan curated dataset key (key in curated but absent from auto):
-   warn on first occurrence, fail on 2 consecutive weekly runs.
-5. Auto-only dataset key: flows through to catalog.
+1. Curated entry with `curated_only: true` → INSERT into the catalog as-is.
+   Derives `repo` and `intra_repo_id` from the `{repo}:{intra_repo_id}` key.
+   Requires `tiers` in the YAML (schema validation catches omissions).
+   If the key also exists in auto, warn and overwrite with the curated
+   record.
+2. Curated entry without `curated_only` (override):
+   a. Field overlap with auto: curated wins; emit WARNING with both values.
+   b. Curated-only field: accept unconditionally.
+   c. Key absent from auto: FAIL immediately (suspected AEMO deletion).
+3. Auto-only dataset key: pass through unchanged.
 
 Usage:
     python scripts/merge_catalog.py --auto patterns/auto/catalog.json \\
-        --curated patterns/curated/ --out catalog.json [--prior-fail-count N]
-
---prior-fail-count is the count of previous consecutive orphan-key failures for
-this curated key. The weekly workflow tracks this and passes it in.
+        --curated patterns/curated/ --out catalog.json
 """
 
 from __future__ import annotations
@@ -85,19 +85,32 @@ def merge(
     auto: dict[str, Any],
     overlays: dict[str, dict[str, Any]],
     defaults: dict[str, dict[str, Any]],
-    prior_fail_count: int,
 ) -> dict[str, Any]:
-    """Apply curated overlays to the auto catalog. Returns merged catalog."""
+    """Apply curated overlays to the auto catalog. Returns merged catalog.
+
+    Curated YAML entries are one of two kinds:
+
+    - Override (no curated_only flag): merges fields into an existing auto
+      entry. If the auto entry is missing, that means AEMO deleted a dataset
+      we used to describe. Fail immediately — the curator should either
+      restore the entry in AEMO or remove the YAML line.
+    - Placeholder (curated_only: true): inserts into the catalog as-is.
+      Requires a complete record shape (tiers in particular). Never
+      orphan. If the key ALSO exists in auto, the curated record wins and
+      a warning is emitted so the collision is visible.
+    """
     merged: dict[str, Any] = copy.deepcopy(auto)
     datasets: dict[str, Any] = merged["datasets"]
     warnings: list[str] = []
-    orphans: list[str] = []
+    missing_auto_orphans: list[str] = []
 
-    # Rule 1 + 2 + 3: apply per-key overlays (curated wins on overlap, warn).
-    # Rule 4: track orphan curated keys.
     for key, overlay in overlays.items():
+        if overlay.get("curated_only") is True:
+            _insert_curated_only(key, overlay, merged, warnings)
+            continue
+        # Override path
         if key not in datasets:
-            orphans.append(key)
+            missing_auto_orphans.append(key)
             continue
         _merge_record(key, datasets[key], overlay, warnings)
 
@@ -109,22 +122,62 @@ def merge(
             if ds.get(field) is None:
                 ds[field] = value
 
-    # Rule 5 is implicit: auto-only dataset keys are already in `datasets`.
-
     for w in warnings:
-        print(f"WARNING: field overlap: {w}", file=sys.stderr)
+        print(f"WARNING: {w}", file=sys.stderr)
 
-    if orphans:
-        for key in orphans:
-            print(f"ORPHAN CURATED KEY: {key} (not in auto catalog)", file=sys.stderr)
-        if prior_fail_count >= 1:
+    if missing_auto_orphans:
+        for key in missing_auto_orphans:
             print(
-                f"FAIL: {len(orphans)} orphan curated key(s) for 2 consecutive runs.",
+                f"ORPHAN CURATED KEY: {key} (override has no matching auto entry "
+                f"— suspected AEMO deletion)",
                 file=sys.stderr,
             )
-            raise SystemExit(1)
+        raise SystemExit(1)
 
     return merged
+
+
+def _insert_curated_only(
+    key: str,
+    overlay: dict[str, Any],
+    merged: dict[str, Any],
+    warnings: list[str],
+) -> None:
+    """Insert a curated_only entry into the catalog. Derive ONLY repo and
+    intra_repo_id from the key; all other fields come from the YAML overlay
+    as-is. Missing required fields (resolvable, tiers) are caught by schema
+    validate() after merge completes — intentionally, so malformed YAML
+    surfaces as a validation error instead of being silently backfilled.
+
+    Also appends the key to merged["raw_keys"] so placeholder entries are
+    discoverable via list_datasets(include_raw=True). Without this, a user
+    searching for "NEXT_DAY_OFFER" variants would not see the anomaly
+    entry even though it's in datasets.
+    """
+    datasets: dict[str, Any] = merged["datasets"]
+    if key in datasets:
+        warnings.append(
+            f"curated_only: {key} shadows an auto entry "
+            f"(curated record wins, auto entry discarded)"
+        )
+    if ":" not in key:
+        raise SystemExit(
+            f"FAIL: curated_only key {key!r} is not in 'Repo:intra_repo_id' form"
+        )
+    repo, intra_repo_id = key.split(":", 1)
+    record = {k: v for k, v in overlay.items() if k != "curated_only"}
+    # Derive ONLY the key-encoded fields. Everything else is from YAML.
+    # Schema validate() at the end of merge catches missing required fields.
+    record.setdefault("repo", repo)
+    record.setdefault("intra_repo_id", intra_repo_id)
+    datasets[key] = record
+    # Make the placeholder discoverable via list_datasets(include_raw=True).
+    # dataset_keys is the curated user-facing subset; raw_keys is "everything
+    # the catalog knows about." Placeholders belong in raw_keys.
+    raw_keys: list[str] = merged["raw_keys"]
+    if key not in raw_keys:
+        raw_keys.append(key)
+        raw_keys.sort()
 
 
 def _merge_record(
@@ -173,17 +226,11 @@ def main() -> int:
     parser.add_argument("--auto", required=True, type=Path)
     parser.add_argument("--curated", required=True, type=Path)
     parser.add_argument("--out", required=True, type=Path)
-    parser.add_argument(
-        "--prior-fail-count",
-        type=int,
-        default=0,
-        help="consecutive orphan-key failures in prior runs",
-    )
     args = parser.parse_args()
 
     auto = load_auto(args.auto)
     overlays, defaults = load_curated(args.curated)
-    merged = merge(auto, overlays, defaults, args.prior_fail_count)
+    merged = merge(auto, overlays, defaults)
 
     if not merged.get("datasets"):
         print("WARNING: empty catalog — auto catalog contained zero datasets")

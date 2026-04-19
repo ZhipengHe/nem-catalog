@@ -14,7 +14,16 @@
     output_count_hint: "daily (ARCHIVE) or 5min (CURRENT)"
 
 "Reports:NEXT_DAY_OFFER_ENERGY)SPARSE":
+  curated_only: true
   resolvable: false
+  tiers:
+    ARCHIVE:
+      path_template: "/Reports/ARCHIVE/NEXT_DAY_OFFER_ENERGY)SPARSE/"
+      filename_template: null
+      filename_regex: null
+      example: ""
+      cadence: "none"
+      observed_range: null
   anomaly_note: |
     Directory-level anomaly: AEMO published this stream with a malformed ')' in the name
     and the directory contains zero files. URL is correct as stated — do NOT URL-encode
@@ -22,6 +31,18 @@
     resolve() will raise UnresolvableDatasetError.
 
 "Reports:DispatchIS_FCAS_Fix":
+  curated_only: true
+  resolvable: false
+  tiers:
+    ARCHIVE:
+      path_template: "/Reports/ARCHIVE/DispatchIS_FCAS_Fix/"
+      filename_template: null
+      filename_regex: null
+      example: ""
+      cadence: "none"
+      observed_range: null
   anomaly_note: |
-    ARCHIVE-only stream: a one-off historical correction published by AEMO.
-    No CURRENT tier. Do not expect new files.
+    Directory exists on NEMWEB under /Reports/ARCHIVE/ but contains zero files
+    (verified 2026-04-19 against local nemweb-mirror). Likely a one-off historical
+    correction AEMO published and subsequently emptied. Entry exists for catalog
+    completeness; resolve() will raise UnresolvableDatasetError.

@@ -88,34 +88,12 @@ jobs:
       - name: Regenerate auto patterns
         run: uv run python scripts/extract_patterns.py
 
-      - name: Track orphan-key prior fail count
-        id: orphans
-        run: |
-          if [ -f .github/orphan-fail-count.txt ]; then
-            PRIOR=$(cat .github/orphan-fail-count.txt)
-          else
-            PRIOR=0
-          fi
-          echo "prior=$PRIOR" >> $GITHUB_OUTPUT
-
       - name: Merge catalog
-        id: merge
-        continue-on-error: true
         run: |
           uv run python scripts/merge_catalog.py \
             --auto patterns/auto/catalog.json \
             --curated patterns/curated/ \
-            --out catalog.json \
-            --prior-fail-count ${{ steps.orphans.outputs.prior }}
-
-      - name: Update orphan-key fail counter
-        run: |
-          if [ "${{ steps.merge.outcome }}" = "failure" ]; then
-            echo $(( ${{ steps.orphans.outputs.prior }} + 1 )) > .github/orphan-fail-count.txt
-            exit 1
-          else
-            echo 0 > .github/orphan-fail-count.txt
-          fi
+            --out catalog.json
 
       # Design line 320: bump the README crawl badge only after every preceding step succeeded.
       - name: Update README crawl badge
