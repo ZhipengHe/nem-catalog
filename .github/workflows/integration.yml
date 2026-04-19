@@ -1,0 +1,96 @@
+name: integration
+
+# Monthly E2E checks that catch issues not covered by unit tests:
+#   1. live-NEMWEB URL reachability (5 sample URLs per repo from the published catalog)
+#   2. PyPI fresh-venv dogfood: install nem-catalog, import, resolve — proves the package ships
+#   3. language-agnostic curl+jq proof: one shell command, no Python
+# Failures open issues, do NOT fail the release workflow. See test plan lines 65–72.
+
+on:
+  schedule:
+    - cron: "0 4 1 * *"   # 1st of each month, 04:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  reachability-sample:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Sample 5 URLs per repo and HEAD them
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          python3 scripts/sample_reachability.py > reachability.txt
+          CODE=$?
+          cat reachability.txt
+          if [ $CODE -ne 0 ]; then
+            gh issue create \
+              --title "integration: reachability check failed ($(date -u +%Y-%m-%d))" \
+              --body "$(cat reachability.txt)" \
+              --label "integration,reachability"
+          fi
+          exit 0   # non-blocking
+
+  pypi-dogfood:
+    # Test plan line 70 — "E2E: dogfood path. Install nem-catalog from PyPI in a fresh venv.
+    # Import, resolve a known dataset, confirm output shape matches documentation."
+    # Also satisfies design doc line 107: author's future downloader will import nem-catalog
+    # via PyPI; this job proves the PyPI artifact actually works at install time.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Fresh venv install from PyPI
+        run: |
+          python -m venv /tmp/nem-catalog-dogfood
+          /tmp/nem-catalog-dogfood/bin/pip install --upgrade pip
+          /tmp/nem-catalog-dogfood/bin/pip install nem-catalog
+      - name: Dogfood — load latest catalog and resolve a known dataset
+        id: dogfood
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          /tmp/nem-catalog-dogfood/bin/python - <<'PY'
+          import sys
+          import nem_catalog
+          cat = nem_catalog.fetch_latest()
+          assert "Reports:DispatchIS_Reports" in cat.dataset_keys(), "DispatchIS_Reports missing"
+          urls = cat.resolve("Reports:DispatchIS_Reports", from_="2025-04-01", to_="2025-04-02")
+          assert urls, "resolve returned empty list for a known dataset"
+          assert all(u.startswith("https://nemweb.com.au") for u in urls)
+          print(f"dogfood OK: {len(urls)} URLs for DispatchIS_Reports 2025-04-01..02")
+          PY
+          CODE=$?
+          if [ $CODE -ne 0 ]; then
+            gh issue create \
+              --title "integration: PyPI dogfood failed ($(date -u +%Y-%m-%d))" \
+              --body "Fresh-venv \`pip install nem-catalog\` + load + resolve failed. Design doc line 107 P0 criterion at risk." \
+              --label "integration,dogfood,p0"
+          fi
+          exit 0
+
+  language-agnostic-proof:
+    # Test plan line 71 — "E2E: language-agnostic proof. curl + jq works and returns
+    # the expected record." This is the Champion-tier TTHW promise (<2 min, non-Python).
+    runs-on: ubuntu-latest
+    steps:
+      - name: curl + jq one-liner
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          OUT=$(curl -s https://zhipenghe.github.io/nem-catalog/catalog.json | jq '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE.filename_regex')
+          echo "curl+jq output: $OUT"
+          if [ -z "$OUT" ] || [ "$OUT" = "null" ]; then
+            gh issue create \
+              --title "integration: curl+jq proof failed ($(date -u +%Y-%m-%d))" \
+              --body "The Champion-tier magical moment example in README no longer returns a value. Either Pages is down, catalog schema drifted, or the DispatchIS_Reports record was dropped." \
+              --label "integration,readme,p0"
+          fi
+          exit 0
