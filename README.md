@@ -110,9 +110,29 @@ A future release will add an enumeration API for these datasets.
 
 See [`docs/cookbook.md`](docs/cookbook.md) for recipes including URL expansion, date iteration, and parallel download with `xargs`.
 
+## Freshness metadata (v0.1.1+)
+
+The catalog carries optional freshness fields populated by CI at crawl time.
+
+**Catalog-level** (top-level keys in `catalog.json`):
+
+| Field | Type | Description |
+|---|---|---|
+| `last_crawl_attempted_at` | ISO 8601 | When the weekly crawl step started |
+| `last_crawl_completed_at` | ISO 8601 | When the crawl step finished (absent means partial crawl — not published) |
+
+**Per-dataset** (inside each `datasets[key]` entry):
+
+| Field | Type | Description |
+|---|---|---|
+| `freshness_class` | `rolling \| append_only \| static \| parent_index` | Policy classification for crawl frequency |
+| `last_observed_change_at` | ISO 8601 | Last time the mirror index for this dataset changed (from `git log`, not filesystem mtime) |
+
+These fields are absent in catalog snapshots built before v0.1.1 and in the static catalog committed to this repo (which is built offline). They are present in every catalog artifact published by the weekly CI workflow.
+
 ## How it's built
 
-See [`docs/architecture.md`](docs/architecture.md). Briefly: `extract_patterns.py` mirrors NEMWEB directory listings weekly, derives URL patterns, and a hybrid auto+curated merge produces `catalog.json`. Weekly GitHub Actions runs the whole pipeline and opens a PR on diffs.
+See [`docs/architecture.md`](docs/architecture.md). Briefly: `nemweb_download.py --policy freshness-policy.yaml` mirrors NEMWEB directory listings weekly (skipping paths classified as `static`), `extract_patterns.py` derives URL patterns, and a hybrid auto+curated merge produces `catalog.json`. Weekly GitHub Actions runs the whole pipeline and opens a PR on diffs.
 
 ## Contributing
 

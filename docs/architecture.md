@@ -162,11 +162,13 @@ Same dataset, different time-granularity in the filename depending on the view. 
 │ weekly cron (.github/weekly-refresh) │
 └───────────────┬──────────────────────┘
                 ▼
-┌───────────────────────────────────────┐
-│ nemweb_download.py --gaps (1 req/s)   │
-│   → nemweb-mirror/** (HTML listings)  │
-│ monthly: full recrawl as cross-check  │
-└───────────────┬───────────────────────┘
+┌───────────────────────────────────────────────────────┐
+│ nemweb_download.py --policy freshness-policy.yaml     │
+│   (1 req/s; skips static paths; content-aware write)  │
+│   → nemweb-mirror/** (HTML listings)                  │
+│   policy: patterns/curated/freshness-policy.yaml      │
+│   (rolling | append_only | static | parent_index)     │
+└───────────────┬───────────────────────────────────────┘
                 ▼
 ┌───────────────────────────────────────┐
 │ extract_patterns.py::write_json       │
