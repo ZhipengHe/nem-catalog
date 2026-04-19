@@ -121,6 +121,97 @@ def test_write_json_includes_top_level_fields(tmp_path):
     assert data["source_mirror_commit"] == "79cbad2"
 
 
+def test_write_json_placeholders_cover_every_emitted_token(tmp_path):
+    """B1b: placeholders section must declare every {token} used in any emitted
+    filename_template or path_template.
+
+    Catching the case where the extractor emits `{yearmonth}` or `{date1}` in a
+    filename template but leaves them out of the top-level `placeholders` dict.
+    Inconsistent catalog → users querying catalog.placeholders['yearmonth']
+    get a KeyError while the token is live in templates.
+    """
+    import re
+
+    rows = [
+        # Row that uses {yearmonth} (not in _DEFAULT_PLACEHOLDERS as of pre-B1b)
+        {
+            "repo": "Reports",
+            "retention_tier": "CURRENT",
+            "intra_repo_id": "Market_Notice",
+            "path_template": "/Reports/CURRENT/Market_Notice/",
+            "filename_template": "NEMITWEB{d1}_MKTNOTICE_{date}.R{yearmonth}",
+            "filename_regex": "^NEMITWEB\\d{1}_MKTNOTICE_\\d{8}\\.R\\d{6}$",
+            "skeleton": "skel-1",
+            "sample_filename": "NEMITWEB1_MKTNOTICE_20260410.R202604",
+            "anomaly_flag": "",
+            "files_count": 100,
+            "first_seen_snapshot": "2024-01-01",
+            "last_seen_snapshot": "2026-04-18",
+        },
+        # Row that uses {date1}, {date2} pair
+        {
+            "repo": "Reports",
+            "retention_tier": "ARCHIVE",
+            "intra_repo_id": "PredispatchIS_Reports",
+            "path_template": "/Reports/ARCHIVE/PredispatchIS_Reports/",
+            "filename_template": "PUBLIC_PREDISPATCHIS_{date1}_{date2}.zip",
+            "filename_regex": "^PUBLIC_PREDISPATCHIS_\\d{8}_\\d{8}\\.zip$",
+            "skeleton": "skel-2",
+            "sample_filename": "PUBLIC_PREDISPATCHIS_20210101_20210102.zip",
+            "anomaly_flag": "",
+            "files_count": 500,
+            "first_seen_snapshot": "2009-07-01",
+            "last_seen_snapshot": "2023-12-31",
+        },
+        # Row that uses {datetime} and {d3}
+        {
+            "repo": "Reports",
+            "retention_tier": "CURRENT",
+            "intra_repo_id": "Adjusted_Prices_Reports",
+            "path_template": "/Reports/CURRENT/Adjusted_Prices_Reports/",
+            "filename_template": "PUBLIC_PRICE_REVISION_DISPATCH_{datetime}_{aemo_id}.R{d3}",
+            "filename_regex": "^PUBLIC_PRICE_REVISION_DISPATCH_\\d{14}_\\d{16}\\.R\\d{3}$",
+            "skeleton": "skel-3",
+            "sample_filename": "PUBLIC_PRICE_REVISION_DISPATCH_20260416044500_0000000513144978.R001",
+            "anomaly_flag": "",
+            "files_count": 50,
+            "first_seen_snapshot": "2026-04-16",
+            "last_seen_snapshot": "2026-04-18",
+        },
+    ]
+    out = tmp_path / "auto-catalog.json"
+    extract_patterns.write_json(
+        rows,
+        out_path=out,
+        catalog_version="2026.04.18",
+        as_of="2026-04-18T00:00:00Z",
+        source_mirror_commit="79cbad2",
+    )
+    data = json.loads(out.read_text())
+    placeholders = data["placeholders"]
+
+    # Collect every {token} appearing in any template (filename or path)
+    token_re = re.compile(r"\{(\w+)\}")
+    used: set[str] = set()
+    for rec in data["datasets"].values():
+        for tier in rec["tiers"].values():
+            for key in ("filename_template", "path_template"):
+                value = tier.get(key) or ""
+                used.update(token_re.findall(value))
+
+    missing = used - placeholders.keys()
+    assert not missing, (
+        f"placeholders section is missing {sorted(missing)}; "
+        f"templates reference them but there is no declaration. "
+        f"declared: {sorted(placeholders.keys())}"
+    )
+
+    # Each declared placeholder must have the contract fields (regex + format).
+    for name, defn in placeholders.items():
+        assert "regex" in defn, f"placeholder {name!r} missing 'regex' field"
+        assert "format" in defn, f"placeholder {name!r} missing 'format' field"
+
+
 def test_write_json_on_empty_rows_raises(tmp_path):
     """Test plan line 62: 'nemweb-mirror/ is empty → CI acceptance test should flag
     this as a failure.' write_json() must refuse to emit a zero-dataset catalog —

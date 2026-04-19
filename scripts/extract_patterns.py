@@ -792,12 +792,14 @@ def write_json(
     # Curate dataset_keys: resolvable=true AND not in AUX/placeholder keys
     dataset_keys = _curate_keys(list(datasets.keys()), datasets)
 
+    placeholders = _placeholders_for(datasets)
+
     payload = {
         "schema_version": "1.0.0",
         "catalog_version": catalog_version,
         "as_of": as_of,
         "source_mirror_commit": source_mirror_commit,
-        "placeholders": _DEFAULT_PLACEHOLDERS,
+        "placeholders": placeholders,
         "dataset_keys": dataset_keys,
         "raw_keys": sorted(all_raw_keys),
         "datasets": datasets,
@@ -880,6 +882,78 @@ _DEFAULT_PLACEHOLDERS = {
     "d11": {"format": "11 digits", "example": "20220604167", "regex": "\\d{11}"},
     "d13": {"format": "13 digits", "example": "2011110909700", "regex": "\\d{13}"},
 }
+
+# Base name → semantics for disambiguated variants (e.g. date1, date2; year1, year2).
+# Matched against the suffix-stripped token name.
+_BASE_LABEL_REGEX = {
+    "date": ("yyyymmdd", "\\d{8}", "20250407"),
+    "timestamp": ("yyyymmddhhmm", "\\d{12}", "202504070445"),
+    "datetime": ("yyyymmddhhmmss", "\\d{14}", "20260416044500"),
+    "year": ("yyyy", "\\d{4}", "2025"),
+    "yearmonth": ("yyyymm", "\\d{6}", "202504"),
+    "yyyymmddhh": ("yyyymmddhh", "\\d{10}", "2025040704"),
+    "aemo_id": ("16-digit AEMO identifier", "\\d{16}", "0000000513144978"),
+}
+
+_VARIANT_SUFFIX_RE = re.compile(r"^(?P<base>[a-zA-Z]+?)(?P<idx>\d+)$")
+_TOKEN_SCAN_RE = re.compile(r"\{(\w+)\}")
+
+
+def _infer_placeholder_def(name: str) -> dict[str, str]:
+    """Best-effort definition for a placeholder name the extractor emitted.
+
+    Coverage is intentionally conservative. The extractor's labeler can produce
+    names like `d21`/`d22` — these are disambiguation suffixes of `d2` (two
+    2-digit positions in the same template), NOT 21/22-digit fields. Recovering
+    the original digit count from the name alone is ambiguous, so for any
+    d-token not in the curator's `_DEFAULT_PLACEHOLDERS`, the inference emits
+    a broad `\\d+` regex and directs users to the per-tier `filename_regex`
+    for the exact shape.
+    """
+    if name in _DEFAULT_PLACEHOLDERS:
+        return _DEFAULT_PLACEHOLDERS[name]
+
+    # Direct base-name match (yearmonth, datetime, yyyymmddhh, aemo_id — fixed shape)
+    if name in _BASE_LABEL_REGEX:
+        fmt, rx, ex = _BASE_LABEL_REGEX[name]
+        return {"format": fmt, "example": ex, "regex": rx}
+
+    # Disambiguation suffix variants of known temporal bases (date1, date2, year1, year2)
+    mv = _VARIANT_SUFFIX_RE.match(name)
+    if mv and mv.group("base") in _BASE_LABEL_REGEX:
+        fmt, rx, ex = _BASE_LABEL_REGEX[mv.group("base")]
+        return {"format": fmt, "example": ex, "regex": rx}
+
+    # Anything else (d{N} disambiguation variants, unknown suffixes): conservative
+    # fallback. The per-tier `filename_regex` is the authoritative shape — the
+    # placeholder record is informational for discoverability.
+    return {
+        "format": f"extractor-emitted token {name!r}; see per-tier filename_regex for exact shape",
+        "example": "",
+        "regex": "\\d+",
+    }
+
+
+def _placeholders_for(datasets: dict) -> dict[str, dict]:
+    """Return a placeholders section that declares every token used in any
+    emitted filename_template or path_template.
+
+    Scans the datasets dict after tier records are built, collects the union
+    of `{token}` names, and ensures each has a definition. Seed with
+    _DEFAULT_PLACEHOLDERS for the known-good curated set, then infer the rest.
+    """
+    used: set[str] = set()
+    for rec in datasets.values():
+        for tier in rec.get("tiers", {}).values():
+            for key in ("filename_template", "path_template"):
+                value = tier.get(key) or ""
+                used.update(_TOKEN_SCAN_RE.findall(value))
+
+    result: dict[str, dict] = dict(_DEFAULT_PLACEHOLDERS)
+    for name in sorted(used):
+        if name not in result:
+            result[name] = _infer_placeholder_def(name)
+    return result
 
 
 if __name__ == "__main__":
