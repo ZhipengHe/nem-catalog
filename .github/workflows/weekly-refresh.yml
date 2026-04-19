@@ -1,0 +1,164 @@
+name: weekly-refresh
+
+on:
+  schedule:
+    - cron: "0 3 * * 1"   # Mondays 03:00 UTC
+  workflow_dispatch:       # manual trigger
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+      - name: Install project
+        run: uv sync --extra dev
+
+      # Test plan line 54: robots.txt halt check. Fails loudly before any crawl bytes go out.
+      - name: Verify robots.txt permits our crawler
+        id: robots
+        continue-on-error: true
+        run: uv run python scripts/check_robots.py
+
+      - name: Halt + open issue if robots.txt disallows
+        if: steps.robots.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "robots.txt halt: $(date -u +%Y-%m-%dT%H:%MZ)" \
+            --body "NEMWEB robots.txt now disallows one or more paths our crawler visits. Workflow halted. See workflow run for details. Coordinate with AEMO per \`docs/aemo-coordination.md\` before re-enabling." \
+            --label "aemo-coordination,robots-halt"
+          exit 1
+
+      - name: Determine crawl mode
+        id: mode
+        run: |
+          DATE=$(date +%d)
+          if [ "$DATE" -le 7 ]; then
+            echo "mode=full" >> $GITHUB_OUTPUT
+          else
+            echo "mode=gaps" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Crawl NEMWEB (incremental or full)
+        id: crawl
+        run: |
+          set -e
+          if [ "${{ steps.mode.outputs.mode }}" = "full" ]; then
+            uv run python scripts/nemweb_download.py 10000 2>&1 | tee nemweb-mirror/download.log
+          else
+            uv run python scripts/nemweb_download.py --gaps 10000 2>&1 | tee nemweb-mirror/download.log
+          fi
+          FAILED=$(grep -c "status=" nemweb-mirror/download.log || true)
+          TOTAL=$(grep -c "fetch\[" nemweb-mirror/download.log || true)
+          echo "failed=$FAILED" >> $GITHUB_OUTPUT
+          echo "total=$TOTAL" >> $GITHUB_OUTPUT
+
+      - name: Check WAF / block indicators (>5% non-200)
+        id: block_check
+        run: |
+          FAILED=${{ steps.crawl.outputs.failed }}
+          TOTAL=${{ steps.crawl.outputs.total }}
+          if [ "$TOTAL" -gt 0 ]; then
+            PCT=$(( 100 * FAILED / TOTAL ))
+            echo "Failure rate: $PCT%"
+            if [ "$PCT" -gt 5 ]; then
+              echo "blocked=true" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: Open GH issue if blocked
+        if: steps.block_check.outputs.blocked == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "crawl blocked: $(date -u +%Y-%m-%dT%H:%MZ) — ${{ steps.crawl.outputs.failed }}/${{ steps.crawl.outputs.total }} non-200" \
+            --body "The weekly crawl encountered a high rate of non-200 responses. See workflow run for details. Catalog continues serving last-good artifact until this is resolved." \
+            --label "aemo-coordination,bug"
+          exit 1
+
+      - name: Regenerate auto patterns
+        run: uv run python scripts/extract_patterns.py
+
+      - name: Track orphan-key prior fail count
+        id: orphans
+        run: |
+          if [ -f .github/orphan-fail-count.txt ]; then
+            PRIOR=$(cat .github/orphan-fail-count.txt)
+          else
+            PRIOR=0
+          fi
+          echo "prior=$PRIOR" >> $GITHUB_OUTPUT
+
+      - name: Merge catalog
+        id: merge
+        continue-on-error: true
+        run: |
+          uv run python scripts/merge_catalog.py \
+            --auto patterns/auto/catalog.json \
+            --curated patterns/curated/ \
+            --out catalog.json \
+            --prior-fail-count ${{ steps.orphans.outputs.prior }}
+
+      - name: Update orphan-key fail counter
+        run: |
+          if [ "${{ steps.merge.outcome }}" = "failure" ]; then
+            echo $(( ${{ steps.orphans.outputs.prior }} + 1 )) > .github/orphan-fail-count.txt
+            exit 1
+          else
+            echo 0 > .github/orphan-fail-count.txt
+          fi
+
+      # Design line 320: bump the README crawl badge only after every preceding step succeeded.
+      - name: Update README crawl badge
+        run: |
+          chmod +x scripts/update_crawl_badge.sh
+          bash scripts/update_crawl_badge.sh
+
+      # Test plan line 55: dataset-level before/after in PR body with threshold flag.
+      - name: Compute dataset diff for PR body
+        id: dataset_diff
+        run: |
+          {
+            echo 'body<<DIFF_EOF'
+            uv run python scripts/dataset_diff.py
+            echo 'DIFF_EOF'
+          } >> $GITHUB_OUTPUT
+
+      - name: Detect diff
+        id: diff
+        run: |
+          if git diff --quiet nemweb-mirror/ patterns/auto/ catalog.json README.md; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create PR on changes
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(data): weekly catalog refresh"
+          title: "chore(data): weekly catalog refresh ($(date -u +%Y-%m-%d))"
+          body: |
+            Weekly auto-refresh from `weekly-refresh.yml`.
+
+            ${{ steps.dataset_diff.outputs.body }}
+
+            ### Reviewer checklist
+
+            - [ ] Any new datasets that need a `patterns/curated/` overlay?
+            - [ ] Any anomaly warnings worth human judgment?
+            - [ ] Any dropped datasets — deprecation note needed?
+            - [ ] Merge warnings from the workflow logs resolved?
+            - [ ] Dataset-diff threshold (>=5%) acknowledged if warning present?
+          branch: weekly-refresh-${{ github.run_id }}
+          labels: weekly-refresh,data-catalog
