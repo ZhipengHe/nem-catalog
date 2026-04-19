@@ -27,7 +27,7 @@ All notable changes to nem-catalog are tracked here. Format: [Keep a Changelog](
 
 Refs: #3
 
-## [0.1.0] — TBD
+## [0.1.0] — 2026-04-19
 
 ### Added
 
