@@ -1,0 +1,63 @@
+# .pre-commit-config.yaml
+# Installed locally via `uv run pre-commit install` (see CONTRIBUTING.md).
+# Runs in CI via `.github/workflows/test.yml` step `pre-commit run --all-files`.
+#
+# Rev pins verified against GitHub releases API on 2026-04-19.
+# Bump via `pre-commit autoupdate` when security/feature updates warrant.
+#
+# PROTECTED PATHS — never modify these with formatting hooks:
+#   - nemweb-mirror/  — byte-preserved captures of AEMO's HTML output.
+#                       Stripping whitespace / fixing EOFs would break
+#                       the "exactly what AEMO served" contract that
+#                       extract_patterns.py depends on.
+#   - reference/      — canonical URL-CONVENTIONS docs + CSV derived
+#                       from the mirror; keep preserved.
+#   - catalog.json    — generated artifact; formatting is controlled
+#                       by merge_catalog.py (sorted keys, 2-space indent).
+#                       Whitespace hooks would fight that.
+
+# Global default — applies to every hook unless overridden.
+# Skips binary/generated/mirror content in every lint/format run.
+exclude: |
+  (?x)^(
+    nemweb-mirror/.*|
+    reference/.*|
+    catalog\.json|
+    patterns/auto/.*|
+    uv\.lock
+  )$
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: ['--unsafe']  # GitHub Actions ${{ }} syntax breaks plain YAML parsing
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ['--maxkb=10000']  # 10 MB. Catches accidental commits of MMSDM zips
+                                 # (often 100+ MB) while letting catalog.json (841 KB)
+                                 # through via the global exclude above.
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.11
+    hooks:
+      - id: ruff
+        args: ['--fix']
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.20.1
+    hooks:
+      - id: mypy
+        args: ['--strict']
+        files: ^src/  # mirrors pyproject [tool.mypy] files = ["src"]
+        additional_dependencies: [pyyaml, jsonschema]
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks

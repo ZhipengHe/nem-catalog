@@ -1,0 +1,214 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_version": "2026.04.18",
+  "as_of": "2026-04-18T00:00:00Z",
+  "source_mirror_commit": "79cbad2",
+  "placeholders": {
+    "date": {"format": "yyyymmdd", "example": "20250407", "regex": "\\d{8}"},
+    "timestamp": {"format": "yyyymmddhhmm", "example": "202504070445", "regex": "\\d{12}"},
+    "aemo_id": {"format": "16-digit AEMO identifier", "example": "0000000513144978", "regex": "\\d{16}"},
+    "year": {"format": "yyyy", "example": "2025", "regex": "\\d{4}"},
+    "month": {"format": "mm", "example": "04", "regex": "\\d{2}"},
+    "yyyymm": {"format": "yyyymm", "example": "202504", "regex": "\\d{6}"},
+    "yyyymmddHHMM": {"format": "yyyymmddHHMM", "example": "202504070445", "regex": "\\d{12}"},
+    "nn": {"format": "zero-padded 2-digit", "example": "00", "regex": "\\d{2}"}
+  },
+  "dataset_keys": [
+    "Reports:DispatchIS_Reports",
+    "Reports:PureTemporalRolling",
+    "MMSDM:DISPATCHPRICE",
+    "NEMDE:NemPriceSetter",
+    "FCAS_Causer_Pays:CAUSER_PAYS"
+  ],
+  "raw_keys": [
+    "Reports:DispatchIS_Reports",
+    "Reports:NEXT_DAY_OFFER_ENERGY)SPARSE",
+    "Reports:PureTemporalRolling",
+    "MMSDM:DISPATCHPRICE",
+    "MMSDM:DOCUMENTATION_AUX",
+    "NEMDE:NemPriceSetter",
+    "FCAS_Causer_Pays:CAUSER_PAYS"
+  ],
+  "datasets": {
+    "Reports:DispatchIS_Reports": {
+      "repo": "Reports",
+      "intra_repo_id": "DispatchIS_Reports",
+      "resolvable": true,
+      "tiers": {
+        "CURRENT": {
+          "path_template": "/Reports/CURRENT/DispatchIS_Reports/",
+          "filename_template": "PUBLIC_DISPATCHIS_{timestamp}_{aemo_id}.zip",
+          "filename_regex": "^PUBLIC_DISPATCHIS_\\d{12}_\\d{16}\\.zip$",
+          "example": "PUBLIC_DISPATCHIS_202604160445_0000000513144978.zip",
+          "cadence": "5min",
+          "time_granularity": "yyyymmddhhmm",
+          "retention_hint_unverified_days": 2,
+          "observed_range": {"from": "2026-04-16T00:00Z", "to": "2026-04-18T00:00Z"}
+        },
+        "ARCHIVE": {
+          "path_template": "/Reports/ARCHIVE/DispatchIS_Reports/",
+          "filename_template": "PUBLIC_DISPATCHIS_{date}.zip",
+          "filename_regex": "^PUBLIC_DISPATCHIS_\\d{8}\\.zip$",
+          "example": "PUBLIC_DISPATCHIS_20250407.zip",
+          "cadence": "daily_rollup",
+          "time_granularity": "yyyymmdd",
+          "observed_range": {"from": "2009-07-01", "to": "2026-03-31"}
+        }
+      },
+      "query_shape": {
+        "inputs": [{"name": "date", "format": "yyyymmdd", "example": "20250407"}],
+        "example_resolve": "resolve('Reports:DispatchIS_Reports', from_='2025-04-01', to_='2025-04-02')",
+        "output_count_hint": "daily (ARCHIVE) or 5min (CURRENT)"
+      },
+      "schema_source": null,
+      "anomaly_note": null
+    },
+    "Reports:PureTemporalRolling": {
+      "repo": "Reports",
+      "intra_repo_id": "PureTemporalRolling",
+      "resolvable": true,
+      "tiers": {
+        "CURRENT": {
+          "path_template": "/Reports/CURRENT/PureTemporalRolling/",
+          "filename_template": "ROLLING_{date}.zip",
+          "filename_regex": "^ROLLING_\\d{8}\\.zip$",
+          "example": "ROLLING_20260416.zip",
+          "cadence": "daily_rollup",
+          "time_granularity": "yyyymmdd",
+          "retention_hint_unverified_days": 2,
+          "observed_range": {"from": "2026-04-16", "to": "2026-04-18"}
+        },
+        "ARCHIVE": {
+          "path_template": "/Reports/ARCHIVE/PureTemporalRolling/",
+          "filename_template": "ARCHIVED_{date}.zip",
+          "filename_regex": "^ARCHIVED_\\d{8}\\.zip$",
+          "example": "ARCHIVED_20250407.zip",
+          "cadence": "daily_rollup",
+          "time_granularity": "yyyymmdd",
+          "observed_range": {"from": "2009-07-01", "to": "2026-04-15"}
+        }
+      },
+      "query_shape": {
+        "inputs": [{"name": "date", "format": "yyyymmdd", "example": "20260416"}],
+        "example_resolve": "resolve('Reports:PureTemporalRolling', from_='2026-04-14', to_='2026-04-17')",
+        "output_count_hint": "daily"
+      },
+      "schema_source": null,
+      "anomaly_note": "Synthetic fixture-only dataset for router tests. Not present on real NEMWEB. Pure-temporal rolling CURRENT + ARCHIVE lets router tests exercise the straddle/partition logic without triggering STRICT NonResolvableTemplateError (which DispatchIS_Reports CURRENT now does due to its {aemo_id} template)."
+    },
+    "Reports:NEXT_DAY_OFFER_ENERGY)SPARSE": {
+      "repo": "Reports",
+      "intra_repo_id": "NEXT_DAY_OFFER_ENERGY)SPARSE",
+      "resolvable": false,
+      "tiers": {
+        "ARCHIVE": {
+          "path_template": "/Reports/ARCHIVE/NEXT_DAY_OFFER_ENERGY)SPARSE/",
+          "filename_template": null,
+          "filename_regex": null,
+          "example": "",
+          "cadence": "none",
+          "observed_range": null
+        }
+      },
+      "query_shape": null,
+      "schema_source": null,
+      "anomaly_note": "Directory-level anomaly: AEMO published this stream with a malformed ')' and zero files. URL is correct as stated — do NOT URL-encode the ')'. resolve() raises UnresolvableDatasetError."
+    },
+    "MMSDM:DISPATCHPRICE": {
+      "repo": "MMSDM",
+      "intra_repo_id": "DISPATCHPRICE",
+      "resolvable": true,
+      "tiers": {
+        "DATA": {
+          "path_template": "/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{month}/MMSDM_Historical_Data_SQLLoader/DATA/",
+          "filename_template": "PUBLIC_ARCHIVE#DISPATCHPRICE#FILE{nn}#{yyyymmddHHMM}.zip",
+          "filename_regex": "^PUBLIC_ARCHIVE#DISPATCHPRICE#FILE\\d{2}#\\d{12}\\.zip$",
+          "example": "PUBLIC_ARCHIVE#DISPATCHPRICE#FILE01#202503312355.zip",
+          "cadence": "5min",
+          "time_granularity": "yyyymmddHHMM",
+          "observed_range": {"from": "2009-07", "to": "2026-03"}
+        },
+        "CTL": {
+          "path_template": "/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{month}/MMSDM_Historical_Data_SQLLoader/CTL/",
+          "filename_template": "PUBLIC_ARCHIVE#DISPATCHPRICE#FILE{nn}#{yyyymm}.ctl",
+          "filename_regex": "^PUBLIC_ARCHIVE#DISPATCHPRICE#FILE\\d{2}#\\d{6}\\.ctl$",
+          "example": "PUBLIC_ARCHIVE#DISPATCHPRICE#FILE01#202503.ctl",
+          "cadence": "monthly_bulk",
+          "time_granularity": "yyyymm",
+          "observed_range": {"from": "2009-07", "to": "2026-03"}
+        }
+      },
+      "query_shape": {
+        "inputs": [{"name": "date", "format": "yyyymmdd", "example": "20250407"}],
+        "example_resolve": "resolve('MMSDM:DISPATCHPRICE', from_='2025-04-01', to_='2025-04-30', view='DATA')",
+        "output_count_hint": "month-bundles; view= kwarg narrows fan-out"
+      },
+      "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
+      "anomaly_note": "Partial fixture: DATA and CTL views only. Real catalog also includes BCP_FMT, MYSQL, P5MIN_ALL_DATA, PREDISP_ALL_DATA views."
+    },
+    "MMSDM:DOCUMENTATION_AUX": {
+      "repo": "MMSDM",
+      "intra_repo_id": "DOCUMENTATION_AUX",
+      "resolvable": true,
+      "tiers": {
+        "DOCUMENTATION": {
+          "path_template": "/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{month}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/",
+          "filename_template": null,
+          "filename_regex": null,
+          "example": "",
+          "cadence": "monthly_bulk",
+          "observed_range": null
+        }
+      },
+      "query_shape": null,
+      "schema_source": null,
+      "anomaly_note": "AUX entry — extractor placeholder for the DOCUMENTATION subtree root (not a single dataset). Excluded from dataset_keys; present in raw_keys."
+    },
+    "NEMDE:NemPriceSetter": {
+      "repo": "NEMDE",
+      "intra_repo_id": "NemPriceSetter",
+      "resolvable": true,
+      "tiers": {
+        "NEMDE_Files": {
+          "path_template": "/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{month}/NEMDE_Market_Data/NEMDE_Files/",
+          "filename_template": "NemPriceSetter_{date}_xml.zip",
+          "filename_regex": "^NemPriceSetter_\\d{8}_xml\\.zip$",
+          "example": "NemPriceSetter_20090701_xml.zip",
+          "cadence": "daily",
+          "time_granularity": "yyyymmdd",
+          "observed_range": {"from": "2009-07-01", "to": "2026-04-01"}
+        }
+      },
+      "query_shape": {
+        "inputs": [{"name": "date", "format": "yyyymmdd", "example": "20090701"}],
+        "example_resolve": "resolve('NEMDE:NemPriceSetter', from_='2024-06-01', to_='2024-06-30')",
+        "output_count_hint": "daily"
+      },
+      "schema_source": null,
+      "anomaly_note": "Mixed-case filename ('NemPriceSetter', not 'NEMPriceSetter'). NEMWEB is case-sensitive. Extension is .zip containing XML."
+    },
+    "FCAS_Causer_Pays:CAUSER_PAYS": {
+      "repo": "FCAS_Causer_Pays",
+      "intra_repo_id": "CAUSER_PAYS",
+      "resolvable": true,
+      "tiers": {
+        "ANNUAL": {
+          "path_template": "/Data_Archive/Wholesale_Electricity/FCAS_Causer_Pays/{year}/",
+          "filename_template": "{year}.txt",
+          "filename_regex": "^\\d{4}\\.txt$",
+          "example": "2011.txt",
+          "cadence": "annual",
+          "time_granularity": "yyyy",
+          "observed_range": {"from": "2011", "to": "2012"}
+        }
+      },
+      "query_shape": {
+        "inputs": [{"name": "year", "format": "yyyy", "example": "2011"}],
+        "example_resolve": "resolve('FCAS_Causer_Pays:CAUSER_PAYS', from_='2011-01-01', to_='2012-12-31')",
+        "output_count_hint": "annual"
+      },
+      "schema_source": null,
+      "anomaly_note": "Frozen archive — only 2011 and 2012 present. Filename is literally {year}.txt, no prefix."
+    }
+  }
+}

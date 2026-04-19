@@ -1,0 +1,96 @@
+name: publish-catalog
+
+# Per design doc line 131: "on PR merge to master, auto-publish a new GitHub Release
+# with the new catalog.json and push to GitHub Pages." Runs only when catalog.json or
+# the schema actually changed; no-op otherwise.
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - catalog.json
+      - schemas/catalog.schema.json
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  issues: write    # for failure-notification issue creation
+
+concurrency:
+  group: publish-catalog
+  cancel-in-progress: false
+
+jobs:
+  publish-catalog:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Validate catalog against schema (guard against shipping invalid data)
+        run: |
+          python -m pip install --quiet jsonschema
+          python -c "import json, jsonschema; \
+            schema = json.load(open('schemas/catalog.schema.json')); \
+            data = json.load(open('catalog.json')); \
+            jsonschema.validate(data, schema); \
+            print('schema validation: OK')"
+      - name: Read catalog_version
+        id: version
+        run: |
+          VERSION=$(jq -r '.catalog_version' catalog.json)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+      - name: Create versioned Release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          TAG="catalog-$VERSION"
+          cp catalog.json "catalog-$VERSION.json"
+          # Create release if it doesn't exist (idempotent for re-runs)
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" \
+              --title "catalog $VERSION" \
+              --notes "Automated weekly catalog refresh. See CHANGELOG.md for schema changes." \
+              "catalog-$VERSION.json" \
+              schemas/catalog.schema.json
+          else
+            gh release upload "$TAG" "catalog-$VERSION.json" schemas/catalog.schema.json --clobber
+          fi
+
+  deploy-pages:
+    needs: publish-catalog
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Prepare site
+        run: |
+          mkdir -p _site
+          cp catalog.json _site/catalog.json
+          cp schemas/catalog.schema.json _site/catalog.schema.json
+          cp -r docs _site/docs
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with: {path: _site}
+      - name: Deploy to Pages
+        id: deploy
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+
+  notify-on-failure:
+    needs: [publish-catalog, deploy-pages]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open issue on workflow failure
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --repo ${{ github.repository }} \
+            --title "publish-catalog: failed at run ${{ github.run_id }}" \
+            --body "publish-catalog.yml failed (publish job, deploy-pages job, or both). See run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. Pages may be serving a stale catalog.json — verify https://zhipenghe.me/nem-catalog/catalog.json before retrying." \
+            --label "publish-catalog,p0"

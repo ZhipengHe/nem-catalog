@@ -42,8 +42,22 @@ MIN_DELAY_S = 1.0
 HREF_RE = re.compile(rb'<A HREF="([^"]+)">', re.IGNORECASE)
 
 DATA_SUFFIXES = (
-    ".zip", ".csv", ".xml", ".pdf", ".xls", ".xlsx", ".doc", ".docx",
-    ".txt", ".7z", ".gz", ".json", ".log", ".inf", ".dat", ".sql",
+    ".zip",
+    ".csv",
+    ".xml",
+    ".pdf",
+    ".xls",
+    ".xlsx",
+    ".doc",
+    ".docx",
+    ".txt",
+    ".7z",
+    ".gz",
+    ".json",
+    ".log",
+    ".inf",
+    ".dat",
+    ".sql",
 )
 
 
@@ -72,6 +86,7 @@ def throttled_fetch(url: str) -> tuple[bytes | None, int]:
 
 
 # ----- Path helpers -----
+
 
 def local_path(url_path: str) -> Path:
     return OUT / url_path.lstrip("/") / "index.html"
@@ -121,6 +136,7 @@ def extract_children(parent_path: str, data: bytes) -> list[str]:
 
 # ----- Gap scan -----
 
+
 def find_gaps() -> list[str]:
     """Scan on-disk mirror. Return paths referenced by any index.html that are not on disk."""
     saved: set[str] = set()
@@ -138,6 +154,7 @@ def find_gaps() -> list[str]:
 
 
 # ----- Walk (BFS, wave-batched, threaded) -----
+
 
 def walk(seeds: list[str], threads: int, max_fetches: int) -> tuple[int, int, int]:
     """Wave-batched BFS. Each wave dispatches current frontier to a thread pool;
@@ -182,7 +199,10 @@ def walk(seeds: list[str], threads: int, max_fetches: int) -> tuple[int, int, in
         for p in wave:
             visited.add(p)
         frontier = []
-        print(f"\n── wave {wave_n}: {len(wave)} paths, budget={budget['remaining']}, threads={threads} ──")
+        print(
+            f"\n── wave {wave_n}: {len(wave)} paths, "
+            f"budget={budget['remaining']}, threads={threads} ──"
+        )
         with ThreadPoolExecutor(max_workers=threads) as ex:
             for path, outcome, children in ex.map(process_one, wave):
                 if outcome == "fetch":
@@ -199,6 +219,7 @@ def walk(seeds: list[str], threads: int, max_fetches: int) -> tuple[int, int, in
 
 
 # ----- CLI -----
+
 
 def parse_args(argv: list[str]) -> tuple[bool, int, int]:
     gaps = False
@@ -238,10 +259,7 @@ def main(argv: list[str]) -> int:
 
     print(f"Seeds: {len(seeds)}  threads: {threads}  max_fetches: {max_fetches}")
     fetched, reused, skipped = walk(seeds, threads, max_fetches)
-    print(
-        f"\nDone. fetched={fetched}  reused={reused}  skipped={skipped}  "
-        f"under {OUT}/"
-    )
+    print(f"\nDone. fetched={fetched}  reused={reused}  skipped={skipped}  under {OUT}/")
     return 0
 
 

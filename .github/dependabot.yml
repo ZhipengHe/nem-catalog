@@ -1,0 +1,9 @@
+# Automated version updates for GitHub Actions SHA pins.
+# Dependabot reads the trailing `# vX.Y.Z` comments to detect current versions
+# and proposes PRs when upstream releases new tags.
+version: 2
+updates:
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'

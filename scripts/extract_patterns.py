@@ -62,11 +62,13 @@ Zero deps. Run: python3 scripts/extract_patterns.py
 from __future__ import annotations
 
 import csv
+import json
 import re
+import subprocess
 import sys
 import urllib.parse
 from collections import defaultdict
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 
 MIRROR = Path("nemweb-mirror")
@@ -75,7 +77,7 @@ OUT_CSV = Path("reference/URL-CONVENTIONS.csv")
 
 # IIS auto-index row: "Thursday, April 16, 2026  4:40 AM  19629 <A HREF=...>name</A>"
 ROW_RE = re.compile(
-    rb'(\w+,\s+\w+\s+\d+,\s+\d+)\s+(\d+:\d+\s+[AP]M)\s+(<dir>|\d+)\s+'
+    rb"(\w+,\s+\w+\s+\d+,\s+\d+)\s+(\d+:\d+\s+[AP]M)\s+(<dir>|\d+)\s+"
     rb'<A HREF="([^"]+)">([^<]+)</A>',
     re.IGNORECASE,
 )
@@ -84,19 +86,35 @@ HREF_ANY_RE = re.compile(rb'<A HREF="([^"]+)">')
 DIGIT_RUN_RE = re.compile(r"\d+")
 
 DIGIT_LABELS = {
-    4: "year", 6: "yearmonth", 8: "date", 10: "yyyymmddhh",
-    12: "timestamp", 14: "datetime", 16: "aemo_id",
+    4: "year",
+    6: "yearmonth",
+    8: "date",
+    10: "yyyymmddhh",
+    12: "timestamp",
+    14: "datetime",
+    16: "aemo_id",
 }
 
 MONTHS = {
-    "January": 1, "February": 2, "March": 3, "April": 4, "May": 5, "June": 6,
-    "July": 7, "August": 8, "September": 9, "October": 10, "November": 11, "December": 12,
+    "January": 1,
+    "February": 2,
+    "March": 3,
+    "April": 4,
+    "May": 5,
+    "June": 6,
+    "July": 7,
+    "August": 8,
+    "September": 9,
+    "October": 10,
+    "November": 11,
+    "December": 12,
 }
 
 VALID_REPOS = ("Reports", "MMSDM", "NEMDE", "FCAS_Causer_Pays")
 
 
 # ---------- Skeleton / template / regex helpers ----------
+
 
 def skeletonize(name: str) -> str:
     return DIGIT_RUN_RE.sub(lambda m: f"<d{len(m.group())}>", name)
@@ -175,6 +193,7 @@ def label_digit_positions(skel: str, samples: list[str]) -> str:
 
 # ---------- Path helpers ----------
 
+
 def url_path_from_local(index_file: Path) -> str:
     rel = index_file.parent.relative_to(MIRROR).as_posix()
     return "/" + rel + "/" if rel else "/"
@@ -202,6 +221,7 @@ def path_template_labeled(url_path: str) -> str:
 
 
 # ---------- Repo / tier / intra-repo classification ----------
+
 
 def classify(url_path: str, filename: str) -> tuple[str, str, str, dict] | None:
     """Classify a file into (repo, retention_tier, intra_repo_id, extras).
@@ -269,7 +289,12 @@ def classify_mmsdm(segs: list[str], filename: str) -> tuple[str, str, str, dict]
                     # e.g. "MMS%20Data%20Model/v5.1/..."
                     m = re.match(r"MMS%20Data%20Model/(v[\w.]+)/?", path_tail)
                     if m:
-                        return "MMSDM", "DOCUMENTATION", f"MMS_DATA_MODEL_{m.group(1)}", {"mms_version": m.group(1)}
+                        return (
+                            "MMSDM",
+                            "DOCUMENTATION",
+                            f"MMS_DATA_MODEL_{m.group(1)}",
+                            {"mms_version": m.group(1)},
+                        )
                     return "MMSDM", "DOCUMENTATION", "DOCUMENTATION_AUX", {}
 
                 # SQLLoader view file: extract #TABLE# from filename
@@ -341,12 +366,13 @@ def anomaly_flag(repo: str, retention_tier: str, intra_repo_id: str) -> str:
         if intra_repo_id in AEMO_URL_TYPOS:
             return "aemo_url_typo"
         for a, b in REPORTS_CASING_MISMATCHES:
-            if intra_repo_id == a or intra_repo_id == b:
+            if intra_repo_id in (a, b):
                 return "casing_mismatch_vs_sibling_tier"
     return ""
 
 
 # ---------- IIS row parsing ----------
+
 
 def parse_iis_date(datestamp: str, time: str) -> datetime | None:
     try:
@@ -397,11 +423,13 @@ def parse_listing(index_file: Path, parent_path: str) -> list[dict]:
             continue
         basename = urllib.parse.unquote(new_path.rsplit("/", 1)[-1])
         seen_paths.add(new_path)
-        files.append({
-            "name": basename,
-            "url_path": new_path,
-            "last_modified": parse_iis_date(datestamp, time),
-        })
+        files.append(
+            {
+                "name": basename,
+                "url_path": new_path,
+                "last_modified": parse_iis_date(datestamp, time),
+            }
+        )
 
     # Pick up files missed by ROW_RE (rare; no date info)
     for m in HREF_ANY_RE.finditer(data):
@@ -426,6 +454,7 @@ def parse_listing(index_file: Path, parent_path: str) -> list[dict]:
 
 
 # ---------- Main extraction ----------
+
 
 def main() -> int:
     if not MIRROR.exists():
@@ -455,10 +484,12 @@ def main() -> int:
                 and segs[1] in ("CURRENT", "ARCHIVE")
                 and segs[2] in AEMO_URL_TYPOS
             ):
-                empty_listings.append({
-                    "url_path": parent_path,
-                    "reason": "aemo_url_typo (directory exists with no files)",
-                })
+                empty_listings.append(
+                    {
+                        "url_path": parent_path,
+                        "reason": "aemo_url_typo (directory exists with no files)",
+                    }
+                )
             continue
         total_listings_with_files += 1
         total_files += len(files)
@@ -474,22 +505,25 @@ def main() -> int:
             skel = skeletonize(f["name"])
             ptpl = path_template(parent_path)
             key = (repo, tier, intra_id, ptpl, skel)
-            g = agg.setdefault(key, {
-                "repo": repo,
-                "retention_tier": tier,
-                "intra_repo_id": intra_id,
-                "path_template": ptpl,
-                "path_template_labeled": path_template_labeled(parent_path),
-                "skeleton": skel,
-                "samples": [],
-                "all_names": [],
-                "count": 0,
-                "first_seen": None,
-                "last_seen": None,
-                "example_dir": parent_path,
-                "anomaly": anomaly_flag(repo, tier, intra_id),
-                "extras": extras,
-            })
+            g = agg.setdefault(
+                key,
+                {
+                    "repo": repo,
+                    "retention_tier": tier,
+                    "intra_repo_id": intra_id,
+                    "path_template": ptpl,
+                    "path_template_labeled": path_template_labeled(parent_path),
+                    "skeleton": skel,
+                    "samples": [],
+                    "all_names": [],
+                    "count": 0,
+                    "first_seen": None,
+                    "last_seen": None,
+                    "example_dir": parent_path,
+                    "anomaly": anomaly_flag(repo, tier, intra_id),
+                    "extras": extras,
+                },
+            )
             g["count"] += 1
             if len(g["samples"]) < 3:
                 g["samples"].append(f["name"])
@@ -507,30 +541,34 @@ def main() -> int:
     for _key, g in agg.items():
         regex = skeleton_to_regex(g["skeleton"])
         template = label_digit_positions(g["skeleton"], g["all_names"])
-        rows.append({
-            "repo": g["repo"],
-            "retention_tier": g["retention_tier"],
-            "intra_repo_id": g["intra_repo_id"],
-            "path_template_labeled": g["path_template_labeled"],
-            "path_template": g["path_template"],
-            "filename_template": template,
-            "filename_regex": regex,
-            "sample_filename": g["samples"][0] if g["samples"] else "",
-            "anomaly": g["anomaly"],
-            # Snapshot (volatile):
-            "file_count_snapshot": g["count"],
-            "first_seen_snapshot": g["first_seen"].isoformat() if g["first_seen"] else "",
-            "last_seen_snapshot": g["last_seen"].isoformat() if g["last_seen"] else "",
-        })
+        rows.append(
+            {
+                "repo": g["repo"],
+                "retention_tier": g["retention_tier"],
+                "intra_repo_id": g["intra_repo_id"],
+                "path_template_labeled": g["path_template_labeled"],
+                "path_template": g["path_template"],
+                "filename_template": template,
+                "filename_regex": regex,
+                "sample_filename": g["samples"][0] if g["samples"] else "",
+                "anomaly": g["anomaly"],
+                # Snapshot (volatile):
+                "file_count_snapshot": g["count"],
+                "first_seen_snapshot": g["first_seen"].isoformat() if g["first_seen"] else "",
+                "last_seen_snapshot": g["last_seen"].isoformat() if g["last_seen"] else "",
+            }
+        )
 
     # Sort stable-first for deterministic output
-    rows.sort(key=lambda r: (
-        VALID_REPOS.index(r["repo"]),
-        r["retention_tier"],
-        r["intra_repo_id"],
-        r["path_template"],
-        r["filename_regex"],
-    ))
+    rows.sort(
+        key=lambda r: (
+            VALID_REPOS.index(r["repo"]),
+            r["retention_tier"],
+            r["intra_repo_id"],
+            r["path_template"],
+            r["filename_regex"],
+        )
+    )
 
     print(
         f"Listings scanned: {total_listings}  with files: {total_listings_with_files}  "
@@ -548,18 +586,41 @@ def main() -> int:
         print(f"  empty-listing anomalies: {len(empty_listings)}")
 
     write_csv(rows)
-    write_md(rows, total_listings, total_listings_with_files, total_files, dataset_keys, empty_listings)
+    write_md(
+        rows, total_listings, total_listings_with_files, total_files, dataset_keys, empty_listings
+    )
+
+    try:
+        commit = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], text=True).strip()
+    except Exception:
+        commit = "unknown"
+
+    Path("patterns/auto/").mkdir(parents=True, exist_ok=True)
+    write_json(
+        rows,
+        out_path=Path("patterns/auto/catalog.json"),
+        catalog_version=datetime.now(UTC).strftime("%Y.%m.%d"),
+        as_of=datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        source_mirror_commit=commit,
+    )
     return 0
 
 
 def write_csv(rows: list[dict]) -> None:
     OUT_CSV.parent.mkdir(parents=True, exist_ok=True)
     fields = [
-        "repo", "retention_tier", "intra_repo_id",
-        "path_template_labeled", "path_template",
-        "filename_template", "filename_regex", "sample_filename",
+        "repo",
+        "retention_tier",
+        "intra_repo_id",
+        "path_template_labeled",
+        "path_template",
+        "filename_template",
+        "filename_regex",
+        "sample_filename",
         "anomaly",
-        "file_count_snapshot", "first_seen_snapshot", "last_seen_snapshot",
+        "file_count_snapshot",
+        "first_seen_snapshot",
+        "last_seen_snapshot",
     ]
     with OUT_CSV.open("w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fields)
@@ -591,9 +652,7 @@ def write_md(
         f"{len(rows)} (dataset, tier, path, pattern) rows."
     )
     lines.append("")
-    lines.append(
-        "**Taxonomy** (per `reference/NEMWEB-STRUCTURE.md` §1):"
-    )
+    lines.append("**Taxonomy** (per `reference/NEMWEB-STRUCTURE.md` §1):")
     lines.append("")
     lines.append(
         "- **Repo** ∈ {`Reports`, `MMSDM`, `NEMDE`, `FCAS_Causer_Pays`} — exactly four.\n"
@@ -602,7 +661,8 @@ def write_md(
         "and are NOT merged (see NEMWEB-STRUCTURE.md §4).\n"
         "- **Retention / view tier** depends on repo: Reports has CURRENT/ARCHIVE; MMSDM uses "
         "the SQLLoader view name (CTL, DATA, BCP_FMT, BCP_DATA, MYSQL, INDEX, UTILITIES, LOGS, "
-        "P5MIN_ALL_DATA, PREDISP_ALL_DATA, DOCUMENTATION) plus MONTHLY_BULK and MTPASA_DATA_EXPORT; "
+        "P5MIN_ALL_DATA, PREDISP_ALL_DATA, DOCUMENTATION) plus MONTHLY_BULK and "
+        "MTPASA_DATA_EXPORT; "
         "NEMDE uses NEMDE_Files or File_Readers; FCAS_Causer_Pays is single-tier."
     )
     lines.append("")
@@ -639,14 +699,21 @@ def write_md(
         for r in repo_rows:
             by_ds[r["intra_repo_id"]].append(r)
 
-        lines.append(f"## Repo: `{repo}`  ({len(by_ds)} dataset{'s' if len(by_ds) != 1 else ''}, {len(repo_rows)} rows)")
+        lines.append(
+            f"## Repo: `{repo}`  ({len(by_ds)} dataset"
+            f"{'s' if len(by_ds) != 1 else ''}, {len(repo_rows)} rows)"
+        )
         lines.append("")
 
         for intra_id in sorted(by_ds.keys()):
-            ds_rows = sorted(by_ds[intra_id], key=lambda r: (r["retention_tier"], r["path_template"], r["filename_regex"]))
+            ds_rows = sorted(
+                by_ds[intra_id],
+                key=lambda r: (r["retention_tier"], r["path_template"], r["filename_regex"]),
+            )
             total_files_for_ds = sum(r["file_count_snapshot"] for r in ds_rows)
-            dates = [r["first_seen_snapshot"] for r in ds_rows if r["first_seen_snapshot"]] + \
-                    [r["last_seen_snapshot"] for r in ds_rows if r["last_seen_snapshot"]]
+            dates = [r["first_seen_snapshot"] for r in ds_rows if r["first_seen_snapshot"]] + [
+                r["last_seen_snapshot"] for r in ds_rows if r["last_seen_snapshot"]
+            ]
             span = f"{min(dates)[:10]} → {max(dates)[:10]}" if dates else "no-dates"
             anomalies = sorted({r["anomaly"] for r in ds_rows if r["anomaly"]})
 
@@ -660,12 +727,14 @@ def write_md(
             )
             lines.append("")
             lines.append(
-                "| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |"
+                "| Tier | Path template | Filename template | Regex | Sample | "
+                "Files (snap) | First seen (snap) | Last seen (snap) |"
             )
             lines.append("|---|---|---|---|---|---:|---|---|")
             for r in ds_rows:
                 lines.append(
-                    "| `{tier}` | `{ptpl}` | `{tmpl}` | `{rx}` | `{s}` | {fc} | {fs} | {ls} |".format(
+                    "| `{tier}` | `{ptpl}` | `{tmpl}` | `{rx}` | `{s}` | "
+                    "{fc} | {fs} | {ls} |".format(
                         tier=esc(r["retention_tier"]),
                         ptpl=esc(r["path_template_labeled"]),
                         tmpl=esc(r["filename_template"]),
@@ -704,6 +773,242 @@ def write_md(
     OUT_MD.parent.mkdir(parents=True, exist_ok=True)
     OUT_MD.write_text("\n".join(lines), encoding="utf-8")
     print(f"wrote {OUT_MD}  ({len(dataset_keys)} datasets, {len(rows)} rows)")
+
+
+def write_json(
+    rows: list[dict],
+    out_path: Path | str,
+    catalog_version: str,
+    as_of: str,
+    source_mirror_commit: str,
+) -> None:
+    """Emit a JSON Schema v1.0.0 conformant catalog from extractor rows.
+
+    Groups flat rows by (repo, intra_repo_id) and nests tier records under
+    each dataset. Preserves exact case of intra_repo_id (do not normalize).
+    Called after classify() + aggregate() produce the flat rows list.
+
+    Refuses to emit a zero-row catalog — empty mirror or crawl failure is
+    always a pipeline bug, never a valid state. Publishing a blank catalog
+    would silently push an empty Pages site to every consumer.
+    """
+    if not rows:
+        raise ValueError(
+            "refusing to emit empty catalog: zero rows from extractor; "
+            "likely empty mirror or crawl failure. Fix the pipeline rather than "
+            "publishing a blank catalog."
+        )
+
+    datasets: dict[str, dict] = {}
+    all_raw_keys: list[str] = []
+
+    for row in rows:
+        repo = row["repo"]
+        intra_repo_id = row["intra_repo_id"]
+        key = f"{repo}:{intra_repo_id}"
+        tier_name = row["retention_tier"]
+
+        if key not in datasets:
+            all_raw_keys.append(key)
+            datasets[key] = {
+                "repo": repo,
+                "intra_repo_id": intra_repo_id,
+                "resolvable": True,
+                "tiers": {},
+                "query_shape": None,
+                "schema_source": None,
+                "anomaly_note": _anomaly_note_from_flag(
+                    row.get("anomaly") or row.get("anomaly_flag", ""), row
+                ),
+            }
+
+        tier_record = {
+            "path_template": row["path_template"],
+            "filename_template": row.get("filename_template") or None,
+            "filename_regex": row.get("filename_regex") or None,
+            "example": row.get("sample_filename", ""),
+            "cadence": _infer_cadence(repo, tier_name),
+        }
+
+        # Only include observed_range if we have any observed values
+        first = row.get("first_seen_snapshot")
+        last = row.get("last_seen_snapshot")
+        if first and last:
+            tier_record["observed_range"] = {"from": first, "to": last}
+        else:
+            tier_record["observed_range"] = None
+
+        datasets[key]["tiers"][tier_name] = tier_record
+
+    # Curate dataset_keys: resolvable=true AND not in AUX/placeholder keys
+    dataset_keys = _curate_keys(list(datasets.keys()), datasets)
+
+    placeholders = _placeholders_for(datasets)
+
+    payload = {
+        "schema_version": "1.0.0",
+        "catalog_version": catalog_version,
+        "as_of": as_of,
+        "source_mirror_commit": source_mirror_commit,
+        "placeholders": placeholders,
+        "dataset_keys": dataset_keys,
+        "raw_keys": sorted(all_raw_keys),
+        "datasets": datasets,
+    }
+    Path(out_path).write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n")
+
+
+def _anomaly_note_from_flag(flag: str, row: dict) -> str | None:
+    """Translate extractor anomaly_flag into a human-readable anomaly_note."""
+    if not flag:
+        return None
+    if flag == "aemo_url_typo":
+        return (
+            "Directory-level anomaly: AEMO published this stream with a malformed name. "
+            "URL is correct as stated — do NOT URL-encode special characters. "
+            "Treat as resolvable only if filename_template is not null."
+        )
+    if flag == "casing_mismatch_vs_sibling_tier":
+        return (
+            "CURRENT/ARCHIVE tiers use different casing for this stream. "
+            "Preserve exact case per tier when constructing URLs; do not normalize."
+        )
+    return f"Extractor flag: {flag}"
+
+
+def _infer_cadence(repo: str, tier: str) -> str:
+    """Best-effort cadence label based on repo and tier name."""
+    if repo == "Reports" and tier == "CURRENT":
+        return "5min"
+    if repo == "Reports" and tier == "ARCHIVE":
+        return "daily_rollup"
+    if repo == "MMSDM":
+        if tier in {"DATA", "P5MIN_ALL_DATA", "PREDISP_ALL_DATA"}:
+            return "5min"
+        return "monthly_bulk"
+    if repo == "NEMDE":
+        return "daily"
+    if repo == "FCAS_Causer_Pays":
+        return "annual"
+    return "unknown"
+
+
+_AUX_SUFFIXES = {"_AUX", "DOCUMENTATION_AUX", "ROOT_AUX", "MONTH_ROOT_AUX", "SQLLOADER_AUX"}
+_AUX_EXACT = {"MMSDM_MONTHLY_BULK", "MTPASA_DATA_EXPORT", "UNKNOWN", "UNPARSED"}
+_UTILITY_EXTENSIONS = {".dll", ".exe", ".bat", ".sh", ".cmd", ".tar", ".gz"}
+
+
+def _curate_keys(all_keys: list[str], datasets: dict) -> list[str]:
+    """Return the curated user-facing subset of dataset keys.
+
+    Rule: resolvable=true AND intra_repo_id not AUX/placeholder AND not utility-file.
+    """
+    out = []
+    for key in sorted(all_keys):
+        ds = datasets[key]
+        if not ds["resolvable"]:
+            continue
+        iid = ds["intra_repo_id"]
+        if iid in _AUX_EXACT:
+            continue
+        if any(iid.endswith(suf) for suf in _AUX_SUFFIXES):
+            continue
+        if any(iid.lower().endswith(ext) for ext in _UTILITY_EXTENSIONS):
+            continue
+        out.append(key)
+    return out
+
+
+_DEFAULT_PLACEHOLDERS = {
+    "date": {"format": "yyyymmdd", "example": "20250407", "regex": "\\d{8}"},
+    "timestamp": {"format": "yyyymmddhhmm", "example": "202504070445", "regex": "\\d{12}"},
+    "aemo_id": {
+        "format": "16-digit AEMO identifier",
+        "example": "0000000513144978",
+        "regex": "\\d{16}",
+    },
+    "year": {"format": "yyyy", "example": "2025", "regex": "\\d{4}"},
+    "month": {"format": "mm", "example": "04", "regex": "\\d{2}"},
+    "yyyymm": {"format": "yyyymm", "example": "202504", "regex": "\\d{6}"},
+    "yyyymmddHHMM": {"format": "yyyymmddHHMM", "example": "202504070445", "regex": "\\d{12}"},
+    "nn": {"format": "zero-padded 2-digit", "example": "00", "regex": "\\d{2}"},
+    "d1": {"format": "single digit", "example": "1", "regex": "\\d{1}"},
+    "d2": {"format": "two digits", "example": "04", "regex": "\\d{2}"},
+    "d11": {"format": "11 digits", "example": "20220604167", "regex": "\\d{11}"},
+    "d13": {"format": "13 digits", "example": "2011110909700", "regex": "\\d{13}"},
+}
+
+# Base name → semantics for disambiguated variants (e.g. date1, date2; year1, year2).
+# Matched against the suffix-stripped token name.
+_BASE_LABEL_REGEX = {
+    "date": ("yyyymmdd", "\\d{8}", "20250407"),
+    "timestamp": ("yyyymmddhhmm", "\\d{12}", "202504070445"),
+    "datetime": ("yyyymmddhhmmss", "\\d{14}", "20260416044500"),
+    "year": ("yyyy", "\\d{4}", "2025"),
+    "yearmonth": ("yyyymm", "\\d{6}", "202504"),
+    "yyyymmddhh": ("yyyymmddhh", "\\d{10}", "2025040704"),
+    "aemo_id": ("16-digit AEMO identifier", "\\d{16}", "0000000513144978"),
+}
+
+_VARIANT_SUFFIX_RE = re.compile(r"^(?P<base>[a-zA-Z]+?)(?P<idx>\d+)$")
+_TOKEN_SCAN_RE = re.compile(r"\{(\w+)\}")
+
+
+def _infer_placeholder_def(name: str) -> dict[str, str]:
+    """Best-effort definition for a placeholder name the extractor emitted.
+
+    Coverage is intentionally conservative. The extractor's labeler can produce
+    names like `d21`/`d22` — these are disambiguation suffixes of `d2` (two
+    2-digit positions in the same template), NOT 21/22-digit fields. Recovering
+    the original digit count from the name alone is ambiguous, so for any
+    d-token not in the curator's `_DEFAULT_PLACEHOLDERS`, the inference emits
+    a broad `\\d+` regex and directs users to the per-tier `filename_regex`
+    for the exact shape.
+    """
+    if name in _DEFAULT_PLACEHOLDERS:
+        return _DEFAULT_PLACEHOLDERS[name]
+
+    # Direct base-name match (yearmonth, datetime, yyyymmddhh, aemo_id — fixed shape)
+    if name in _BASE_LABEL_REGEX:
+        fmt, rx, ex = _BASE_LABEL_REGEX[name]
+        return {"format": fmt, "example": ex, "regex": rx}
+
+    # Disambiguation suffix variants of known temporal bases (date1, date2, year1, year2)
+    mv = _VARIANT_SUFFIX_RE.match(name)
+    if mv and mv.group("base") in _BASE_LABEL_REGEX:
+        fmt, rx, ex = _BASE_LABEL_REGEX[mv.group("base")]
+        return {"format": fmt, "example": ex, "regex": rx}
+
+    # Anything else (d{N} disambiguation variants, unknown suffixes): conservative
+    # fallback. The per-tier `filename_regex` is the authoritative shape — the
+    # placeholder record is informational for discoverability.
+    return {
+        "format": f"extractor-emitted token {name!r}; see per-tier filename_regex for exact shape",
+        "example": "",
+        "regex": "\\d+",
+    }
+
+
+def _placeholders_for(datasets: dict) -> dict[str, dict]:
+    """Return a placeholders section that declares every token used in any
+    emitted filename_template or path_template.
+
+    Scans the datasets dict after tier records are built, collects the union
+    of `{token}` names, and ensures each has a definition. Seed with
+    _DEFAULT_PLACEHOLDERS for the known-good curated set, then infer the rest.
+    """
+    used: set[str] = set()
+    for rec in datasets.values():
+        for tier in rec.get("tiers", {}).values():
+            for key in ("filename_template", "path_template"):
+                value = tier.get(key) or ""
+                used.update(_TOKEN_SCAN_RE.findall(value))
+
+    result: dict[str, dict] = dict(_DEFAULT_PLACEHOLDERS)
+    for name in sorted(used):
+        if name not in result:
+            result[name] = _infer_placeholder_def(name)
+    return result
 
 
 if __name__ == "__main__":

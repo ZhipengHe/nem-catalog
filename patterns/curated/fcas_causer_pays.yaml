@@ -1,0 +1,14 @@
+# Curated overlays for FCAS_Causer_Pays.
+
+"FCAS_Causer_Pays:CAUSER_PAYS":
+  query_shape:
+    inputs:
+      - name: year
+        format: yyyy
+        example: "2011"
+    example_resolve: "resolve('FCAS_Causer_Pays:CAUSER_PAYS', from_='2011-01-01', to_='2012-12-31')"
+    output_count_hint: "annual"
+  anomaly_note: |
+    Frozen archive — only 2011 and 2012 files present as of 2026-04-18.
+    Filename is literally {year}.txt (e.g., 2011.txt), no 'CAUSER_PAYS_' prefix,
+    extension is .txt not .zip.
