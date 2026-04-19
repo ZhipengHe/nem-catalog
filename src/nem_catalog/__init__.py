@@ -8,7 +8,7 @@ Primary API:
 Convenience:
     >>> catalog = nem_catalog.fetch_latest()
 
-See https://zhipenghe.github.io/nem-catalog/ for docs.
+See https://zhipenghe.me/nem-catalog/ for docs.
 """
 
 from nem_catalog.catalog import Catalog

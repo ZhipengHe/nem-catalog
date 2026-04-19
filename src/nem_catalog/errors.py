@@ -6,7 +6,7 @@ can jump directly to the troubleshooting entry.
 
 from __future__ import annotations
 
-_DOCS_BASE = "https://zhipenghe.github.io/nem-catalog/docs/troubleshooting"
+_DOCS_BASE = "https://zhipenghe.me/nem-catalog/docs/troubleshooting"
 
 
 def docs_url(anchor: str) -> str:

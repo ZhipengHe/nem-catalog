@@ -25,11 +25,11 @@ template via `catalog.datasets[key]['tiers']` and build URLs yourself.
 
 ```bash
 # Find all Dispatch-named datasets
-curl -s https://zhipenghe.github.io/nem-catalog/catalog.json \
+curl -s https://zhipenghe.me/nem-catalog/catalog.json \
   | jq -r '.dataset_keys[] | select(startswith("Reports:Dispatch"))'
 
 # Get one template, expand it
-curl -s https://zhipenghe.github.io/nem-catalog/catalog.json \
+curl -s https://zhipenghe.me/nem-catalog/catalog.json \
   | jq -r '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE'
 ```
 

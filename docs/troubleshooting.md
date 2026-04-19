@@ -58,6 +58,6 @@ The requested date range is entirely outside the dataset's `observed_range`. No 
 Your dataset key is wrong. List valid keys:
 
 ```bash
-curl -s https://zhipenghe.github.io/nem-catalog/catalog.json \
+curl -s https://zhipenghe.me/nem-catalog/catalog.json \
   | jq '.dataset_keys[]' | grep -i YOUR_SEARCH
 ```

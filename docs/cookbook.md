@@ -4,7 +4,7 @@
 
 ```bash
 # Given a dataset key and a date range, produce URLs for wget/curl.
-CATALOG=$(curl -s https://zhipenghe.github.io/nem-catalog/catalog.json)
+CATALOG=$(curl -s https://zhipenghe.me/nem-catalog/catalog.json)
 KEY="Reports:DispatchIS_Reports"
 
 PATH_TMPL=$(echo "$CATALOG" | jq -r ".datasets[\"$KEY\"].tiers.ARCHIVE.path_template")
@@ -19,14 +19,14 @@ done
 ## Shell — discover datasets by substring
 
 ```bash
-curl -s https://zhipenghe.github.io/nem-catalog/catalog.json \
+curl -s https://zhipenghe.me/nem-catalog/catalog.json \
   | jq -r '.dataset_keys[] | select(. | ascii_downcase | contains("dispatch"))'
 ```
 
 ## Shell — check schema and catalog versions
 
 ```bash
-curl -s https://zhipenghe.github.io/nem-catalog/catalog.json \
+curl -s https://zhipenghe.me/nem-catalog/catalog.json \
   | jq '{schema: .schema_version, catalog: .catalog_version, as_of}'
 ```
 
@@ -34,7 +34,7 @@ curl -s https://zhipenghe.github.io/nem-catalog/catalog.json \
 
 ```r
 library(jsonlite)
-catalog <- fromJSON("https://zhipenghe.github.io/nem-catalog/catalog.json")
+catalog <- fromJSON("https://zhipenghe.me/nem-catalog/catalog.json")
 tier <- catalog$datasets$`Reports:DispatchIS_Reports`$tiers$ARCHIVE
 
 dates <- seq(as.Date("2025-04-01"), as.Date("2025-04-07"), by="day")
@@ -49,7 +49,7 @@ urls <- sprintf(
 
 ```julia
 using JSON3, HTTP
-catalog = JSON3.read(String(HTTP.get("https://zhipenghe.github.io/nem-catalog/catalog.json").body))
+catalog = JSON3.read(String(HTTP.get("https://zhipenghe.me/nem-catalog/catalog.json").body))
 tier = catalog.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE
 
 dates = collect(Date("2025-04-01"):Day(1):Date("2025-04-07"))
@@ -62,7 +62,7 @@ urls = ["https://nemweb.com.au" * tier.path_template *
 
 ```bash
 # Build URL list, then download 4 at a time with wget.
-curl -s https://zhipenghe.github.io/nem-catalog/catalog.json \
+curl -s https://zhipenghe.me/nem-catalog/catalog.json \
   | jq -r '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE | .path_template + .filename_template' \
   | head -1 \
   | while read tmpl; do

@@ -85,7 +85,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set +e
-          OUT=$(curl -s https://zhipenghe.github.io/nem-catalog/catalog.json | jq '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE.filename_regex')
+          OUT=$(curl -s https://zhipenghe.me/nem-catalog/catalog.json | jq '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE.filename_regex')
           echo "curl+jq output: $OUT"
           if [ -z "$OUT" ] || [ "$OUT" = "null" ]; then
             gh issue create \

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://zhipenghe.github.io/nem-catalog/catalog.schema.json",
+  "$id": "https://zhipenghe.me/nem-catalog/catalog.schema.json",
   "title": "nem-catalog v1",
   "description": "Machine-readable URL catalog for AEMO NEMWEB. Maps (dataset, time_range) to candidate URLs for the four NEMWEB repositories: Reports, MMSDM, NEMDE, FCAS_Causer_Pays.",
   "type": "object",

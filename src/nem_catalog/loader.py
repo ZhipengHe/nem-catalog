@@ -17,7 +17,7 @@ from nem_catalog.catalog import Catalog
 from nem_catalog.errors import IncompatibleCatalogError, NemCatalogFetchError
 
 _SUPPORTED_MAJOR = 1
-_DEFAULT_URL = "https://zhipenghe.github.io/nem-catalog/catalog.json"
+_DEFAULT_URL = "https://zhipenghe.me/nem-catalog/catalog.json"
 _DEFAULT_RELEASE_URL_TEMPLATE = (
     "https://github.com/ZhipengHe/nem-catalog/releases/download/"
     "catalog-{version}/catalog-{version}.json"

@@ -23,8 +23,8 @@ dependencies = []
 [project.urls]
 Homepage = "https://github.com/ZhipengHe/nem-catalog"
 Repository = "https://github.com/ZhipengHe/nem-catalog"
-Catalog = "https://zhipenghe.github.io/nem-catalog/catalog.json"
-Schema = "https://zhipenghe.github.io/nem-catalog/catalog.schema.json"
+Catalog = "https://zhipenghe.me/nem-catalog/catalog.json"
+Schema = "https://zhipenghe.me/nem-catalog/catalog.schema.json"
 Changelog = "https://github.com/ZhipengHe/nem-catalog/blob/master/CHANGELOG.md"
 
 [project.optional-dependencies]

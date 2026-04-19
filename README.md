@@ -1,7 +1,7 @@
 # nem-catalog — Machine-readable URL catalog for AEMO NEMWEB
 
-[![Catalog](https://img.shields.io/badge/catalog-live-blue)](https://zhipenghe.github.io/nem-catalog/catalog.json)
-[![Schema](https://img.shields.io/badge/schema-v1.0.0-green)](https://zhipenghe.github.io/nem-catalog/catalog.schema.json)
+[![Catalog](https://img.shields.io/badge/catalog-live-blue)](https://zhipenghe.me/nem-catalog/catalog.json)
+[![Schema](https://img.shields.io/badge/schema-v1.0.0-green)](https://zhipenghe.me/nem-catalog/catalog.schema.json)
 [![PyPI](https://img.shields.io/pypi/v/nem-catalog)](https://pypi.org/project/nem-catalog/)
 [![License: MIT](https://img.shields.io/badge/license-MIT%20%2B%20CC0-brightgreen)](LICENSE)
 [![Last successful crawl](https://img.shields.io/badge/last%20crawl-TBD-lightgrey)](https://github.com/ZhipengHe/nem-catalog/actions/workflows/weekly-refresh.yml)
@@ -11,7 +11,7 @@ A versioned JSON catalog + JSON Schema that maps `(NEMWEB dataset key, time rang
 ## Quick start — no install required
 
 ```bash
-curl -s https://zhipenghe.github.io/nem-catalog/catalog.json \
+curl -s https://zhipenghe.me/nem-catalog/catalog.json \
   | jq '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE'
 ```
 

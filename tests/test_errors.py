@@ -10,7 +10,7 @@ from nem_catalog.errors import (
     docs_url,
 )
 
-DOCS_BASE = "https://zhipenghe.github.io/nem-catalog/docs/troubleshooting"
+DOCS_BASE = "https://zhipenghe.me/nem-catalog/docs/troubleshooting"
 
 
 def test_base_error_is_exception():
