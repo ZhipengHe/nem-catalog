@@ -107,10 +107,54 @@ def is_data_file(path: str) -> bool:
     return any(lower.endswith(suf) for suf in DATA_SUFFIXES)
 
 
+class HREFExtractionShiftError(RuntimeError):
+    """Raised when HREF_RE extracts < 50% of the cached HREF count from a
+    refetched listing, indicating AEMO likely changed the HTML template.
+
+    The refetched bytes are written to disk for forensic inspection before
+    raising, so a P0 investigator can diff the template. main() catches and
+    exits 2; the workflow's on-failure step opens a P0 issue."""
+
+    def __init__(self, url_path: str, before: int, after: int) -> None:
+        super().__init__(
+            f"HREF extraction shift: {url_path} before={before} after={after}. "
+            "AEMO may have changed the HTML template; HREF_RE needs review."
+        )
+        self.url_path = url_path
+        self.before = before
+        self.after = after
+
+
 def save_listing(url_path: str, data: bytes) -> None:
+    """Content-aware write with template-shift guard.
+
+    AEMO's IIS 8.5 server renders filesystem mtimes into directory listings,
+    so refetched HTML bytes often differ even when the listed HREFs are
+    identical. This function:
+      1. Compares the HREF set from the cached file (if any) against the set
+         extracted from the new bytes.
+      2. If identical, skips the write (preserves mtime + byte identity, so
+         git stays clean for AEMO maintenance churn).
+      3. If the new set is empty or drops >=50% vs. cached (and cached was
+         non-empty), writes the new bytes for forensics but raises
+         HREFExtractionShiftError so the workflow can open a P0.
+      4. Otherwise writes the new bytes.
+
+    Empty-cache first-crawl falls through to an unconditional write.
+    """
     p = OUT / url_path.lstrip("/")
     p.mkdir(parents=True, exist_ok=True)
-    (p / "index.html").write_bytes(data)
+    idx = p / "index.html"
+    if idx.is_file():
+        old = frozenset(m.group(1) for m in HREF_RE.finditer(idx.read_bytes()))
+        new = frozenset(m.group(1) for m in HREF_RE.finditer(data))
+        template_shift = bool(old) and (not new or len(new) * 2 <= len(old))
+        if template_shift:
+            idx.write_bytes(data)  # forensic write, then raise
+            raise HREFExtractionShiftError(url_path, before=len(old), after=len(new))
+        if old == new:
+            return
+    idx.write_bytes(data)
 
 
 def extract_children(parent_path: str, data: bytes) -> list[str]:
