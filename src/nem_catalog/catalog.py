@@ -29,15 +29,22 @@ _NEMWEB_BASE = "https://nemweb.com.au"
 # with the token vocabulary the extractor emits (scripts/extract_patterns.py
 # DIGIT_LABELS + _BASE_LABEL_REGEX). Missing a name here silently strands
 # datasets that would otherwise resolve.
-_TEMPORAL_TOKENS: frozenset[str] = frozenset({
-    "date", "yyyymmdd",
-    "timestamp", "yyyymmddHHMM", "yyyymmddhhmm",
-    "datetime",
-    "yyyymmddhh",
-    "yearmonth", "yyyymm",
-    "year", "yyyy",
-    "month",
-})
+_TEMPORAL_TOKENS: frozenset[str] = frozenset(
+    {
+        "date",
+        "yyyymmdd",
+        "timestamp",
+        "yyyymmddHHMM",
+        "yyyymmddhhmm",
+        "datetime",
+        "yyyymmddhh",
+        "yearmonth",
+        "yyyymm",
+        "year",
+        "yyyy",
+        "month",
+    }
+)
 
 _TOKEN_RE = re.compile(r"\{(\w+)\}")
 
@@ -78,13 +85,11 @@ class Catalog:
         needle = filter.lower()
         return [k for k in keys if needle in k.lower()]
 
-    def resolve(
-        self, key: str, from_: str, to_: str, *, view: str | None = None
-    ) -> list[str]:
+    def resolve(self, key: str, from_: str, to_: str, *, view: str | None = None) -> list[str]:
         """Expand a dataset to candidate URLs covering the date range.
 
         Tier routing (for Reports:* with a rolling CURRENT + ARCHIVE split):
-          retention_cutoff = catalog.as_of − retention_hint_unverified_days
+          retention_cutoff = catalog.as_of - retention_hint_unverified_days
           - from_ >= cutoff           → rolling tier only
           - to_   <  cutoff           → non-rolling tiers + pre-retention warning
           - straddles cutoff          → both + pre-retention warning
@@ -131,7 +136,7 @@ class Catalog:
         if pre_retention:
             warnings.warn(
                 f"resolve({key!r}, {from_!r}, {to_!r}): from_ is older than "
-                f"catalog.as_of − retention_hint_unverified_days; reachability is "
+                f"catalog.as_of - retention_hint_unverified_days; reachability is "
                 f"likely to fail for those URLs.",
                 stacklevel=2,
             )
@@ -264,9 +269,7 @@ def _expand_tier(tier: dict[str, Any], dt_from: datetime, dt_to: datetime) -> li
     return urls
 
 
-def _warn_skipped_tiers(
-    key: str, skipped: list[tuple[str, frozenset[str]]]
-) -> None:
+def _warn_skipped_tiers(key: str, skipped: list[tuple[str, frozenset[str]]]) -> None:
     """Emit one UserWarning per tier skipped due to non-temporal placeholders.
 
     A tier is skipped when it was a router candidate but its template contains
@@ -289,13 +292,18 @@ def _infer_granularity(template: str) -> str:
     # Order matters: check longer/more-specific token names first so, e.g.,
     # "{datetime}" isn't matched by the "{date}" substring test.
     for g in (
-        "yyyymmddHHMM", "yyyymmddhhmm", "timestamp",
+        "yyyymmddHHMM",
+        "yyyymmddhhmm",
+        "timestamp",
         "datetime",
         "yyyymmddhh",
-        "yyyymmdd", "date",
-        "yearmonth", "yyyymm",
+        "yyyymmdd",
+        "date",
+        "yearmonth",
+        "yyyymm",
         "month",
-        "yyyy", "year",
+        "yyyy",
+        "year",
     ):
         if "{" + g + "}" in template:
             return g
@@ -334,14 +342,19 @@ def _placeholders(dt: datetime) -> dict[str, str]:
     ym = dt.strftime("%Y%m")
     y4 = dt.strftime("%Y")
     return {
-        "date": ymd, "yyyymmdd": ymd,
-        "timestamp": ts, "yyyymmddHHMM": ts, "yyyymmddhhmm": ts,
+        "date": ymd,
+        "yyyymmdd": ymd,
+        "timestamp": ts,
+        "yyyymmddHHMM": ts,
+        "yyyymmddhhmm": ts,
         # 14-digit yyyymmddhhmmss — AEMO dispatch files publish with ss=00;
         # seconds-level cadence isn't observed in any shipped dataset.
         "datetime": dt.strftime("%Y%m%d%H%M%S"),
         "yyyymmddhh": dt.strftime("%Y%m%d%H"),
-        "yearmonth": ym, "yyyymm": ym,
-        "year": y4, "yyyy": y4,
+        "yearmonth": ym,
+        "yyyymm": ym,
+        "year": y4,
+        "yyyy": y4,
         "month": dt.strftime("%m"),
     }
 

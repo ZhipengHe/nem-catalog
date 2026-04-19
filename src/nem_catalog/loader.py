@@ -31,7 +31,7 @@ def load(path_or_url: str | Path) -> Catalog:
         raw = Path(path_or_url).read_text()
     else:
         req = urllib.request.Request(str(path_or_url), headers={"User-Agent": _USER_AGENT})
-        with urllib.request.urlopen(req, timeout=30) as resp:  # noqa: S310
+        with urllib.request.urlopen(req, timeout=30) as resp:
             raw = resp.read().decode("utf-8")
 
     try:
@@ -75,7 +75,7 @@ def fetch_latest(
         if cached_etag:
             headers["If-None-Match"] = cached_etag
         req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=30) as resp:  # noqa: S310
+        with urllib.request.urlopen(req, timeout=30) as resp:
             body = resp.read()
             etag = resp.headers.get("ETag") or ""
         cached_path.write_bytes(body)
@@ -101,9 +101,7 @@ def fetch_latest(
 
 def _serve_cache_with_warning(cached_path: Path, error_detail: str) -> Catalog:
     if not cached_path.exists():
-        raise NemCatalogFetchError(
-            f"live fetch failed and no cache available: {error_detail}"
-        )
+        raise NemCatalogFetchError(f"live fetch failed and no cache available: {error_detail}")
     warnings.warn(
         f"nem_catalog: network error, serving cached catalog ({error_detail})",
         stacklevel=2,

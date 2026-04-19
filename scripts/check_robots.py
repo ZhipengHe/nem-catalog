@@ -3,7 +3,9 @@
 Exits 0 and prints OK on permit.
 Exits 1 and prints a diagnostic on disallow — the workflow then opens an issue.
 """
+
 from __future__ import annotations
+
 import sys
 import urllib.request
 import urllib.robotparser
@@ -18,12 +20,13 @@ PATHS_WE_FETCH = [
     "/Data_Archive/Wholesale_Electricity/FCAS_Causer_Pays/",
 ]
 
+
 def main() -> int:
     rp = urllib.robotparser.RobotFileParser()
     rp.set_url(f"{NEMWEB}/robots.txt")
     try:
         rp.read()
-    except Exception as e:  # noqa: BLE001
+    except Exception as e:
         print(f"robots.txt fetch failed: {e}", file=sys.stderr)
         return 1
     disallowed = [p for p in PATHS_WE_FETCH if not rp.can_fetch(USER_AGENT, f"{NEMWEB}{p}")]
@@ -32,6 +35,7 @@ def main() -> int:
         return 1
     print("robots.txt OK — all crawled paths allowed")
     return 0
+
 
 if __name__ == "__main__":
     sys.exit(main())

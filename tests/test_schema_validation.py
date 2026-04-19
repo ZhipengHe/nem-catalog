@@ -34,7 +34,15 @@ def test_sample_validates(schema, sample):
 
 
 def test_sample_has_required_top_level_fields(sample):
-    required = {"schema_version", "catalog_version", "as_of", "placeholders", "dataset_keys", "raw_keys", "datasets"}
+    required = {
+        "schema_version",
+        "catalog_version",
+        "as_of",
+        "placeholders",
+        "dataset_keys",
+        "raw_keys",
+        "datasets",
+    }
     assert required.issubset(sample.keys())
 
 
@@ -62,7 +70,9 @@ def test_unresolvable_record_has_null_filename(sample):
     ds = sample["datasets"]["Reports:NEXT_DAY_OFFER_ENERGY)SPARSE"]
     assert ds["resolvable"] is False
     for tier_name, tier in ds["tiers"].items():
-        assert tier["filename_template"] is None, f"tier {tier_name} should have null filename_template"
+        assert tier["filename_template"] is None, (
+            f"tier {tier_name} should have null filename_template"
+        )
 
 
 def test_mmsdm_dispatchprice_has_multiple_tiers_with_different_granularity(sample):
@@ -91,9 +101,7 @@ def test_template_tokens_are_defined_in_placeholders(sample):
                 for token in _TOKEN_RE.findall(template):
                     if token not in placeholders:
                         missing.append(f"{key}.tiers.{tier_name}.{field}: {{{token}}}")
-    assert not missing, (
-        f"Templates reference tokens not in placeholders: {missing}"
-    )
+    assert not missing, f"Templates reference tokens not in placeholders: {missing}"
 
 
 def test_filename_template_and_regex_null_together(sample):

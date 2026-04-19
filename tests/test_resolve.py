@@ -26,7 +26,9 @@ def test_unknown_key_raises_key_error(catalog):
 
 def test_key_error_includes_close_match_suggestion(catalog):
     with pytest.raises(KeyError) as ei:
-        catalog.resolve("Reports:DispatchIS_Report", from_="2025-04-01", to_="2025-04-02")  # missing s
+        catalog.resolve(
+            "Reports:DispatchIS_Report", from_="2025-04-01", to_="2025-04-02"
+        )  # missing s
     msg = str(ei.value)
     assert "did you mean" in msg.lower()
     assert "Reports:DispatchIS_Reports" in msg
@@ -39,19 +41,27 @@ def test_to_before_from_raises_value_error(catalog):
 
 def test_unresolvable_dataset_raises(catalog):
     with pytest.raises(UnresolvableDatasetError):
-        catalog.resolve("Reports:NEXT_DAY_OFFER_ENERGY)SPARSE", from_="2025-04-01", to_="2025-04-02")
+        catalog.resolve(
+            "Reports:NEXT_DAY_OFFER_ENERGY)SPARSE", from_="2025-04-01", to_="2025-04-02"
+        )
 
 
 def test_resolve_archive_daily_rollup_returns_one_url_per_day(catalog):
-    # from_=2025-04-01 is far older than (as_of=2026-04-18 − retention_hint_unverified_days=2),
+    # from_=2025-04-01 is far older than (as_of=2026-04-18 - retention_hint_unverified_days=2),
     # so the router returns ARCHIVE-only per design doc line 38.
     urls = catalog.resolve("Reports:DispatchIS_Reports", from_="2025-04-01", to_="2025-04-03")
     archive_urls = [u for u in urls if "/ARCHIVE/" in u]
     current_urls = [u for u in urls if "/CURRENT/" in u]
     assert len(archive_urls) == 3
     assert len(current_urls) == 0  # outside retention window → no CURRENT URLs
-    assert f"{NEMWEB}/Reports/ARCHIVE/DispatchIS_Reports/PUBLIC_DISPATCHIS_20250401.zip" in archive_urls
-    assert f"{NEMWEB}/Reports/ARCHIVE/DispatchIS_Reports/PUBLIC_DISPATCHIS_20250403.zip" in archive_urls
+    assert (
+        f"{NEMWEB}/Reports/ARCHIVE/DispatchIS_Reports/PUBLIC_DISPATCHIS_20250401.zip"
+        in archive_urls
+    )
+    assert (
+        f"{NEMWEB}/Reports/ARCHIVE/DispatchIS_Reports/PUBLIC_DISPATCHIS_20250403.zip"
+        in archive_urls
+    )
 
 
 def test_resolve_reports_before_retention_warns_and_emits_archive(catalog):
@@ -63,7 +73,9 @@ def test_resolve_reports_before_retention_warns_and_emits_archive(catalog):
     archive_urls = [u for u in urls if "/ARCHIVE/" in u]
     assert len(current_urls) == 0
     assert len(archive_urls) == 3
-    assert any("retention" in str(rec.message).lower() for rec in w), "expected pre-retention warning"
+    assert any("retention" in str(rec.message).lower() for rec in w), (
+        "expected pre-retention warning"
+    )
 
 
 def test_resolve_fcas_annual_covers_observed_range(catalog):
@@ -115,9 +127,7 @@ def test_resolve_straddle_serves_archive_warns_about_unresolvable_current(catalo
     """
     with warnings.catch_warnings(record=True) as w:
         warnings.simplefilter("always")
-        urls = catalog.resolve(
-            "Reports:DispatchIS_Reports", from_="2026-04-15", to_="2026-04-18"
-        )
+        urls = catalog.resolve("Reports:DispatchIS_Reports", from_="2026-04-15", to_="2026-04-18")
     # ARCHIVE partition is [dt_from, cutoff - 1 day] = [2026-04-15, 2026-04-15]
     # → exactly 1 URL, from the pure-temporal ARCHIVE tier.
     archive_urls = [u for u in urls if "/ARCHIVE/" in u]
@@ -208,7 +218,9 @@ def test_resolve_substitutes_extended_temporal_tokens():
         "raw_keys": ["Reports:YearMonthOnly", "Reports:DatetimeOnly", "Reports:HourOnly"],
         "datasets": {
             "Reports:YearMonthOnly": {
-                "repo": "Reports", "intra_repo_id": "YearMonthOnly", "resolvable": True,
+                "repo": "Reports",
+                "intra_repo_id": "YearMonthOnly",
+                "resolvable": True,
                 "tiers": {
                     "ARCHIVE": {
                         "path_template": "/test/",
@@ -219,7 +231,9 @@ def test_resolve_substitutes_extended_temporal_tokens():
                 },
             },
             "Reports:DatetimeOnly": {
-                "repo": "Reports", "intra_repo_id": "DatetimeOnly", "resolvable": True,
+                "repo": "Reports",
+                "intra_repo_id": "DatetimeOnly",
+                "resolvable": True,
                 "tiers": {
                     "ARCHIVE": {
                         "path_template": "/test/",
@@ -230,7 +244,9 @@ def test_resolve_substitutes_extended_temporal_tokens():
                 },
             },
             "Reports:HourOnly": {
-                "repo": "Reports", "intra_repo_id": "HourOnly", "resolvable": True,
+                "repo": "Reports",
+                "intra_repo_id": "HourOnly",
+                "resolvable": True,
                 "tiers": {
                     "ARCHIVE": {
                         "path_template": "/test/",
@@ -269,6 +285,7 @@ def test_resolve_substitutes_extended_temporal_tokens():
 def _extract_date(url: str) -> str:
     """Extract the yyyymmdd substring from a fixture ROLLING_/ARCHIVED_ URL."""
     import re
+
     m = re.search(r"_(\d{8})\.zip", url)
     assert m, f"no date substring in URL {url!r}"
     return m.group(1)
@@ -285,9 +302,7 @@ def test_resolve_straddle_partitions_at_cutoff(catalog):
     """
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")  # suppress pre-retention warning
-        urls = catalog.resolve(
-            "Reports:PureTemporalRolling", from_="2026-04-14", to_="2026-04-17"
-        )
+        urls = catalog.resolve("Reports:PureTemporalRolling", from_="2026-04-14", to_="2026-04-17")
 
     current_dates = {_extract_date(u) for u in urls if "/CURRENT/" in u}
     archive_dates = {_extract_date(u) for u in urls if "/ARCHIVE/" in u}
@@ -307,9 +322,7 @@ def test_resolve_straddle_preserves_retention_warning(catalog):
     """Partitioning the range must not drop the existing pre-retention warning."""
     with warnings.catch_warnings(record=True) as w:
         warnings.simplefilter("always")
-        catalog.resolve(
-            "Reports:PureTemporalRolling", from_="2026-04-14", to_="2026-04-17"
-        )
+        catalog.resolve("Reports:PureTemporalRolling", from_="2026-04-14", to_="2026-04-17")
     assert any("retention" in str(rec.message).lower() for rec in w), (
         "straddle must still emit a pre-retention warning after partition"
     )
@@ -318,9 +331,7 @@ def test_resolve_straddle_preserves_retention_warning(catalog):
 def test_resolve_current_only_unchanged_after_partition_fix(catalog):
     """Inside retention window (no straddle): CURRENT-only, full range.
     Regression guard for the non-straddle happy path."""
-    urls = catalog.resolve(
-        "Reports:PureTemporalRolling", from_="2026-04-17", to_="2026-04-18"
-    )
+    urls = catalog.resolve("Reports:PureTemporalRolling", from_="2026-04-17", to_="2026-04-18")
     current_dates = {_extract_date(u) for u in urls if "/CURRENT/" in u}
     archive_dates = [u for u in urls if "/ARCHIVE/" in u]
     assert current_dates == {"20260417", "20260418"}
@@ -331,9 +342,7 @@ def test_resolve_archive_only_unchanged_after_partition_fix(catalog):
     """Entire range below cutoff: ARCHIVE-only, full range."""
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        urls = catalog.resolve(
-            "Reports:PureTemporalRolling", from_="2024-01-01", to_="2024-01-03"
-        )
+        urls = catalog.resolve("Reports:PureTemporalRolling", from_="2024-01-01", to_="2024-01-03")
     current = [u for u in urls if "/CURRENT/" in u]
     archive_dates = {_extract_date(u) for u in urls if "/ARCHIVE/" in u}
     assert current == []

@@ -86,7 +86,7 @@ def test_write_json_preserves_mixed_case_nemde_prefix(tmp_path):
             "repo": "NEMDE",
             "retention_tier": "NEMDE_Files",
             "intra_repo_id": "NemPriceSetter",
-            "path_template": "/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{month}/NEMDE_Market_Data/NEMDE_Files/",
+            "path_template": "/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{month}/NEMDE_Market_Data/NEMDE_Files/",  # noqa: E501
             "filename_template": "NemPriceSetter_{date}_xml.zip",
             "filename_regex": "^NemPriceSetter_\\d{8}_xml\\.zip$",
             "skeleton": "skel-1",
@@ -98,7 +98,13 @@ def test_write_json_preserves_mixed_case_nemde_prefix(tmp_path):
         }
     ]
     out = tmp_path / "auto-catalog.json"
-    extract_patterns.write_json(rows, out_path=out, catalog_version="2026.04.18", as_of="2026-04-18T00:00:00Z", source_mirror_commit="79cbad2")
+    extract_patterns.write_json(
+        rows,
+        out_path=out,
+        catalog_version="2026.04.18",
+        as_of="2026-04-18T00:00:00Z",
+        source_mirror_commit="79cbad2",
+    )
     data = json.loads(out.read_text())
     assert "NEMDE:NemPriceSetter" in data["datasets"]
     assert "NEMDE:NEMPriceSetter" not in data["datasets"]
@@ -172,7 +178,7 @@ def test_write_json_placeholders_cover_every_emitted_token(tmp_path):
             "filename_template": "PUBLIC_PRICE_REVISION_DISPATCH_{datetime}_{aemo_id}.R{d3}",
             "filename_regex": "^PUBLIC_PRICE_REVISION_DISPATCH_\\d{14}_\\d{16}\\.R\\d{3}$",
             "skeleton": "skel-3",
-            "sample_filename": "PUBLIC_PRICE_REVISION_DISPATCH_20260416044500_0000000513144978.R001",
+            "sample_filename": "PUBLIC_PRICE_REVISION_DISPATCH_20260416044500_0000000513144978.R001",  # noqa: E501
             "anomaly_flag": "",
             "files_count": 50,
             "first_seen_snapshot": "2026-04-16",
@@ -218,7 +224,7 @@ def test_write_json_on_empty_rows_raises(tmp_path):
     shipping one would silently publish a blank Pages site to every consumer.
     Empty mirror is always a crawl bug or mis-configured CI, never a valid state."""
     out = tmp_path / "auto-catalog.json"
-    with pytest.raises(ValueError, match="empty.*mirror|zero rows"):
+    with pytest.raises(ValueError, match=r"empty.*mirror|zero rows"):
         extract_patterns.write_json(
             [],
             out_path=out,

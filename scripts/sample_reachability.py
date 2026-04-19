@@ -2,7 +2,9 @@
 
 Exits 0 on all-pass, exits 1 on any non-200 (workflow converts exit into issue).
 """
+
 from __future__ import annotations
+
 import random
 import sys
 import urllib.request
@@ -14,15 +16,19 @@ NEMWEB_BASE = "https://nemweb.com.au"
 SAMPLE_PER_REPO = 5
 RNG = random.Random(42)
 
+
 def head(url: str) -> int:
-    req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "nem-catalog-integration/0.1"})
+    req = urllib.request.Request(
+        url, method="HEAD", headers={"User-Agent": "nem-catalog-integration/0.1"}
+    )
     try:
-        with urllib.request.urlopen(req, timeout=30) as resp:  # noqa: S310
+        with urllib.request.urlopen(req, timeout=30) as resp:
             return resp.status
     except urllib.error.HTTPError as e:
         return e.code
-    except Exception:  # noqa: BLE001
+    except Exception:
         return 0
+
 
 def main() -> int:
     cat = nem_catalog.fetch_latest()
@@ -37,7 +43,7 @@ def main() -> int:
         for key in sample:
             try:
                 urls = cat.resolve(key, from_="2025-04-01", to_="2025-04-02")
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:
                 print(f"SKIP {key}: resolve raised {e}")
                 continue
             if not urls:
@@ -53,6 +59,7 @@ def main() -> int:
         print(f"\n{len(failures)} non-200 responses")
         return 1
     return 0
+
 
 if __name__ == "__main__":
     sys.exit(main())

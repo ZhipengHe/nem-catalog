@@ -157,13 +157,10 @@ def _insert_curated_only(
     datasets: dict[str, Any] = merged["datasets"]
     if key in datasets:
         warnings.append(
-            f"curated_only: {key} shadows an auto entry "
-            f"(curated record wins, auto entry discarded)"
+            f"curated_only: {key} shadows an auto entry (curated record wins, auto entry discarded)"
         )
     if ":" not in key:
-        raise SystemExit(
-            f"FAIL: curated_only key {key!r} is not in 'Repo:intra_repo_id' form"
-        )
+        raise SystemExit(f"FAIL: curated_only key {key!r} is not in 'Repo:intra_repo_id' form")
     repo, intra_repo_id = key.split(":", 1)
     record = {k: v for k, v in overlay.items() if k != "curated_only"}
     # Derive ONLY the key-encoded fields. Everything else is from YAML.
@@ -189,9 +186,7 @@ def _merge_record(
             continue
         auto_value = ds.get(field)
         if auto_value is not None and auto_value != curated_value:
-            warnings.append(
-                f"{key}.{field}: auto={auto_value!r} vs curated={curated_value!r}"
-            )
+            warnings.append(f"{key}.{field}: auto={auto_value!r} vs curated={curated_value!r}")
         ds[field] = curated_value
 
 
@@ -200,9 +195,7 @@ def _merge_tiers(
 ) -> None:
     for tier_name, tier_overlay in curated_tiers.items():
         if tier_name not in ds["tiers"]:
-            warnings.append(
-                f"{key}.tiers.{tier_name}: curated-only tier (auto has no such tier)"
-            )
+            warnings.append(f"{key}.tiers.{tier_name}: curated-only tier (auto has no such tier)")
             ds["tiers"][tier_name] = tier_overlay
             continue
         auto_tier = ds["tiers"][tier_name]

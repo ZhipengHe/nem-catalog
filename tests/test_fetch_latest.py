@@ -23,7 +23,7 @@ class _Server(http.server.HTTPServer):
 
 
 class _Handler(http.server.BaseHTTPRequestHandler):
-    def do_GET(self):  # noqa: N802
+    def do_GET(self):
         srv: _Server = self.server  # type: ignore[assignment]
         srv.served_count += 1
         if self.headers.get("If-None-Match") == srv.etag:
@@ -52,11 +52,11 @@ def server():
 
 
 def test_cold_fetch_writes_cache(server, tmp_path, monkeypatch):
-    srv, url = server
+    _srv, url = server
     monkeypatch.setenv("NEM_CATALOG_URL", url)
     c = fetch_latest(cache_dir=tmp_path)
     assert c.schema_version == "1.0.0"
-    cached = (tmp_path / "catalog.json")
+    cached = tmp_path / "catalog.json"
     assert cached.exists()
 
 
@@ -81,7 +81,10 @@ def test_network_error_with_cache_warns_and_serves_cached(server, tmp_path, monk
     # Now fetch again — should fall back to cache
     c = fetch_latest(cache_dir=tmp_path)
     assert c.schema_version == "1.0.0"
-    assert any("network" in str(w.message).lower() or "cache" in str(w.message).lower() for w in recwarn.list)
+    assert any(
+        "network" in str(w.message).lower() or "cache" in str(w.message).lower()
+        for w in recwarn.list
+    )
 
 
 def test_cold_fetch_network_error_with_no_cache_raises(tmp_path, monkeypatch):
@@ -91,9 +94,11 @@ def test_cold_fetch_network_error_with_no_cache_raises(tmp_path, monkeypatch):
 
 
 def test_catalog_version_pin_uses_release_url(server, tmp_path, monkeypatch):
-    srv, url = server
+    _srv, url = server
     # Simulate the release asset URL template: same server, different path.
-    monkeypatch.setenv("NEM_CATALOG_RELEASE_URL_TEMPLATE", url.replace("/catalog.json", "/catalog-{version}.json"))
+    monkeypatch.setenv(
+        "NEM_CATALOG_RELEASE_URL_TEMPLATE", url.replace("/catalog.json", "/catalog-{version}.json")
+    )
     # Serve it anyway (our fake server returns the same body for any path)
     c = fetch_latest(cache_dir=tmp_path, catalog_version="2026.04.18")
     assert c.catalog_version == "2026.04.18"

@@ -38,8 +38,10 @@ def test_readme_strict_raise_example():
     """The README documents that resolve() raises on CURRENT tier filenames
     with non-temporal placeholders. Keep that claim honest."""
     from nem_catalog.errors import NonResolvableTemplateError
+
     catalog = nem_catalog.load(str(FIXTURE))
     import pytest
+
     with pytest.raises(NonResolvableTemplateError):
         catalog.resolve(
             "Reports:DispatchIS_Reports",

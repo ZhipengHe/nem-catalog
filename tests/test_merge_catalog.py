@@ -83,9 +83,12 @@ def _run_merge(
         [
             sys.executable,
             str(MERGE_SCRIPT),
-            "--auto", str(auto_path),
-            "--curated", str(curated_dir),
-            "--out", str(out_path),
+            "--auto",
+            str(auto_path),
+            "--curated",
+            str(curated_dir),
+            "--out",
+            str(out_path),
         ],
         capture_output=True,
         text=True,
@@ -376,10 +379,14 @@ def test_curated_only_inserts_placeholder_entry(tmp_path: Path) -> None:
     assert ds["repo"] == "Reports"
     assert ds["intra_repo_id"] == "FakePlaceholder"
     assert ds["resolvable"] is False
-    assert "curated_only" not in ds, "curated_only is a YAML-layer marker; must not leak into catalog.json"
-    assert "Reports:FakePlaceholder" in data["raw_keys"], "placeholder must be discoverable via raw_keys"
+    assert "curated_only" not in ds, (
+        "curated_only is a YAML-layer marker; must not leak into catalog.json"
+    )
+    assert "Reports:FakePlaceholder" in data["raw_keys"], (
+        "placeholder must be discoverable via raw_keys"
+    )
     assert "Reports:FakePlaceholder" not in data["dataset_keys"], (
-        "resolvable=false placeholders are intentionally excluded from dataset_keys (user-facing list)"
+        "resolvable=false placeholders are intentionally excluded from dataset_keys (user-facing list)"  # noqa: E501
     )
 
 
