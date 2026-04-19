@@ -18,7 +18,12 @@ then recurse into their children — reuses on-disk files without re-fetching):
 Multi-threaded (hides per-request latency; aggregate rate still ≤1 req/s):
     python3 scripts/nemweb_download.py --threads 8 --gaps
 
-Force-refresh a specific path: delete its index.html on disk.
+Force-refresh all cached listings (bypass the cached-file shortcut so rolling
+``Reports/CURRENT/*`` directories pick up new content):
+    python3 scripts/nemweb_download.py --force [MAX_FETCHES]
+
+Force-refresh a specific path only: delete its index.html on disk, then run
+the default walk or ``--gaps`` mode.
 """
 
 from __future__ import annotations
@@ -156,10 +161,16 @@ def find_gaps() -> list[str]:
 # ----- Walk (BFS, wave-batched, threaded) -----
 
 
-def walk(seeds: list[str], threads: int, max_fetches: int) -> tuple[int, int, int]:
+def walk(
+    seeds: list[str], threads: int, max_fetches: int, force: bool = False
+) -> tuple[int, int, int]:
     """Wave-batched BFS. Each wave dispatches current frontier to a thread pool;
     children discovered become the next wave. Terminates when frontier is empty or
     max_fetches budget exhausted.
+
+    When ``force`` is True, cached listings are bypassed and re-fetched from the
+    live server. This is required for rolling directories (``Reports/CURRENT/*``)
+    whose contents roll over independently of the mirror.
 
     Returns: (fetched, reused, skipped)
     """
@@ -173,7 +184,7 @@ def walk(seeds: list[str], threads: int, max_fetches: int) -> tuple[int, int, in
     def process_one(path: str) -> tuple[str, str, list[str]]:
         """Returns (path, outcome, children). Outcome: 'fetch' | 'reuse' | 'skip'."""
         cached = local_path(path)
-        if cached.is_file():
+        if cached.is_file() and not force:
             try:
                 data = cached.read_bytes()
             except OSError:
@@ -221,8 +232,9 @@ def walk(seeds: list[str], threads: int, max_fetches: int) -> tuple[int, int, in
 # ----- CLI -----
 
 
-def parse_args(argv: list[str]) -> tuple[bool, int, int]:
+def parse_args(argv: list[str]) -> tuple[bool, bool, int, int]:
     gaps = False
+    force = False
     threads = 1
     max_fetches = 10_000
     i = 0
@@ -230,6 +242,8 @@ def parse_args(argv: list[str]) -> tuple[bool, int, int]:
         a = argv[i]
         if a == "--gaps":
             gaps = True
+        elif a == "--force":
+            force = True
         elif a == "--threads":
             threads = int(argv[i + 1])
             i += 1
@@ -240,11 +254,11 @@ def parse_args(argv: list[str]) -> tuple[bool, int, int]:
         else:
             raise SystemExit(f"Unknown argument: {a}")
         i += 1
-    return gaps, threads, max_fetches
+    return gaps, force, threads, max_fetches
 
 
 def main(argv: list[str]) -> int:
-    gaps_mode, threads, max_fetches = parse_args(argv)
+    gaps_mode, force, threads, max_fetches = parse_args(argv)
     OUT.mkdir(parents=True, exist_ok=True)
 
     if gaps_mode:
@@ -257,8 +271,9 @@ def main(argv: list[str]) -> int:
     else:
         seeds = list(SEEDS)
 
-    print(f"Seeds: {len(seeds)}  threads: {threads}  max_fetches: {max_fetches}")
-    fetched, reused, skipped = walk(seeds, threads, max_fetches)
+    mode_str = "force-refresh" if force else ("gap-fill" if gaps_mode else "walk")
+    print(f"Seeds: {len(seeds)}  threads: {threads}  max_fetches: {max_fetches}  mode: {mode_str}")
+    fetched, reused, skipped = walk(seeds, threads, max_fetches, force=force)
     print(f"\nDone. fetched={fetched}  reused={reused}  skipped={skipped}  under {OUT}/")
     return 0
 
