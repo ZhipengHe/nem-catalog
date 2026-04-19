@@ -125,7 +125,7 @@ The catalog carries optional freshness fields populated by CI at crawl time.
 
 | Field | Type | Description |
 |---|---|---|
-| `freshness_class` | `rolling \| append_only \| static \| parent_index` | Policy classification for crawl frequency |
+| `freshness_class` | `rolling \| append_only \| static \| parent_index \| unclassified` | Policy classification for crawl frequency; `unclassified` is used when a dataset's path does not match any policy rule or when no freshness policy was supplied |
 | `last_observed_change_at` | ISO 8601 | Last time the mirror index for this dataset changed (from `git log`, not filesystem mtime) |
 
 These fields are absent in catalog snapshots built before v0.1.1 and in the static catalog committed to this repo (which is built offline). They are present in every catalog artifact published by the weekly CI workflow.

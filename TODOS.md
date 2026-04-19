@@ -63,6 +63,24 @@ Items surfaced during v0.1.1 plan review or per-task code review that were inten
 - **Why deferred:** Guard logic is correct; only test naming/coverage is misleading. Functional behavior verified by the other six tests.
 - **Fix:** Rename to `test_template_shift_triggers_at_50pct_via_lowercase_href`. Add `test_template_shift_raises_when_new_truly_empty` using bytes with no `<A HREF=...>` markup (e.g. `b'<html>403 Forbidden</html>'`).
 - **When:** v0.1.2.
+- **Re-flagged by:** Copilot PR #4 review (confirms the superpowers reviewer's finding).
+
+**T3-I2. `save_listing` does not guard `idx.read_bytes()` against `OSError`** [minor, defensive]
+- **What:** When a cached `index.html` exists, `save_listing` calls `idx.read_bytes()` without a try/except. If the cached file is unreadable (permission issue, transient IO error, partial write from a prior crashed run), the crawler crashes instead of treating it as a cache miss and overwriting.
+- **Why deferred:** Probability is near-zero in practice. The file is one the same process wrote earlier, on an ephemeral GHA runner with no concurrent writers. A permission error here would indicate something much worse is broken. But the fix is 3 lines and closes a real failure mode — good hygiene for v0.1.2.
+- **Fix:**
+  ```python
+  if idx.is_file():
+      try:
+          old = frozenset(m.group(1) for m in HREF_RE.finditer(idx.read_bytes()))
+      except OSError:
+          old = None  # treat as cache miss — write unconditionally below
+      if old is not None:
+          new = frozenset(m.group(1) for m in HREF_RE.finditer(data))
+          ...
+  ```
+- **When:** v0.1.2.
+- **Source:** Copilot PR #4 review.
 
 ### T4 — `nemweb_download.py` `--policy` flag + walker
 
