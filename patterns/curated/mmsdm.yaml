@@ -1,0 +1,24 @@
+# Curated overlays for MMSDM datasets.
+# schema_source points to the AEMO tech-specs portal root. Per-table anchors
+# deferred to v0.2 pending URL stability verification (see TODOs).
+
+# Default schema_source applied at merge time to every MMSDM:* record that
+# does not already have one. Expressed via the special __default__ key.
+__default__:
+  schema_source: "https://tech-specs.docs.public.aemo.com.au/"
+  schema_source_note: |
+    Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)
+    deferred to v0.2 pending primary-source stability verification.
+
+"MMSDM:DISPATCHPRICE":
+  query_shape:
+    inputs:
+      - name: date
+        format: yyyymmdd
+        example: "20250407"
+    example_resolve: "resolve('MMSDM:DISPATCHPRICE', from_='2025-04-01', to_='2025-04-30', view='DATA')"
+    output_count_hint: "month-bundles; view= kwarg narrows fan-out"
+  anomaly_note: |
+    Same table appears across multiple views (DATA, CTL, BCP_FMT, MYSQL) with different
+    time granularities: DATA uses yyyymmddHHMM, CTL/BCP_FMT/MYSQL use yyyymm.
+    Filter by view= kwarg to narrow fan-out.

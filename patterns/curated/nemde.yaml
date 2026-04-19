@@ -1,0 +1,23 @@
+# Curated overlays for NEMDE datasets.
+
+"NEMDE:NemPriceSetter":
+  query_shape:
+    inputs:
+      - name: date
+        format: yyyymmdd
+        example: "20090701"
+    example_resolve: "resolve('NEMDE:NemPriceSetter', from_='2024-06-01', to_='2024-06-30')"
+    output_count_hint: "daily"
+  anomaly_note: |
+    Filename casing is 'NemPriceSetter' (mixed case), NOT 'NEMPriceSetter'.
+    NEMWEB is case-sensitive — do not normalize. Extension is .zip containing XML,
+    not .xml directly.
+
+"NEMDE:NemSpdOutputs":
+  query_shape:
+    inputs:
+      - name: date
+        format: yyyymmdd
+        example: "20090701"
+    example_resolve: "resolve('NEMDE:NemSpdOutputs', from_='2024-06-01', to_='2024-06-30')"
+    output_count_hint: "daily"
