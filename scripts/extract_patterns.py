@@ -456,7 +456,7 @@ def parse_listing(index_file: Path, parent_path: str) -> list[dict]:
 # ---------- Main extraction ----------
 
 
-def main() -> int:
+def main(policy: object | None = None) -> int:
     if not MIRROR.exists():
         print(f"Mirror not found at {MIRROR}", file=sys.stderr)
         return 2
@@ -602,6 +602,7 @@ def main() -> int:
         catalog_version=datetime.now(UTC).strftime("%Y.%m.%d"),
         as_of=datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         source_mirror_commit=commit,
+        policy=policy,
     )
     return 0
 
@@ -775,12 +776,38 @@ def write_md(
     print(f"wrote {OUT_MD}  ({len(dataset_keys)} datasets, {len(rows)} rows)")
 
 
+def _last_observed_change_at(mirror_index_path: str) -> str | None:
+    """Return ISO 8601 timestamp of the last git commit that touched the
+    given mirror index.html path, or None if git log fails or the file is
+    untracked.
+
+    Filesystem mtime is unreliable on CI runners (git checkout stamps
+    mtime to checkout-time on every run). git log's author-date advances
+    only when the content-aware write actually committed a change.
+    """
+    try:
+        result = subprocess.run(
+            ["git", "log", "-1", "--format=%aI", "--", mirror_index_path],
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=10,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    if result.returncode != 0:
+        return None
+    out = result.stdout.strip()
+    return out or None
+
+
 def write_json(
     rows: list[dict],
     out_path: Path | str,
     catalog_version: str,
     as_of: str,
     source_mirror_commit: str,
+    policy: object | None = None,
 ) -> None:
     """Emit a JSON Schema v1.0.0 conformant catalog from extractor rows.
 
@@ -839,6 +866,30 @@ def write_json(
             tier_record["observed_range"] = None
 
         datasets[key]["tiers"][tier_name] = tier_record
+
+    # Join freshness signals onto every dataset.
+    for _key, ds in datasets.items():
+        tiers = ds.get("tiers", {})
+        probe_path = None
+        for tier_name in ("CURRENT", "ARCHIVE", "DATA"):
+            t = tiers.get(tier_name)
+            if t and t.get("path_template"):
+                probe_path = t["path_template"]
+                break
+        if probe_path is None:
+            for t in tiers.values():
+                if t and t.get("path_template"):
+                    probe_path = t["path_template"]
+                    break
+        if policy is not None and probe_path:
+            ds["freshness_class"] = policy.class_for(probe_path)  # type: ignore[attr-defined]
+        else:
+            ds["freshness_class"] = "unclassified"
+        if probe_path:
+            mirror_path = "nemweb-mirror" + probe_path.rstrip("/") + "/index.html"
+            ds["last_observed_change_at"] = _last_observed_change_at(mirror_path)
+        else:
+            ds["last_observed_change_at"] = None
 
     # Curate dataset_keys: resolvable=true AND not in AUX/placeholder keys
     dataset_keys = _curate_keys(list(datasets.keys()), datasets)
@@ -1012,4 +1063,14 @@ def _placeholders_for(datasets: dict) -> dict[str, dict]:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    import argparse as _argparse
+
+    _parser = _argparse.ArgumentParser()
+    _parser.add_argument("--policy", default=None, help="path to freshness-policy.yaml")
+    _args = _parser.parse_args()
+    _policy = None
+    if _args.policy:
+        from scripts.policy import Policy
+
+        _policy = Policy.load(_args.policy)
+    sys.exit(main(policy=_policy))

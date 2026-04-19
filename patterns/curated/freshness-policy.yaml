@@ -1,0 +1,123 @@
+# Freshness policy for nem-catalog weekly refresh.
+# Governs which URL patterns the crawler force-refetches each run.
+# Audited monthly by .github/workflows/policy-audit.yml.
+#
+# Pattern syntax: ant-style globs. `*` matches one path segment, `**` matches zero or more.
+# Anchored both ends. Precedence: longest match wins; ties broken by order-in-file.
+
+version: 1
+last_reviewed: 2026-04-20
+next_review_due: 2026-05-20
+reviewer: ZhipengHe
+empirical_basis: >
+  Force-refetch diff of 2863 listings (2026-04-20T00:04Z) vs. snapshot
+  2026-04-19T22:20Z. 108 of 597 byte-diffs had real HREF change; 82% of
+  raw byte-diffs were HTML template drift (IIS renders filesystem mtime
+  into directory listings). See issue #3 comment 4275887962.
+
+rules:
+  # Parent indexes — force-refetched for new-child discovery.
+  # Longest match wins, so these beat Data_Archive/** for matching paths.
+  - pattern: "/"
+    class: parent_index
+  - pattern: "/Reports/"
+    class: parent_index
+  - pattern: "/Data_Archive/"
+    class: parent_index
+  - pattern: "/Data_Archive/Wholesale_Electricity/"
+    class: parent_index
+  - pattern: "/Data_Archive/Wholesale_Electricity/MMSDM/"
+    class: parent_index
+  - pattern: "/Data_Archive/Wholesale_Electricity/MMSDM/*/"
+    class: parent_index
+  - pattern: "/Data_Archive/Wholesale_Electricity/NEMDE/"
+    class: parent_index
+  - pattern: "/Data_Archive/Wholesale_Electricity/NEMDE/*/"
+    class: parent_index
+  - pattern: "/Data_Archive/Wholesale_Electricity/FCAS_Causer_Pays/"
+    class: parent_index
+
+  # Rolling — 5-minute market reports, ~2-day retention window.
+  # Empirically verified ~500 HREFs in/out per 24h in 2026-04-20 audit.
+  - pattern: "/Reports/CURRENT/DISPATCHFCST/"
+    class: rolling
+  - pattern: "/Reports/CURRENT/P5MINFCST/"
+    class: rolling
+  - pattern: "/Reports/CURRENT/FPPRUN/"
+    class: rolling
+  - pattern: "/Reports/CURRENT/FPPRATES/"
+    class: rolling
+  - pattern: "/Reports/CURRENT/Dispatch_IRSR/"
+    class: rolling
+  - pattern: "/Reports/CURRENT/Dispatch_SCADA/"
+    class: rolling
+  - pattern: "/Reports/CURRENT/DispatchIS_Reports/"
+    class: rolling
+  - pattern: "/Reports/CURRENT/MCCDispatch/"
+    class: rolling
+  - pattern: "/Reports/CURRENT/Dispatchprices_PRE_AP/"
+    class: rolling
+  - pattern: "/Reports/CURRENT/Dispatch_Reports/"
+    class: rolling
+
+  # Append-only — weekly archive rollups. One new HREF per cycle typically.
+  - pattern: "/Reports/ARCHIVE/**"
+    class: append_only
+
+  # CURRENT but slow cycle — classified as append_only for conservative
+  # overfetching. The 2026-04-20 audit found these listings did not move
+  # in the 23h window; monthly policy-audit reclassifies if observed
+  # churn contradicts. 19 paths enumerated individually (per design doc
+  # "Policy file schema (concrete spec)") so the audit report can name
+  # each one and any new /Reports/CURRENT/ path falls through to
+  # `unclassified` (conservative refetch + audit surfaces as new_path).
+  - pattern: "/Reports/CURRENT/Alt_Limits/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/Ancillary_Services_Payments/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/ECGS/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/ECGS/ECGS_Notices/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/ECGS/ECGS_Notices/Attachments/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/GBB/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/GBB/DUPLICATE/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/GBB/GBB_PIPELINE_CONNECTION_FLOW/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/GSH/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/GSH/GSH_CAPACITY_TRANSFER_AUCTION_NOTICE/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/MMSDataModelReport/Electricity/Electricity%20Data%20Model%20Report_files/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/MMSDataModelReport/Electricity/Header_Blue_files/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/MMSDataModelReport/Gas/Gas%20Data%20Model%20Report_files/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/Operational_Demand/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/Operational_Demand_Less_SNSG/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/ROOFTOP_PV/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/STTM/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/VicGas/"
+    class: append_only
+  - pattern: "/Reports/CURRENT/"
+    class: append_only
+
+  # NOTE: no /Reports/CURRENT/** catchall. Unknown paths that appear
+  # under CURRENT in the future fall through to `unclassified`, which:
+  #   - the walker refetches (conservative),
+  #   - the monthly policy-audit surfaces as a `new_path` finding.
+
+  # Static — frozen historical archives. Zero HREF change observed.
+  # Pattern requires at least one segment after /Data_Archive/ so the bare
+  # /Data_Archive/ index continues to match the parent_index rule above
+  # (needed for discovery of new top-level siblings of Wholesale_Electricity).
+  - pattern: "/Data_Archive/*/**"
+    class: static

@@ -233,3 +233,86 @@ def test_write_json_on_empty_rows_raises(tmp_path):
             source_mirror_commit="79cbad2",
         )
     assert not out.exists(), "must not write a file when refusing to emit"
+
+
+def test_freshness_class_populated_from_policy(tmp_path):
+    """write_json joins freshness_class per dataset from a Policy instance."""
+    from scripts.extract_patterns import write_json
+    from scripts.policy import Policy
+
+    policy = Policy.load(_write_policy(tmp_path))
+    rows = [
+        {
+            "repo": "Reports",
+            "intra_repo_id": "DISPATCHFCST",
+            "retention_tier": "CURRENT",
+            "path_template": "/Reports/CURRENT/DISPATCHFCST/",
+            "filename_template": "PUBLIC_DISPATCHFCST_{timestamp}.zip",
+            "filename_regex": "PUBLIC_DISPATCHFCST_\\d+\\.zip",
+            "sample_filename": "PUBLIC_DISPATCHFCST_202604200000.zip",
+            "first_seen_snapshot": "2026-04-16T00:00:00",
+            "last_seen_snapshot": "2026-04-20T00:00:00",
+        }
+    ]
+    out = tmp_path / "out.json"
+    write_json(
+        rows,
+        out_path=out,
+        catalog_version="2026.04.20",
+        as_of="2026-04-20T00:00:00Z",
+        source_mirror_commit="abcd1234",
+        policy=policy,
+    )
+    import json
+
+    data = json.loads(out.read_text())
+    ds = data["datasets"]["Reports:DISPATCHFCST"]
+    assert ds["freshness_class"] == "rolling"
+
+
+def _write_policy(tmp_path):
+    p = tmp_path / "freshness-policy.yaml"
+    p.write_text(
+        "version: 1\nlast_reviewed: 2026-04-20\nreviewer: x\nrules:\n"
+        '  - pattern: "/Reports/CURRENT/**"\n    class: rolling\n'
+    )
+    return p
+
+
+def test_last_observed_change_at_from_git_log(tmp_path, monkeypatch):
+    """last_observed_change_at comes from git log -1 --format=%aI, not filesystem mtime."""
+    from scripts import extract_patterns as ep
+    from scripts.extract_patterns import write_json
+
+    # Stub the git log call to return a deterministic ISO timestamp.
+    def fake_git_log(path: str) -> str | None:
+        return "2026-04-18T04:45:00+00:00"
+
+    monkeypatch.setattr(ep, "_last_observed_change_at", fake_git_log)
+
+    rows = [
+        {
+            "repo": "Reports",
+            "intra_repo_id": "DISPATCHFCST",
+            "retention_tier": "CURRENT",
+            "path_template": "/Reports/CURRENT/DISPATCHFCST/",
+            "filename_template": "PUBLIC_DISPATCHFCST_{timestamp}.zip",
+            "filename_regex": "PUBLIC_DISPATCHFCST_\\d+\\.zip",
+            "sample_filename": "PUBLIC_DISPATCHFCST_202604200000.zip",
+            "first_seen_snapshot": "2026-04-16T00:00:00",
+            "last_seen_snapshot": "2026-04-20T00:00:00",
+        }
+    ]
+    out = tmp_path / "out.json"
+    write_json(
+        rows,
+        out_path=out,
+        catalog_version="2026.04.20",
+        as_of="2026-04-20T00:00:00Z",
+        source_mirror_commit="abcd1234",
+    )
+    import json
+
+    data = json.loads(out.read_text())
+    ds = data["datasets"]["Reports:DISPATCHFCST"]
+    assert ds["last_observed_change_at"] == "2026-04-18T04:45:00+00:00"
