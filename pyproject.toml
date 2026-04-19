@@ -1,6 +1,6 @@
 [project]
 name = "nem-catalog"
-version = "0.1.0"
+version = "0.1.1"
 description = "Machine-readable URL catalog for AEMO NEMWEB (JSON + JSON Schema + Python SDK)"
 readme = "README.md"
 requires-python = ">=3.11"
