@@ -164,3 +164,80 @@ def test_resolve_nemde_still_returns_urls_under_strict(catalog):
     urls = catalog.resolve("NEMDE:NemPriceSetter", from_="2024-06-01", to_="2024-06-03")
     assert len(urls) == 3
     assert all("{" not in u for u in urls)
+
+
+# ---- B5: straddle partitions at cutoff (no cross-tier date overlap) ---------
+
+
+def _extract_date(url: str) -> str:
+    """Extract the yyyymmdd substring from a fixture ROLLING_/ARCHIVED_ URL."""
+    import re
+    m = re.search(r"_(\d{8})\.zip", url)
+    assert m, f"no date substring in URL {url!r}"
+    return m.group(1)
+
+
+def test_resolve_straddle_partitions_at_cutoff(catalog):
+    """B5: when a date range straddles the rolling/archive cutoff, CURRENT URLs
+    must cover post-cutoff dates only (inclusive) and ARCHIVE URLs pre-cutoff
+    dates only. No date is served by both tiers.
+
+    Fixture: as_of=2026-04-18, retention_hint_unverified_days=2
+    → cutoff = 2026-04-16. Request 2026-04-14..2026-04-17 straddles.
+    Expected: ARCHIVE gets 2026-04-14, 2026-04-15; CURRENT gets 2026-04-16, 2026-04-17.
+    """
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")  # suppress pre-retention warning
+        urls = catalog.resolve(
+            "Reports:PureTemporalRolling", from_="2026-04-14", to_="2026-04-17"
+        )
+
+    current_dates = {_extract_date(u) for u in urls if "/CURRENT/" in u}
+    archive_dates = {_extract_date(u) for u in urls if "/ARCHIVE/" in u}
+
+    assert current_dates == {"20260416", "20260417"}, (
+        f"CURRENT tier must cover post-cutoff dates only. Got: {sorted(current_dates)}"
+    )
+    assert archive_dates == {"20260414", "20260415"}, (
+        f"ARCHIVE tier must cover pre-cutoff dates only. Got: {sorted(archive_dates)}"
+    )
+    assert current_dates.isdisjoint(archive_dates), (
+        f"No date may be served by both tiers. Overlap: {current_dates & archive_dates}"
+    )
+
+
+def test_resolve_straddle_preserves_retention_warning(catalog):
+    """Partitioning the range must not drop the existing pre-retention warning."""
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        catalog.resolve(
+            "Reports:PureTemporalRolling", from_="2026-04-14", to_="2026-04-17"
+        )
+    assert any("retention" in str(rec.message).lower() for rec in w), (
+        "straddle must still emit a pre-retention warning after partition"
+    )
+
+
+def test_resolve_current_only_unchanged_after_partition_fix(catalog):
+    """Inside retention window (no straddle): CURRENT-only, full range.
+    Regression guard for the non-straddle happy path."""
+    urls = catalog.resolve(
+        "Reports:PureTemporalRolling", from_="2026-04-17", to_="2026-04-18"
+    )
+    current_dates = {_extract_date(u) for u in urls if "/CURRENT/" in u}
+    archive_dates = [u for u in urls if "/ARCHIVE/" in u]
+    assert current_dates == {"20260417", "20260418"}
+    assert archive_dates == []
+
+
+def test_resolve_archive_only_unchanged_after_partition_fix(catalog):
+    """Entire range below cutoff: ARCHIVE-only, full range."""
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        urls = catalog.resolve(
+            "Reports:PureTemporalRolling", from_="2024-01-01", to_="2024-01-03"
+        )
+    current = [u for u in urls if "/CURRENT/" in u]
+    archive_dates = {_extract_date(u) for u in urls if "/ARCHIVE/" in u}
+    assert current == []
+    assert archive_dates == {"20240101", "20240102", "20240103"}

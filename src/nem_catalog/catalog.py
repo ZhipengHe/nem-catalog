@@ -141,10 +141,21 @@ class Catalog:
         # Rolling-tier records skip observed_range filtering: the retention
         # warning already communicates near-live reachability risk, and ARCHIVE
         # observed_range upper bound lags CURRENT by design.
+        #
+        # B5: when a straddle selects both tiers, partition the range at cutoff
+        # so CURRENT covers [cutoff, dt_to] and ARCHIVE covers [dt_from, cutoff).
+        # Previously both tiers expanded over the full (dt_from, dt_to) range
+        # and produced overlapping URLs for every date in the intersection.
         urls: list[str] = []
         if rolling_name is not None:
             for n, t in selected.items():
-                urls.extend(_expand_tier(t, dt_from, dt_to))
+                if n == rolling_name:
+                    tier_from = max(dt_from, cutoff)
+                    urls.extend(_expand_tier(t, tier_from, dt_to))
+                else:
+                    tier_to = min(dt_to, cutoff - timedelta(days=1))
+                    if tier_to >= dt_from:
+                        urls.extend(_expand_tier(t, dt_from, tier_to))
             return urls
 
         any_overlap = False
