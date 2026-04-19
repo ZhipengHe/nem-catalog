@@ -25,6 +25,7 @@ All notable changes to nem-catalog are tracked here. Format: [Keep a Changelog](
 ### Caveats
 
 - v0.1 is **experimental**. API may change before v1.0.
+- **Resolve coverage:** ~16% of the 362 dataset keys (mostly `Reports:*` ARCHIVE) resolve cleanly via `resolve()`. The remaining ~84% raise `NonResolvableTemplateError` — almost all of `MMSDM:*` (file-sequence `{d2}`/`{nn}`) and every live CURRENT tier (`{aemo_id}`). v0.2 will add `list_urls()`. See [`docs/troubleshooting.md#non-resolvable-template`](docs/troubleshooting.md#non-resolvable-template).
 - Schema source for MMSDM tables is the portal root only. Per-table anchors deferred to v0.2.
 - `retention_hint_unverified_days` is derived from a single 2026-04-18 mirror snapshot. v0.2 replaces with confidence range.
 - No CLI in v0.1. Use the JSON directly from shell or R/Julia via the cookbook.

@@ -63,7 +63,22 @@ catalog = nem_catalog.fetch_latest()
 n = catalog.count("Reports:DispatchIS_Reports", from_="2024-01-01", to_="2024-12-31")
 ```
 
+> **Expected `UserWarning`:** `Reports:*` datasets with both an ARCHIVE and a
+> rolling CURRENT tier emit a one-line warning when you query historical
+> (ARCHIVE-era) dates. The SDK is telling you the live tier has no data that
+> old, so it routed to ARCHIVE. The returned URLs are correct.
+
 ### Not every dataset resolves to concrete URLs in v0.1
+
+> **Coverage in v0.1:** roughly **1 in 6** of the 362 dataset keys resolve
+> cleanly today (~16%, mostly `Reports:*` ARCHIVE tiers). The remaining ~84%
+> raise `NonResolvableTemplateError` — including almost all `MMSDM:*` tables
+> (file-sequence suffix `{d2}`/`{nn}`) and every live CURRENT tier (16-digit
+> publish ID `{aemo_id}`).
+>
+> Per repo: `Reports` 53/96 (55%), `MMSDM` 4/259 (~2%), `NEMDE` 2/6,
+> `FCAS_Causer_Pays` 0/1. v0.2 will add `list_urls()` for the non-temporal
+> cases by reading NEMWEB directory listings.
 
 `resolve()` only returns URLs when the tier's filename template can be built
 from a date range alone. AEMO filenames in rolling CURRENT tiers often embed a
