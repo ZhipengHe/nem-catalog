@@ -62,11 +62,13 @@ Zero deps. Run: python3 scripts/extract_patterns.py
 from __future__ import annotations
 
 import csv
+import json
 import re
+import subprocess
 import sys
 import urllib.parse
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 MIRROR = Path("nemweb-mirror")
@@ -549,6 +551,22 @@ def main() -> int:
 
     write_csv(rows)
     write_md(rows, total_listings, total_listings_with_files, total_files, dataset_keys, empty_listings)
+
+    try:
+        commit = subprocess.check_output(
+            ["git", "rev-parse", "--short", "HEAD"], text=True
+        ).strip()
+    except Exception:
+        commit = "unknown"
+
+    Path("patterns/auto/").mkdir(parents=True, exist_ok=True)
+    write_json(
+        rows,
+        out_path=Path("patterns/auto/catalog.json"),
+        catalog_version=datetime.now(timezone.utc).strftime("%Y.%m.%d"),
+        as_of=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        source_mirror_commit=commit,
+    )
     return 0
 
 
@@ -704,6 +722,238 @@ def write_md(
     OUT_MD.parent.mkdir(parents=True, exist_ok=True)
     OUT_MD.write_text("\n".join(lines), encoding="utf-8")
     print(f"wrote {OUT_MD}  ({len(dataset_keys)} datasets, {len(rows)} rows)")
+
+
+def write_json(
+    rows: list[dict],
+    out_path: Path | str,
+    catalog_version: str,
+    as_of: str,
+    source_mirror_commit: str,
+) -> None:
+    """Emit a JSON Schema v1.0.0 conformant catalog from extractor rows.
+
+    Groups flat rows by (repo, intra_repo_id) and nests tier records under
+    each dataset. Preserves exact case of intra_repo_id (do not normalize).
+    Called after classify() + aggregate() produce the flat rows list.
+
+    Refuses to emit a zero-row catalog — empty mirror or crawl failure is
+    always a pipeline bug, never a valid state. Publishing a blank catalog
+    would silently push an empty Pages site to every consumer.
+    """
+    if not rows:
+        raise ValueError(
+            "refusing to emit empty catalog: zero rows from extractor; "
+            "likely empty mirror or crawl failure. Fix the pipeline rather than "
+            "publishing a blank catalog."
+        )
+
+    datasets: dict[str, dict] = {}
+    all_raw_keys: list[str] = []
+
+    for row in rows:
+        repo = row["repo"]
+        intra_repo_id = row["intra_repo_id"]
+        key = f"{repo}:{intra_repo_id}"
+        tier_name = row["retention_tier"]
+
+        if key not in datasets:
+            all_raw_keys.append(key)
+            datasets[key] = {
+                "repo": repo,
+                "intra_repo_id": intra_repo_id,
+                "resolvable": True,
+                "tiers": {},
+                "query_shape": None,
+                "schema_source": None,
+                "anomaly_note": _anomaly_note_from_flag(
+                    row.get("anomaly") or row.get("anomaly_flag", ""), row
+                ),
+            }
+
+        tier_record = {
+            "path_template": row["path_template"],
+            "filename_template": row.get("filename_template") or None,
+            "filename_regex": row.get("filename_regex") or None,
+            "example": row.get("sample_filename", ""),
+            "cadence": _infer_cadence(repo, tier_name),
+        }
+
+        # Only include observed_range if we have any observed values
+        first = row.get("first_seen_snapshot")
+        last = row.get("last_seen_snapshot")
+        if first and last:
+            tier_record["observed_range"] = {"from": first, "to": last}
+        else:
+            tier_record["observed_range"] = None
+
+        datasets[key]["tiers"][tier_name] = tier_record
+
+    # Curate dataset_keys: resolvable=true AND not in AUX/placeholder keys
+    dataset_keys = _curate_keys(list(datasets.keys()), datasets)
+
+    placeholders = _placeholders_for(datasets)
+
+    payload = {
+        "schema_version": "1.0.0",
+        "catalog_version": catalog_version,
+        "as_of": as_of,
+        "source_mirror_commit": source_mirror_commit,
+        "placeholders": placeholders,
+        "dataset_keys": dataset_keys,
+        "raw_keys": sorted(all_raw_keys),
+        "datasets": datasets,
+    }
+    Path(out_path).write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n")
+
+
+def _anomaly_note_from_flag(flag: str, row: dict) -> str | None:
+    """Translate extractor anomaly_flag into a human-readable anomaly_note."""
+    if not flag:
+        return None
+    if flag == "aemo_url_typo":
+        return (
+            f"Directory-level anomaly: AEMO published this stream with a malformed name. "
+            f"URL is correct as stated — do NOT URL-encode special characters. "
+            f"Treat as resolvable only if filename_template is not null."
+        )
+    if flag == "casing_mismatch_vs_sibling_tier":
+        return (
+            "CURRENT/ARCHIVE tiers use different casing for this stream. "
+            "Preserve exact case per tier when constructing URLs; do not normalize."
+        )
+    return f"Extractor flag: {flag}"
+
+
+def _infer_cadence(repo: str, tier: str) -> str:
+    """Best-effort cadence label based on repo and tier name."""
+    if repo == "Reports" and tier == "CURRENT":
+        return "5min"
+    if repo == "Reports" and tier == "ARCHIVE":
+        return "daily_rollup"
+    if repo == "MMSDM":
+        if tier in {"DATA", "P5MIN_ALL_DATA", "PREDISP_ALL_DATA"}:
+            return "5min"
+        return "monthly_bulk"
+    if repo == "NEMDE":
+        return "daily"
+    if repo == "FCAS_Causer_Pays":
+        return "annual"
+    return "unknown"
+
+
+_AUX_SUFFIXES = {"_AUX", "DOCUMENTATION_AUX", "ROOT_AUX", "MONTH_ROOT_AUX", "SQLLOADER_AUX"}
+_AUX_EXACT = {"MMSDM_MONTHLY_BULK", "MTPASA_DATA_EXPORT", "UNKNOWN", "UNPARSED"}
+_UTILITY_EXTENSIONS = {".dll", ".exe", ".bat", ".sh", ".cmd", ".tar", ".gz"}
+
+
+def _curate_keys(all_keys: list[str], datasets: dict) -> list[str]:
+    """Return the curated user-facing subset of dataset keys.
+
+    Rule: resolvable=true AND intra_repo_id not AUX/placeholder AND not utility-file.
+    """
+    out = []
+    for key in sorted(all_keys):
+        ds = datasets[key]
+        if not ds["resolvable"]:
+            continue
+        iid = ds["intra_repo_id"]
+        if iid in _AUX_EXACT:
+            continue
+        if any(iid.endswith(suf) for suf in _AUX_SUFFIXES):
+            continue
+        if any(iid.lower().endswith(ext) for ext in _UTILITY_EXTENSIONS):
+            continue
+        out.append(key)
+    return out
+
+
+_DEFAULT_PLACEHOLDERS = {
+    "date": {"format": "yyyymmdd", "example": "20250407", "regex": "\\d{8}"},
+    "timestamp": {"format": "yyyymmddhhmm", "example": "202504070445", "regex": "\\d{12}"},
+    "aemo_id": {"format": "16-digit AEMO identifier", "example": "0000000513144978", "regex": "\\d{16}"},
+    "year": {"format": "yyyy", "example": "2025", "regex": "\\d{4}"},
+    "month": {"format": "mm", "example": "04", "regex": "\\d{2}"},
+    "yyyymm": {"format": "yyyymm", "example": "202504", "regex": "\\d{6}"},
+    "yyyymmddHHMM": {"format": "yyyymmddHHMM", "example": "202504070445", "regex": "\\d{12}"},
+    "nn": {"format": "zero-padded 2-digit", "example": "00", "regex": "\\d{2}"},
+    "d1": {"format": "single digit", "example": "1", "regex": "\\d{1}"},
+    "d2": {"format": "two digits", "example": "04", "regex": "\\d{2}"},
+    "d11": {"format": "11 digits", "example": "20220604167", "regex": "\\d{11}"},
+    "d13": {"format": "13 digits", "example": "2011110909700", "regex": "\\d{13}"},
+}
+
+# Base name → semantics for disambiguated variants (e.g. date1, date2; year1, year2).
+# Matched against the suffix-stripped token name.
+_BASE_LABEL_REGEX = {
+    "date": ("yyyymmdd", "\\d{8}", "20250407"),
+    "timestamp": ("yyyymmddhhmm", "\\d{12}", "202504070445"),
+    "datetime": ("yyyymmddhhmmss", "\\d{14}", "20260416044500"),
+    "year": ("yyyy", "\\d{4}", "2025"),
+    "yearmonth": ("yyyymm", "\\d{6}", "202504"),
+    "yyyymmddhh": ("yyyymmddhh", "\\d{10}", "2025040704"),
+    "aemo_id": ("16-digit AEMO identifier", "\\d{16}", "0000000513144978"),
+}
+
+_VARIANT_SUFFIX_RE = re.compile(r"^(?P<base>[a-zA-Z]+?)(?P<idx>\d+)$")
+_TOKEN_SCAN_RE = re.compile(r"\{(\w+)\}")
+
+
+def _infer_placeholder_def(name: str) -> dict[str, str]:
+    """Best-effort definition for a placeholder name the extractor emitted.
+
+    Coverage is intentionally conservative. The extractor's labeler can produce
+    names like `d21`/`d22` — these are disambiguation suffixes of `d2` (two
+    2-digit positions in the same template), NOT 21/22-digit fields. Recovering
+    the original digit count from the name alone is ambiguous, so for any
+    d-token not in the curator's `_DEFAULT_PLACEHOLDERS`, the inference emits
+    a broad `\\d+` regex and directs users to the per-tier `filename_regex`
+    for the exact shape.
+    """
+    if name in _DEFAULT_PLACEHOLDERS:
+        return _DEFAULT_PLACEHOLDERS[name]
+
+    # Direct base-name match (yearmonth, datetime, yyyymmddhh, aemo_id — fixed shape)
+    if name in _BASE_LABEL_REGEX:
+        fmt, rx, ex = _BASE_LABEL_REGEX[name]
+        return {"format": fmt, "example": ex, "regex": rx}
+
+    # Disambiguation suffix variants of known temporal bases (date1, date2, year1, year2)
+    mv = _VARIANT_SUFFIX_RE.match(name)
+    if mv and mv.group("base") in _BASE_LABEL_REGEX:
+        fmt, rx, ex = _BASE_LABEL_REGEX[mv.group("base")]
+        return {"format": fmt, "example": ex, "regex": rx}
+
+    # Anything else (d{N} disambiguation variants, unknown suffixes): conservative
+    # fallback. The per-tier `filename_regex` is the authoritative shape — the
+    # placeholder record is informational for discoverability.
+    return {
+        "format": f"extractor-emitted token {name!r}; see per-tier filename_regex for exact shape",
+        "example": "",
+        "regex": "\\d+",
+    }
+
+
+def _placeholders_for(datasets: dict) -> dict[str, dict]:
+    """Return a placeholders section that declares every token used in any
+    emitted filename_template or path_template.
+
+    Scans the datasets dict after tier records are built, collects the union
+    of `{token}` names, and ensures each has a definition. Seed with
+    _DEFAULT_PLACEHOLDERS for the known-good curated set, then infer the rest.
+    """
+    used: set[str] = set()
+    for rec in datasets.values():
+        for tier in rec.get("tiers", {}).values():
+            for key in ("filename_template", "path_template"):
+                value = tier.get(key) or ""
+                used.update(_TOKEN_SCAN_RE.findall(value))
+
+    result: dict[str, dict] = dict(_DEFAULT_PLACEHOLDERS)
+    for name in sorted(used):
+        if name not in result:
+            result[name] = _infer_placeholder_def(name)
+    return result
 
 
 if __name__ == "__main__":

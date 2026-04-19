@@ -1,0 +1,48 @@
+# Curated overlays for Reports/* datasets.
+# Merged on top of patterns/auto/catalog.json by scripts/merge_catalog.py.
+
+"Reports:DispatchIS_Reports":
+  tiers:
+    CURRENT:
+      retention_hint_unverified_days: 2  # single-snapshot observation from 2026-04-18 mirror
+  query_shape:
+    inputs:
+      - name: date
+        format: yyyymmdd
+        example: "20250407"
+    example_resolve: "resolve('Reports:DispatchIS_Reports', from_='2025-04-01', to_='2025-04-02')"
+    output_count_hint: "daily (ARCHIVE) or 5min (CURRENT)"
+
+"Reports:NEXT_DAY_OFFER_ENERGY)SPARSE":
+  curated_only: true
+  resolvable: false
+  tiers:
+    ARCHIVE:
+      path_template: "/Reports/ARCHIVE/NEXT_DAY_OFFER_ENERGY)SPARSE/"
+      filename_template: null
+      filename_regex: null
+      example: ""
+      cadence: "none"
+      observed_range: null
+  anomaly_note: |
+    Directory-level anomaly: AEMO published this stream with a malformed ')' in the name
+    and the directory contains zero files. URL is correct as stated — do NOT URL-encode
+    the ')' character. Entry exists for catalog completeness; do not expect file resolution.
+    resolve() will raise UnresolvableDatasetError.
+
+"Reports:DispatchIS_FCAS_Fix":
+  curated_only: true
+  resolvable: false
+  tiers:
+    ARCHIVE:
+      path_template: "/Reports/ARCHIVE/DispatchIS_FCAS_Fix/"
+      filename_template: null
+      filename_regex: null
+      example: ""
+      cadence: "none"
+      observed_range: null
+  anomaly_note: |
+    Directory exists on NEMWEB under /Reports/ARCHIVE/ but contains zero files
+    (verified 2026-04-19 against local nemweb-mirror). Likely a one-off historical
+    correction AEMO published and subsequently emptied. Entry exists for catalog
+    completeness; resolve() will raise UnresolvableDatasetError.

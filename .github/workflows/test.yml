@@ -1,0 +1,31 @@
+name: test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+      - name: Set up Python
+        run: uv python install ${{ matrix.python-version }}
+      - name: Install project
+        run: uv sync --extra dev --python ${{ matrix.python-version }}
+      - name: Ruff lint
+        run: uv run ruff check .
+      - name: Ruff format check
+        run: uv run ruff format --check .
+      - name: Mypy
+        run: uv run mypy src/
+      - name: Pytest (fails CI if coverage < 90% per test plan line 76)
+        run: uv run pytest -v --cov=nem_catalog --cov-report=term-missing --cov-fail-under=90
+      - name: Run shell README examples
+        run: bash tests/readme_examples.sh
