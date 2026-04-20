@@ -44,11 +44,11 @@ Items surfaced during v0.1.1 plan review or per-task code review that were inten
 - **When:** v0.1.2 policy-accuracy pass.
 
 **T1-I2. Policy YAML enumerates only 29 of ~92 CURRENT dataset paths (~57 fall through to `unclassified`)** [important, data coverage, issue #5 tertiary]
-- **What:** `patterns/curated/freshness-policy.yaml` was derived from a 23-hour observation window (policy header: snapshot `2026-04-19T22:20Z` → `2026-04-20T00:04Z`). 29 CURRENT paths were enumerated by hand from what churned during that window; real AEMO CURRENT has ~92 datasets. ~57 are unlisted and fall through to `unclassified` by design (the "no `/Reports/CURRENT/**` catchall" comment at policy lines 113-116 — unknown paths conservative-refetch + surface via monthly audit). After T5T6-I2's DUPLICATE fix lands, 17 of the 83 currently-unclassified datasets classify correctly against existing policy rules; the remaining ~57 still need per-dataset rules.
+- **What:** `patterns/curated/freshness-policy.yaml` was derived from a 23-hour observation window (policy header: snapshot `2026-04-19T22:20Z` → `2026-04-20T00:04Z`). 29 CURRENT paths were enumerated by hand from what churned during that window; real AEMO CURRENT has ~92 datasets. ~57 are unlisted and fall through to `unclassified` by design (the "no `/Reports/CURRENT/**` catchall" comment at policy lines 113-116 — unknown paths conservative-refetch + surface via monthly audit). After T5T6-I2's DUPLICATE fix landed in v0.1.2 PR-1, 5 of the 16 previously-DUPLICATE-overwritten datasets classify correctly against existing policy rules (`Dispatch_Reports`, `Dispatch_SCADA`, `MCCDispatch`, `Dispatch_IRSR`, `Dispatchprices_PRE_AP`). The other 11 stay `unclassified` for reasons tracked as T5T6-I4 (policy coverage gap for ~9 CURRENT market reports) and T5T6-I5 (`P<d1>` template generalization vs literal policy patterns for `P5MINFCST` / `P5_Reports`). ~52 of the remaining CURRENT paths still need per-dataset rules.
 - **Missing examples:** `Adjusted_Prices_Reports`, `Bidmove_Complete`, `Billing`, `Daily_Reports`, `Weekly_Bulletin`, `Market_Notice`, `HistDemand`, `PD7Day`, `PDPASA`, `SEVENDAYOUTLOOK_PEAK`, `Regional_Summary_Report`, `Settlements`, `CSC_CSP_Settlements`, `Mktsusp_Pricing`, ~40 more.
 - **Why this is careful work (not a quick YAML expansion):** Per the `observe-before-design` session memory: "measure full population before proposing taxonomies." Assigning each missing path a classification from a single snapshot is exactly the shortcut that shipped broken in v0.1.1. Each dataset needs AEMO cadence knowledge + ideally multi-week observed churn data from the catalog's own `last_observed_change_at` timestamps, which only accumulate across weekly runs.
 - **Scope to do this right:**
-  1. Land T5T6-I2 (DUPLICATE filter) so the 17 market-report datasets get correct classification + fresh `observed_range.to` first.
+  1. Land T5T6-I2 (DUPLICATE filter) so 16 market-report datasets get clean `path_template` + fresh `observed_range.to` first. (Classification recovery is partial — see T1-I2 "What" for the 5-of-16 breakdown.)
   2. Wait for ≥4 consecutive green weekly cron runs (gives ~4 weeks of per-dataset churn data across the shipped 92 CURRENT datasets).
   3. Build a per-dataset churn table from the mirror's git log against each dataset's `path_template/index.html`.
   4. Assign each missing path a class based on observed churn + AEMO's documented cadence conventions.
@@ -126,19 +126,9 @@ Items surfaced during v0.1.1 plan review or per-task code review that were inten
 **T5T6-I1. ~~`from scripts.policy import Policy` in `__main__` fails on direct script invocation~~** [FIXED 2026-04-20, commit `491bce3`]
 - Promoted `from scripts.policy import ...` to module top-level in both `scripts/nemweb_download.py` and `scripts/extract_patterns.py`. Added an `if __package__ is None:` sys.path bootstrap so `python scripts/X.py` and `python -m scripts.X` both resolve imports. Reverted the workflow's `-m` workaround (that was patching the symptom, not the cause). Root cause of Monday 2026-04-20 03:00 UTC silent canary crash — full analysis in issue #5 comment. Also closed T5T6 source gap: the v0.1.1 plan fixed this for `extract_patterns.py`'s invocation but never audited `nemweb_download.py`, which acquired `from scripts.policy` imports in T5/T6 after T9 had moved on.
 
-**T5T6-I2. DUPLICATE-subdir path overwrites canonical `path_template` for 17 core market reports** [important, issue #5 primary]
-- **What:** `scripts/extract_patterns.py:568-576` sorts rows by `path_template`; `write_json` at line 837 assigns `datasets[key]["tiers"][tier_name]` with last-row-wins semantics. When a dataset has files in both `/Reports/CURRENT/X/` (real data) AND `/Reports/CURRENT/X/DUPLICATE/` (AEMO dedup-placeholder, 1 stale file), they classify to the same `(repo, tier, intra_id)` and the DUPLICATE path wins because it sorts after the parent lexicographically. The catalog records the 1-file placeholder path instead of the 577-file real-data path. `Policy.class_for()` at `scripts/policy.py:84` uses `re.fullmatch`, so the policy's `/Reports/CURRENT/X/ → rolling` rule can't match the DUPLICATE-suffixed path and classification returns `unclassified`.
-- **Why it matters:** 17 core AEMO market reports affected, all should be `rolling`: `Dispatch_Reports`, `Dispatch_SCADA`, `MCCDispatch`, `P5MINFCST`, `TradingIS_Reports`, `Predispatch_Reports`, `PredispatchIS_Reports`, `Dispatch_IRSR`, `Dispatchprices_PRE_AP`, `DISPATCH_NEGATIVE_RESIDUE`, `Trading_Cumulative_Price`, `Predispatch_Sensitivities`, `SEVENDAYOUTLOOK_FULL`, `P5_Reports`, `Yesterdays_Bids_Reports`, `Next_Day_Intermittent_DS`, `Next_Day_PreDispatch`. Secondary effect: `observed_range.to` and `last_observed_change_at` are computed against the stale placeholder for these 17 datasets — partial regression of issue #3 (today's canary passed on `Bidmove_Complete`, which has no DUPLICATE subdir; the 17 market reports are still stale).
-- **Fix (~2 lines):** Skip DUPLICATE directories during extraction at `scripts/extract_patterns.py:477`:
-  ```python
-  for idx in sorted(MIRROR.rglob("index.html")):
-      parent_path = url_path_from_local(idx)
-      if "/DUPLICATE/" in parent_path:
-          continue
-      ...
-  ```
-- **When:** v0.1.2 — highest-leverage issue #5 remediation. Land first in the v0.1.2 PR.
-- **Source:** Issue #5 root-cause investigation 2026-04-20.
+**T5T6-I2. ~~DUPLICATE-subdir path overwrites canonical `path_template` for 16 core market reports~~** [FIXED 2026-04-20, commit `24b2c1f` on branch `v0.1.2-pr1-duplicate-filter`]
+- Two-line filter at `scripts/extract_patterns.py:477` skips any listing whose parent path contains `/DUPLICATE/`. Integration regression test at `tests/test_extract_patterns_json.py::test_main_skips_duplicate_subdir` uses a synthetic mirror + the real curated policy to prove the fix. Verified against the 2863-listing real mirror: all 16 previously-affected datasets now have clean `path_template`. Of those 16, 5 transition to `rolling` classification (`Dispatch_Reports`, `Dispatch_SCADA`, `MCCDispatch`, `Dispatch_IRSR`, `Dispatchprices_PRE_AP`); the other 11 stay `unclassified` for two pre-existing, independent reasons tracked as **T5T6-I4** (policy coverage gap) and **T5T6-I5** (`P<d1>` template generalization vs literal policy patterns). The original "17 affected" list in the design doc / this TODOS block included `Yesterdays_Bids_Reports`, which doesn't exist on the real mirror — corrected to 16 on commit. Closes issue #5 primary cause.
+- **Source:** Issue #5 root-cause investigation 2026-04-20; ground-truth reconciliation during PR-1 execution 2026-04-20.
 
 **T5T6-I3. Same sort-order overwrite hits 9 deep-subdir datasets (ROOFTOP_PV, Operational_Demand, STTM, …)** [important, design call]
 - **What:** After the T5T6-I2 DUPLICATE filter lands, 9 datasets still misrecord their CURRENT `path_template` as a genuine AEMO sub-partition (not a dedup artifact). Same overwrite mechanic (sort order + last-row-wins) but the winning path is a real sub-directory. Examples: `Reports:ROOFTOP_PV` → `/Reports/CURRENT/ROOFTOP_PV/FORECAST_AREA/` (last-sorted among ACTUAL, ACTUAL_AREA, FORECAST, FORECAST_AREA); `Reports:Operational_Demand` → `/Reports/CURRENT/Operational_Demand/FORECAST_HH_AREA/`; `Reports:STTM` → `/Reports/CURRENT/STTM/MOS%20Estimates/`. Also: `GSH`, `ECGS`, `GBB`, `MMSDataModelReport`, `Operational_Demand_Less_SNSG`.
@@ -150,6 +140,24 @@ Items surfaced during v0.1.1 plan review or per-task code review that were inten
 - **Why deferred:** Design call touching catalog schema. Needs downstream-consumer input on how sub-partitioned data should be addressed.
 - **When:** v0.1.2 design spike → implementation in v0.1.3 or v0.2 depending on schema impact.
 - **Source:** Issue #5 root-cause investigation 2026-04-20, secondary finding.
+
+**T5T6-I4. Policy coverage gap — ~9 CURRENT market-report datasets classify as `unclassified` after T5T6-I2 because the curated policy has no rule** [normal, data coverage]
+- **What:** After T5T6-I2's DUPLICATE filter landed in v0.1.2 PR-1, these datasets have correct `/Reports/CURRENT/X/` `path_template` values but still classify as `unclassified` because `patterns/curated/freshness-policy.yaml` has no rule for them: `TradingIS_Reports`, `Predispatch_Reports`, `PredispatchIS_Reports`, `DISPATCH_NEGATIVE_RESIDUE`, `Trading_Cumulative_Price`, `Predispatch_Sensitivities`, `SEVENDAYOUTLOOK_FULL`, `Next_Day_Intermittent_DS`, `Next_Day_PreDispatch`.
+- **Why it matters:** By-design policy behavior (unknown paths fall through to `unclassified` so the monthly audit surfaces them), not a bug. But each of these is a live, churned CURRENT market report and should eventually classify correctly — they're not unknown territory, they were just never added to the curated YAML.
+- **Why it's not a quick YAML edit:** Folds into T1-I2's broader policy expansion. Per the `observe-before-design` rule, each rule needs ≥4 weeks of observed churn data from the weekly cron before being classified, not a single-snapshot guess.
+- **When:** v0.1.3 or later, under T1-I2's umbrella.
+- **Source:** v0.1.2 PR-1 verification against real mirror 2026-04-20.
+
+**T5T6-I5. `P<d1>` template generalization vs literal policy pattern — `P5MINFCST` / `P5_Reports` unclassified despite a policy rule existing** [normal, classification mismatch]
+- **What:** `scripts/extract_patterns.py` generalizes single-digit path segments using the `<d1>` template placeholder. `/Reports/CURRENT/P5MINFCST/` gets extracted as `/Reports/CURRENT/P<d1>MINFCST/`. The curated policy rule at `patterns/curated/freshness-policy.yaml:44` is the literal string `/Reports/CURRENT/P5MINFCST/` — `Policy.class_for()` uses `re.fullmatch` against the literal string, so the generalized template doesn't match and the dataset classifies as `unclassified`. Same pattern for `P5_Reports` → `P<d1>_Reports` (no policy rule exists at all for this one — cross-concern with T5T6-I4).
+- **Why this existed before T5T6-I2:** The template-vs-literal mismatch predates the DUPLICATE fix. Before PR-1, the DUPLICATE overwrite masked it (the winning `path_template` was `/Reports/CURRENT/P5MINFCST/DUPLICATE/`, which also didn't match the literal policy rule — just for a different reason). PR-1 lifted the DUPLICATE artifact and exposed the underlying generalization mismatch.
+- **Fix options:**
+  - (a) Extend `Policy.class_for()` to understand template placeholders (e.g., `P<d1>MINFCST` matches a rule written as `P5MINFCST` by treating `<d1>` as `[0-9]`). Cheap and general.
+  - (b) Rewrite the policy rule to use the generalized form literally: `/Reports/CURRENT/P<d1>MINFCST/`. Specific and brittle.
+  - (c) Decide that `P5MIN` is a stable product name (not a digit-parameterized series) and suppress generalization for it. Needs extractor-side opt-out.
+  - (a) is the most general fix; it also preempts the same issue for any future P-digit / generalized-template dataset.
+- **When:** v0.1.3 — small, bounded, independent of T1-I2's observation-window blocker.
+- **Source:** v0.1.2 PR-1 verification against real mirror 2026-04-20.
 
 ### T9 — `weekly-refresh.yml`
 
