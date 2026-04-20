@@ -40,7 +40,7 @@ from pathlib import Path
 
 BASE = "https://nemweb.com.au"
 OUT = Path("nemweb-mirror")
-UA = "nem-catalog-survey (+https://github.com/nem-catalog; directory-listing downloads only)"
+UA = "nem-catalog-survey (+https://github.com/ZhipengHe/nem-catalog; directory-listing downloads only)"  # noqa: E501
 SEEDS = ("/Reports/", "/Data_Archive/")
 MIN_DELAY_S = 1.0
 
