@@ -47,7 +47,7 @@ packages = ["src/nem_catalog"]
 
 [tool.hatch.build.targets.sdist]
 # Explicit allowlist — the repo contains a 58 MB nemweb-mirror/ research
-# artifact + plans/ + reference/ that are NOT runtime dependencies. Default
+# artifact + .plans/ + reference/ that are NOT runtime dependencies. Default
 # hatch sdist would ship them all to PyPI permanently.
 include = [
   "/src",
