@@ -316,3 +316,112 @@ def test_last_observed_change_at_from_git_log(tmp_path, monkeypatch):
     data = json.loads(out.read_text())
     ds = data["datasets"]["Reports:DISPATCHFCST"]
     assert ds["last_observed_change_at"] == "2026-04-18T04:45:00+00:00"
+
+
+# ---------- 3-class DUPLICATE filter regression test (v0.1.2) ----------
+
+
+def _write_iis_listing(dir_path: Path, filenames: list[str]) -> None:
+    """Write a minimal valid IIS-style index.html with one row per filename.
+
+    ROW_RE in extract_patterns.py expects:
+        <weekday>, <month> <day>, <year>  HH:MM [AP]M  <size|<dir>>  <A HREF="..">..</A>
+    """
+    dir_path.mkdir(parents=True, exist_ok=True)
+    rows = [
+        f'<pre>Thursday,  May 13, 2021  4:30 PM    12345 <A HREF="{name}">{name}</A>'
+        for name in filenames
+    ]
+    dir_path.joinpath("index.html").write_text(
+        "<html><body>" + "\n".join(rows) + "</body></html>", encoding="utf-8"
+    )
+
+
+def test_main_handles_all_duplicate_classes(tmp_path, monkeypatch, capsys):
+    """Per reference/NEMWEB-STRUCTURE.md §2.1.1, /DUPLICATE/ subtrees split
+    into three classes. Guard in main() must skip only class (a).
+
+      (a) listings where every file is a _LEGACY.zip placeholder -> SKIP
+      (b) multi-file non-_LEGACY stragglers                       -> KEEP
+      (c) GBB/DUPLICATE/ rolling timestamped archive               -> KEEP
+
+    Class-(c) assertion pins the PR #9 regression — an unconditional
+    /DUPLICATE/ skip lost 617 GBB files. Do not let that re-ship.
+    """
+    mirror = tmp_path / "nemweb-mirror"
+
+    # Parent streams each need a sibling real listing so the stream is
+    # registered as a dataset before the DUPLICATE/ child is visited.
+    _write_iis_listing(
+        mirror / "Reports/CURRENT/Dispatch_Reports",
+        ["PUBLIC_DISPATCH_20210513163000_0000000334543234.zip"],
+    )
+    # Class (a): every file is _LEGACY.zip -> skipped by guard.
+    _write_iis_listing(
+        mirror / "Reports/CURRENT/Dispatch_Reports/DUPLICATE",
+        ["PUBLIC_DISPATCH_20210513163000_0000000334543234_LEGACY.zip"],
+    )
+
+    _write_iis_listing(
+        mirror / "Reports/CURRENT/Trading_Cumulative_Price",
+        ["PUBLIC_TRADING_CUMULATIVE_PRICE_202008231100_0000000412345678.zip"],
+    )
+    # Class (b): multi-file, no _LEGACY suffix -> kept.
+    _write_iis_listing(
+        mirror / "Reports/CURRENT/Trading_Cumulative_Price/DUPLICATE",
+        [
+            "PUBLIC_TRADING_CUMULATIVE_PRICE_202008231100_0000000412345678.zip",
+            "PUBLIC_TRADING_CUMULATIVE_PRICE_202508121400_0000000512345678.zip",
+        ],
+    )
+
+    _write_iis_listing(
+        mirror / "Reports/CURRENT/GBB",
+        ["GasBBActualFlowStorageLast31.CSV"],
+    )
+    # Class (c): GBB rolling timestamped archive -> kept (PR #9 regression pin).
+    _write_iis_listing(
+        mirror / "Reports/CURRENT/GBB/DUPLICATE",
+        ["GasBBActualFlowStorageLast31_20260101000000.CSV"],
+    )
+
+    monkeypatch.setattr(extract_patterns, "MIRROR", mirror)
+    monkeypatch.chdir(tmp_path)
+
+    rc = extract_patterns.main()
+    assert rc == 0
+
+    # Assert on the flat CSV output — one row per
+    # (repo, tier, intra_id, path_template, skeleton).
+    import csv
+
+    with (tmp_path / "reference" / "URL-CONVENTIONS.csv").open() as f:
+        rows = list(csv.DictReader(f))
+
+    path_templates_by_stream: dict[str, set[str]] = {}
+    for r in rows:
+        path_templates_by_stream.setdefault(r["intra_repo_id"], set()).add(r["path_template"])
+
+    # Class (a): Dispatch_Reports must NOT have a DUPLICATE-pathed row.
+    assert "/Reports/CURRENT/Dispatch_Reports/" in path_templates_by_stream["Dispatch_Reports"]
+    assert not any("DUPLICATE" in p for p in path_templates_by_stream["Dispatch_Reports"]), (
+        "class-(a) _LEGACY placeholders must be skipped"
+    )
+
+    # Class (b): Trading_Cumulative_Price keeps both parent AND DUPLICATE path_templates.
+    tcp_paths = path_templates_by_stream["Trading_Cumulative_Price"]
+    assert "/Reports/CURRENT/Trading_Cumulative_Price/" in tcp_paths
+    assert any("DUPLICATE" in p for p in tcp_paths), "class-(b) multi-file stragglers must be kept"
+
+    # Class (c): GBB keeps the DUPLICATE path (PR #9 regression pin).
+    gbb_paths = path_templates_by_stream["GBB"]
+    assert any("DUPLICATE" in p for p in gbb_paths), (
+        "class-(c) GBB rolling archive must be kept — "
+        "unconditional skip regresses PR #9 (617 files lost)"
+    )
+
+    # Observability: guard emits a single-line summary to stderr.
+    captured = capsys.readouterr()
+    assert "Skipped 1 _LEGACY" in captured.err, (
+        f"expected 'Skipped 1 _LEGACY' in stderr, got: {captured.err!r}"
+    )

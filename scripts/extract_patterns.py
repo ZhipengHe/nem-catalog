@@ -472,12 +472,25 @@ def main(policy: object | None = None) -> int:
     total_listings = 0
     total_listings_with_files = 0
     total_files = 0
+    duplicate_legacy_skipped = 0
     empty_listings: list[dict] = []  # directory-level anomalies (listing with zero files)
 
     for idx in sorted(MIRROR.rglob("index.html")):
         total_listings += 1
         parent_path = url_path_from_local(idx)
         files = parse_listing(idx, parent_path)
+        # §2.1.1 three-class DUPLICATE model: skip only class (a) — listings
+        # under /DUPLICATE/ where every file is a _LEGACY.zip placeholder.
+        # Class (b) multi-file stragglers and class (c) GBB/DUPLICATE/ rolling
+        # archive stay indexed. PR #9 used an unconditional skip and lost 640
+        # real files; do not regress.
+        if (
+            "/DUPLICATE/" in parent_path
+            and files
+            and all(f["name"].endswith("_LEGACY.zip") for f in files)
+        ):
+            duplicate_legacy_skipped += len(files)
+            continue
         if not files:
             # Empty listing — could be branch-only (children are dirs, which is normal) or
             # an anomalous leaf (no files, no children, or AEMO URL typo dir).
@@ -589,6 +602,11 @@ def main(policy: object | None = None) -> int:
     print(f"  distinct datasets (repo, intra_repo_id): {len(dataset_keys)}")
     if empty_listings:
         print(f"  empty-listing anomalies: {len(empty_listings)}")
+    print(
+        f"Skipped {duplicate_legacy_skipped} _LEGACY files under /DUPLICATE/ "
+        f"(§2.1.1 class-a placeholders).",
+        file=sys.stderr,
+    )
 
     write_csv(rows)
     write_md(
