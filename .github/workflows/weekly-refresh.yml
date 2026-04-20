@@ -52,8 +52,8 @@ jobs:
         id: crawl
         continue-on-error: true
         run: |
-          set -e
-          uv run python scripts/nemweb_download.py \
+          set -eo pipefail
+          uv run python -m scripts.nemweb_download \
             --policy patterns/curated/freshness-policy.yaml \
             10000 \
             2>&1 | tee nemweb-mirror/download.log
