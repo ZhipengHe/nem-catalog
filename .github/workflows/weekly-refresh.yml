@@ -53,7 +53,7 @@ jobs:
         continue-on-error: true
         run: |
           set -eo pipefail
-          uv run python -m scripts.nemweb_download \
+          uv run python scripts/nemweb_download.py \
             --policy patterns/curated/freshness-policy.yaml \
             10000 \
             2>&1 | tee nemweb-mirror/download.log

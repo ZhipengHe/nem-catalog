@@ -38,6 +38,11 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
+if __package__ is None:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from scripts.policy import Policy, PolicyLoadError
+
 BASE = "https://nemweb.com.au"
 OUT = Path("nemweb-mirror")
 UA = "nem-catalog-survey (+https://github.com/ZhipengHe/nem-catalog; directory-listing downloads only)"  # noqa: E501
@@ -238,7 +243,7 @@ def parse_args(
     return gaps, force, policy_path, threads, max_fetches
 
 
-def _should_refetch(path: str, force: bool, policy: object | None) -> bool:
+def _should_refetch(path: str, force: bool, policy: Policy | None) -> bool:
     """Decide whether a cached file should be bypassed.
 
     Returns True if the walker must fetch the path from the network.
@@ -248,10 +253,7 @@ def _should_refetch(path: str, force: bool, policy: object | None) -> bool:
         return True
     if policy is None:
         return False
-    # Local import to avoid circular import at module load.
-    from scripts.policy import Policy as _Policy  # noqa: F401
-
-    cls = policy.class_for(path)  # type: ignore[attr-defined]
+    cls = policy.class_for(path)
     # static paths reuse cache; everything else refetches when the policy
     # is supplied. unclassified errs on the side of refetch (conservative).
     return cls != "static"
@@ -365,8 +367,6 @@ def main(argv: list[str]) -> int:
 
     policy = None
     if policy_path:
-        from scripts.policy import Policy, PolicyLoadError
-
         try:
             policy = Policy.load(policy_path)
         except PolicyLoadError as e:

@@ -71,6 +71,11 @@ from collections import defaultdict
 from datetime import UTC, datetime
 from pathlib import Path
 
+if __package__ is None:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from scripts.policy import Policy
+
 MIRROR = Path("nemweb-mirror")
 OUT_MD = Path("reference/URL-CONVENTIONS.md")
 OUT_CSV = Path("reference/URL-CONVENTIONS.csv")
@@ -1070,7 +1075,5 @@ if __name__ == "__main__":
     _args = _parser.parse_args()
     _policy = None
     if _args.policy:
-        from scripts.policy import Policy
-
         _policy = Policy.load(_args.policy)
     sys.exit(main(policy=_policy))
