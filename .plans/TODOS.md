@@ -34,9 +34,13 @@ Co-shipped: `reference/NEMWEB-STRUCTURE.md §2.1.1` primary-source correction (2
 
 #### v0.2 pre-tag acceptance gate
 
+Tracked on GitHub: issue #14.
+
 - First clean `policy-audit.yml` run post-DUPLICATE-fix. Policy-audit is the monthly first-Monday 02:00 UTC cron; next natural fire is **2026-05-04**. Do not cut the v0.2 tag until that run is clean — it confirms the walk-filter change introduced no regressions that the audit catches.
 
 ### Workflow + action hygiene (pre-v0.2 polish pass)
+
+Tracked on GitHub: issue #11 (all 13 items checklisted there).
 
 Everything below touches CI/action/audit machinery rather than user-facing SDK surface. Items accumulated from v0.1.1 plan review + post-PR code review + monthly audit. Individually small (1-15 lines each). **Ship as one batched `chore(workflow)` / `ci:` PR before v0.2 feature work starts.** Do NOT ship any of these as an independent patch — that repeats the feature-as-patch mistake.
 
@@ -68,9 +72,11 @@ Everything below touches CI/action/audit machinery rather than user-facing SDK s
 
 - **CAT-1.** `catalog.policy_version` field at catalog root if any consumer asks. Currently derivable from `catalog_version` + git history — lands only on explicit user-demand signal. (was D1)
 
-### Design work (not patch-shippable, needs design pass)
+### Policy + audit workflow refinement (needs design pass before shipping)
 
-Real items but each needs a design decision before implementation. Not shippable in a patch. Graduate into a minor release scope with a short design note first.
+Same class of work as the polish pass above — both touch `patterns/curated/freshness-policy.yaml` and surface through `policy-audit.yml` — but each item needs a design pass before implementation, so they don't batch into the quick `chore(workflow)` PR. Each ships as its own `chore(policy)` / `data(policy)` PR after the design discussion converges.
+
+Tracked on GitHub: issue #12 (classify 57 paths), issue #13 (ARCHIVE retention).
 
 #### Classify ~57 unclassified CURRENT paths
 
