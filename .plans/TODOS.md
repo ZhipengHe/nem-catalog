@@ -101,13 +101,15 @@ Tracked on GitHub: issue #12 (classify 57 paths), issue #13 (ARCHIVE retention).
 
 v0.2 addresses v0.1.0's explicit known-issues list. Keep the scope small and focused. Pick 2–4 items from the candidate pool below; don't ship all of them.
 
-### v0.2 candidate — `list_urls()` for non-temporal keys
+Tracked on GitHub: issue #15 (list_urls), #16 (observed-range), #17 (write_json collapse).
+
+### v0.2 candidate — `list_urls()` for non-temporal keys (#15)
 
 - **What:** New SDK method that enumerates candidate URLs for dataset keys containing `{aemo_id}`, `{nn}`, `{d2}` (file-sequence placeholders). Current `resolve()` raises `NonResolvableTemplateError` on ~84% of keys.
 - **Why:** v0.1.0's CHANGELOG explicitly flagged this as the v0.2 focus: _"v0.2 will add `list_urls()` to handle these."_ Closes the biggest known usability gap.
 - **v0.1.0 caveat this addresses:** "Resolve coverage: ~16% of 362 keys resolve cleanly."
 
-### v0.2 candidate — observed-range retention
+### v0.2 candidate — observed-range retention (#16)
 
 - **What:** Replace `retention_hint_unverified_days: int` with `retention_hint_observed_days: {min, max, confidence}`. Derive the range and confidence from accumulated weekly-crawl observations.
 - **Why:** v0.1.0's single-snapshot value is fake precision. v0.1.0 TODOS.md queued this exact item.
@@ -116,7 +118,7 @@ v0.2 addresses v0.1.0's explicit known-issues list. Keep the scope small and foc
 
 *(MMSDM column-level schema embedding moved out of v0.2 candidates — it's on the mid-term roadmap at `/ROADMAP.md` "Mid-term (v0.3 – v0.5 candidates)". 33K-row source data exists (`reference/MMSDM-DDL-COLUMNS.csv`) but graduation needs user-demand signal or ecosystem gap. Re-enter v0.2/v0.3 scope only when a real consumer asks.)*
 
-### v0.2 candidate — `write_json` multi-row collapse fix (28 victims, subsumes T5T6-I3)
+### v0.2 candidate — `write_json` multi-row collapse fix (#17) (28 victims, subsumes T5T6-I3)
 
 - **What:** Redesign how `write_json()` emits multiple `(dataset, tier)` rows. Currently the per-row `datasets[key]["tiers"][tier_name] = tier_record` assignment inside `write_json()` in `scripts/extract_patterns.py` overwrites — the last row in sort order wins; all earlier rows for the same (dataset, tier) vanish. As a result, 28 (dataset, tier) combos surface only ONE of their N path_templates in the published catalog.
 - **Why:** Each collapsed row represents a real dataset the consumer cannot reach via `catalog.resolve()`. Scope of silent data loss:
