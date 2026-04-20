@@ -484,6 +484,11 @@ def main(policy: object | None = None) -> int:
         # Class (b) non-LEGACY stragglers and class (c) GBB/DUPLICATE/ rolling
         # archive stay indexed. PR #9 used an unconditional skip and lost 650
         # real files (617 GBB + 33 class-b stragglers); do not regress.
+        # Case-sensitive match is intentional. §3.1 mandates byte-exact
+        # matching project-wide; all 652 observed /DUPLICATE/ files use
+        # lowercase `.zip` (Pass-1 recon 2026-04-21). If AEMO ever publishes
+        # `_LEGACY.ZIP`, that is a new format signal to re-recon, not a case
+        # drift to silently absorb.
         if (
             "/DUPLICATE/" in parent_path
             and files
