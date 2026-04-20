@@ -1,6 +1,6 @@
 # NEMWeb URL Conventions
 
-Empirically derived from 2863 IIS directory listings in `nemweb-mirror/`. 2551 listings contained files; 217774 filenames analyzed. **367 distinct datasets** across 4 of 4 repositories, 2349 (dataset, tier, path, pattern) rows.
+Empirically derived from 2863 IIS directory listings in `nemweb-mirror/`. 2549 listings contained files; 217772 filenames analyzed. **367 distinct datasets** across 4 of 4 repositories, 2347 (dataset, tier, path, pattern) rows.
 
 **Taxonomy** (per `reference/NEMWEB-STRUCTURE.md` §1):
 
@@ -12,7 +12,7 @@ Empirically derived from 2863 IIS directory listings in `nemweb-mirror/`. 2551 l
 
 **Known limitation — table-name evolution is NOT resolved here.** When AEMO renames a table (e.g. an MMSDM table's name string changes across MMS Data Model versions), the old name and new name appear here as two separate `(repo, intra_repo_id)` datasets. Merging them requires either parsing the `MMS Data Model/v*/` HTML docs inside the mirror, or supplying an alias map externally — both are out of scope for this script.
 
-## Repo: `Reports`  (96 datasets, 612 rows)
+## Repo: `Reports`  (96 datasets, 610 rows)
 
 ### `Reports` · `ANCILLARY_SERVICES_REPORTS`
 
@@ -214,13 +214,12 @@ _1 pattern row, 375 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapsh
 
 ### `Reports` · `Dispatch_Reports`
 
-_3 pattern rows, 953 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot)_
+_2 pattern rows, 952 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `ARCHIVE` | `/Reports/ARCHIVE/Dispatch_Reports/` | `PUBLIC_DISPATCH_{date}.zip` | `PUBLIC_DISPATCH_\d{8}\.zip` | `PUBLIC_DISPATCH_20250409.zip` | 375 | 2025-04-11 | 2026-04-20 |
 | `CURRENT` | `/Reports/CURRENT/Dispatch_Reports/` | `PUBLIC_DISPATCH_{timestamp}_{datetime}_LEGACY.zip` | `PUBLIC_DISPATCH_\d{12}_\d{14}_LEGACY\.zip` | `PUBLIC_DISPATCH_202604181445_20260418144016_LEGACY.zip` | 577 | 2026-04-18 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/Dispatch_Reports/DUPLICATE/` | `PUBLIC_DISPATCH_{timestamp}_{datetime}_LEGACY.zip` | `PUBLIC_DISPATCH_\d{12}_\d{14}_LEGACY\.zip` | `PUBLIC_DISPATCH_202603031345_20260303134015_LEGACY.zip` | 1 | 2026-03-03 | 2026-03-03 |
 
 ### `Reports` · `Dispatch_SCADA`
 
@@ -869,13 +868,12 @@ _2 pattern rows, 726 files (snapshot), observed 2025-04-13 → 2026-04-20 (snaps
 
 ### `Reports` · `Predispatch_Reports`
 
-_3 pattern rows, 727 files (snapshot), observed 2017-06-19 → 2026-04-20 (snapshot)_
+_2 pattern rows, 726 files (snapshot), observed 2025-04-13 → 2026-04-20 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `ARCHIVE` | `/Reports/ARCHIVE/Predispatch_Reports/` | `PUBLIC_PREDISPATCH_{date1}_{date2}.zip` | `PUBLIC_PREDISPATCH_\d{8}_\d{8}\.zip` | `PUBLIC_PREDISPATCH_20250330_20250405.zip` | 54 | 2025-04-13 | 2026-04-19 |
 | `CURRENT` | `/Reports/CURRENT/Predispatch_Reports/` | `PUBLIC_PREDISPATCH_{timestamp}_{datetime}_LEGACY.zip` | `PUBLIC_PREDISPATCH_\d{12}_\d{14}_LEGACY\.zip` | `PUBLIC_PREDISPATCH_202604061530_20260406150239_LEGACY.zip` | 672 | 2026-04-06 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/Predispatch_Reports/DUPLICATE/` | `PUBLIC_PREDISPATCH_{timestamp}_{datetime}_LEGACY.zip` | `PUBLIC_PREDISPATCH_\d{12}_\d{14}_LEGACY\.zip` | `PUBLIC_PREDISPATCH_201706191400_20170619133258_LEGACY.zip` | 1 | 2017-06-19 | 2017-06-19 |
 
 ### `Reports` · `Predispatch_Sensitivities`
 
