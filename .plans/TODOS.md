@@ -10,18 +10,31 @@ The 2026-04-20 morning PR #9 incident plus its post-mortem recon (committed `abb
 
 **Acceptance gate:** D2 — first observed clean `policy-audit.yml` run (natural fire ~2026-05-04, 12 calendar days post-v0.1.1 ship).
 
+### v0.1.2-T0. Author fresh PR-1 plan
+
+- **What:** Write `.plans/v0.1.2-pr1-duplicate-filter.md` (the prior one was deleted in commit `7611928` as superseded). Anchor the plan to `reference/NEMWEB-STRUCTURE.md §2.1.1` and the decisions recorded in v0.1.2-T1 below. Follow the superpowers `writing-plans` skill; quote load-bearing decisions inline (the §2.1.1 3-class table; the path_template + test-coverage decisions).
+- **Why:** The old plan's binary-filter approach would reintroduce the PR #9 regression. A fresh plan prevents anyone picking up this work from re-shipping the same bug for a third time.
+- **When:** First task in v0.1.2.
+- **Source:** /gstack-plan-ceo-review 2026-04-20 (recurring-problem architectural smell).
+
 ### v0.1.2-T1. Rewrite DUPLICATE filter using the 3-class semantic model
 
 - **What:** Replace the morning's binary "skip everything under `/DUPLICATE/`" filter (PR #9, closed) with the principled 3-class model from `reference/NEMWEB-STRUCTURE.md §2.1.1`:
-  | Class | Detect by | Action |
-  |---|---|---|
-  | Single-file `_LEGACY` placeholders (12 dataset dirs) | filename matches `*_LEGACY.zip` AND parent contains `/DUPLICATE/` | **skip** — AEMO dedup artifact |
-  | Multi-file non-LEGACY stragglers (5 subtrees: MCCDispatch, Next_Day_Intermittent_DS, Next_Day_PreDispatch, PredispatchIS_Reports, Trading_Cumulative_Price) | parent contains `/DUPLICATE/` AND no `_LEGACY` filename suffix | **keep** — real data |
-  | GBB rolling timestamped archive (617 files) | parent path matches `Gas/GBB/.../DUPLICATE/` | **keep** — real data |
+  | Class | Detect by | Action | path_template |
+  |---|---|---|---|
+  | Single-file `_LEGACY` placeholders (12 dataset dirs) | filename matches `*_LEGACY.zip` AND parent contains `/DUPLICATE/` | **skip** — AEMO dedup artifact | (N/A, skipped) |
+  | Multi-file non-LEGACY stragglers (5 subtrees: MCCDispatch, Next_Day_Intermittent_DS, Next_Day_PreDispatch, PredispatchIS_Reports, Trading_Cumulative_Price) | parent contains `/DUPLICATE/` AND no `_LEGACY` filename suffix | **keep** — real data | **points at the actual data path including `/DUPLICATE/`** (catalog tells users where bytes actually are; parent dir does not contain the files) |
+  | GBB rolling timestamped archive (617 files) | parent path matches `Gas/GBB/.../DUPLICATE/` | **keep** — real data | **points at the actual data path including `/DUPLICATE/`** |
 - **Why:** The old T5T6-I2 fix as written (`if "/DUPLICATE/" in parent_path: continue`) is exactly the unconditional filter that broke as PR #9 — it would lose 622 real files (5 stragglers + 617 GBB). Filename-discriminator approach is the safe form.
-- **Fix sketch:** in `scripts/extract_patterns.py:477` (the `for idx in sorted(MIRROR.rglob("index.html"))` loop), classify each file by filename rather than parent dir. Cross-reference `reference/NEMWEB-STRUCTURE.md §2.1.1` table for the full enumeration.
-- **Side effects to verify:** `path_template` for the 17 core market reports listed in `reference/NEMWEB-STRUCTURE.md §2.1.1` should now record the parent (real-data) path, not the DUPLICATE-suffixed placeholder. Re-run `extract_patterns.py` end-to-end and diff catalog output against pre-fix state.
-- **Source:** Issue #5 root-cause investigation 2026-04-20 (primary); confirmed by today's recon (`reference/NEMWEB-STRUCTURE.md §2.1.1`).
+- **Fix sketch:** in `scripts/extract_patterns.py:477` (the `for idx in sorted(MIRROR.rglob("index.html"))` loop), classify each file by filename rather than parent dir. Cross-reference `reference/NEMWEB-STRUCTURE.md §2.1.1` table for the full enumeration. Filter acts only on class-(a) `_LEGACY`-suffixed filenames under `/DUPLICATE/`; leaves class-(b) and class-(c) entries untouched so their real data remains indexed at their actual path.
+- **Regression test (required):** `tests/test_extract_patterns_json.py::test_main_handles_all_duplicate_classes` exercising three synthetic-mirror fixtures:
+  1. **class-a skip:** `Dispatch_Reports` with a single `PUBLIC_*_LEGACY.zip` under `/DUPLICATE/` — assert the dataset's `path_template` resolves to the parent `/Reports/CURRENT/Dispatch_Reports/` (NOT the DUPLICATE subpath), classifies as `rolling` under curated policy.
+  2. **class-b keep:** `MCCDispatch` (or any straggler) with multi-file non-LEGACY filenames under `/DUPLICATE/` — assert both the dataset is present AND its `path_template` includes `/DUPLICATE/` (real data lives there).
+  3. **class-c keep:** GBB with 5+ timestamped files under `Gas/GBB/{stream}/DUPLICATE/` — assert all files visible in the catalog; file count must match fixture. This is the PR #9 regression pin.
+  End-to-end diff against the real 2863-listing mirror is retained as supplementary sanity check, not as the primary fence.
+- **Observability:** after the mirror walk, log `Skipped N _LEGACY files under /DUPLICATE/` so filter behaviour is visible from run logs alone (no catalog-diff required to confirm correct operation).
+- **Maintenance note:** the filter assumes AEMO's `_LEGACY.zip` naming convention for dedup placeholders. If AEMO ever ships a dedup placeholder WITHOUT the suffix, the filter misses it and the PR #9 regression pattern silently returns. The regression test's class-a fixture pins the convention; cite `reference/NEMWEB-STRUCTURE.md §2.1.1` in the code comment next to the filter as the authority.
+- **Source:** Issue #5 root-cause investigation 2026-04-20 (primary); confirmed by today's recon (`reference/NEMWEB-STRUCTURE.md §2.1.1`); path_template + test-coverage decisions captured via /gstack-plan-ceo-review 2026-04-20.
 
 ### v0.1.2-T2. `Policy.load` version compatibility guard
 
