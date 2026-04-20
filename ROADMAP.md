@@ -19,7 +19,7 @@ See `.plans/TODOS.md §v0.2` for the small committed set. Other items listed her
 
 - **AEMO Visibility annotation per catalog entry** — 4-value taxonomy (Public / Private / Private, Public Next-Day / Private & Public) sourced from MMSDM Upgrade Reports + PDR_CONFIG CSVs. Answers "do I need participant access to fetch this?"
 - **Rename predecessor/successor metadata** — 3-class verdict model (CONFIRMED / DATA-FLOW-REPLACEMENT / PRE-DDL-CAPTURED) from `reference/MMSDM-RENAMES-VERIFICATION.md`. Lets consumers resolve historical names (e.g., `BIDPEROFFER_D` → `BIDOFFERPERIOD`).
-- **MMSDM column-level schema embedding** — inline column metadata per table per version from `reference/MMSDM-DDL-COLUMNS.csv` (33K rows, v5.2-v5.6). Supersedes the anchor-URL approach originally imagined in v0.1.0's TODOS.
+- **MMSDM column-level schema embedding** — inline column metadata per table per version from `reference/MMSDM-DDL-COLUMNS.csv` (33K rows, v5.2-v5.6). Supersedes the anchor-URL approach originally imagined in v0.1.0's TODOS. Design decision at graduation: inline-in-catalog.json (fattens the primary artifact) vs sidecar JSON-per-table (keeps catalog.json lean). 33K rows is non-trivial payload either way.
 - **Per-version MMSDM table timeline** — per-(table, version, action) surface from `reference/MMSDM-TABLE-TIMELINE.csv`. Answers "what changed between v5.2 and v5.3?"
 - **AEMO catalog cross-reference** — periodic completeness check against `reference/aemo-catalog/datasets/mms-data-model-definition.yaml` (AEMO's own manifest). Surfaces coverage gaps via `policy-audit.yml`.
 - **AEMO coordination doc** — publish User-Agent contact, GHA IP disclosure, purpose statement, request-for-allowlist template. De-risks the maintenance story.

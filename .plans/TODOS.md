@@ -2,48 +2,92 @@
 
 Active scope only. Aspirational features live in `/ROADMAP.md`.
 
-## Scope discipline — lesson from v0.1.1 + v0.1.2
+## Scope discipline — lesson from v0.1.1
 
-v0.1.1 was tagged a patch (`.1`) but actually shipped a new freshness-policy feature layer. That expanded surface then had bugs (the DUPLICATE regression) which forced v0.1.2 to patch the patch. **Patch-on-patch spirals waste budget.** Going forward:
+v0.1.1 was tagged a patch (`.1`) but actually shipped a new freshness-policy feature layer. That expanded surface then had bugs (the DUPLICATE regression) which forced a narrow follow-up fix. We shipped that fix to master but **intentionally did not cut a v0.1.2 tag** — patch-inflation for a bug already landed on master, right before v0.2 feature work, is pure tag noise. The fix rolls up into v0.2.
 
-- **`.x.x.PATCH`** = bug fix only. No new feature surface. Single-concern.
-- **`.x.MINOR.x`** = coherent feature release. Batched, reviewed, numbered honestly.
+Going forward:
+
+- **`.x.x.PATCH`** = bug fix only. No new feature surface. Single-concern. Land on master. **Tag only when a downstream consumer needs a pinned release** (security, breakage, stability anchor). Otherwise roll into the next minor.
+- **`.x.MINOR.x`** = coherent feature release. Always tagged.
 - **Features dressed as patches** = forbidden. If it adds capability, it's a minor, even if small.
 
 Items below follow this rule.
 
 ---
 
-## v0.1.2 — DUPLICATE bug fix (patch, narrow)
+## Between v0.1.1 and v0.2 — on master or about to land (un-tagged, rolls into v0.2)
 
-Single concern: the DUPLICATE-filter regression that broke 17 market-report datasets' `path_template`. No other items ride in this release.
+Three classes of work live here. None of them gets an independent tag — everything rolls into v0.2 when it's cut.
 
-### v0.1.2-T0. Author a fresh PR-1 plan
+1. **Shipped to master.** Already merged, awaiting the v0.2 pre-tag acceptance gate.
+2. **Workflow + action hygiene (pre-v0.2 polish pass).** One batched `chore(workflow)` / `ci:` PR before v0.2 feature work starts. Keeps v0.2's feature PRs topically focused.
+3. **Design work.** Real items but each needs a design decision before implementation. Graduate into a minor scope (v0.2 or v0.3) with a short design note first.
 
-- **What:** Write `.plans/v0.1.2-pr1-duplicate-filter.md` (the prior plan was deleted as superseded). Anchor to the 3-class model in `reference/NEMWEB-STRUCTURE.md §2.1.1` and the decisions recorded in v0.1.2-T1 below.
-- **Why:** The old plan proposed a binary `/DUPLICATE/` filter — the same shape that shipped as PR #9 and was closed for losing 640 real files. A fresh plan prevents a third recurrence.
-- **When:** First task in v0.1.2.
+### Shipped to master — DUPLICATE 3-class filter
 
-### v0.1.2-T1. Rewrite DUPLICATE filter using the 3-class semantic model
+**DUPLICATE 3-class filter** merged 2026-04-20 as PR #10 / squash commit `45392b2`. Narrow walk-filter fix: the 3-class model skips only class-(a) `_LEGACY.zip` placeholders (2 dirs on the current mirror — `Dispatch_Reports/DUPLICATE/`, `Predispatch_Reports/DUPLICATE/`). Class-(b) non-LEGACY stragglers (15 dirs, 33 files) and class-(c) GBB rolling archive (617 files) stay indexed.
 
-- **What:** Classify each file by filename rather than parent dir. Skip only listings where every file matches `_LEGACY.zip` under `/DUPLICATE/`. Per `reference/NEMWEB-STRUCTURE.md §2.1.1`:
-  | Class | Filter action | path_template |
-  |---|---|---|
-  | (a) `_LEGACY.zip` placeholders (12 dataset dirs) | **skip** | parent path (real data lives there) |
-  | (b) multi-file non-LEGACY stragglers (5 subtrees, 23 files) | **keep** | actual path including `/DUPLICATE/` |
-  | (c) GBB rolling timestamped archive (617 files) | **keep** | actual path including `/DUPLICATE/` |
-- **Fix sketch:** in `scripts/extract_patterns.py:477` mirror-walk loop, after `parse_listing()`, skip when `"/DUPLICATE/" in parent_path and all(f.endswith("_LEGACY.zip") for f in files)`.
-- **Regression test (required):** `tests/test_extract_patterns_json.py::test_main_handles_all_duplicate_classes` with three synthetic-mirror fixtures exercising class-(a) skip, class-(b) keep, class-(c) keep. Class-(c) assertion pins the PR #9 regression (assert GBB files remain indexed).
-- **Observability:** log `Skipped N _LEGACY files under /DUPLICATE/` after the walk.
-- **Maintenance note:** code comment cites `reference/NEMWEB-STRUCTURE.md §2.1.1` as authority for the `_LEGACY`-suffix convention.
-- **Side effects to verify:** 12 class-(a) datasets' `path_template` now resolves to parent. Class-(b) and class-(c) entries remain in catalog with their `/DUPLICATE/`-including paths. Re-run extractor against real mirror; confirm observability log count + GBB stays visible.
-- **Source:** Issue #5 root-cause 2026-04-20; `reference/NEMWEB-STRUCTURE.md §2.1.1` (commit `abb29d2`); CEO review decisions captured 2026-04-20 (commit `c41be25`).
+Primary-source verification during implementation resolved only 2 of the 17 originally-flagged "broken path_template" datasets. The remaining 15 DUPLICATE-related collapses and 13 legit-multi-subdir collapses are the same `write_json` row-overwrite bug — consolidated as a v0.2 candidate below (subsumes T5T6-I3).
 
-### v0.1.2 acceptance gate
+Co-shipped: `reference/NEMWEB-STRUCTURE.md §2.1.1` primary-source correction (2 class-(a), not 12; prose arithmetic "9 CURRENT and 4 ARCHIVE" legit-nested).
 
-- First observed clean `policy-audit.yml` run (natural fire ~2026-05-04, 12 days post-v0.1.1 ship).
+#### v0.2 pre-tag acceptance gate
 
-**NOT in v0.1.2:** `Policy.load` version guard, argv bounds check, unused-output cleanup, `gh release create` step, additional test coverage. All legitimate but each adds surface area and belongs in v0.2 hygiene bundle.
+- First clean `policy-audit.yml` run post-DUPLICATE-fix. Policy-audit is the monthly first-Monday 02:00 UTC cron; next natural fire is **2026-05-04**. Do not cut the v0.2 tag until that run is clean — it confirms the walk-filter change introduced no regressions that the audit catches.
+
+### Workflow + action hygiene (pre-v0.2 polish pass)
+
+Everything below touches CI/action/audit machinery rather than user-facing SDK surface. Items accumulated from v0.1.1 plan review + post-PR code review + monthly audit. Individually small (1-15 lines each). **Ship as one batched `chore(workflow)` / `ci:` PR before v0.2 feature work starts.** Do NOT ship any of these as an independent patch — that repeats the feature-as-patch mistake.
+
+#### Audit + policy loader
+
+- **POL-1.** `Policy.load` version compatibility guard. One-line add: raise `PolicyLoadError` on `version != 1`. Caught by `policy-audit.yml` when it loads a future policy version. (was v0.1.1 T2-I2)
+- **POL-2.** `append_only` / `parent_index` coverage in `audit_policy.run_audit`. Currently only `unclassified` / `static` / `rolling` surface findings — audit pipeline is silent on the other two classes. (was T10-I1)
+- **POL-3.** `_load_fresh` root-level `index.html` produces `/./` URL instead of `/`. One-line fix. Functional bug but symptom shows up in audit output. (was T10-M1)
+
+#### CLI ergonomics (scripts invoked from workflows)
+
+- **EXT-1.** `--policy` / `--threads` argv bounds check. Workflows pass these values; bad input should fail fast. (was v0.1.1 T4-I1)
+- **EXT-2.** `--policy` documented in module docstring. (was T4-I3)
+- **EXT-3.** Walker closure emits `fetch_noop` vs `fetch` distinction. Observability debt for weekly-refresh logs, not correctness. (was T4-I2)
+- **EXT-4.** `save_listing` `idx.read_bytes()` guarded against `OSError`. Defensive hygiene for CI-runner filesystem hiccups. (was T3-I2)
+
+#### Test coverage
+
+- **TEST-1.** Rename `test_template_shift_raises_when_new_empty` → `test_template_shift_triggers_at_50pct_via_lowercase_href`. Add a truly-zero-HREF companion test. (was T3-I1)
+- **TEST-2.** `main()` failure-mode red tests (exit 2 on `PolicyLoadError` and `HREFExtractionShiftError`). Pins CI-visible failure modes. (was D4)
+- **TEST-3.** `format_report` output coverage — empty findings + multi-kind findings. (was T10-M2)
+
+#### GitHub Actions + release
+
+- **WF-1.** Drop unused `crawl_attempted.outputs.ts` from `weekly-refresh.yml`. (was T9-M3)
+- **WF-2.** `release.yml` adds `gh release create` step so the GitHub Releases page auto-populates on tag push. Prerequisite for automating v0.2.0+ releases. (was T-release-M1)
+
+#### Catalog schema (CI metadata leak)
+
+- **CAT-1.** `catalog.policy_version` field at catalog root if any consumer asks. Currently derivable from `catalog_version` + git history — lands only on explicit user-demand signal. (was D1)
+
+### Design work (not patch-shippable, needs design pass)
+
+Real items but each needs a design decision before implementation. Not shippable in a patch. Graduate into a minor release scope with a short design note first.
+
+#### Classify ~57 unclassified CURRENT paths
+
+- **What:** `patterns/curated/freshness-policy.yaml` enumerates 29 of ~92 CURRENT dataset paths; ~57 fall through to `unclassified` via the no-catchall design.
+- **New path:** `reference/aemo-catalog/manifests/` ships 97 AEMO-authored dataset manifests (today's recon). Cross-referencing those against the 57 unclassified paths is a fast path to authoritative classification — no 4-week observation window required.
+- **Why design work:** 57 paths × classification-convention design × tooling work is non-trivial. Separate spike, not inline with other work.
+- **When:** v0.2 or v0.3.
+- **Source:** Issue #5 tertiary finding (was T1-I2).
+
+#### `/Reports/ARCHIVE/**` retention classification refinement
+
+- **What:** Current policy classifies ARCHIVE as `append_only`. Reality is ~1-year rolling window. Either introduce a new class (`bounded_rolling`) or document `append_only` with a retention caveat.
+- **Why design work:** Needs per-stream retention measurement across ~40 ARCHIVE streams.
+- **When:** v0.2 or v0.3.
+- **Source:** v0.1.1 plan review (was T1-I1).
+
+*(T5T6-I3 "Deep-subdir dataset schema" moved into the v0.2 `write_json` candidate below — it's the same bug with a higher-resolution victim count. See that entry.)*
 
 ---
 
@@ -64,87 +108,23 @@ v0.2 addresses v0.1.0's explicit known-issues list. Keep the scope small and foc
 - **v0.1.0 caveat this addresses:** "`retention_hint_unverified_days` is derived from a single 2026-04-18 mirror snapshot. v0.2 replaces with confidence range."
 - **Depends on:** Weekly workflow reliably green for ≥6 weeks.
 
-### v0.2 candidate — MMSDM schema embedding (reframes v0.1.0's schema-pointer item)
+*(MMSDM column-level schema embedding moved out of v0.2 candidates — it's on the mid-term roadmap at `/ROADMAP.md` "Mid-term (v0.3 – v0.5 candidates)". 33K-row source data exists (`reference/MMSDM-DDL-COLUMNS.csv`) but graduation needs user-demand signal or ecosystem gap. Re-enter v0.2/v0.3 scope only when a real consumer asks.)*
 
-- **What:** Embed per-table-per-version column metadata in MMSDM dataset records. Source: `reference/MMSDM-DDL-COLUMNS.csv` (33,162 rows, v5.2-v5.6). Schema-level detail beyond just a portal-root URL.
-- **Why:** v0.1.0 imagined anchor URLs into AEMO's HTML portal. Today's recon produced the actual column data — strictly better. Users querying an MMSDM table get the schema directly, no URL chase.
-- **v0.1.0 caveat this addresses:** "Schema source for MMSDM tables is the portal root only. Per-table anchors deferred to v0.2."
-- **Scope decision:** pick ONE of inline-in-catalog vs sidecar-JSON-file per record. 33K rows is non-trivial catalog size.
-
-### v0.2 candidate — `write_json` multi-row collapse fix (28 victims)
+### v0.2 candidate — `write_json` multi-row collapse fix (28 victims, subsumes T5T6-I3)
 
 - **What:** Redesign how `write_json()` emits multiple `(dataset, tier)` rows. Currently the per-row `datasets[key]["tiers"][tier_name] = tier_record` assignment inside `write_json()` in `scripts/extract_patterns.py` overwrites — the last row in sort order wins; all earlier rows for the same (dataset, tier) vanish. As a result, 28 (dataset, tier) combos surface only ONE of their N path_templates in the published catalog.
 - **Why:** Each collapsed row represents a real dataset the consumer cannot reach via `catalog.resolve()`. Scope of silent data loss:
-  - **15 `/DUPLICATE/`-related collapses.** v0.1.2's `_LEGACY` filter only fixes 2 of 17. The remaining 15 catalog tiers still point into `/DUPLICATE/` (e.g. `Reports:Dispatch_SCADA` CURRENT = `/Reports/CURRENT/Dispatch_SCADA/DUPLICATE/` — wrong primary path).
-  - **13 legit-multi-subdir collapses.** §2.1.1 lists 9 CURRENT + 4 ARCHIVE streams (GSH, Operational_Demand, ROOFTOP_PV, Operational_Demand_Less_SNSG, MMSDataModelReport, STTM, ECGS, plus a few taxonomy-root AUX rows) where the parent stream has multiple sub-datasets. For example, `Reports:GSH` has 13 sub-datasets (GSH_Participants, GSH_Daily_Trans_Summary, GSH_Benchmark_Price, …) but the catalog surfaces only **1**. The other 12 are invisible.
+  - **15 `/DUPLICATE/`-related collapses.** The DUPLICATE `_LEGACY.zip` walk-filter shipped in PR #10 only fixes 2 of 17. The remaining 15 catalog tiers still point into `/DUPLICATE/` (e.g. `Reports:Dispatch_SCADA` CURRENT = `/Reports/CURRENT/Dispatch_SCADA/DUPLICATE/` — wrong primary path).
+  - **13 legit-multi-subdir collapses (formerly tracked as T5T6-I3 "deep-subdir dataset schema").** 7 distinct parent streams have genuine sub-partitions under CURRENT and/or ARCHIVE: `GSH` (13 sub-datasets in both tiers), `Operational_Demand` (9 CURRENT / 6 ARCHIVE), `ROOFTOP_PV` (4 each), `Operational_Demand_Less_SNSG` (3 CURRENT / 2 ARCHIVE), `MMSDataModelReport` (3 CURRENT-only), `ECGS` (1 CURRENT-only + 3-level `Attachments/` nesting), `STTM` (2 CURRENT-only). Plus 2 taxonomy-root AUX rows (MMSDM OTHER/UNKNOWN, NEMDE ROOT_AUX/ROOT_AUX). Example: `Reports:GSH` has 13 sub-datasets (GSH_Participants, GSH_Daily_Trans_Summary, GSH_Benchmark_Price, …) but the catalog surfaces only **1**. The other 12 are invisible to every downstream consumer.
 - **Fix shape (options — design in plan):**
-  1. `tiers[tier]` becomes a **list** of tier_records. `resolve()` iterates. Schema-breaking.
-  2. Promote each sub-dataset to its own `{repo}:{parent}/{sub}` dataset key. Consumer enumeration changes.
-  3. Add `alt_paths: list[str]` to tier_record. Backwards-compat, but ambiguous semantics for multi-path streams.
-- **v0.1.0 caveat this addresses:** *not listed* in v0.1.0's explicit known-issues — this is a latent bug discovered during v0.1.2's DUPLICATE filter implementation (2026-04-21). Exists since v0.1.0.
+  1. `tiers[tier]` becomes a **list** of tier_records. `resolve()` iterates. Schema-breaking (1.0.0 → 2.0.0).
+  2. Promote each sub-dataset to its own `{repo}:{parent}/{sub}` dataset key (e.g. `Reports:GSH/GSH_Participants`). Consumer enumeration API changes. Tracks closer to how AEMO's own manifests classify.
+  3. Add `alt_paths: list[str]` field to tier_record. Backwards-compat (additive), but ambiguous semantics for multi-path streams — which path is canonical?
+  4. Hybrid: parent-preferred path_template + `partitions[]` sidecar listing for multi-subdir case. Preserves resolvable primary while exposing partitions.
+- **Why design work (not inline fix):** Schema-touching. Affects every downstream consumer. Also needs `catalog.resolve()` contract update — today it assumes one path_template per (dataset, tier). Multi-path datasets mean multi-URL resolution.
+- **v0.1.0 caveat this addresses:** *not listed* in v0.1.0's explicit known-issues. Latent since v0.1.0, surfaced during the DUPLICATE filter implementation on master (PR #10, 2026-04-21). T5T6-I3 tracked a subset (the 13 legit-multi-subdir cases from Issue #5 secondary finding 2026-04-20) but under-counted — the full blast radius is 28 combos once DUPLICATE is included.
 - **Evidence:** the overwriting assignment in `write_json()` (search for `datasets[key]["tiers"][tier_name] = tier_record`) + `python -c "…"` audit of `reference/URL-CONVENTIONS.csv` against `patterns/auto/catalog.json` shows 28 (dataset, tier) combos with >1 distinct path_template but only 1 surviving in JSON.
-
----
-
-## v0.1.x — tactical hygiene (bundle for a future minor, not ship as patches)
-
-These accumulated from v0.1.1 plan review + post-PR code review + monthly audit. Individually small (1-15 lines each). Bundling them into a future minor release (v0.2 or v0.3) is cleaner than shipping a patch parade. Do NOT ship any of these as a v0.1.x patch — that repeats the feature-as-patch mistake.
-
-### Policy + loader
-
-- **POL-1.** `Policy.load` version compatibility guard. One-line add: raise `PolicyLoadError` on `version != 1`. (was v0.1.1 T2-I2)
-- **POL-2.** `append_only` / `parent_index` coverage in `audit_policy.run_audit`. Currently only `unclassified` / `static` / `rolling` surface findings. (was T10-I1)
-- **POL-3.** `_load_fresh` root-level `index.html` produces `/./` URL instead of `/`. One-line fix. (was T10-M1)
-
-### Extractor + CLI
-
-- **EXT-1.** `--policy` / `--threads` argv bounds check. (was v0.1.1 T4-I1)
-- **EXT-2.** `--policy` documented in module docstring. (was T4-I3)
-- **EXT-3.** Walker closure emits `fetch_noop` vs `fetch` distinction. Observability debt, not correctness. (was T4-I2)
-- **EXT-4.** `save_listing` `idx.read_bytes()` guarded against `OSError`. Defensive hygiene. (was T3-I2)
-
-### Tests
-
-- **TEST-1.** Rename `test_template_shift_raises_when_new_empty` → `test_template_shift_triggers_at_50pct_via_lowercase_href`. Add a truly-zero-HREF companion test. (was T3-I1)
-- **TEST-2.** `main()` failure-mode red tests (exit 2 on `PolicyLoadError` and `HREFExtractionShiftError`). (was D4)
-- **TEST-3.** `format_report` output coverage — empty findings + multi-kind findings. (was T10-M2)
-
-### Workflows + release
-
-- **WF-1.** Drop unused `crawl_attempted.outputs.ts` from `weekly-refresh.yml`. (was T9-M3)
-- **WF-2.** `release.yml` adds `gh release create` step so the GitHub Releases page auto-populates. (was T-release-M1)
-
-### Catalog schema
-
-- **CAT-1.** `catalog.policy_version` field at catalog root if any consumer asks. Currently derivable from `catalog_version` + git history. (was D1)
-
----
-
-## v0.1.x design work (not patch-shippable, needs design pass)
-
-These are real items but each needs a design decision before implementation. Not shippable in a patch. Graduate into a minor release scope with a short design note first.
-
-### Classify ~57 unclassified CURRENT paths
-
-- **What:** `patterns/curated/freshness-policy.yaml` enumerates 29 of ~92 CURRENT dataset paths; ~57 fall through to `unclassified` via the no-catchall design.
-- **New path:** `reference/aemo-catalog/manifests/` ships 97 AEMO-authored dataset manifests (today's recon). Cross-referencing those against the 57 unclassified paths is a fast path to authoritative classification — no 4-week observation window required.
-- **Why design work:** 57 paths × classification-convention design × tooling work is non-trivial. Separate spike, not inline with other work.
-- **When:** v0.2 or v0.3.
-- **Source:** Issue #5 tertiary finding (was T1-I2).
-
-### `/Reports/ARCHIVE/**` retention classification refinement
-
-- **What:** Current policy classifies ARCHIVE as `append_only`. Reality is ~1-year rolling window. Either introduce a new class (`bounded_rolling`) or document `append_only` with a retention caveat.
-- **Why design work:** Needs per-stream retention measurement across ~40 ARCHIVE streams.
-- **When:** v0.2 or v0.3.
-- **Source:** v0.1.1 plan review (was T1-I1).
-
-### Deep-subdir dataset schema (T5T6-I3)
-
-- **What:** 9 datasets (ROOFTOP_PV, Operational_Demand, STTM, GSH, ECGS, GBB, MMSDataModelReport, Operational_Demand_Less_SNSG) have genuine sub-partitions under CURRENT. Current sort-order-wins merge picks arbitrarily. Options: separate datasets per partition, parent-only path_template, or a new `partitions[]` schema field.
-- **Why design work:** Schema-touching. Affects every downstream consumer.
-- **When:** v0.3+ after v0.2 ships and adoption signals come in.
-- **Source:** Issue #5 secondary finding 2026-04-20.
+- **Source:** PR #10 verification 2026-04-20; Issue #5 secondary finding 2026-04-20 (T5T6-I3).
 
 ---
 
@@ -177,10 +157,12 @@ Resolved items. Kept for "why is X the way it is" archaeology.
 - **T9-M1** [2026-04-20, commit `1fc5151`] `set -eo pipefail` added to crawl step shell override. Fixed Monday 2026-04-20 silent canary crash. Lesson: gstack adversarial review C1 finding was closed as false positive based on memory of GHA defaults, not the actual `shell:` override — "reviewer shared sources with author" miss per ground-truth discipline §4.
 - **T9-M2** [2026-04-20] All workflow labels created on the repo.
 
-### v0.1.2 cycle
+### Post-v0.1.1 fixes on master (un-tagged, rolling into v0.2)
 
 - **T5T6-I1** [2026-04-20, commit `491bce3`] `from scripts.policy import Policy` import promoted to module top-level + sys.path bootstrap for direct-script invocation. Root cause of Monday 2026-04-20 03:00 UTC silent canary crash.
-- **Superseded PR-1 plan** [2026-04-20, commit `7611928`] Original `.plans/2026-04-20-v0.1.2-pr1-duplicate-filter.md` deleted because it proposed a binary `/DUPLICATE/` filter — the same shape that shipped as PR #9 (closed for losing 640 files). See v0.1.2-T0 for the fresh plan anchored to `NEMWEB-STRUCTURE.md §2.1.1`.
+- **Superseded PR-1 plan** [2026-04-20, commit `7611928`] Original `.plans/2026-04-20-v0.1.2-pr1-duplicate-filter.md` deleted because it proposed a binary `/DUPLICATE/` filter — the same shape that shipped as PR #9 (closed for losing 640 files). Replaced by the fresh plan anchored to `NEMWEB-STRUCTURE.md §2.1.1`.
+- **DUPLICATE-T0** [2026-04-20, PR #10 / squash commit `45392b2`] Fresh 117-line PR-1 plan authored at `.plans/v0.1.2-pr1-duplicate-filter.md` (filename retained for git-history archaeology; the "v0.1.2" prefix is a historical artifact — no v0.1.2 tag was cut). Shipped as the branch's first commit so it rides inside the PR.
+- **DUPLICATE-T1** [2026-04-20, PR #10 / squash commit `45392b2`] 3-class DUPLICATE filter shipped. Walk-layer guard skips only listings where every file ends in `_LEGACY.zip` under `/DUPLICATE/`. Real-mirror effect: 2 class-(a) dirs skipped (`Dispatch_Reports/DUPLICATE/` + `Predispatch_Reports/DUPLICATE/`); 15 class-(b) non-LEGACY stragglers + 617 class-(c) GBB files stay indexed. Co-shipped §2.1.1 primary-source correction (12→2 class-(a), 5→15 class-(b), prose "8 CURRENT/5 ARCHIVE" → "9/4"). Closes issue #5. Full 17-of-17 fix deferred to v0.2 `write_json` collapse work (see above) — that's 28 victims total, broader than the walk-filter scope shipped here.
 
 ### Notes (not deferrals)
 
