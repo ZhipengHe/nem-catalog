@@ -1,11 +1,10 @@
 name: policy-audit
 
-# First Monday of each month at 02:00 UTC — 1h before the weekly-refresh cron.
-# cron fields day-of-month AND day-of-week: runs only on 2026-05-04, 2026-06-01, etc.
+# Monthly policy audit — 1st of each month at 00:00 UTC (10:00 AEST).
 
 on:
   schedule:
-    - cron: "0 2 1-7 * 1"   # first Monday of month, 02:00 UTC
+    - cron: "0 0 1 * *"   # 1st of month, 00:00 UTC = 10:00 AEST
   workflow_dispatch:
 
 permissions:
