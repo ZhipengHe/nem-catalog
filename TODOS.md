@@ -21,10 +21,8 @@ Items surfaced during v0.1.1 plan review or per-task code review that were inten
 - **Why deferred:** Requires ~12 calendar days — natural first fire ~2026-05-04, outside reasonable v0.1.1 acceptance window.
 - **When:** v0.1.2 acceptance gate.
 
-**D3. Residual force-refetch mirror noise in `Reports/ARCHIVE/**` and `Data_Archive/**`**
-- **What:** ~34 + ~461 files touched during 2026-04-20 investigation still sit in working tree.
-- **Why deferred:** Content-aware write in `save_listing()` (T3) absorbs silently on the first policy-driven crawl post-merge.
-- **When:** Auto-resolves on first weekly cron.
+**D3. ~~Residual force-refetch mirror noise in `Reports/ARCHIVE/**` and `Data_Archive/**`~~** [RESOLVED 2026-04-20 on first successful canary PR #7]
+- Content-aware `save_listing()` absorbed the drift as designed. PR #7 (the first fully-green weekly-refresh run) committed 123 real HREF-change listings, zero template drift. Mechanism validated end-to-end.
 
 **D4. `main()` failure-mode red test**
 - **What:** Explicit unit test that `main()` returns exit 2 on `PolicyLoadError` and `HREFExtractionShiftError`.
@@ -44,6 +42,20 @@ Items surfaced during v0.1.1 plan review or per-task code review that were inten
   4. Update `patterns/curated/freshness-policy.yaml` classification for `/Reports/ARCHIVE/**` accordingly.
   5. Document the retention window as a separate dataset-level field (e.g., `retention_window_days`) so catalog consumers know how far back to expect data.
 - **When:** v0.1.2 policy-accuracy pass.
+
+**T1-I2. Policy YAML enumerates only 29 of ~92 CURRENT dataset paths (~57 fall through to `unclassified`)** [important, data coverage, issue #5 tertiary]
+- **What:** `patterns/curated/freshness-policy.yaml` was derived from a 23-hour observation window (policy header: snapshot `2026-04-19T22:20Z` → `2026-04-20T00:04Z`). 29 CURRENT paths were enumerated by hand from what churned during that window; real AEMO CURRENT has ~92 datasets. ~57 are unlisted and fall through to `unclassified` by design (the "no `/Reports/CURRENT/**` catchall" comment at policy lines 113-116 — unknown paths conservative-refetch + surface via monthly audit). After T5T6-I2's DUPLICATE fix lands, 17 of the 83 currently-unclassified datasets classify correctly against existing policy rules; the remaining ~57 still need per-dataset rules.
+- **Missing examples:** `Adjusted_Prices_Reports`, `Bidmove_Complete`, `Billing`, `Daily_Reports`, `Weekly_Bulletin`, `Market_Notice`, `HistDemand`, `PD7Day`, `PDPASA`, `SEVENDAYOUTLOOK_PEAK`, `Regional_Summary_Report`, `Settlements`, `CSC_CSP_Settlements`, `Mktsusp_Pricing`, ~40 more.
+- **Why this is careful work (not a quick YAML expansion):** Per the `observe-before-design` session memory: "measure full population before proposing taxonomies." Assigning each missing path a classification from a single snapshot is exactly the shortcut that shipped broken in v0.1.1. Each dataset needs AEMO cadence knowledge + ideally multi-week observed churn data from the catalog's own `last_observed_change_at` timestamps, which only accumulate across weekly runs.
+- **Scope to do this right:**
+  1. Land T5T6-I2 (DUPLICATE filter) so the 17 market-report datasets get correct classification + fresh `observed_range.to` first.
+  2. Wait for ≥4 consecutive green weekly cron runs (gives ~4 weeks of per-dataset churn data across the shipped 92 CURRENT datasets).
+  3. Build a per-dataset churn table from the mirror's git log against each dataset's `path_template/index.html`.
+  4. Assign each missing path a class based on observed churn + AEMO's documented cadence conventions.
+  5. Batch-add rules to `freshness-policy.yaml` grouped by retention bucket.
+- **Interim signal:** The monthly `policy-audit.yml` already surfaces unclassified paths as `new_path` findings (that's how issue #5 was found). The design catches this gap — it just doesn't auto-resolve it.
+- **When:** v0.1.3 or v0.2 — NOT v0.1.2. Requires observation window that doesn't exist yet.
+- **Source:** Issue #5 root-cause investigation 2026-04-20, tertiary finding.
 
 ### T2 — `scripts/policy.py`
 
@@ -111,17 +123,38 @@ Items surfaced during v0.1.1 plan review or per-task code review that were inten
 
 ### T5+T6 — `extract_patterns.py` freshness fields
 
-**T5T6-I1. `from scripts.policy import Policy` in `__main__` fails on direct script invocation** [important, addressed in T9]
-- **What:** Line 1073 of `scripts/extract_patterns.py` uses a package-relative import inside `if __name__ == "__main__":`. Running `python scripts/extract_patterns.py --policy ...` raises `ModuleNotFoundError: No module named 'scripts'`. Requires `python -m scripts.extract_patterns ...` (or `PYTHONPATH=.` prefix).
-- **Status:** T9's `weekly-refresh.yml` update now uses `python -m scripts.extract_patterns --policy ...`. Same pattern expected for T11 (audit workflow).
-- **Fix (v0.1.2):** Either keep the module-invocation-only contract (document it in the script's docstring) OR add a `sys.path.insert(0, str(Path(__file__).resolve().parent.parent))` guard inside the `__main__` block so direct-script invocation also works. No urgency.
+**T5T6-I1. ~~`from scripts.policy import Policy` in `__main__` fails on direct script invocation~~** [FIXED 2026-04-20, commit `491bce3`]
+- Promoted `from scripts.policy import ...` to module top-level in both `scripts/nemweb_download.py` and `scripts/extract_patterns.py`. Added an `if __package__ is None:` sys.path bootstrap so `python scripts/X.py` and `python -m scripts.X` both resolve imports. Reverted the workflow's `-m` workaround (that was patching the symptom, not the cause). Root cause of Monday 2026-04-20 03:00 UTC silent canary crash — full analysis in issue #5 comment. Also closed T5T6 source gap: the v0.1.1 plan fixed this for `extract_patterns.py`'s invocation but never audited `nemweb_download.py`, which acquired `from scripts.policy` imports in T5/T6 after T9 had moved on.
+
+**T5T6-I2. DUPLICATE-subdir path overwrites canonical `path_template` for 17 core market reports** [important, issue #5 primary]
+- **What:** `scripts/extract_patterns.py:568-576` sorts rows by `path_template`; `write_json` at line 837 assigns `datasets[key]["tiers"][tier_name]` with last-row-wins semantics. When a dataset has files in both `/Reports/CURRENT/X/` (real data) AND `/Reports/CURRENT/X/DUPLICATE/` (AEMO dedup-placeholder, 1 stale file), they classify to the same `(repo, tier, intra_id)` and the DUPLICATE path wins because it sorts after the parent lexicographically. The catalog records the 1-file placeholder path instead of the 577-file real-data path. `Policy.class_for()` at `scripts/policy.py:84` uses `re.fullmatch`, so the policy's `/Reports/CURRENT/X/ → rolling` rule can't match the DUPLICATE-suffixed path and classification returns `unclassified`.
+- **Why it matters:** 17 core AEMO market reports affected, all should be `rolling`: `Dispatch_Reports`, `Dispatch_SCADA`, `MCCDispatch`, `P5MINFCST`, `TradingIS_Reports`, `Predispatch_Reports`, `PredispatchIS_Reports`, `Dispatch_IRSR`, `Dispatchprices_PRE_AP`, `DISPATCH_NEGATIVE_RESIDUE`, `Trading_Cumulative_Price`, `Predispatch_Sensitivities`, `SEVENDAYOUTLOOK_FULL`, `P5_Reports`, `Yesterdays_Bids_Reports`, `Next_Day_Intermittent_DS`, `Next_Day_PreDispatch`. Secondary effect: `observed_range.to` and `last_observed_change_at` are computed against the stale placeholder for these 17 datasets — partial regression of issue #3 (today's canary passed on `Bidmove_Complete`, which has no DUPLICATE subdir; the 17 market reports are still stale).
+- **Fix (~2 lines):** Skip DUPLICATE directories during extraction at `scripts/extract_patterns.py:477`:
+  ```python
+  for idx in sorted(MIRROR.rglob("index.html")):
+      parent_path = url_path_from_local(idx)
+      if "/DUPLICATE/" in parent_path:
+          continue
+      ...
+  ```
+- **When:** v0.1.2 — highest-leverage issue #5 remediation. Land first in the v0.1.2 PR.
+- **Source:** Issue #5 root-cause investigation 2026-04-20.
+
+**T5T6-I3. Same sort-order overwrite hits 9 deep-subdir datasets (ROOFTOP_PV, Operational_Demand, STTM, …)** [important, design call]
+- **What:** After the T5T6-I2 DUPLICATE filter lands, 9 datasets still misrecord their CURRENT `path_template` as a genuine AEMO sub-partition (not a dedup artifact). Same overwrite mechanic (sort order + last-row-wins) but the winning path is a real sub-directory. Examples: `Reports:ROOFTOP_PV` → `/Reports/CURRENT/ROOFTOP_PV/FORECAST_AREA/` (last-sorted among ACTUAL, ACTUAL_AREA, FORECAST, FORECAST_AREA); `Reports:Operational_Demand` → `/Reports/CURRENT/Operational_Demand/FORECAST_HH_AREA/`; `Reports:STTM` → `/Reports/CURRENT/STTM/MOS%20Estimates/`. Also: `GSH`, `ECGS`, `GBB`, `MMSDataModelReport`, `Operational_Demand_Less_SNSG`.
+- **Why it's not a simple fix:** Unlike DUPLICATE, these sub-directories are real data partitions. Losing them by picking the parent drops useful information. Keeping the last-sorted one is arbitrary. Design options:
+  - (a) Record each sub-partition as its own dataset (e.g. `Reports:ROOFTOP_PV.ACTUAL`, `Reports:ROOFTOP_PV.FORECAST`).
+  - (b) Record only the parent `path_template`; lose per-sub-partition `filename_regex` / `observed_range` granularity.
+  - (c) Record parent as canonical `path_template`; enumerate sub-partitions in a new `partitions[]` field per tier.
+  - (d) Prefer shortest `path_template` when merging into `tiers[X]` — partial fix, picks parent when it has direct files; falls back to arbitrary-but-shortest-subdir otherwise.
+- **Why deferred:** Design call touching catalog schema. Needs downstream-consumer input on how sub-partitioned data should be addressed.
+- **When:** v0.1.2 design spike → implementation in v0.1.3 or v0.2 depending on schema impact.
+- **Source:** Issue #5 root-cause investigation 2026-04-20, secondary finding.
 
 ### T9 — `weekly-refresh.yml`
 
-**T9-M1. Redundant `set -e` in the crawl step's shell block** [minor, cosmetic]
-- **What:** GitHub Actions bash runs with `-eo pipefail` by default on ubuntu; the explicit `set -e` is a no-op.
-- **Fix:** Remove or replace with a comment: `# GHA default shell is -eo pipefail`.
-- **When:** v0.1.2 or whenever the workflow is next touched.
+**T9-M1. ~~Redundant `set -e` in the crawl step's shell block~~** [FIXED 2026-04-20, commit `1fc5151` — the original TODO premise was wrong]
+- Original claim: "GHA default shell is `-eo pipefail`, so `set -e` is redundant." **That was wrong.** The crawl step declares `shell: /usr/bin/bash -e {0}` — an explicit override that does NOT inherit GHA's default `pipefail`. Monday 2026-04-20 cron ran `uv run python scripts/nemweb_download.py ... 2>&1 | tee ...` through a Python crash; `tee` exited 0, pipe swallowed the non-zero, step marked `success`, downstream steps ran against a stale mirror, PR #6 opened claiming "0.0% change" over a silent regression. Changed to `set -eo pipefail`. The gstack adversarial review during v0.1.1 convergence (C1 finding) flagged this exact risk and was closed as a false positive based on memory of GHA defaults, without reading the actual `shell:` override — a textbook "reviewer shared sources with author" miss (ground-truth discipline §4). Lesson logged.
 
 **T9-M2. ~~`crawl-failure` GitHub label may not exist on the repo~~** [DONE — pre-ship checklist closed 2026-04-20]
 - All labels referenced by `weekly-refresh.yml` and `policy-audit.yml` are now created on the repo: `crawl-failure`, `p0`, `p1`, `policy-audit`, `weekly-refresh`, `chore`, `aemo-coordination`, `robots-halt`, `merge`, `data-catalog`. `bug` pre-existed. Verified via `gh label list`.
