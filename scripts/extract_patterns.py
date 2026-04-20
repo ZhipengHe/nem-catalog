@@ -477,6 +477,8 @@ def main(policy: object | None = None) -> int:
     for idx in sorted(MIRROR.rglob("index.html")):
         total_listings += 1
         parent_path = url_path_from_local(idx)
+        if "/DUPLICATE/" in parent_path:
+            continue  # T5T6-I2: skip AEMO dedup-placeholder subdirs
         files = parse_listing(idx, parent_path)
         if not files:
             # Empty listing — could be branch-only (children are dirs, which is normal) or
