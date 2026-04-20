@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
-  "catalog_version": "2026.04.19",
-  "as_of": "2026-04-19T07:05:11Z",
-  "source_mirror_commit": "9be2e9f",
+  "catalog_version": "2026.04.20",
+  "as_of": "2026-04-20T04:13:05Z",
+  "source_mirror_commit": "dfa15eb",
   "placeholders": {
     "date": {
       "format": "yyyymmdd",
@@ -891,7 +891,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Bidmove_Complete": {
       "repo": "Reports",
@@ -923,7 +925,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Billing": {
       "repo": "Reports",
@@ -955,7 +959,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Causer_Pays_Scada": {
       "repo": "Reports",
@@ -976,7 +982,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "append_only",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:DISPATCHFCST": {
       "repo": "Reports",
@@ -1008,7 +1016,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "rolling",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Daily_Reports": {
       "repo": "Reports",
@@ -1040,7 +1050,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:DispatchIS_Reports": {
       "repo": "Reports",
@@ -1083,7 +1095,9 @@
         "output_count_hint": "daily (ARCHIVE) or 5min (CURRENT)"
       },
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "rolling",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Dispatch_IRSR": {
       "repo": "Reports",
@@ -1115,7 +1129,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Dispatch_Negative_Residue": {
       "repo": "Reports",
@@ -1136,7 +1152,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize."
+      "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize.",
+      "freshness_class": "append_only",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Dispatch_Reports": {
       "repo": "Reports",
@@ -1168,7 +1186,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Dispatch_SCADA": {
       "repo": "Reports",
@@ -1200,7 +1220,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Dispatchprices_PRE_AP": {
       "repo": "Reports",
@@ -1232,7 +1254,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:FPPDAILY": {
       "repo": "Reports",
@@ -1264,7 +1288,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:FPPRATES": {
       "repo": "Reports",
@@ -1296,7 +1322,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "rolling",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:FPPRUN": {
       "repo": "Reports",
@@ -1328,7 +1356,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "rolling",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:GSH": {
       "repo": "Reports",
@@ -1360,7 +1390,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:HistDemand": {
       "repo": "Reports",
@@ -1392,7 +1424,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:MCCDispatch": {
       "repo": "Reports",
@@ -1424,7 +1458,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:MTPASA_DUIDAvailability": {
       "repo": "Reports",
@@ -1456,7 +1492,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:MTPASA_RegionAvailability": {
       "repo": "Reports",
@@ -1488,7 +1526,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Medium_Term_PASA_Reports": {
       "repo": "Reports",
@@ -1520,7 +1560,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:NEXT_DAY_AVAIL_SUBMISS_CLUSTER": {
       "repo": "Reports",
@@ -1552,7 +1594,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:NEXT_DAY_AVAIL_SUBMISS_DAY": {
       "repo": "Reports",
@@ -1584,7 +1628,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:NEXT_DAY_MCCDISPATCH": {
       "repo": "Reports",
@@ -1616,7 +1662,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Network": {
       "repo": "Reports",
@@ -1648,7 +1696,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Next_Day_Actual_Gen": {
       "repo": "Reports",
@@ -1680,7 +1730,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Next_Day_Dispatch": {
       "repo": "Reports",
@@ -1712,7 +1764,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Next_Day_Intermittent_DS": {
       "repo": "Reports",
@@ -1744,7 +1798,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Next_Day_Intermittent_Gen_Scada": {
       "repo": "Reports",
@@ -1776,7 +1832,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Next_Day_Offer_Energy_SPARSE": {
       "repo": "Reports",
@@ -1808,7 +1866,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Next_Day_Offer_FCAS_SPARSE": {
       "repo": "Reports",
@@ -1840,7 +1900,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Next_Day_PreDispatch": {
       "repo": "Reports",
@@ -1872,7 +1934,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Next_Day_PreDispatchD": {
       "repo": "Reports",
@@ -1904,7 +1968,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Operational_Demand": {
       "repo": "Reports",
@@ -1936,7 +2002,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Operational_Demand_Less_SNSG": {
       "repo": "Reports",
@@ -1968,7 +2036,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:P5MINFCST": {
       "repo": "Reports",
@@ -2000,7 +2070,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": null
     },
     "Reports:P5_Reports": {
       "repo": "Reports",
@@ -2032,7 +2104,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": null
     },
     "Reports:PDPASA": {
       "repo": "Reports",
@@ -2064,7 +2138,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:PDPASA_DUIDAVAILABILITY": {
       "repo": "Reports",
@@ -2085,7 +2161,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize."
+      "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize.",
+      "freshness_class": "append_only",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:PREDISPATCHFCST": {
       "repo": "Reports",
@@ -2117,7 +2195,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:PredispatchIS_Reports": {
       "repo": "Reports",
@@ -2149,7 +2229,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Predispatch_IRSR": {
       "repo": "Reports",
@@ -2181,7 +2263,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Predispatch_Reports": {
       "repo": "Reports",
@@ -2213,7 +2297,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Predispatch_Sensitivities": {
       "repo": "Reports",
@@ -2245,7 +2331,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Public_Prices": {
       "repo": "Reports",
@@ -2277,7 +2365,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:ROOFTOP_PV": {
       "repo": "Reports",
@@ -2309,7 +2399,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:SEVENDAYOUTLOOK_FULL": {
       "repo": "Reports",
@@ -2341,7 +2433,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:SEVENDAYOUTLOOK_PEAK": {
       "repo": "Reports",
@@ -2373,7 +2467,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:STPASA_DUIDAVAILABILITY": {
       "repo": "Reports",
@@ -2394,7 +2490,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize."
+      "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize.",
+      "freshness_class": "append_only",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Settlements": {
       "repo": "Reports",
@@ -2426,7 +2524,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Short_Term_PASA_Reports": {
       "repo": "Reports",
@@ -2458,7 +2558,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:TradingIS_Reports": {
       "repo": "Reports",
@@ -2490,7 +2592,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Trading_Cumulative_Price": {
       "repo": "Reports",
@@ -2522,7 +2626,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Trading_IRSR": {
       "repo": "Reports",
@@ -2554,7 +2660,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:WDR_CAPACITY_NO_SCADA": {
       "repo": "Reports",
@@ -2586,7 +2694,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:ANCILLARY_SERVICES_REPORTS": {
       "repo": "Reports",
@@ -2607,7 +2717,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Alt_Limits": {
       "repo": "Reports",
@@ -2628,7 +2740,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "append_only",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Ancillary_Services_Payments": {
       "repo": "Reports",
@@ -2649,7 +2763,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "append_only",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Auction_Units_Reports": {
       "repo": "Reports",
@@ -2670,7 +2786,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:CDEII": {
       "repo": "Reports",
@@ -2691,7 +2809,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:CSC_CSP_Settlements": {
       "repo": "Reports",
@@ -2712,7 +2832,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Causer_Pays_Elements": {
       "repo": "Reports",
@@ -2733,7 +2855,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:DAILYOCD": {
       "repo": "Reports",
@@ -2754,7 +2878,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:DISPATCHIS_PRICE_REVISIONS": {
       "repo": "Reports",
@@ -2775,7 +2901,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:DISPATCH_NEGATIVE_RESIDUE": {
       "repo": "Reports",
@@ -2796,7 +2924,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize."
+      "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize.",
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:DWGM": {
       "repo": "Reports",
@@ -2817,7 +2947,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": null
     },
     "Reports:Directions_Reconciliation": {
       "repo": "Reports",
@@ -2838,7 +2970,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:ECGS": {
       "repo": "Reports",
@@ -2859,7 +2993,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "append_only",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:FPP": {
       "repo": "Reports",
@@ -2880,7 +3016,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:FPP_HIST_REG_PERF": {
       "repo": "Reports",
@@ -2901,7 +3039,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:GBB": {
       "repo": "Reports",
@@ -2922,7 +3062,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "append_only",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Gas_Supply_Guarantee": {
       "repo": "Reports",
@@ -2943,7 +3085,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:HighImpactOutages": {
       "repo": "Reports",
@@ -2964,7 +3108,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:IBEI": {
       "repo": "Reports",
@@ -2985,7 +3131,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:MMSDataModelReport": {
       "repo": "Reports",
@@ -3006,7 +3154,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Marginal_Loss_Factors": {
       "repo": "Reports",
@@ -3027,7 +3177,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Market_Notice": {
       "repo": "Reports",
@@ -3048,7 +3200,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Mktsusp_Pricing": {
       "repo": "Reports",
@@ -3069,7 +3223,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Next_Day_Trading": {
       "repo": "Reports",
@@ -3090,7 +3246,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:PD7Day": {
       "repo": "Reports",
@@ -3111,7 +3269,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": null
     },
     "Reports:PDPASA_DUIDAvailability": {
       "repo": "Reports",
@@ -3132,7 +3292,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize."
+      "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize.",
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:PasaSnap": {
       "repo": "Reports",
@@ -3153,7 +3315,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Regional_Summary_Report": {
       "repo": "Reports",
@@ -3174,7 +3338,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:SRA_Bids": {
       "repo": "Reports",
@@ -3195,7 +3361,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:SRA_NSR_RECONCILIATION": {
       "repo": "Reports",
@@ -3216,7 +3384,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:SRA_Offers": {
       "repo": "Reports",
@@ -3237,7 +3407,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:SRA_Results": {
       "repo": "Reports",
@@ -3258,7 +3430,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:SSM_ENABLEMENT_COSTS": {
       "repo": "Reports",
@@ -3279,7 +3453,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:SSM_ENABLEMENT_PERIOD": {
       "repo": "Reports",
@@ -3300,7 +3476,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:STPASA_DUIDAvailability": {
       "repo": "Reports",
@@ -3321,7 +3499,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize."
+      "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize.",
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:STTM": {
       "repo": "Reports",
@@ -3342,7 +3522,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": null
     },
     "Reports:SupplyDemand": {
       "repo": "Reports",
@@ -3363,7 +3545,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:VicGas": {
       "repo": "Reports",
@@ -3384,7 +3568,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "append_only",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Vwa_Fcas_Prices": {
       "repo": "Reports",
@@ -3405,7 +3591,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Weekly_Constraint_Reports": {
       "repo": "Reports",
@@ -3426,7 +3614,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "Reports:Yesterdays_Bids_Reports": {
       "repo": "Reports",
@@ -3447,7 +3637,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "unclassified",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00"
     },
     "MMSDM:UNPARSED": {
       "repo": "MMSDM",
@@ -3634,6 +3826,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:ADG_DETAIL": {
@@ -3689,6 +3883,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:AGGREGATE_DISPATCH_GROUP": {
@@ -3744,6 +3940,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:ANCILLARY_RECOVERY_SPLIT": {
@@ -3799,6 +3997,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:APEVENT": {
@@ -3854,6 +4054,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:APEVENTREGION": {
@@ -3909,6 +4111,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:AUCTION": {
@@ -3964,6 +4168,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:AUCTION_CALENDAR": {
@@ -4019,6 +4225,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:AUCTION_IC_ALLOCATIONS": {
@@ -4074,6 +4282,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:AUCTION_TRANCHE": {
@@ -4129,6 +4339,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:AVERAGEPRICE30": {
@@ -4184,6 +4396,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BIDDAYOFFER": {
@@ -4239,6 +4453,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BIDDAYOFFER_D": {
@@ -4294,6 +4510,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BIDDUIDDETAILS": {
@@ -4349,6 +4567,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BIDDUIDDETAILSTRK": {
@@ -4404,6 +4624,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BIDOFFERPERIOD": {
@@ -4459,6 +4681,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BIDPEROFFER_D": {
@@ -4514,6 +4738,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BIDTYPES": {
@@ -4569,6 +4795,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BIDTYPESTRK": {
@@ -4624,6 +4852,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BILLINGCALENDAR": {
@@ -4679,6 +4909,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BILLINGDAYTRK": {
@@ -4734,6 +4966,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BILLINGREGIONEXPORTS": {
@@ -4789,6 +5023,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BILLINGREGIONFIGURES": {
@@ -4844,6 +5080,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BILLINGREGIONIMPORTS": {
@@ -4899,6 +5137,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BILLINGRUNTRK": {
@@ -4954,6 +5194,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BILLING_CO2E_PUBLICATION": {
@@ -5009,6 +5251,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BILLING_CO2E_PUBLICATION_TRK": {
@@ -5064,6 +5308,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BILLING_DIRECTION_RECON_OTHER": {
@@ -5119,6 +5365,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BILLING_NMAS_TST_RECVRY_RBF": {
@@ -5174,6 +5422,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:BILLING_NMAS_TST_RECVRY_TRK": {
@@ -5229,6 +5479,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:CONSTRAINTRELAXATION_OCD": {
@@ -5284,6 +5536,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DAYTRACK": {
@@ -5339,6 +5593,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DEMANDOPERATIONALACTUAL": {
@@ -5394,6 +5650,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DEMANDOPERATIONALFORECAST": {
@@ -5449,6 +5707,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCHABLEUNIT": {
@@ -5504,6 +5764,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCHBLOCKEDCONSTRAINT": {
@@ -5559,6 +5821,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCHCASESOLUTION": {
@@ -5614,6 +5878,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCHCONSTRAINT": {
@@ -5669,6 +5935,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCHINTERCONNECTORRES": {
@@ -5724,6 +5992,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCHLOAD": {
@@ -5779,6 +6049,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCHOFFERTRK": {
@@ -5834,6 +6106,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCHPRICE": {
@@ -5899,6 +6173,8 @@
       },
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": "Same table appears across multiple views (DATA, CTL, BCP_FMT, MYSQL) with different\ntime granularities: DATA uses yyyymmddHHMM, CTL/BCP_FMT/MYSQL use yyyymm.\nFilter by view= kwarg to narrow fan-out.\n",
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCHREGIONSUM": {
@@ -5954,6 +6230,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCH_CONSTRAINT_FCAS_OCD": {
@@ -6009,6 +6287,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCH_FCAS_REQ": {
@@ -6064,6 +6344,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCH_FCAS_REQ_CONSTRAINT": {
@@ -6119,6 +6401,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCH_FCAS_REQ_RUN": {
@@ -6174,6 +6458,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCH_INTERCONNECTION": {
@@ -6229,6 +6515,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCH_LOCAL_PRICE": {
@@ -6284,6 +6572,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCH_MNSPBIDTRK": {
@@ -6339,6 +6629,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCH_PRICE_REVISION": {
@@ -6394,6 +6686,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DISPATCH_UNIT_SCADA": {
@@ -6449,6 +6743,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DUALLOC": {
@@ -6504,6 +6800,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DUDETAIL": {
@@ -6559,6 +6857,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DUDETAILSUMMARY": {
@@ -6614,6 +6914,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:EMSMASTER": {
@@ -6669,6 +6971,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FCAS_REGU_USAGE_FACTORS": {
@@ -6724,6 +7028,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FCAS_REGU_USAGE_FACTORS_TRK": {
@@ -6779,6 +7085,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_CONSTRAINT_FREQ_MEASURE": {
@@ -6834,6 +7142,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_CONTRIBUTION_FACTOR": {
@@ -6889,6 +7199,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_EST_PERF_COST_RATE": {
@@ -6944,6 +7256,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_EST_RESIDUAL_COST_RATE": {
@@ -6999,6 +7313,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_FCAS_SUMMARY": {
@@ -7054,6 +7370,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_FORECAST_DEFAULT_CF": {
@@ -7109,6 +7427,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_FORECAST_RESIDUAL_DCF": {
@@ -7164,6 +7484,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_HIST_PERFORMANCE": {
@@ -7219,6 +7541,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_HIST_REGION_PERFORMANCE": {
@@ -7274,6 +7598,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_P5_FWD_EST_RESIDUALRATE": {
@@ -7329,6 +7655,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_PD_FWD_EST_RESIDUALRATE": {
@@ -7384,6 +7712,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_PERFORMANCE": {
@@ -7439,6 +7769,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_RCR": {
@@ -7494,6 +7826,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_REGION_FREQ_MEASURE": {
@@ -7549,6 +7883,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_RESIDUAL_CF": {
@@ -7604,6 +7940,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_RESIDUAL_PERFORMANCE": {
@@ -7659,6 +7997,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_RUN": {
@@ -7714,6 +8054,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_UNIT_MW": {
@@ -7769,6 +8111,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:FPP_USAGE": {
@@ -7824,6 +8168,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GDINSTRUCT": {
@@ -7879,6 +8225,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GENCONDATA": {
@@ -7934,6 +8282,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GENCONSET": {
@@ -7989,6 +8339,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GENCONSETINVOKE": {
@@ -8044,6 +8396,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GENCONSETTRK": {
@@ -8099,6 +8453,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GENERICCONSTRAINTRHS": {
@@ -8154,6 +8510,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GENERICEQUATIONDESC": {
@@ -8209,6 +8567,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GENERICEQUATIONRHS": {
@@ -8264,6 +8624,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GENUNITS": {
@@ -8319,6 +8681,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GENUNITS_UNIT": {
@@ -8374,6 +8738,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GST_BAS_CLASS": {
@@ -8429,6 +8795,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GST_RATE": {
@@ -8484,6 +8852,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GST_TRANSACTION_CLASS": {
@@ -8539,6 +8909,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:GST_TRANSACTION_TYPE": {
@@ -8594,6 +8966,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:INSTRUCTIONSUBTYPE": {
@@ -8649,6 +9023,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:INSTRUCTIONTYPE": {
@@ -8704,6 +9080,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:INTERCONNECTOR": {
@@ -8759,6 +9137,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:INTERCONNECTORCONSTRAINT": {
@@ -8814,6 +9194,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:INTERMITTENT_CLUSTER_AVAIL": {
@@ -8869,6 +9251,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:INTERMITTENT_CLUSTER_AVAIL_DAY": {
@@ -8924,6 +9308,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:INTERMITTENT_DS_PRED": {
@@ -8979,6 +9365,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:INTERMITTENT_DS_RUN": {
@@ -9034,6 +9422,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:INTERMITTENT_FORECAST_TRK": {
@@ -9089,6 +9479,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:INTERMITTENT_GEN_LIMIT": {
@@ -9144,6 +9536,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:INTERMITTENT_GEN_LIMIT_DAY": {
@@ -9199,6 +9593,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:INTERMITTENT_GEN_SCADA": {
@@ -9254,6 +9650,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:IRFMAMOUNT": {
@@ -9309,6 +9707,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:IRFMEVENTS": {
@@ -9364,6 +9764,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:LOSSFACTORMODEL": {
@@ -9419,6 +9821,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:LOSSMODEL": {
@@ -9474,6 +9878,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MARKETFEE": {
@@ -9529,6 +9935,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MARKETFEEDATA": {
@@ -9584,6 +9992,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MARKETFEETRK": {
@@ -9639,6 +10049,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MARKETNOTICETYPE": {
@@ -9694,6 +10106,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MARKETSUSPENSION": {
@@ -9749,6 +10163,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MARKETSUSREGION": {
@@ -9804,6 +10220,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MARKET_PRICE_THRESHOLDS": {
@@ -9859,6 +10277,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MARKET_SUSPEND_REGIME_SUM": {
@@ -9914,6 +10334,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MARKET_SUSPEND_REGION_SUM": {
@@ -9969,6 +10391,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MARKET_SUSPEND_SCHEDULE": {
@@ -10024,6 +10448,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MARKET_SUSPEND_SCHEDULE_TRK": {
@@ -10079,6 +10505,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MCC_CASESOLUTION": {
@@ -10134,6 +10562,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MCC_CONSTRAINTSOLUTION": {
@@ -10189,6 +10619,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:METERDATA_INTERCONNECTOR": {
@@ -10244,6 +10676,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MNSP_BIDOFFERPERIOD": {
@@ -10299,6 +10733,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MNSP_DAYOFFER": {
@@ -10354,6 +10790,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MNSP_INTERCONNECTOR": {
@@ -10409,6 +10847,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MNSP_PARTICIPANT": {
@@ -10464,6 +10904,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_CASERESULT": {
@@ -10519,6 +10961,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_CONSTRAINTRESULT": {
@@ -10574,6 +11018,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_CONSTRAINTSUMMARY": {
@@ -10629,6 +11075,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_DUIDAVAILABILITY": {
@@ -10684,6 +11132,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_INTERCONNECTORRESULT": {
@@ -10739,6 +11189,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_LOLPRESULT": {
@@ -10794,6 +11246,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_REGIONAVAILABILITY": {
@@ -10849,6 +11303,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_REGIONAVAIL_TRK": {
@@ -10904,6 +11360,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_REGIONITERATION": {
@@ -10959,6 +11417,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_REGIONRESULT": {
@@ -11014,6 +11474,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_REGIONSUMMARY": {
@@ -11069,6 +11531,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_RESERVELIMIT": {
@@ -11124,6 +11588,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_RESERVELIMIT_REGION": {
@@ -11179,6 +11645,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_RESERVELIMIT_SET": {
@@ -11234,6 +11702,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:NEGATIVE_RESIDUE": {
@@ -11289,6 +11759,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:NETWORK_EQUIPMENTDETAIL": {
@@ -11344,6 +11816,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:NETWORK_OUTAGECONSTRAINTSET": {
@@ -11399,6 +11873,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:NETWORK_OUTAGEDETAIL": {
@@ -11454,6 +11930,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:NETWORK_OUTAGESTATUSCODE": {
@@ -11509,6 +11987,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:NETWORK_RATING": {
@@ -11564,6 +12044,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:NETWORK_STATICRATING": {
@@ -11619,6 +12101,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:NETWORK_SUBSTATIONDETAIL": {
@@ -11674,6 +12158,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:OVERRIDERRP": {
@@ -11729,6 +12215,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:P5MIN_BLOCKEDCONSTRAINT": {
@@ -11784,6 +12272,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:P5MIN_CASESOLUTION": {
@@ -11839,6 +12329,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:P5MIN_CONSTRAINTSOLUTION": {
@@ -11905,6 +12397,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:P5MIN_FCAS_REQ_CONSTRAINT": {
@@ -11960,6 +12454,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:P5MIN_FCAS_REQ_RUN": {
@@ -12015,6 +12511,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:P5MIN_INTERCONNECTORSOLN": {
@@ -12081,6 +12579,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:P5MIN_INTERSENSITIVITIES": {
@@ -12136,6 +12636,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:P5MIN_LOCAL_PRICE": {
@@ -12191,6 +12693,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:P5MIN_PRICESENSITIVITIES": {
@@ -12246,6 +12750,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:P5MIN_REGIONSOLUTION": {
@@ -12312,6 +12818,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:P5MIN_SCENARIODEMAND": {
@@ -12367,6 +12875,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:P5MIN_SCENARIODEMANDTRK": {
@@ -12422,6 +12932,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PARTICIPANT": {
@@ -12477,6 +12989,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PARTICIPANTCATEGORY": {
@@ -12532,6 +13046,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PARTICIPANTCATEGORYALLOC": {
@@ -12587,6 +13103,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PARTICIPANTCLASS": {
@@ -12642,6 +13160,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PD7DAY_CASESOLUTION": {
@@ -12697,6 +13217,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PD7DAY_CONSTRAINTSOLUTION": {
@@ -12752,6 +13274,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PD7DAY_INTERCONNECTORSOLUTION": {
@@ -12807,6 +13331,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PD7DAY_MARKET_SUMMARY": {
@@ -12862,6 +13388,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PD7DAY_PRICESOLUTION": {
@@ -12917,6 +13445,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PDPASA_CASESOLUTION": {
@@ -12972,6 +13502,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PDPASA_CONSTRAINTSOLUTION": {
@@ -13027,6 +13559,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PDPASA_DUIDAVAILABILITY": {
@@ -13082,6 +13616,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PDPASA_INTERCONNECTORSOLN": {
@@ -13137,6 +13673,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PDPASA_REGIONSOLUTION": {
@@ -13192,6 +13730,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PD_FCAS_REQ_CONSTRAINT": {
@@ -13247,6 +13787,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PD_FCAS_REQ_RUN": {
@@ -13302,6 +13844,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PERDEMAND": {
@@ -13357,6 +13901,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PMS_GROUP": {
@@ -13412,6 +13958,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PMS_GROUPSERVICE": {
@@ -13467,6 +14015,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCHBLOCKEDCONSTRAINT": {
@@ -13522,6 +14072,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCHCASESOLUTION": {
@@ -13577,6 +14129,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCHCONSTRAINT": {
@@ -13643,6 +14197,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCHINTERCONNECTORRES": {
@@ -13709,6 +14265,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCHLOAD": {
@@ -13775,6 +14333,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCHOFFERTRK": {
@@ -13830,6 +14390,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCHPRICE": {
@@ -13896,6 +14458,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCHPRICESENSITIVITIES": {
@@ -13951,6 +14515,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCHREGIONSUM": {
@@ -14017,6 +14583,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCHSCENARIODEMAND": {
@@ -14072,6 +14640,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCHSCENARIODEMANDTRK": {
@@ -14127,6 +14697,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCH_FCAS_REQ": {
@@ -14182,6 +14754,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCH_LOCAL_PRICE": {
@@ -14237,6 +14811,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PREDISPATCH_MNSPBIDTRK": {
@@ -14292,6 +14868,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:PRUDENTIALRUNTRK": {
@@ -14347,6 +14925,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:REGION": {
@@ -14402,6 +14982,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:REGIONAPC": {
@@ -14457,6 +15039,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:REGIONAPCINTERVALS": {
@@ -14512,6 +15096,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:REGIONSTANDINGDATA": {
@@ -14567,6 +15153,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:RESDEMANDTRK": {
@@ -14622,6 +15210,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:RESIDUE_CONTRACTS": {
@@ -14677,6 +15267,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:RESIDUE_CON_FUNDS": {
@@ -14732,6 +15324,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:RESIDUE_PRICE_FUNDS_BID": {
@@ -14787,6 +15381,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:RESIDUE_PUBLIC_DATA": {
@@ -14842,6 +15438,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:RESIDUE_TRK": {
@@ -14897,6 +15495,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:ROOFTOP_PV_ACTUAL": {
@@ -14952,6 +15552,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:ROOFTOP_PV_FORECAST": {
@@ -15007,6 +15609,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SECDEPOSIT_INTEREST_RATE": {
@@ -15062,6 +15666,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SETCFG_PARTICIPANT_MPF": {
@@ -15117,6 +15723,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SETCFG_PARTICIPANT_MPFTRK": {
@@ -15172,6 +15780,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SETCFG_SAPS_SETT_PRICE": {
@@ -15227,6 +15837,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SETCFG_WDRRR_CALENDAR": {
@@ -15282,6 +15894,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SETCFG_WDR_REIMBURSE_RATE": {
@@ -15337,6 +15951,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SETCPDATAREGION": {
@@ -15392,6 +16008,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SETFCASREGIONRECOVERY": {
@@ -15447,6 +16065,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SETGENDATAREGION": {
@@ -15502,6 +16122,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SETINTRAREGIONRESIDUES": {
@@ -15557,6 +16179,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SETIRSURPLUS": {
@@ -15612,6 +16236,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SETLOCALAREAENERGY": {
@@ -15667,6 +16293,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SETLOCALAREATNI": {
@@ -15722,6 +16350,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SET_ANCILLARY_SUMMARY": {
@@ -15777,6 +16407,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SET_ENERGY_REGION_SUMMARY": {
@@ -15832,6 +16464,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SET_FCAS_CLAWBACK_REQ": {
@@ -15887,6 +16521,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SET_FCAS_CLAWBACK_RUN_TRK": {
@@ -15942,6 +16578,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SET_FCAS_REGULATION_TRK": {
@@ -15997,6 +16635,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SET_NMAS_RECOVERY_RBF": {
@@ -16052,6 +16692,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SPDCONNECTIONPOINTCONSTRAINT": {
@@ -16107,6 +16749,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SPDINTERCONNECTORCONSTRAINT": {
@@ -16162,6 +16806,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SPDREGIONCONSTRAINT": {
@@ -16217,6 +16863,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SRA_FINANCIAL_RUNTRK": {
@@ -16272,6 +16920,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SRA_PRUDENTIAL_RUN": {
@@ -16327,6 +16977,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SSM_ENABLEMENT_COSTS": {
@@ -16382,6 +17034,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:SSM_ENABLEMENT_PERIOD": {
@@ -16437,6 +17091,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:STADUALLOC": {
@@ -16492,6 +17148,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:STATION": {
@@ -16547,6 +17205,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:STATIONOPERATINGSTATUS": {
@@ -16602,6 +17262,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:STATIONOWNER": {
@@ -16657,6 +17319,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:STATIONOWNERTRK": {
@@ -16712,6 +17376,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:STPASA_CASESOLUTION": {
@@ -16767,6 +17433,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:STPASA_CONSTRAINTSOLUTION": {
@@ -16822,6 +17490,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:STPASA_DUIDAVAILABILITY": {
@@ -16877,6 +17547,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:STPASA_INTERCONNECTORSOLN": {
@@ -16932,6 +17604,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:STPASA_REGIONSOLUTION": {
@@ -16987,6 +17661,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:TRADINGINTERCONNECT": {
@@ -17042,6 +17718,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:TRADINGPRICE": {
@@ -17097,6 +17775,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:TRANSMISSIONLOSSFACTOR": {
@@ -17152,6 +17832,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:VOLTAGE_INSTRUCTION": {
@@ -17207,6 +17889,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:VOLTAGE_INSTRUCTION_TRK": {
@@ -17262,6 +17946,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:DOCUMENTATION_AUX": {
@@ -17284,6 +17970,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MMS_DATA_MODEL_v4.26": {
@@ -17306,6 +17994,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MMS_DATA_MODEL_v4.27": {
@@ -17328,6 +18018,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MMS_DATA_MODEL_v4.28": {
@@ -17350,6 +18042,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MMS_DATA_MODEL_v4.29": {
@@ -17372,6 +18066,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MMS_DATA_MODEL_v4.30": {
@@ -17394,6 +18090,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MMS_DATA_MODEL_v5.0": {
@@ -17416,6 +18114,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MMS_DATA_MODEL_v5.1": {
@@ -17438,6 +18138,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MMS_DATA_MODEL_v5.2": {
@@ -17460,6 +18162,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MMS_DATA_MODEL_v5.3": {
@@ -17482,6 +18186,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MMS_DATA_MODEL_v5.3_PreRelease": {
@@ -17504,6 +18210,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MMS_DATA_MODEL_v5.4": {
@@ -17526,6 +18234,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MMS_DATA_MODEL_v5.5": {
@@ -17548,6 +18258,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MMS_DATA_MODEL_v5.6": {
@@ -17570,6 +18282,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:MTPASA_DATA_EXPORT": {
@@ -17592,6 +18306,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "parent_index",
+      "last_observed_change_at": "2026-04-20T14:06:43+10:00",
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:UNKNOWN": {
@@ -17614,6 +18330,8 @@
       "query_shape": null,
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null,
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "NEMDE:NEMDE 1-18 File Readers": {
@@ -17635,7 +18353,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null
     },
     "NEMDE:Readme": {
       "repo": "NEMDE",
@@ -17667,7 +18387,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null
     },
     "NEMDE:Readme (1)": {
       "repo": "NEMDE",
@@ -17699,7 +18421,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null
     },
     "NEMDE:NEMSPDOutputs": {
       "repo": "NEMDE",
@@ -17720,7 +18444,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null
     },
     "NEMDE:NemPriceSetter": {
       "repo": "NEMDE",
@@ -17751,7 +18477,9 @@
         "output_count_hint": "daily"
       },
       "schema_source": null,
-      "anomaly_note": "Filename casing is 'NemPriceSetter' (mixed case), NOT 'NEMPriceSetter'.\nNEMWEB is case-sensitive — do not normalize. Extension is .zip containing XML,\nnot .xml directly.\n"
+      "anomaly_note": "Filename casing is 'NemPriceSetter' (mixed case), NOT 'NEMPriceSetter'.\nNEMWEB is case-sensitive — do not normalize. Extension is .zip containing XML,\nnot .xml directly.\n",
+      "freshness_class": "static",
+      "last_observed_change_at": null
     },
     "NEMDE:NemSpdOutputs": {
       "repo": "NEMDE",
@@ -17782,7 +18510,9 @@
         "output_count_hint": "daily"
       },
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null
     },
     "NEMDE:ROOT_AUX": {
       "repo": "NEMDE",
@@ -17803,7 +18533,9 @@
       },
       "query_shape": null,
       "schema_source": null,
-      "anomaly_note": null
+      "anomaly_note": null,
+      "freshness_class": "static",
+      "last_observed_change_at": null
     },
     "FCAS_Causer_Pays:CAUSER_PAYS": {
       "repo": "FCAS_Causer_Pays",
@@ -17834,7 +18566,9 @@
         "output_count_hint": "annual"
       },
       "schema_source": null,
-      "anomaly_note": "Frozen archive — only 2011 and 2012 files present as of 2026-04-18.\nFilename is literally {year}.txt (e.g., 2011.txt), no 'CAUSER_PAYS_' prefix,\nextension is .txt not .zip.\n"
+      "anomaly_note": "Frozen archive — only 2011 and 2012 files present as of 2026-04-18.\nFilename is literally {year}.txt (e.g., 2011.txt), no 'CAUSER_PAYS_' prefix,\nextension is .txt not .zip.\n",
+      "freshness_class": "static",
+      "last_observed_change_at": null
     },
     "Reports:NEXT_DAY_OFFER_ENERGY)SPARSE": {
       "resolvable": false,
@@ -17868,5 +18602,7 @@
       "repo": "Reports",
       "intra_repo_id": "DispatchIS_FCAS_Fix"
     }
-  }
+  },
+  "last_crawl_attempted_at": "2026-04-20T04:12:56Z",
+  "last_crawl_completed_at": "2026-04-20T04:12:56Z"
 }

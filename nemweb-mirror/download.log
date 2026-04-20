@@ -1,3 +1,7 @@
-Scanning mirror for gaps…
-  found 0 referenced-but-missing paths
-No gaps. Nothing to do.
+Traceback (most recent call last):
+  File "/home/runner/work/nem-catalog/nem-catalog/scripts/nemweb_download.py", line 407, in <module>
+    sys.exit(main(sys.argv[1:]))
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/nem-catalog/nem-catalog/scripts/nemweb_download.py", line 368, in main
+    from scripts.policy import Policy, PolicyLoadError
+ModuleNotFoundError: No module named 'scripts'
