@@ -19,6 +19,19 @@ htmlcov/
 # Generated catalog artifacts
 patterns/auto/
 
+# Local-only MMSDM documentation capture (177 MB, analysis-only).
+# See reference/NEMWEB-STRUCTURE.md §2.2 and reference/MMSDM-TABLE-LIFECYCLE.md
+# for how to regenerate: every file lives under
+# https://nemweb.com.au/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{month}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/
+# INVENTORY.md is the recapture provenance manifest — kept in git as documentation.
+reference/aemo-mmsdm-docs/*
+!reference/aemo-mmsdm-docs/INVENTORY.md
+
+# Local-only AEMO catalog capture (per-manifest + schema files, regeneratable).
+# FETCH-MANIFEST.md is the capture provenance — kept in git as documentation.
+reference/aemo-catalog/*
+!reference/aemo-catalog/FETCH-MANIFEST.md
+
 # Editor
 .idea/
 .vscode/
