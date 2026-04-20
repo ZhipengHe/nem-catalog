@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "catalog_version": "2026.04.20",
-  "as_of": "2026-04-20T04:25:17Z",
-  "source_mirror_commit": "1fc5151",
+  "as_of": "2026-04-20T04:48:53Z",
+  "source_mirror_commit": "491bce3",
   "placeholders": {
     "date": {
       "format": "yyyymmdd",
@@ -893,7 +893,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Bidmove_Complete": {
       "repo": "Reports",
@@ -927,7 +927,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Billing": {
       "repo": "Reports",
@@ -961,7 +961,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Causer_Pays_Scada": {
       "repo": "Reports",
@@ -984,7 +984,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "append_only",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:DISPATCHFCST": {
       "repo": "Reports",
@@ -1006,11 +1006,11 @@
           "path_template": "/Reports/CURRENT/DISPATCHFCST/",
           "filename_template": "PUBLIC_DISPATCHFCST_{timestamp}_{aemo_id}.zip",
           "filename_regex": "PUBLIC_DISPATCHFCST_\\d{12}_\\d{16}\\.zip",
-          "example": "PUBLIC_DISPATCHFCST_202604181425_0000000513535451.zip",
+          "example": "PUBLIC_DISPATCHFCST_202604181445_0000000513537618.zip",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-04-18T14:21:00",
-            "to": "2026-04-20T14:18:00"
+            "from": "2026-04-18T14:41:00",
+            "to": "2026-04-20T14:44:00"
           }
         }
       },
@@ -1018,7 +1018,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "rolling",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Daily_Reports": {
       "repo": "Reports",
@@ -1052,7 +1052,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:DispatchIS_Reports": {
       "repo": "Reports",
@@ -1074,11 +1074,11 @@
           "path_template": "/Reports/CURRENT/DispatchIS_Reports/",
           "filename_template": "PUBLIC_DISPATCHIS_{timestamp}_{aemo_id}.zip",
           "filename_regex": "PUBLIC_DISPATCHIS_\\d{12}_\\d{16}\\.zip",
-          "example": "PUBLIC_DISPATCHIS_202604181425_0000000513535435.zip",
+          "example": "PUBLIC_DISPATCHIS_202604181445_0000000513537596.zip",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-04-18T14:20:00",
-            "to": "2026-04-20T14:20:00"
+            "from": "2026-04-18T14:40:00",
+            "to": "2026-04-20T14:40:00"
           },
           "retention_hint_unverified_days": 2
         }
@@ -1097,7 +1097,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "rolling",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Dispatch_IRSR": {
       "repo": "Reports",
@@ -1131,7 +1131,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Dispatch_Negative_Residue": {
       "repo": "Reports",
@@ -1154,7 +1154,7 @@
       "schema_source": null,
       "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize.",
       "freshness_class": "append_only",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Dispatch_Reports": {
       "repo": "Reports",
@@ -1188,7 +1188,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Dispatch_SCADA": {
       "repo": "Reports",
@@ -1222,7 +1222,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Dispatchprices_PRE_AP": {
       "repo": "Reports",
@@ -1256,7 +1256,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:FPPDAILY": {
       "repo": "Reports",
@@ -1290,7 +1290,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:FPPRATES": {
       "repo": "Reports",
@@ -1312,11 +1312,11 @@
           "path_template": "/Reports/CURRENT/FPPRATES/",
           "filename_template": "PUBLIC_FPP_RATES_{timestamp}_{aemo_id}.zip",
           "filename_regex": "PUBLIC_FPP_RATES_\\d{12}_\\d{16}\\.zip",
-          "example": "PUBLIC_FPP_RATES_202604181415_0000000513535355.zip",
+          "example": "PUBLIC_FPP_RATES_202604181435_0000000513537497.zip",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-04-18T14:20:00",
-            "to": "2026-04-20T14:18:00"
+            "from": "2026-04-18T14:40:00",
+            "to": "2026-04-20T14:40:00"
           }
         }
       },
@@ -1324,7 +1324,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "rolling",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:FPPRUN": {
       "repo": "Reports",
@@ -1346,11 +1346,11 @@
           "path_template": "/Reports/CURRENT/FPPRUN/",
           "filename_template": "PUBLIC_FPP_RUN_{timestamp}_{aemo_id}.zip",
           "filename_regex": "PUBLIC_FPP_RUN_\\d{12}_\\d{16}\\.zip",
-          "example": "PUBLIC_FPP_RUN_202604181415_0000000513535352.zip",
+          "example": "PUBLIC_FPP_RUN_202604181435_0000000513537494.zip",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-04-18T14:20:00",
-            "to": "2026-04-20T14:18:00"
+            "from": "2026-04-18T14:40:00",
+            "to": "2026-04-20T14:41:00"
           }
         }
       },
@@ -1358,7 +1358,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "rolling",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:GSH": {
       "repo": "Reports",
@@ -1392,7 +1392,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:HistDemand": {
       "repo": "Reports",
@@ -1426,7 +1426,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:MCCDispatch": {
       "repo": "Reports",
@@ -1460,7 +1460,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:MTPASA_DUIDAvailability": {
       "repo": "Reports",
@@ -1494,7 +1494,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:MTPASA_RegionAvailability": {
       "repo": "Reports",
@@ -1528,7 +1528,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Medium_Term_PASA_Reports": {
       "repo": "Reports",
@@ -1562,7 +1562,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:NEXT_DAY_AVAIL_SUBMISS_CLUSTER": {
       "repo": "Reports",
@@ -1596,7 +1596,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:NEXT_DAY_AVAIL_SUBMISS_DAY": {
       "repo": "Reports",
@@ -1630,7 +1630,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:NEXT_DAY_MCCDISPATCH": {
       "repo": "Reports",
@@ -1664,7 +1664,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Network": {
       "repo": "Reports",
@@ -1686,11 +1686,11 @@
           "path_template": "/Reports/CURRENT/Network/",
           "filename_template": "PUBLIC_NETWORK_{datetime}_{aemo_id}.zip",
           "filename_regex": "PUBLIC_NETWORK_\\d{14}_\\d{16}\\.zip",
-          "example": "PUBLIC_NETWORK_20260413143022_0000000512724965.zip",
+          "example": "PUBLIC_NETWORK_20260413150023_0000000512728647.zip",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-04-13T14:34:00",
-            "to": "2026-04-20T14:06:00"
+            "from": "2026-04-13T15:03:00",
+            "to": "2026-04-20T14:33:00"
           }
         }
       },
@@ -1698,7 +1698,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Next_Day_Actual_Gen": {
       "repo": "Reports",
@@ -1732,7 +1732,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Next_Day_Dispatch": {
       "repo": "Reports",
@@ -1766,7 +1766,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Next_Day_Intermittent_DS": {
       "repo": "Reports",
@@ -1800,7 +1800,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Next_Day_Intermittent_Gen_Scada": {
       "repo": "Reports",
@@ -1834,7 +1834,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Next_Day_Offer_Energy_SPARSE": {
       "repo": "Reports",
@@ -1868,7 +1868,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Next_Day_Offer_FCAS_SPARSE": {
       "repo": "Reports",
@@ -1902,7 +1902,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Next_Day_PreDispatch": {
       "repo": "Reports",
@@ -1936,7 +1936,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Next_Day_PreDispatchD": {
       "repo": "Reports",
@@ -1970,7 +1970,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Operational_Demand": {
       "repo": "Reports",
@@ -1992,11 +1992,11 @@
           "path_template": "/Reports/CURRENT/Operational_Demand/FORECAST_HH_AREA/",
           "filename_template": "PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_{timestamp}_{datetime}.zip",
           "filename_regex": "PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_\\d{12}_\\d{14}\\.zip",
-          "example": "PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_202602191500_20260219143207.zip",
+          "example": "PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_202602191530_20260219150220.zip",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-02-19T14:32:00",
-            "to": "2026-04-20T14:06:00"
+            "from": "2026-02-19T15:02:00",
+            "to": "2026-04-20T14:34:00"
           }
         }
       },
@@ -2004,7 +2004,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Operational_Demand_Less_SNSG": {
       "repo": "Reports",
@@ -2038,7 +2038,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:P5MINFCST": {
       "repo": "Reports",
@@ -2132,7 +2132,7 @@
           "cadence": "5min",
           "observed_range": {
             "from": "2026-04-06T14:47:00",
-            "to": "2026-04-20T14:06:00"
+            "to": "2026-04-20T14:38:00"
           }
         }
       },
@@ -2140,7 +2140,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:PDPASA_DUIDAVAILABILITY": {
       "repo": "Reports",
@@ -2163,7 +2163,7 @@
       "schema_source": null,
       "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize.",
       "freshness_class": "append_only",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:PREDISPATCHFCST": {
       "repo": "Reports",
@@ -2185,11 +2185,11 @@
           "path_template": "/Reports/CURRENT/PREDISPATCHFCST/",
           "filename_template": "PUBLIC_PREDISPATCHFCST_{timestamp}_{aemo_id}.zip",
           "filename_regex": "PUBLIC_PREDISPATCHFCST_\\d{12}_\\d{16}\\.zip",
-          "example": "PUBLIC_PREDISPATCHFCST_202604061500_0000000511602751.zip",
+          "example": "PUBLIC_PREDISPATCHFCST_202604061530_0000000511606184.zip",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-04-06T14:37:00",
-            "to": "2026-04-20T14:07:00"
+            "from": "2026-04-06T15:13:00",
+            "to": "2026-04-20T14:34:00"
           }
         }
       },
@@ -2197,7 +2197,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:PredispatchIS_Reports": {
       "repo": "Reports",
@@ -2231,7 +2231,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Predispatch_IRSR": {
       "repo": "Reports",
@@ -2253,11 +2253,11 @@
           "path_template": "/Reports/CURRENT/Predispatch_IRSR/",
           "filename_template": "PUBLIC_PREDISPATCH_IRSR_{timestamp}_{aemo_id}.zip",
           "filename_regex": "PUBLIC_PREDISPATCH_IRSR_\\d{12}_\\d{16}\\.zip",
-          "example": "PUBLIC_PREDISPATCH_IRSR_202604061500_0000000511602738.zip",
+          "example": "PUBLIC_PREDISPATCH_IRSR_202604061530_0000000511606148.zip",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-04-06T14:37:00",
-            "to": "2026-04-20T14:07:00"
+            "from": "2026-04-06T15:14:00",
+            "to": "2026-04-20T14:34:00"
           }
         }
       },
@@ -2265,7 +2265,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Predispatch_Reports": {
       "repo": "Reports",
@@ -2299,7 +2299,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Predispatch_Sensitivities": {
       "repo": "Reports",
@@ -2333,7 +2333,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Public_Prices": {
       "repo": "Reports",
@@ -2367,7 +2367,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:ROOFTOP_PV": {
       "repo": "Reports",
@@ -2389,11 +2389,11 @@
           "path_template": "/Reports/CURRENT/ROOFTOP_PV/FORECAST_AREA/",
           "filename_template": "PUBLIC_ROOFTOP_PV_FORECAST_AREA_{datetime}_{aemo_id}.zip",
           "filename_regex": "PUBLIC_ROOFTOP_PV_FORECAST_AREA_\\d{14}_\\d{16}\\.zip",
-          "example": "PUBLIC_ROOFTOP_PV_FORECAST_AREA_20260406143000_0000000511602464.zip",
+          "example": "PUBLIC_ROOFTOP_PV_FORECAST_AREA_20260406150000_0000000511605824.zip",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-04-06T14:38:00",
-            "to": "2026-04-20T14:03:00"
+            "from": "2026-04-06T15:06:00",
+            "to": "2026-04-20T14:31:00"
           }
         }
       },
@@ -2401,7 +2401,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:SEVENDAYOUTLOOK_FULL": {
       "repo": "Reports",
@@ -2435,7 +2435,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:SEVENDAYOUTLOOK_PEAK": {
       "repo": "Reports",
@@ -2457,11 +2457,11 @@
           "path_template": "/Reports/CURRENT/SEVENDAYOUTLOOK_PEAK/",
           "filename_template": "PUBLIC_SEVENDAYOUTLOOK_PEAK_{datetime}_{aemo_id}.zip",
           "filename_regex": "PUBLIC_SEVENDAYOUTLOOK_PEAK_\\d{14}_\\d{16}\\.zip",
-          "example": "PUBLIC_SEVENDAYOUTLOOK_PEAK_20260219143509_0000000504188988.zip",
+          "example": "PUBLIC_SEVENDAYOUTLOOK_PEAK_20260219150518_0000000504192438.zip",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-02-19T14:36:00",
-            "to": "2026-04-20T14:07:00"
+            "from": "2026-02-19T15:06:00",
+            "to": "2026-04-20T14:38:00"
           }
         }
       },
@@ -2469,7 +2469,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:STPASA_DUIDAVAILABILITY": {
       "repo": "Reports",
@@ -2492,7 +2492,7 @@
       "schema_source": null,
       "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize.",
       "freshness_class": "append_only",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Settlements": {
       "repo": "Reports",
@@ -2526,7 +2526,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Short_Term_PASA_Reports": {
       "repo": "Reports",
@@ -2560,7 +2560,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:TradingIS_Reports": {
       "repo": "Reports",
@@ -2594,7 +2594,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Trading_Cumulative_Price": {
       "repo": "Reports",
@@ -2628,7 +2628,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Trading_IRSR": {
       "repo": "Reports",
@@ -2650,11 +2650,11 @@
           "path_template": "/Reports/CURRENT/Trading_IRSR/",
           "filename_template": "PUBLIC_TRADING_IRSR_{timestamp}_{aemo_id}.zip",
           "filename_regex": "PUBLIC_TRADING_IRSR_\\d{12}_\\d{16}\\.zip",
-          "example": "PUBLIC_TRADING_IRSR_202604061420_0000000511600930.zip",
+          "example": "PUBLIC_TRADING_IRSR_202604061445_0000000511603684.zip",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-04-06T14:28:00",
-            "to": "2026-04-20T14:17:00"
+            "from": "2026-04-06T14:48:00",
+            "to": "2026-04-20T14:42:00"
           }
         }
       },
@@ -2662,7 +2662,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:WDR_CAPACITY_NO_SCADA": {
       "repo": "Reports",
@@ -2696,7 +2696,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:ANCILLARY_SERVICES_REPORTS": {
       "repo": "Reports",
@@ -2719,7 +2719,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Alt_Limits": {
       "repo": "Reports",
@@ -2742,7 +2742,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "append_only",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Ancillary_Services_Payments": {
       "repo": "Reports",
@@ -2765,7 +2765,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "append_only",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Auction_Units_Reports": {
       "repo": "Reports",
@@ -2788,7 +2788,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:CDEII": {
       "repo": "Reports",
@@ -2811,7 +2811,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:CSC_CSP_Settlements": {
       "repo": "Reports",
@@ -2834,7 +2834,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Causer_Pays_Elements": {
       "repo": "Reports",
@@ -2857,7 +2857,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:DAILYOCD": {
       "repo": "Reports",
@@ -2880,7 +2880,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:DISPATCHIS_PRICE_REVISIONS": {
       "repo": "Reports",
@@ -2903,7 +2903,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:DISPATCH_NEGATIVE_RESIDUE": {
       "repo": "Reports",
@@ -2926,7 +2926,7 @@
       "schema_source": null,
       "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize.",
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:DWGM": {
       "repo": "Reports",
@@ -2972,7 +2972,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:ECGS": {
       "repo": "Reports",
@@ -2981,13 +2981,13 @@
       "tiers": {
         "CURRENT": {
           "path_template": "/Reports/CURRENT/ECGS/ECGS_Notices/Attachments/",
-          "filename_template": "{datetime} - REVOCATION OF EAST COAST GAS SYSTEM RISK OR THREAT NOTICE {d2} AUG {year}.PDF",
-          "filename_regex": "\\d{14}\\ \\-\\ REVOCATION\\ OF\\ EAST\\ COAST\\ GAS\\ SYSTEM\\ RISK\\ OR\\ THREAT\\ NOTICE\\ \\d{2}\\ AUG\\ \\d{4}\\.PDF",
-          "example": "20240823135740 - REVOCATION OF EAST COAST GAS SYSTEM RISK OR THREAT NOTICE 23 AUG 2024.PDF",
+          "filename_template": "{datetime} - Revocation of a Risk or Threat Notice, QGP Failure Event.pdf",
+          "filename_regex": "\\d{14}\\ \\-\\ Revocation\\ of\\ a\\ Risk\\ or\\ Threat\\ Notice,\\ QGP\\ Failure\\ Event\\.pdf",
+          "example": "20241210094931 - Revocation of a Risk or Threat Notice, QGP Failure Event.pdf",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-04-20T13:46:00",
-            "to": "2026-04-20T13:46:00"
+            "from": "2026-04-20T14:40:00",
+            "to": "2026-04-20T14:40:00"
           }
         }
       },
@@ -2995,7 +2995,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "append_only",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:FPP": {
       "repo": "Reports",
@@ -3018,7 +3018,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:FPP_HIST_REG_PERF": {
       "repo": "Reports",
@@ -3041,7 +3041,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:GBB": {
       "repo": "Reports",
@@ -3064,7 +3064,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "append_only",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Gas_Supply_Guarantee": {
       "repo": "Reports",
@@ -3087,7 +3087,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:HighImpactOutages": {
       "repo": "Reports",
@@ -3110,7 +3110,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:IBEI": {
       "repo": "Reports",
@@ -3133,7 +3133,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:MMSDataModelReport": {
       "repo": "Reports",
@@ -3156,7 +3156,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Marginal_Loss_Factors": {
       "repo": "Reports",
@@ -3179,7 +3179,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Market_Notice": {
       "repo": "Reports",
@@ -3194,7 +3194,7 @@
           "cadence": "5min",
           "observed_range": {
             "from": "2026-02-19T15:31:00",
-            "to": "2026-04-20T14:19:00"
+            "to": "2026-04-20T14:37:00"
           }
         }
       },
@@ -3202,7 +3202,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Mktsusp_Pricing": {
       "repo": "Reports",
@@ -3225,7 +3225,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Next_Day_Trading": {
       "repo": "Reports",
@@ -3248,7 +3248,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:PD7Day": {
       "repo": "Reports",
@@ -3282,11 +3282,11 @@
           "path_template": "/Reports/CURRENT/PDPASA_DUIDAvailability/",
           "filename_template": "PUBLIC_PDPASA_DUIDAVAILABILITY_{timestamp}_{aemo_id}.zip",
           "filename_regex": "PUBLIC_PDPASA_DUIDAVAILABILITY_\\d{12}_\\d{16}\\.zip",
-          "example": "PUBLIC_PDPASA_DUIDAVAILABILITY_202602191500_0000000504188567.zip",
+          "example": "PUBLIC_PDPASA_DUIDAVAILABILITY_202602191530_0000000504191990.zip",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-02-19T14:33:00",
-            "to": "2026-04-20T14:07:00"
+            "from": "2026-02-19T15:03:00",
+            "to": "2026-04-20T14:34:00"
           }
         }
       },
@@ -3294,7 +3294,7 @@
       "schema_source": null,
       "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize.",
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:PasaSnap": {
       "repo": "Reports",
@@ -3317,7 +3317,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Regional_Summary_Report": {
       "repo": "Reports",
@@ -3340,7 +3340,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:SRA_Bids": {
       "repo": "Reports",
@@ -3363,7 +3363,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:SRA_NSR_RECONCILIATION": {
       "repo": "Reports",
@@ -3386,7 +3386,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:SRA_Offers": {
       "repo": "Reports",
@@ -3409,7 +3409,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:SRA_Results": {
       "repo": "Reports",
@@ -3432,7 +3432,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:SSM_ENABLEMENT_COSTS": {
       "repo": "Reports",
@@ -3455,7 +3455,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:SSM_ENABLEMENT_PERIOD": {
       "repo": "Reports",
@@ -3478,7 +3478,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:STPASA_DUIDAvailability": {
       "repo": "Reports",
@@ -3501,7 +3501,7 @@
       "schema_source": null,
       "anomaly_note": "CURRENT/ARCHIVE tiers use different casing for this stream. Preserve exact case per tier when constructing URLs; do not normalize.",
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:STTM": {
       "repo": "Reports",
@@ -3547,7 +3547,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:VicGas": {
       "repo": "Reports",
@@ -3556,13 +3556,13 @@
       "tiers": {
         "CURRENT": {
           "path_template": "/Reports/CURRENT/VicGas/",
-          "filename_template": "int{d3}d_v{d11}_zftc_{d12}.csv",
-          "filename_regex": "int\\d{3}d_v\\d{1}_zftc_\\d{1}\\.csv",
-          "example": "int112d_v4_zftc_1.csv",
+          "filename_template": "int{d3}_v{d1}_uplift_cap~{datetime}.csv",
+          "filename_regex": "int\\d{3}_v\\d{1}_uplift_cap\\~\\d{14}\\.csv",
+          "example": "int135_v4_uplift_cap~20100817153329.csv",
           "cadence": "5min",
           "observed_range": {
-            "from": "2026-04-20T14:08:00",
-            "to": "2026-04-20T14:08:00"
+            "from": "2026-04-20T13:56:00",
+            "to": "2026-04-20T13:56:00"
           }
         }
       },
@@ -3570,7 +3570,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "append_only",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Vwa_Fcas_Prices": {
       "repo": "Reports",
@@ -3593,7 +3593,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Weekly_Constraint_Reports": {
       "repo": "Reports",
@@ -3616,7 +3616,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "Reports:Yesterdays_Bids_Reports": {
       "repo": "Reports",
@@ -3639,7 +3639,7 @@
       "schema_source": null,
       "anomaly_note": null,
       "freshness_class": "unclassified",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00"
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00"
     },
     "MMSDM:UNPARSED": {
       "repo": "MMSDM",
@@ -18307,7 +18307,7 @@
       "schema_source": "https://tech-specs.docs.public.aemo.com.au/",
       "anomaly_note": null,
       "freshness_class": "parent_index",
-      "last_observed_change_at": "2026-04-20T14:16:28+10:00",
+      "last_observed_change_at": "2026-04-20T14:41:37+10:00",
       "schema_source_note": "Generic portal root. Per-table anchors (e.g., .../TSP_EMMSDM57_May2026/tables/DISPATCHPRICE)\ndeferred to v0.2 pending primary-source stability verification.\n"
     },
     "MMSDM:UNKNOWN": {
@@ -18603,6 +18603,6 @@
       "intra_repo_id": "DispatchIS_FCAS_Fix"
     }
   },
-  "last_crawl_attempted_at": "2026-04-20T04:18:48Z",
-  "last_crawl_completed_at": "2026-04-20T04:25:07Z"
+  "last_crawl_attempted_at": "2026-04-20T04:42:52Z",
+  "last_crawl_completed_at": "2026-04-20T04:48:43Z"
 }
