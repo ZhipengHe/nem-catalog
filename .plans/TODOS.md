@@ -36,7 +36,7 @@ Co-shipped: `reference/NEMWEB-STRUCTURE.md §2.1.1` primary-source correction (2
 
 Tracked on GitHub: issue #14.
 
-- First clean `policy-audit.yml` run post-DUPLICATE-fix. Policy-audit is the monthly first-Monday 02:00 UTC cron; next natural fire is **2026-05-04**. Do not cut the v0.2 tag until that run is clean — it confirms the walk-filter change introduced no regressions that the audit catches.
+- First clean `policy-audit.yml` run post-DUPLICATE-fix. Cron is `"0 0 1 * *"` (1st of month 00:00 UTC = 10:00 AEST); next natural fire **2026-05-01**. Workflow also supports `workflow_dispatch` for earlier manual evaluation once v0.2 feature work lands. Do not cut the v0.2 tag until the run (scheduled or manual) is clean — it confirms the walk-filter change introduced no regressions that the audit catches.
 
 ### Workflow + action hygiene (pre-v0.2 polish pass)
 
