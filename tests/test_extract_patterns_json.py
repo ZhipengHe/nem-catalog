@@ -385,6 +385,19 @@ def test_main_handles_all_duplicate_classes(tmp_path, monkeypatch, capsys):
         ["GasBBActualFlowStorageLast31_20260101000000.CSV"],
     )
 
+    # Class (b) — single-file non-LEGACY (e.g. Dispatch_SCADA on the real mirror).
+    # This pins the 2026-04-21 §2.1.1 correction: 10 of the 12 "single-file"
+    # DUPLICATE dirs hold a plain parent-regex filename, NOT _LEGACY. They must
+    # be kept, same as the multi-file class-(b) case.
+    _write_iis_listing(
+        mirror / "Reports/CURRENT/Dispatch_SCADA",
+        ["PUBLIC_DISPATCHSCADA_202604181445_0000000513537601.zip"],
+    )
+    _write_iis_listing(
+        mirror / "Reports/CURRENT/Dispatch_SCADA/DUPLICATE",
+        ["PUBLIC_DISPATCHSCADA_202508121115_0000000475994495.zip"],
+    )
+
     monkeypatch.setattr(extract_patterns, "MIRROR", mirror)
     monkeypatch.chdir(tmp_path)
 
@@ -408,10 +421,19 @@ def test_main_handles_all_duplicate_classes(tmp_path, monkeypatch, capsys):
         "class-(a) _LEGACY placeholders must be skipped"
     )
 
-    # Class (b): Trading_Cumulative_Price keeps both parent AND DUPLICATE path_templates.
+    # Class (b) multi-file: Trading_Cumulative_Price keeps both parent AND DUPLICATE path_templates.
     tcp_paths = path_templates_by_stream["Trading_Cumulative_Price"]
     assert "/Reports/CURRENT/Trading_Cumulative_Price/" in tcp_paths
     assert any("DUPLICATE" in p for p in tcp_paths), "class-(b) multi-file stragglers must be kept"
+
+    # Class (b) single-file: Dispatch_SCADA keeps both parent AND DUPLICATE path_templates.
+    # Pins the §2.1.1 correction — single-file non-LEGACY DUPLICATEs are NOT class-(a).
+    scada_paths = path_templates_by_stream["Dispatch_SCADA"]
+    assert "/Reports/CURRENT/Dispatch_SCADA/" in scada_paths
+    assert any("DUPLICATE" in p for p in scada_paths), (
+        "class-(b) single-file non-LEGACY stragglers must be kept "
+        "(10 such dirs on real mirror; §2.1.1 2026-04-21 correction)"
+    )
 
     # Class (c): GBB keeps the DUPLICATE path (PR #9 regression pin).
     gbb_paths = path_templates_by_stream["GBB"]

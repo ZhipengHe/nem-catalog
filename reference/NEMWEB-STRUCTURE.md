@@ -309,7 +309,7 @@ AEMO publishes a machine-readable catalog at `https://visualisations.aemo.com.au
 | `/Data_Archive/.../MMSDM/MTPASA_DATA_EXPORT/` | 7 files, frozen 2019-10 | Absent | 100% gap |
 | `/Data_Archive/.../NEMDE/{month}/NEMDE_Market_Data/` | `NEMDE_Files/` (month-varying) + `File_Readers/` (static, identical across all months) | `NEMDE_Files/` only | 100% of `File_Readers/` content uncovered. Since `File_Readers/` is static (§2.3), this gap is tolerable — one canonical asset rather than per-month data. |
 | `/Data_Archive/.../FCAS_Causer_Pays/` | 2011, 2012 txt files | Absent | 100% gap |
-| `/Reports/CURRENT/*/DUPLICATE/` | 18 subtrees (652 files total; 617 in `GBB/DUPLICATE/`) | Absent | 100% gap — catalog silent on every `DUPLICATE/`. The single-file `_LEGACY.zip` placeholders (12 cases) can safely be skipped; the 6 multi-file cases and especially `GBB/DUPLICATE/` carry real data (§2.1.1). |
+| `/Reports/CURRENT/*/DUPLICATE/` | 18 subtrees (652 files total; 617 in `GBB/DUPLICATE/`) | Absent | 100% gap — catalog silent on every `DUPLICATE/`. The single-file `_LEGACY.zip` placeholders (2 cases) can safely be skipped; the remaining 15 class-(b) non-LEGACY straggler dirs and especially `GBB/DUPLICATE/` carry real data (§2.1.1). |
 | `/Reports/CURRENT/MMSDataModelReport/PDRCONFIG/` | 2 PDR config bundles (preprod + prod) | Absent | 100% gap |
 
 **Catalog URLs with casing mismatched from the mirror** (will 404 after AEMO's stated 2026-04-21 case-sensitivity enforcement):

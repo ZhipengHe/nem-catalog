@@ -73,7 +73,7 @@ v0.2 addresses v0.1.0's explicit known-issues list. Keep the scope small and foc
 
 ### v0.2 candidate — `write_json` multi-row collapse fix (28 victims)
 
-- **What:** Redesign how `write_json()` emits multiple `(dataset, tier)` rows. Currently `datasets[key]["tiers"][tier_name] = tier_record` (line 873 of `scripts/extract_patterns.py`) overwrites — the last row in sort order wins; all earlier rows for the same (dataset, tier) vanish. As a result, 28 (dataset, tier) combos surface only ONE of their N path_templates in the published catalog.
+- **What:** Redesign how `write_json()` emits multiple `(dataset, tier)` rows. Currently the per-row `datasets[key]["tiers"][tier_name] = tier_record` assignment inside `write_json()` in `scripts/extract_patterns.py` overwrites — the last row in sort order wins; all earlier rows for the same (dataset, tier) vanish. As a result, 28 (dataset, tier) combos surface only ONE of their N path_templates in the published catalog.
 - **Why:** Each collapsed row represents a real dataset the consumer cannot reach via `catalog.resolve()`. Scope of silent data loss:
   - **15 `/DUPLICATE/`-related collapses.** v0.1.2's `_LEGACY` filter only fixes 2 of 17. The remaining 15 catalog tiers still point into `/DUPLICATE/` (e.g. `Reports:Dispatch_SCADA` CURRENT = `/Reports/CURRENT/Dispatch_SCADA/DUPLICATE/` — wrong primary path).
   - **13 legit-multi-subdir collapses.** §2.1.1 lists 9 CURRENT + 4 ARCHIVE streams (GSH, Operational_Demand, ROOFTOP_PV, Operational_Demand_Less_SNSG, MMSDataModelReport, STTM, ECGS, plus a few taxonomy-root AUX rows) where the parent stream has multiple sub-datasets. For example, `Reports:GSH` has 13 sub-datasets (GSH_Participants, GSH_Daily_Trans_Summary, GSH_Benchmark_Price, …) but the catalog surfaces only **1**. The other 12 are invisible.
@@ -82,7 +82,7 @@ v0.2 addresses v0.1.0's explicit known-issues list. Keep the scope small and foc
   2. Promote each sub-dataset to its own `{repo}:{parent}/{sub}` dataset key. Consumer enumeration changes.
   3. Add `alt_paths: list[str]` to tier_record. Backwards-compat, but ambiguous semantics for multi-path streams.
 - **v0.1.0 caveat this addresses:** *not listed* in v0.1.0's explicit known-issues — this is a latent bug discovered during v0.1.2's DUPLICATE filter implementation (2026-04-21). Exists since v0.1.0.
-- **Evidence:** `scripts/extract_patterns.py:873` + `python -c "…"` audit of `reference/URL-CONVENTIONS.csv` against `patterns/auto/catalog.json` shows 28 (dataset, tier) combos with >1 distinct path_template but only 1 surviving in JSON.
+- **Evidence:** the overwriting assignment in `write_json()` (search for `datasets[key]["tiers"][tier_name] = tier_record`) + `python -c "…"` audit of `reference/URL-CONVENTIONS.csv` against `patterns/auto/catalog.json` shows 28 (dataset, tier) combos with >1 distinct path_template but only 1 surviving in JSON.
 
 ---
 

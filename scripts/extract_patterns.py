@@ -481,9 +481,9 @@ def main(policy: object | None = None) -> int:
         files = parse_listing(idx, parent_path)
         # §2.1.1 three-class DUPLICATE model: skip only class (a) — listings
         # under /DUPLICATE/ where every file is a _LEGACY.zip placeholder.
-        # Class (b) multi-file stragglers and class (c) GBB/DUPLICATE/ rolling
-        # archive stay indexed. PR #9 used an unconditional skip and lost 640
-        # real files; do not regress.
+        # Class (b) non-LEGACY stragglers and class (c) GBB/DUPLICATE/ rolling
+        # archive stay indexed. PR #9 used an unconditional skip and lost 650
+        # real files (617 GBB + 33 class-b stragglers); do not regress.
         if (
             "/DUPLICATE/" in parent_path
             and files
