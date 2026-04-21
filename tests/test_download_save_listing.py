@@ -57,7 +57,7 @@ def test_writes_when_no_cached_file(tmp_path: Path, monkeypatch) -> None:
     assert (tmp_path / "Reports/CURRENT/x/index.html").read_bytes() == data
 
 
-def test_template_shift_raises_when_new_empty(tmp_path: Path, monkeypatch) -> None:
+def test_template_shift_triggers_at_50pct_via_lowercase_href(tmp_path: Path, monkeypatch) -> None:
     import nemweb_download as mod
 
     monkeypatch.setattr(mod, "OUT", tmp_path)
@@ -67,6 +67,22 @@ def test_template_shift_raises_when_new_empty(tmp_path: Path, monkeypatch) -> No
 
     # Refetched bytes contain no parseable <A HREF="..."> — template shift.
     refetched = b'<pre><a href="/a/">a</a></pre>'  # lowercase, regex misses
+    with pytest.raises(mod.HREFExtractionShiftError):
+        mod.save_listing("/Reports/CURRENT/x/", refetched)
+    # Forensic write: the bytes ARE saved even though the guard raised.
+    assert idx.read_bytes() == refetched
+
+
+def test_template_shift_raises_when_no_anchor_tags_at_all(tmp_path: Path, monkeypatch) -> None:
+    import nemweb_download as mod
+
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+    idx = tmp_path / "Reports/CURRENT/x/index.html"
+    idx.parent.mkdir(parents=True)
+    idx.write_bytes(b'<pre><A HREF="/a/">a</A><A HREF="/b/">b</A></pre>')
+
+    # Refetched bytes contain NO anchor tags at all — genuinely zero HREFs.
+    refetched = b"<html><body>maintenance page</body></html>"
     with pytest.raises(mod.HREFExtractionShiftError):
         mod.save_listing("/Reports/CURRENT/x/", refetched)
     # Forensic write: the bytes ARE saved even though the guard raised.
