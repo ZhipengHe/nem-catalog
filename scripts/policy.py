@@ -58,6 +58,17 @@ class Policy:
         if not isinstance(raw["rules"], list) or not raw["rules"]:
             raise PolicyLoadError(f"policy 'rules' must be a non-empty list in {p}")
 
+        raw_version = raw.get("version", 0)
+        # Strict type check: YAML can deliver bool, float, str, list, null —
+        # `int(...)` would silently coerce bool/float (int(True)=1, int(1.5)=1),
+        # letting malformed schemas pass as v1. Accept only Python int, and
+        # exclude bool explicitly since `isinstance(True, int)` is True.
+        if isinstance(raw_version, bool) or not isinstance(raw_version, int):
+            raise PolicyLoadError(f"{p}: policy version must be an integer, got {raw_version!r}")
+        version = raw_version
+        if version != 1:
+            raise PolicyLoadError(f"{p}: unsupported policy version {version}, expected 1")
+
         rules: list[_Rule] = []
         for i, entry in enumerate(raw["rules"]):
             if not isinstance(entry, dict):
@@ -75,7 +86,7 @@ class Policy:
             rules.append(_Rule(pattern=pattern, class_=cls_name, regex=_compile(pattern)))
 
         return cls(
-            version=int(raw.get("version", 0)),
+            version=version,
             last_reviewed=str(raw.get("last_reviewed", "")),
             reviewer=str(raw.get("reviewer", "")),
             rules=rules,

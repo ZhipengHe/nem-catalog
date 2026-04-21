@@ -46,7 +46,6 @@ jobs:
         run: |
           TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
           echo "LAST_CRAWL_ATTEMPTED_AT=$TS" >> $GITHUB_ENV
-          echo "ts=$TS" >> $GITHUB_OUTPUT
 
       - name: Crawl NEMWEB (policy-driven)
         id: crawl
@@ -58,7 +57,10 @@ jobs:
             10000 \
             2>&1 | tee nemweb-mirror/download.log
           FAILED=$(grep -c "status=" nemweb-mirror/download.log || true)
-          TOTAL=$(grep -c "fetch\[" nemweb-mirror/download.log || true)
+          # EXT-3 split successful fetches into `fetch[` (content changed) and
+          # `fetch_noop[` (byte-identical, save_listing short-circuit). Both
+          # count as successful crawl attempts for block-check denominator.
+          TOTAL=$(grep -cE "fetch(_noop)?\[" nemweb-mirror/download.log || true)
           echo "failed=$FAILED" >> $GITHUB_OUTPUT
           echo "total=$TOTAL" >> $GITHUB_OUTPUT
 

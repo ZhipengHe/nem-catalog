@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from scripts.audit_policy import run_audit
+from scripts.audit_policy import AuditFinding, format_report, run_audit
 
 
 def _mirror(tmp_path: Path, path: str, hrefs: list[str]) -> Path:
@@ -66,3 +66,172 @@ def test_clean_audit_returns_no_findings(tmp_path):
     fresh = {"/Reports/CURRENT/x/": b'<pre><A HREF="/b/">b</A><A HREF="/c/">c</A></pre>'}
     findings = run_audit(policy_path, mirror_root, fresh)
     assert findings == []
+
+
+def test_load_fresh_root_index_maps_to_slash(tmp_path):
+    from scripts.audit_policy import _load_fresh
+
+    # Root-level index.html — fresh_dir itself contains the file.
+    root_idx = tmp_path / "index.html"
+    root_idx.write_bytes(b"<pre></pre>")
+
+    result = _load_fresh(tmp_path)
+
+    # Must produce "/" not "/./"
+    assert "/" in result, f"Expected key '/' in result, got: {list(result.keys())}"
+    assert "/./" not in result, f"Got wrong key '/./'; keys: {list(result.keys())}"
+    assert result["/"] == b"<pre></pre>"
+
+
+def test_append_only_path_with_removals_flags_drift(tmp_path):
+    # append_only guarantee: files only get added, never removed.
+    # Mirror has /a/ and /b/; fresh drops /b/ — removal violates the guarantee.
+    policy_path = _policy(tmp_path, "/Data_Append/**", "append_only")
+    mirror_root = tmp_path / "nemweb-mirror"
+    _mirror(tmp_path, "/Data_Append/x/", ["/a/", "/b/"])
+    fresh = {"/Data_Append/x/": b'<pre><A HREF="/a/">a</A></pre>'}
+    findings = run_audit(policy_path, mirror_root, fresh)
+    assert any(f.kind == "append_only_drift" and f.path == "/Data_Append/x/" for f in findings)
+
+
+def test_append_only_path_with_additions_only_is_clean(tmp_path):
+    # Additions are the EXPECTED behaviour for append_only — must not trigger a finding.
+    policy_path = _policy(tmp_path, "/Data_Append/**", "append_only")
+    mirror_root = tmp_path / "nemweb-mirror"
+    _mirror(tmp_path, "/Data_Append/x/", ["/a/"])
+    fresh = {"/Data_Append/x/": b'<pre><A HREF="/a/">a</A><A HREF="/b/">b</A></pre>'}
+    findings = run_audit(policy_path, mirror_root, fresh)
+    assert findings == []
+
+
+def test_append_only_path_no_change_is_clean(tmp_path):
+    # No change at all — completely clean, no finding.
+    policy_path = _policy(tmp_path, "/Data_Append/**", "append_only")
+    mirror_root = tmp_path / "nemweb-mirror"
+    _mirror(tmp_path, "/Data_Append/x/", ["/a/", "/b/"])
+    fresh = {"/Data_Append/x/": b'<pre><A HREF="/a/">a</A><A HREF="/b/">b</A></pre>'}
+    findings = run_audit(policy_path, mirror_root, fresh)
+    assert findings == []
+
+
+def test_parent_index_path_with_any_change_flags_drift(tmp_path):
+    # parent_index lists children; any set-level HREF change warrants review.
+    # Mirror has /child1/ and /child2/; fresh adds /child3/ — flag it.
+    policy_path = _policy(tmp_path, "/Reports/PARENT/**", "parent_index")
+    mirror_root = tmp_path / "nemweb-mirror"
+    _mirror(tmp_path, "/Reports/PARENT/", ["/child1/", "/child2/"])
+    fresh = {
+        "/Reports/PARENT/": (
+            b'<pre><A HREF="/child1/">a</A><A HREF="/child2/">b</A><A HREF="/child3/">c</A></pre>'
+        )
+    }
+    findings = run_audit(policy_path, mirror_root, fresh)
+    assert any(f.kind == "parent_index_drift" and f.path == "/Reports/PARENT/" for f in findings)
+
+
+def test_parent_index_path_no_change_is_clean(tmp_path):
+    # Identical cached and fresh HREF sets — no finding.
+    policy_path = _policy(tmp_path, "/Reports/PARENT/**", "parent_index")
+    mirror_root = tmp_path / "nemweb-mirror"
+    _mirror(tmp_path, "/Reports/PARENT/", ["/child1/", "/child2/"])
+    # Same hrefs, different HTML order — set equality must not trigger a finding.
+    fresh = {"/Reports/PARENT/": (b'<pre><A HREF="/child2/">b</A><A HREF="/child1/">a</A></pre>')}
+    findings = run_audit(policy_path, mirror_root, fresh)
+    assert findings == []
+
+
+def test_load_fresh_nested_index_maps_correctly(tmp_path):
+    from scripts.audit_policy import _load_fresh
+
+    # Nested index.html — should produce /Reports/CURRENT/ (no regression).
+    nested = tmp_path / "Reports" / "CURRENT"
+    nested.mkdir(parents=True)
+    (nested / "index.html").write_bytes(b"<pre>nested</pre>")
+
+    result = _load_fresh(tmp_path)
+
+    assert "/Reports/CURRENT/" in result, (
+        f"Expected '/Reports/CURRENT/' in result, got: {list(result.keys())}"
+    )
+    assert result["/Reports/CURRENT/"] == b"<pre>nested</pre>"
+
+
+def test_format_report_empty_findings_returns_clean_message():
+    result = format_report([])
+    assert result == "# Policy Audit — clean\n\nAll classified paths behaved as expected.\n"
+
+
+def test_format_report_multi_kind_groups_and_orders():
+    # Construct one finding of each kind, supplied in SCRAMBLED order.
+    findings = [
+        AuditFinding(
+            kind="parent_index_drift",
+            path="/p/",
+            current_class="parent_index",
+            added_hrefs=1,
+            removed_hrefs=0,
+        ),
+        AuditFinding(
+            kind="new_path",
+            path="/n/",
+            current_class="unclassified",
+            added_hrefs=2,
+            removed_hrefs=0,
+        ),
+        AuditFinding(
+            kind="reclassify_up", path="/u/", current_class="static", added_hrefs=3, removed_hrefs=0
+        ),
+        AuditFinding(
+            kind="append_only_drift",
+            path="/a/",
+            current_class="append_only",
+            added_hrefs=0,
+            removed_hrefs=1,
+        ),
+        AuditFinding(
+            kind="reclassify_down",
+            path="/d/",
+            current_class="rolling",
+            added_hrefs=0,
+            removed_hrefs=0,
+        ),
+    ]
+    result = format_report(findings)
+
+    # Top-level header must report 5 findings.
+    assert "5 findings." in result
+
+    # All 5 section headers must be present with count suffix (1).
+    assert "## reclassify_up (1)" in result
+    assert "## reclassify_down (1)" in result
+    assert "## append_only_drift (1)" in result
+    assert "## parent_index_drift (1)" in result
+    assert "## new_path (1)" in result
+
+    # Canonical order: reclassify_up < reclassify_down < append_only_drift
+    #                  < parent_index_drift < new_path — regardless of input order.
+    pos_up = result.index("## reclassify_up")
+    pos_down = result.index("## reclassify_down")
+    pos_ao = result.index("## append_only_drift")
+    pos_pi = result.index("## parent_index_drift")
+    pos_np = result.index("## new_path")
+    assert pos_up < pos_down < pos_ao < pos_pi < pos_np
+
+
+def test_format_report_skips_kinds_with_no_items():
+    # Only reclassify_up findings — the other 4 section headers must be absent.
+    findings = [
+        AuditFinding(
+            kind="reclassify_up", path="/u/", current_class="static", added_hrefs=1, removed_hrefs=0
+        ),
+        AuditFinding(
+            kind="reclassify_up", path="/v/", current_class="static", added_hrefs=2, removed_hrefs=0
+        ),
+    ]
+    result = format_report(findings)
+
+    assert "## reclassify_up (2)" in result
+    assert "## reclassify_down" not in result
+    assert "## append_only_drift" not in result
+    assert "## parent_index_drift" not in result
+    assert "## new_path" not in result

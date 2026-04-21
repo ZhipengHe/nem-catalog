@@ -57,7 +57,41 @@ def test_writes_when_no_cached_file(tmp_path: Path, monkeypatch) -> None:
     assert (tmp_path / "Reports/CURRENT/x/index.html").read_bytes() == data
 
 
-def test_template_shift_raises_when_new_empty(tmp_path: Path, monkeypatch) -> None:
+def test_save_listing_returns_true_when_writes_occur(tmp_path: Path, monkeypatch) -> None:
+    """PR #19 review: save_listing returns explicit bool; True means bytes were
+    written (either first-crawl or content changed). Authoritative signal the
+    walker uses for fetch vs fetch_noop classification — avoids mtime inference.
+    """
+    import nemweb_download as mod
+
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+    # Case A: cache miss → writes → True
+    wrote = mod.save_listing("/Reports/CURRENT/x/", b'<pre><A HREF="/a/">a</A></pre>')
+    assert wrote is True
+
+    # Case B: existing cache, HREFs changed → writes → True
+    wrote = mod.save_listing(
+        "/Reports/CURRENT/x/",
+        b'<pre><A HREF="/a/">a</A><A HREF="/b/">b</A></pre>',
+    )
+    assert wrote is True
+
+
+def test_save_listing_returns_false_on_identical_hrefs(tmp_path: Path, monkeypatch) -> None:
+    """PR #19 review: save_listing returns False when content-identical short-
+    circuit fires (HREF set unchanged). Pins the fetch_noop signal contract.
+    """
+    import nemweb_download as mod
+
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+    # First write seeds the cache.
+    mod.save_listing("/Reports/CURRENT/x/", b'<pre><A HREF="/a/">a</A></pre>')
+    # Second call with identical HREF set (different surrounding bytes OK) → no write → False.
+    wrote = mod.save_listing("/Reports/CURRENT/x/", b'<pre>noise <A HREF="/a/">a</A></pre>')
+    assert wrote is False
+
+
+def test_template_shift_triggers_at_50pct_via_lowercase_href(tmp_path: Path, monkeypatch) -> None:
     import nemweb_download as mod
 
     monkeypatch.setattr(mod, "OUT", tmp_path)
@@ -67,6 +101,22 @@ def test_template_shift_raises_when_new_empty(tmp_path: Path, monkeypatch) -> No
 
     # Refetched bytes contain no parseable <A HREF="..."> — template shift.
     refetched = b'<pre><a href="/a/">a</a></pre>'  # lowercase, regex misses
+    with pytest.raises(mod.HREFExtractionShiftError):
+        mod.save_listing("/Reports/CURRENT/x/", refetched)
+    # Forensic write: the bytes ARE saved even though the guard raised.
+    assert idx.read_bytes() == refetched
+
+
+def test_template_shift_raises_when_no_anchor_tags_at_all(tmp_path: Path, monkeypatch) -> None:
+    import nemweb_download as mod
+
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+    idx = tmp_path / "Reports/CURRENT/x/index.html"
+    idx.parent.mkdir(parents=True)
+    idx.write_bytes(b'<pre><A HREF="/a/">a</A><A HREF="/b/">b</A></pre>')
+
+    # Refetched bytes contain NO anchor tags at all — genuinely zero HREFs.
+    refetched = b"<html><body>maintenance page</body></html>"
     with pytest.raises(mod.HREFExtractionShiftError):
         mod.save_listing("/Reports/CURRENT/x/", refetched)
     # Forensic write: the bytes ARE saved even though the guard raised.
@@ -125,3 +175,27 @@ def test_template_shift_does_not_trigger_on_small_drop(tmp_path: Path, monkeypat
     # Should NOT raise — a legitimate 40% rolloff in a rolling directory.
     mod.save_listing("/Reports/CURRENT/x/", refetched)
     assert idx.read_bytes() == refetched, "40% drop is within threshold; write should proceed"
+
+
+def test_save_listing_survives_osread_error(tmp_path: Path, monkeypatch) -> None:
+    """OSError from idx.read_bytes() is caught; new bytes are written unconditionally."""
+    import nemweb_download as mod
+
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+    idx = tmp_path / "Reports/CURRENT/x/index.html"
+    idx.parent.mkdir(parents=True)
+    idx.write_bytes(b'<pre><A HREF="/old/">old</A></pre>')
+
+    # Simulate a filesystem hiccup: read_bytes raises OSError even though is_file() is True.
+    def _raise_oserror(self: Path) -> bytes:
+        raise OSError("simulated read failure")
+
+    monkeypatch.setattr(Path, "read_bytes", _raise_oserror)
+
+    new_data = b'<pre><A HREF="/a/">a</A></pre>'
+    # Must not raise — OSError should be swallowed and treated as cache-miss.
+    mod.save_listing("/Reports/CURRENT/x/", new_data)
+
+    # Restore read_bytes to verify disk contents.
+    monkeypatch.undo()
+    assert idx.read_bytes() == new_data, "new bytes must be written on cache-read failure"

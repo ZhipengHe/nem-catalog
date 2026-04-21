@@ -97,6 +97,170 @@ def test_process_one_unclassified_refetches(tmp_path: Path, monkeypatch) -> None
     fetch_mock.assert_called_once()
 
 
+# --- EXT-1: bounds-checking tests ---
+
+
+def test_parse_args_policy_missing_value() -> None:
+    """--policy with no following argument must raise SystemExit."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit):
+        mod.parse_args(["--policy"])
+
+
+def test_parse_args_policy_empty_string() -> None:
+    """--policy "" (empty value) must raise SystemExit."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit):
+        mod.parse_args(["--policy", ""])
+
+
+def test_parse_args_policy_equals_empty() -> None:
+    """--policy= (empty via = form) must raise SystemExit."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit):
+        mod.parse_args(["--policy="])
+
+
+def test_parse_args_threads_missing_value() -> None:
+    """--threads with no following argument must raise SystemExit."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit):
+        mod.parse_args(["--threads"])
+
+
+def test_parse_args_threads_equals_empty() -> None:
+    """--threads= (explicit empty RHS) must fail with the same 'requires a value'
+    message used for bare --threads, not the 'positive integer' path. PR #19 review.
+    """
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit) as exc_info:
+        mod.parse_args(["--threads="])
+    assert "requires a value" in str(exc_info.value)
+
+
+def test_parse_args_policy_rejects_following_flag() -> None:
+    """`--policy --gaps` must fail with 'requires a value', not silently consume
+    `--gaps` as the policy path (which would produce a confusing downstream
+    'policy file not found: --gaps' error). PR #19 review.
+    """
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit) as exc_info:
+        mod.parse_args(["--policy", "--gaps"])
+    assert "requires a value" in str(exc_info.value)
+
+
+def test_parse_args_threads_rejects_following_flag() -> None:
+    """`--threads --gaps` must fail with 'requires a value', not fall through
+    to `int('--gaps')` → 'must be a positive integer'. PR #19 review.
+    """
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit) as exc_info:
+        mod.parse_args(["--threads", "--gaps"])
+    assert "requires a value" in str(exc_info.value)
+
+
+def test_parse_args_threads_non_integer() -> None:
+    """--threads abc must raise SystemExit with message about invalid integer."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit) as exc_info:
+        mod.parse_args(["--threads", "abc"])
+    assert "--threads" in str(exc_info.value)
+    assert "abc" in str(exc_info.value)
+
+
+def test_parse_args_threads_zero() -> None:
+    """--threads 0 must raise SystemExit (must be >= 1)."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit) as exc_info:
+        mod.parse_args(["--threads", "0"])
+    assert "--threads" in str(exc_info.value)
+    assert "0" in str(exc_info.value)
+
+
+def test_parse_args_threads_negative() -> None:
+    """--threads -5 must raise SystemExit (must be >= 1)."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit) as exc_info:
+        mod.parse_args(["--threads", "-5"])
+    assert "--threads" in str(exc_info.value)
+    assert "-5" in str(exc_info.value)
+
+
+def test_parse_args_happy_path_full_argv() -> None:
+    """Full happy-path argv must parse correctly (acceptance criterion 8)."""
+    import nemweb_download as mod
+
+    gaps, _force, policy_path, threads, max_fetches = mod.parse_args(
+        ["--policy", "foo.yaml", "--threads", "4", "--gaps", "5000"]
+    )
+    assert policy_path == "foo.yaml"
+    assert threads == 4
+    assert gaps is True
+    assert max_fetches == 5000
+
+
+def test_main_exits_2_on_policy_load_error(tmp_path: Path, monkeypatch, capsys) -> None:
+    """main() must return 2 and print an 'ERROR: policy load failed:' prefix when
+    Policy.load raises PolicyLoadError (e.g. version != 1 triggers the POL-1 guard)."""
+    import nemweb_download as mod
+
+    bad_policy = tmp_path / "bad_policy.yaml"
+    bad_policy.write_text(
+        "version: 2\nlast_reviewed: 2026-04-21\nreviewer: t\nrules:\n"
+        '  - pattern: "/foo/**"\n    class: rolling\n'
+    )
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+
+    result = mod.main(["--policy", str(bad_policy), "1"])
+
+    assert result == 2
+    captured = capsys.readouterr()
+    assert "ERROR: policy load failed:" in captured.err
+
+
+def test_main_exits_2_on_href_extraction_shift_error(tmp_path: Path, monkeypatch, capsys) -> None:
+    """main() must return 2 and print an 'ERROR:' prefix when walk() raises
+    HREFExtractionShiftError.  walk() is monkey-patched to raise directly since
+    triggering the real template-shift path requires a full HTTP mock + cached file
+    and is out of scope for this contract-pinning test."""
+    import nemweb_download as mod
+
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+    monkeypatch.setattr(
+        mod,
+        "walk",
+        lambda *args, **kwargs: (_ for _ in ()).throw(
+            mod.HREFExtractionShiftError("/test/path/", before=10, after=0)
+        ),
+    )
+
+    result = mod.main(["1"])
+
+    assert result == 2
+    captured = capsys.readouterr()
+    assert "ERROR:" in captured.err
+
+
 def _policy(tmp_path: Path, pattern: str, cls: str) -> Path:
     p = tmp_path / "policy.yaml"
     p.write_text(
@@ -104,3 +268,55 @@ def _policy(tmp_path: Path, pattern: str, cls: str) -> Path:
         f'  - pattern: "{pattern}"\n    class: {cls}\n'
     )
     return p
+
+
+# --- EXT-3: walk() fetch vs fetch_noop distinction ---
+
+
+def test_walk_emits_fetch_when_mtime_changes(tmp_path: Path, monkeypatch) -> None:
+    """walk() must return outcome 'fetch' when save_listing writes new content (mtime changes)."""
+    import nemweb_download as mod
+
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+
+    seed = "/Reports/NEW/"
+    # No pre-existing cached file → mtime will change from None to something.
+    html = b"<pre></pre>"
+    with patch.object(mod, "throttled_fetch", return_value=(html, 200)):
+        result = mod.walk([seed], threads=1, max_fetches=10)
+
+    # New 4-tuple: (fetched, fetched_noop, reused, skipped)
+    assert len(result) == 4
+    fetched, fetched_noop, _reused, _skipped = result
+    assert fetched == 1
+    assert fetched_noop == 0
+
+
+def test_walk_emits_fetch_noop_when_mtime_unchanged(tmp_path: Path, monkeypatch) -> None:
+    """walk() must return 'fetch_noop' when save_listing short-circuits on identical content."""
+    import nemweb_download as mod
+
+    from scripts.policy import Policy
+
+    # Use a rolling policy so the walker refetches despite cache.
+    policy = Policy.load(_policy(tmp_path, "/Reports/**", "rolling"))
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+
+    seed = "/Reports/CURRENT/x/"
+    # Empty listing — no child links, so no wave 2 fetches.
+    html = b"<pre></pre>"
+
+    # Pre-populate the cached file with the same bytes that the server will return.
+    cached = tmp_path / "Reports/CURRENT/x/index.html"
+    cached.parent.mkdir(parents=True)
+    cached.write_bytes(html)
+
+    with patch.object(mod, "throttled_fetch", return_value=(html, 200)):
+        result = mod.walk([seed], threads=1, max_fetches=10, policy=policy)
+
+    assert len(result) == 4
+    fetched, fetched_noop, _reused, _skipped = result
+    # save_listing's content-identical short-circuit keeps mtime unchanged;
+    # if that dedup is ever removed, this flips to fetched=1, fetched_noop=0.
+    assert fetched_noop == 1
+    assert fetched == 0

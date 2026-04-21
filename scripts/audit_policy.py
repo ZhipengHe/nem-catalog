@@ -9,6 +9,16 @@ freshness_class. Findings:
 - reclassify_down: path classified `rolling` but fresh refetch HREFs are
   identical to cached. Candidate for demotion; weaker signal (AEMO may have
   paused publication temporarily), so reviewer decides per reading.
+- append_only_drift: path classified `append_only` but fresh refetch has
+  fewer HREFs than cached (removed > 0). The class guarantee is that files
+  only accumulate — any removal violates it. Reclassify to `rolling` or
+  investigate whether AEMO genuinely deleted something. Additions alone are
+  expected and do not trigger this finding.
+- parent_index_drift: path classified `parent_index` but the HREF set
+  changed in any direction (added + removed > 0). A parent index's children
+  set should be stable; any set-level change — new child, removed child, or
+  rename — warrants review. HTML attribute or ordering noise is invisible
+  because `_hrefs()` returns a frozenset.
 - new_path: path fresh-fetched but not matched by any policy rule. Needs a
   new rule or is a genuine AEMO addition.
 
@@ -39,7 +49,8 @@ HREF_RE = re.compile(rb'<A HREF="([^"]+)"', re.IGNORECASE)
 
 @dataclass(frozen=True)
 class AuditFinding:
-    kind: str  # "reclassify_up" | "reclassify_down" | "new_path"
+    kind: str  # "reclassify_up" | "reclassify_down" | "append_only_drift"
+    #            | "parent_index_drift" | "new_path"
     path: str
     current_class: str
     added_hrefs: int
@@ -111,6 +122,30 @@ def run_audit(
             )
             continue
 
+        if cls == "append_only" and removed > 0:
+            findings.append(
+                AuditFinding(
+                    kind="append_only_drift",
+                    path=url_path,
+                    current_class=cls,
+                    added_hrefs=added,
+                    removed_hrefs=removed,
+                )
+            )
+            continue
+
+        if cls == "parent_index" and changed > 0:
+            findings.append(
+                AuditFinding(
+                    kind="parent_index_drift",
+                    path=url_path,
+                    current_class=cls,
+                    added_hrefs=added,
+                    removed_hrefs=removed,
+                )
+            )
+            continue
+
     return findings
 
 
@@ -127,7 +162,13 @@ def format_report(findings: Iterable[AuditFinding]) -> str:
     groups: dict[str, list[AuditFinding]] = {}
     for f in findings:
         groups.setdefault(f.kind, []).append(f)
-    for kind in ("reclassify_up", "reclassify_down", "new_path"):
+    for kind in (
+        "reclassify_up",
+        "reclassify_down",
+        "append_only_drift",
+        "parent_index_drift",
+        "new_path",
+    ):
         items = groups.get(kind, [])
         if not items:
             continue
@@ -146,7 +187,7 @@ def _load_fresh(fresh_dir: Path) -> dict[str, bytes]:
     out: dict[str, bytes] = {}
     for idx in fresh_dir.rglob("index.html"):
         rel = idx.parent.relative_to(fresh_dir).as_posix()
-        url = "/" + rel + "/" if rel else "/"
+        url = "/" + rel + "/" if rel and rel != "." else "/"
         out[url] = idx.read_bytes()
     return out
 

@@ -137,6 +137,107 @@ def test_pattern_without_leading_slash_raises(tmp_path: Path) -> None:
         )
 
 
+def test_version_0_raises(tmp_path: Path) -> None:
+    with pytest.raises(PolicyLoadError, match="unsupported policy version 0"):
+        Policy.load(
+            _write(
+                tmp_path,
+                "version: 0\nlast_reviewed: 2026-04-20\nreviewer: x\nrules:\n"
+                '  - pattern: "/Reports/**"\n    class: rolling\n',
+            )
+        )
+
+
+def test_version_2_raises(tmp_path: Path) -> None:
+    with pytest.raises(PolicyLoadError, match="unsupported policy version 2"):
+        Policy.load(
+            _write(
+                tmp_path,
+                "version: 2\nlast_reviewed: 2026-04-20\nreviewer: x\nrules:\n"
+                '  - pattern: "/Reports/**"\n    class: rolling\n',
+            )
+        )
+
+
+def test_missing_version_raises(tmp_path: Path) -> None:
+    with pytest.raises(PolicyLoadError, match="unsupported policy version 0"):
+        Policy.load(
+            _write(
+                tmp_path,
+                "last_reviewed: 2026-04-20\nreviewer: x\nrules:\n"
+                '  - pattern: "/Reports/**"\n    class: rolling\n',
+            )
+        )
+
+
+def test_non_integer_version_raises_policy_load_error(tmp_path: Path) -> None:
+    """PR #19 review: version: 'v1' (or any non-castable) must produce PolicyLoadError,
+    not raw ValueError — callers only handle PolicyLoadError for exit-2 behaviour.
+    """
+    with pytest.raises(PolicyLoadError, match="policy version must be an integer"):
+        Policy.load(
+            _write(
+                tmp_path,
+                "version: v1\nlast_reviewed: 2026-04-20\nreviewer: x\nrules:\n"
+                '  - pattern: "/Reports/**"\n    class: rolling\n',
+            )
+        )
+
+
+def test_list_version_raises_policy_load_error(tmp_path: Path) -> None:
+    """PR #19 review: version as a list (YAML sequence) must map to PolicyLoadError."""
+    with pytest.raises(PolicyLoadError, match="policy version must be an integer"):
+        Policy.load(
+            _write(
+                tmp_path,
+                "version: [1]\nlast_reviewed: 2026-04-20\nreviewer: x\nrules:\n"
+                '  - pattern: "/Reports/**"\n    class: rolling\n',
+            )
+        )
+
+
+def test_bool_version_raises_policy_load_error(tmp_path: Path) -> None:
+    """PR #19 review: YAML `version: true` parses as Python True; int(True)==1
+    would silently pass the v1 guard. Strict isinstance check must reject.
+    """
+    with pytest.raises(PolicyLoadError, match="policy version must be an integer"):
+        Policy.load(
+            _write(
+                tmp_path,
+                "version: true\nlast_reviewed: 2026-04-20\nreviewer: x\nrules:\n"
+                '  - pattern: "/Reports/**"\n    class: rolling\n',
+            )
+        )
+
+
+def test_float_version_raises_policy_load_error(tmp_path: Path) -> None:
+    """PR #19 review: YAML `version: 1.5` parses as Python float; int(1.5)==1
+    would silently truncate past the v1 guard. Strict isinstance check must reject.
+    """
+    with pytest.raises(PolicyLoadError, match="policy version must be an integer"):
+        Policy.load(
+            _write(
+                tmp_path,
+                "version: 1.5\nlast_reviewed: 2026-04-20\nreviewer: x\nrules:\n"
+                '  - pattern: "/Reports/**"\n    class: rolling\n',
+            )
+        )
+
+
+def test_string_version_raises_policy_load_error(tmp_path: Path) -> None:
+    """Quoted-string version `version: "1"` is rejected by strict isinstance.
+    Canonical form is YAML int. Prevents schema-type drift.
+    """
+    with pytest.raises(PolicyLoadError, match="policy version must be an integer"):
+        Policy.load(
+            _write(
+                tmp_path,
+                'version: "1"\nlast_reviewed: 2026-04-20\nreviewer: x\nrules:\n'
+                '  - pattern: "/Reports/**"\n    class: rolling\n',
+            )
+        )
+
+
 def test_data_archive_bare_path_is_parent_index_not_static(tmp_path: Path) -> None:
     """Pins the fix for the /Data_Archive/** shadow bug.
 
