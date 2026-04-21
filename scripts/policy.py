@@ -58,6 +58,10 @@ class Policy:
         if not isinstance(raw["rules"], list) or not raw["rules"]:
             raise PolicyLoadError(f"policy 'rules' must be a non-empty list in {p}")
 
+        version = int(raw.get("version", 0))
+        if version != 1:
+            raise PolicyLoadError(f"{p}: unsupported policy version {version}, expected 1")
+
         rules: list[_Rule] = []
         for i, entry in enumerate(raw["rules"]):
             if not isinstance(entry, dict):
@@ -75,7 +79,7 @@ class Policy:
             rules.append(_Rule(pattern=pattern, class_=cls_name, regex=_compile(pattern)))
 
         return cls(
-            version=int(raw.get("version", 0)),
+            version=version,
             last_reviewed=str(raw.get("last_reviewed", "")),
             reviewer=str(raw.get("reviewer", "")),
             rules=rules,
