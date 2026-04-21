@@ -237,6 +237,7 @@ def test_walk_emits_fetch_noop_when_mtime_unchanged(tmp_path: Path, monkeypatch)
 
     assert len(result) == 4
     fetched, fetched_noop, _reused, _skipped = result
-    # Content-identical → save_listing short-circuits → mtime unchanged → fetch_noop
+    # save_listing's content-identical short-circuit keeps mtime unchanged;
+    # if that dedup is ever removed, this flips to fetched=1, fetched_noop=0.
     assert fetched_noop == 1
     assert fetched == 0

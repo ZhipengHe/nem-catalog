@@ -387,7 +387,7 @@ def walk(
             for path, outcome, children in ex.map(process_one, wave):
                 if outcome == "fetch":
                     fetched += 1
-                    print(f"  fetch[{fetched:4d}]  {path}")
+                    print(f"  fetch     [{fetched:4d}]  {path}")
                 elif outcome == "fetch_noop":
                     fetched_noop += 1
                     print(f"  fetch_noop[{fetched_noop:4d}]  {path}")
