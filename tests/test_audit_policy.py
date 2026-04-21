@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from scripts.audit_policy import run_audit
+from scripts.audit_policy import AuditFinding, format_report, run_audit
 
 
 def _mirror(tmp_path: Path, path: str, hrefs: list[str]) -> Path:
@@ -154,3 +154,84 @@ def test_load_fresh_nested_index_maps_correctly(tmp_path):
         f"Expected '/Reports/CURRENT/' in result, got: {list(result.keys())}"
     )
     assert result["/Reports/CURRENT/"] == b"<pre>nested</pre>"
+
+
+def test_format_report_empty_findings_returns_clean_message():
+    result = format_report([])
+    assert result == "# Policy Audit — clean\n\nAll classified paths behaved as expected.\n"
+
+
+def test_format_report_multi_kind_groups_and_orders():
+    # Construct one finding of each kind, supplied in SCRAMBLED order.
+    findings = [
+        AuditFinding(
+            kind="parent_index_drift",
+            path="/p/",
+            current_class="parent_index",
+            added_hrefs=1,
+            removed_hrefs=0,
+        ),
+        AuditFinding(
+            kind="new_path",
+            path="/n/",
+            current_class="unclassified",
+            added_hrefs=2,
+            removed_hrefs=0,
+        ),
+        AuditFinding(
+            kind="reclassify_up", path="/u/", current_class="static", added_hrefs=3, removed_hrefs=0
+        ),
+        AuditFinding(
+            kind="append_only_drift",
+            path="/a/",
+            current_class="append_only",
+            added_hrefs=0,
+            removed_hrefs=1,
+        ),
+        AuditFinding(
+            kind="reclassify_down",
+            path="/d/",
+            current_class="rolling",
+            added_hrefs=0,
+            removed_hrefs=0,
+        ),
+    ]
+    result = format_report(findings)
+
+    # Top-level header must report 5 findings.
+    assert "5 findings." in result
+
+    # All 5 section headers must be present with count suffix (1).
+    assert "## reclassify_up (1)" in result
+    assert "## reclassify_down (1)" in result
+    assert "## append_only_drift (1)" in result
+    assert "## parent_index_drift (1)" in result
+    assert "## new_path (1)" in result
+
+    # Canonical order: reclassify_up < reclassify_down < append_only_drift
+    #                  < parent_index_drift < new_path — regardless of input order.
+    pos_up = result.index("## reclassify_up")
+    pos_down = result.index("## reclassify_down")
+    pos_ao = result.index("## append_only_drift")
+    pos_pi = result.index("## parent_index_drift")
+    pos_np = result.index("## new_path")
+    assert pos_up < pos_down < pos_ao < pos_pi < pos_np
+
+
+def test_format_report_skips_kinds_with_no_items():
+    # Only reclassify_up findings — the other 4 section headers must be absent.
+    findings = [
+        AuditFinding(
+            kind="reclassify_up", path="/u/", current_class="static", added_hrefs=1, removed_hrefs=0
+        ),
+        AuditFinding(
+            kind="reclassify_up", path="/v/", current_class="static", added_hrefs=2, removed_hrefs=0
+        ),
+    ]
+    result = format_report(findings)
+
+    assert "## reclassify_up (2)" in result
+    assert "## reclassify_down" not in result
+    assert "## append_only_drift" not in result
+    assert "## parent_index_drift" not in result
+    assert "## new_path" not in result
