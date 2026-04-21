@@ -46,7 +46,6 @@ jobs:
         run: |
           TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
           echo "LAST_CRAWL_ATTEMPTED_AT=$TS" >> $GITHUB_ENV
-          echo "ts=$TS" >> $GITHUB_OUTPUT
 
       - name: Crawl NEMWEB (policy-driven)
         id: crawl
