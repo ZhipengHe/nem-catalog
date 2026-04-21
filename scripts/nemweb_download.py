@@ -243,7 +243,10 @@ def parse_args(
         elif a == "--force":
             force = True
         elif a == "--policy":
-            if i + 1 >= len(argv):
+            # Reject a following `--flag` so we don't silently consume a flag
+            # as the policy path (e.g. `--policy --gaps` → path = "--gaps" →
+            # confusing downstream PolicyLoadError).
+            if i + 1 >= len(argv) or argv[i + 1].startswith("--"):
                 raise SystemExit("--policy requires a value")
             policy_path = argv[i + 1]
             if not policy_path:
@@ -254,7 +257,7 @@ def parse_args(
             if not policy_path:
                 raise SystemExit("--policy requires a non-empty path")
         elif a == "--threads":
-            if i + 1 >= len(argv):
+            if i + 1 >= len(argv) or argv[i + 1].startswith("--"):
                 raise SystemExit("--threads requires a value")
             raw = argv[i + 1]
             try:

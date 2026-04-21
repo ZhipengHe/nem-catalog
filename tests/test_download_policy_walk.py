@@ -148,6 +148,31 @@ def test_parse_args_threads_equals_empty() -> None:
     assert "requires a value" in str(exc_info.value)
 
 
+def test_parse_args_policy_rejects_following_flag() -> None:
+    """`--policy --gaps` must fail with 'requires a value', not silently consume
+    `--gaps` as the policy path (which would produce a confusing downstream
+    'policy file not found: --gaps' error). PR #19 review.
+    """
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit) as exc_info:
+        mod.parse_args(["--policy", "--gaps"])
+    assert "requires a value" in str(exc_info.value)
+
+
+def test_parse_args_threads_rejects_following_flag() -> None:
+    """`--threads --gaps` must fail with 'requires a value', not fall through
+    to `int('--gaps')` → 'must be a positive integer'. PR #19 review.
+    """
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit) as exc_info:
+        mod.parse_args(["--threads", "--gaps"])
+    assert "requires a value" in str(exc_info.value)
+
+
 def test_parse_args_threads_non_integer() -> None:
     """--threads abc must raise SystemExit with message about invalid integer."""
     import nemweb_download as mod
