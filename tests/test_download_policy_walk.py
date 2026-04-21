@@ -182,6 +182,48 @@ def test_parse_args_happy_path_full_argv() -> None:
     assert max_fetches == 5000
 
 
+def test_main_exits_2_on_policy_load_error(tmp_path: Path, monkeypatch, capsys) -> None:
+    """main() must return 2 and print an 'ERROR: policy load failed:' prefix when
+    Policy.load raises PolicyLoadError (e.g. version != 1 triggers the POL-1 guard)."""
+    import nemweb_download as mod
+
+    bad_policy = tmp_path / "bad_policy.yaml"
+    bad_policy.write_text(
+        "version: 2\nlast_reviewed: 2026-04-21\nreviewer: t\nrules:\n"
+        '  - pattern: "/foo/**"\n    class: rolling\n'
+    )
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+
+    result = mod.main(["--policy", str(bad_policy), "1"])
+
+    assert result == 2
+    captured = capsys.readouterr()
+    assert "ERROR: policy load failed:" in captured.err
+
+
+def test_main_exits_2_on_href_extraction_shift_error(tmp_path: Path, monkeypatch, capsys) -> None:
+    """main() must return 2 and print an 'ERROR:' prefix when walk() raises
+    HREFExtractionShiftError.  walk() is monkey-patched to raise directly since
+    triggering the real template-shift path requires a full HTTP mock + cached file
+    and is out of scope for this contract-pinning test."""
+    import nemweb_download as mod
+
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+    monkeypatch.setattr(
+        mod,
+        "walk",
+        lambda *args, **kwargs: (_ for _ in ()).throw(
+            mod.HREFExtractionShiftError("/test/path/", before=10, after=0)
+        ),
+    )
+
+    result = mod.main(["1"])
+
+    assert result == 2
+    captured = capsys.readouterr()
+    assert "ERROR:" in captured.err
+
+
 def _policy(tmp_path: Path, pattern: str, cls: str) -> Path:
     p = tmp_path / "policy.yaml"
     p.write_text(
