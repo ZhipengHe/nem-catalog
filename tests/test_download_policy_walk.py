@@ -97,6 +97,91 @@ def test_process_one_unclassified_refetches(tmp_path: Path, monkeypatch) -> None
     fetch_mock.assert_called_once()
 
 
+# --- EXT-1: bounds-checking tests ---
+
+
+def test_parse_args_policy_missing_value() -> None:
+    """--policy with no following argument must raise SystemExit."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit):
+        mod.parse_args(["--policy"])
+
+
+def test_parse_args_policy_empty_string() -> None:
+    """--policy "" (empty value) must raise SystemExit."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit):
+        mod.parse_args(["--policy", ""])
+
+
+def test_parse_args_policy_equals_empty() -> None:
+    """--policy= (empty via = form) must raise SystemExit."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit):
+        mod.parse_args(["--policy="])
+
+
+def test_parse_args_threads_missing_value() -> None:
+    """--threads with no following argument must raise SystemExit."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit):
+        mod.parse_args(["--threads"])
+
+
+def test_parse_args_threads_non_integer() -> None:
+    """--threads abc must raise SystemExit with message about invalid integer."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit) as exc_info:
+        mod.parse_args(["--threads", "abc"])
+    assert "--threads" in str(exc_info.value)
+    assert "abc" in str(exc_info.value)
+
+
+def test_parse_args_threads_zero() -> None:
+    """--threads 0 must raise SystemExit (must be >= 1)."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit) as exc_info:
+        mod.parse_args(["--threads", "0"])
+    assert "--threads" in str(exc_info.value)
+    assert "0" in str(exc_info.value)
+
+
+def test_parse_args_threads_negative() -> None:
+    """--threads -5 must raise SystemExit (must be >= 1)."""
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit) as exc_info:
+        mod.parse_args(["--threads", "-5"])
+    assert "--threads" in str(exc_info.value)
+    assert "-5" in str(exc_info.value)
+
+
+def test_parse_args_happy_path_full_argv() -> None:
+    """Full happy-path argv must parse correctly (acceptance criterion 8)."""
+    import nemweb_download as mod
+
+    gaps, _force, policy_path, threads, max_fetches = mod.parse_args(
+        ["--policy", "foo.yaml", "--threads", "4", "--gaps", "5000"]
+    )
+    assert policy_path == "foo.yaml"
+    assert threads == 4
+    assert gaps is True
+    assert max_fetches == 5000
+
+
 def _policy(tmp_path: Path, pattern: str, cls: str) -> Path:
     p = tmp_path / "policy.yaml"
     p.write_text(

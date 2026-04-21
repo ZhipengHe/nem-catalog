@@ -226,15 +226,35 @@ def parse_args(
         elif a == "--force":
             force = True
         elif a == "--policy":
+            if i + 1 >= len(argv):
+                raise SystemExit("--policy requires a value")
             policy_path = argv[i + 1]
+            if not policy_path:
+                raise SystemExit("--policy requires a non-empty path")
             i += 1
         elif a.startswith("--policy="):
             policy_path = a.split("=", 1)[1]
+            if not policy_path:
+                raise SystemExit("--policy requires a non-empty path")
         elif a == "--threads":
-            threads = int(argv[i + 1])
+            if i + 1 >= len(argv):
+                raise SystemExit("--threads requires a value")
+            raw = argv[i + 1]
+            try:
+                threads = int(raw)
+            except ValueError:
+                raise SystemExit(f"--threads must be a positive integer, got: {raw}") from None
+            if threads < 1:
+                raise SystemExit(f"--threads must be >= 1, got: {threads}")
             i += 1
         elif a.startswith("--threads="):
-            threads = int(a.split("=", 1)[1])
+            raw = a.split("=", 1)[1]
+            try:
+                threads = int(raw)
+            except ValueError:
+                raise SystemExit(f"--threads must be a positive integer, got: {raw}") from None
+            if threads < 1:
+                raise SystemExit(f"--threads must be >= 1, got: {threads}")
         elif a.isdigit():
             max_fetches = int(a)
         else:
