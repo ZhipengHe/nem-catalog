@@ -58,7 +58,13 @@ class Policy:
         if not isinstance(raw["rules"], list) or not raw["rules"]:
             raise PolicyLoadError(f"policy 'rules' must be a non-empty list in {p}")
 
-        version = int(raw.get("version", 0))
+        raw_version = raw.get("version", 0)
+        try:
+            version = int(raw_version)
+        except (TypeError, ValueError) as e:
+            raise PolicyLoadError(
+                f"{p}: policy version must be an integer, got {raw_version!r}"
+            ) from e
         if version != 1:
             raise PolicyLoadError(f"{p}: unsupported policy version {version}, expected 1")
 

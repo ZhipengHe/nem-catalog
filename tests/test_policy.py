@@ -170,6 +170,32 @@ def test_missing_version_raises(tmp_path: Path) -> None:
         )
 
 
+def test_non_integer_version_raises_policy_load_error(tmp_path: Path) -> None:
+    """PR #19 review: version: 'v1' (or any non-castable) must produce PolicyLoadError,
+    not raw ValueError — callers only handle PolicyLoadError for exit-2 behaviour.
+    """
+    with pytest.raises(PolicyLoadError, match="policy version must be an integer"):
+        Policy.load(
+            _write(
+                tmp_path,
+                "version: v1\nlast_reviewed: 2026-04-20\nreviewer: x\nrules:\n"
+                '  - pattern: "/Reports/**"\n    class: rolling\n',
+            )
+        )
+
+
+def test_list_version_raises_policy_load_error(tmp_path: Path) -> None:
+    """PR #19 review: version as a list (YAML sequence) must map to PolicyLoadError."""
+    with pytest.raises(PolicyLoadError, match="policy version must be an integer"):
+        Policy.load(
+            _write(
+                tmp_path,
+                "version: [1]\nlast_reviewed: 2026-04-20\nreviewer: x\nrules:\n"
+                '  - pattern: "/Reports/**"\n    class: rolling\n',
+            )
+        )
+
+
 def test_data_archive_bare_path_is_parent_index_not_static(tmp_path: Path) -> None:
     """Pins the fix for the /Data_Archive/** shadow bug.
 
