@@ -393,7 +393,10 @@ def walk(
             for path, outcome, children in ex.map(process_one, wave):
                 if outcome == "fetch":
                     fetched += 1
-                    print(f"  fetch     [{fetched:4d}]  {path}")
+                    # Keep `fetch[` byte-exact — weekly-refresh.yml greps literally
+                    # for it to compute TOTAL. Align the path column via trailing
+                    # spaces instead.
+                    print(f"  fetch[{fetched:4d}]       {path}")
                 elif outcome == "fetch_noop":
                     fetched_noop += 1
                     print(f"  fetch_noop[{fetched_noop:4d}]  {path}")
