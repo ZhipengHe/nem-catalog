@@ -141,7 +141,7 @@ class HREFExtractionShiftError(RuntimeError):
         self.after = after
 
 
-def save_listing(url_path: str, data: bytes) -> None:
+def save_listing(url_path: str, data: bytes) -> bool:
     """Content-aware write with template-shift guard.
 
     AEMO's IIS 8.5 server renders filesystem mtimes into directory listings,
@@ -150,13 +150,19 @@ def save_listing(url_path: str, data: bytes) -> None:
       1. Compares the HREF set from the cached file (if any) against the set
          extracted from the new bytes.
       2. If identical, skips the write (preserves mtime + byte identity, so
-         git stays clean for AEMO maintenance churn).
+         git stays clean for AEMO maintenance churn) and returns ``False``.
       3. If the new set is empty or drops >=50% vs. cached (and cached was
          non-empty), writes the new bytes for forensics but raises
          HREFExtractionShiftError so the workflow can open a P0.
-      4. Otherwise writes the new bytes.
+      4. Otherwise writes the new bytes and returns ``True``.
 
-    Empty-cache first-crawl falls through to an unconditional write.
+    Empty-cache first-crawl falls through to an unconditional write (``True``).
+
+    Returns:
+        ``True`` if bytes were written, ``False`` if the identical-content
+        short-circuit fired. Callers use this as the authoritative
+        fetch-vs-fetch-noop signal (don't infer from filesystem mtime — coarse
+        or cached filesystems can preserve mtime even on a real write).
     """
     p = OUT / url_path.lstrip("/")
     p.mkdir(parents=True, exist_ok=True)
@@ -175,8 +181,9 @@ def save_listing(url_path: str, data: bytes) -> None:
                 idx.write_bytes(data)  # forensic write, then raise
                 raise HREFExtractionShiftError(url_path, before=len(old), after=len(new))
             if old == new:
-                return
+                return False
     idx.write_bytes(data)
+    return True
 
 
 def extract_children(parent_path: str, data: bytes) -> list[str]:
@@ -317,12 +324,10 @@ def _process_one_for_test(
     data, status = throttled_fetch(url)
     if data is None or status != 200:
         return (path, "skip", [])
-    # Mark outcome as fetch_noop if content-aware write short-circuits
-    # by catching the early return in save_listing without mtime change.
-    before_mtime = cached.stat().st_mtime_ns if cached.is_file() else None
-    save_listing(path, data)
-    after_mtime = cached.stat().st_mtime_ns if cached.is_file() else None
-    outcome = "fetch_noop" if before_mtime == after_mtime else "fetch"
+    # Explicit wrote-bytes signal from save_listing avoids mtime inference
+    # that can be falsified on coarse-resolution or cached filesystems.
+    wrote = save_listing(path, data)
+    outcome = "fetch" if wrote else "fetch_noop"
     return (path, outcome, extract_children(path, data))
 
 
@@ -377,10 +382,11 @@ def walk(
         if data is None or status != 200:
             print(f"  skip {path} status={status}")
             return (path, "skip", [])
-        before_mtime = cached.stat().st_mtime_ns if cached.is_file() else None
-        save_listing(path, data)
-        after_mtime = cached.stat().st_mtime_ns if cached.is_file() else None
-        outcome = "fetch_noop" if before_mtime == after_mtime else "fetch"
+        # save_listing returns False when it short-circuits (cached bytes
+        # identical to fresh). Authoritative signal — avoids mtime inference
+        # that can be falsified on coarse-resolution filesystems.
+        wrote = save_listing(path, data)
+        outcome = "fetch" if wrote else "fetch_noop"
         return (path, outcome, extract_children(path, data))
 
     wave_n = 0

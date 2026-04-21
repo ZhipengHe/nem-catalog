@@ -57,6 +57,40 @@ def test_writes_when_no_cached_file(tmp_path: Path, monkeypatch) -> None:
     assert (tmp_path / "Reports/CURRENT/x/index.html").read_bytes() == data
 
 
+def test_save_listing_returns_true_when_writes_occur(tmp_path: Path, monkeypatch) -> None:
+    """PR #19 review: save_listing returns explicit bool; True means bytes were
+    written (either first-crawl or content changed). Authoritative signal the
+    walker uses for fetch vs fetch_noop classification — avoids mtime inference.
+    """
+    import nemweb_download as mod
+
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+    # Case A: cache miss → writes → True
+    wrote = mod.save_listing("/Reports/CURRENT/x/", b'<pre><A HREF="/a/">a</A></pre>')
+    assert wrote is True
+
+    # Case B: existing cache, HREFs changed → writes → True
+    wrote = mod.save_listing(
+        "/Reports/CURRENT/x/",
+        b'<pre><A HREF="/a/">a</A><A HREF="/b/">b</A></pre>',
+    )
+    assert wrote is True
+
+
+def test_save_listing_returns_false_on_identical_hrefs(tmp_path: Path, monkeypatch) -> None:
+    """PR #19 review: save_listing returns False when content-identical short-
+    circuit fires (HREF set unchanged). Pins the fetch_noop signal contract.
+    """
+    import nemweb_download as mod
+
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+    # First write seeds the cache.
+    mod.save_listing("/Reports/CURRENT/x/", b'<pre><A HREF="/a/">a</A></pre>')
+    # Second call with identical HREF set (different surrounding bytes OK) → no write → False.
+    wrote = mod.save_listing("/Reports/CURRENT/x/", b'<pre>noise <A HREF="/a/">a</A></pre>')
+    assert wrote is False
+
+
 def test_template_shift_triggers_at_50pct_via_lowercase_href(tmp_path: Path, monkeypatch) -> None:
     import nemweb_download as mod
 
