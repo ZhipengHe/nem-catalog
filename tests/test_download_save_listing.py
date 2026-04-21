@@ -125,3 +125,27 @@ def test_template_shift_does_not_trigger_on_small_drop(tmp_path: Path, monkeypat
     # Should NOT raise — a legitimate 40% rolloff in a rolling directory.
     mod.save_listing("/Reports/CURRENT/x/", refetched)
     assert idx.read_bytes() == refetched, "40% drop is within threshold; write should proceed"
+
+
+def test_save_listing_survives_osread_error(tmp_path: Path, monkeypatch) -> None:
+    """OSError from idx.read_bytes() is caught; new bytes are written unconditionally."""
+    import nemweb_download as mod
+
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+    idx = tmp_path / "Reports/CURRENT/x/index.html"
+    idx.parent.mkdir(parents=True)
+    idx.write_bytes(b'<pre><A HREF="/old/">old</A></pre>')
+
+    # Simulate a filesystem hiccup: read_bytes raises OSError even though is_file() is True.
+    def _raise_oserror(self: Path) -> bytes:
+        raise OSError("simulated read failure")
+
+    monkeypatch.setattr(Path, "read_bytes", _raise_oserror)
+
+    new_data = b'<pre><A HREF="/a/">a</A></pre>'
+    # Must not raise — OSError should be swallowed and treated as cache-miss.
+    mod.save_listing("/Reports/CURRENT/x/", new_data)
+
+    # Restore read_bytes to verify disk contents.
+    monkeypatch.undo()
+    assert idx.read_bytes() == new_data, "new bytes must be written on cache-read failure"

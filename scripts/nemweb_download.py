@@ -162,14 +162,20 @@ def save_listing(url_path: str, data: bytes) -> None:
     p.mkdir(parents=True, exist_ok=True)
     idx = p / "index.html"
     if idx.is_file():
-        old = frozenset(m.group(1) for m in HREF_RE.finditer(idx.read_bytes()))
-        new = frozenset(m.group(1) for m in HREF_RE.finditer(data))
-        template_shift = bool(old) and (not new or len(new) * 2 <= len(old))
-        if template_shift:
-            idx.write_bytes(data)  # forensic write, then raise
-            raise HREFExtractionShiftError(url_path, before=len(old), after=len(new))
-        if old == new:
-            return
+        try:
+            cached_bytes = idx.read_bytes()
+        except OSError as e:
+            print(f"  warn: cache read failed for {url_path}: {e}", file=sys.stderr)
+            cached_bytes = None
+        if cached_bytes is not None:
+            old = frozenset(m.group(1) for m in HREF_RE.finditer(cached_bytes))
+            new = frozenset(m.group(1) for m in HREF_RE.finditer(data))
+            template_shift = bool(old) and (not new or len(new) * 2 <= len(old))
+            if template_shift:
+                idx.write_bytes(data)  # forensic write, then raise
+                raise HREFExtractionShiftError(url_path, before=len(old), after=len(new))
+            if old == new:
+                return
     idx.write_bytes(data)
 
 
