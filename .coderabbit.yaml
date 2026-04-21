@@ -241,4 +241,3 @@ issue_enrichment:
         - "!wontfix"
         - "!duplicate"
         - "!invalid"
-
