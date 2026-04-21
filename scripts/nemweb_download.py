@@ -165,7 +165,7 @@ def save_listing(url_path: str, data: bytes) -> None:
         try:
             cached_bytes = idx.read_bytes()
         except OSError as e:
-            print(f"  warn: cache read failed for {url_path}: {e}", file=sys.stderr)
+            print(f"  WARN {url_path}: {type(e).__name__}: {e}", file=sys.stderr)
             cached_bytes = None
         if cached_bytes is not None:
             old = frozenset(m.group(1) for m in HREF_RE.finditer(cached_bytes))
