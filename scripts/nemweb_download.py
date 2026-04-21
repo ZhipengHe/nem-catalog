@@ -266,6 +266,8 @@ def parse_args(
             i += 1
         elif a.startswith("--threads="):
             raw = a.split("=", 1)[1]
+            if not raw:
+                raise SystemExit("--threads requires a value")
             try:
                 threads = int(raw)
             except ValueError:

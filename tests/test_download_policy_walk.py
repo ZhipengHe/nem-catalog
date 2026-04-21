@@ -136,6 +136,18 @@ def test_parse_args_threads_missing_value() -> None:
         mod.parse_args(["--threads"])
 
 
+def test_parse_args_threads_equals_empty() -> None:
+    """--threads= (explicit empty RHS) must fail with the same 'requires a value'
+    message used for bare --threads, not the 'positive integer' path. PR #19 review.
+    """
+    import nemweb_download as mod
+    import pytest
+
+    with pytest.raises(SystemExit) as exc_info:
+        mod.parse_args(["--threads="])
+    assert "requires a value" in str(exc_info.value)
+
+
 def test_parse_args_threads_non_integer() -> None:
     """--threads abc must raise SystemExit with message about invalid integer."""
     import nemweb_download as mod
