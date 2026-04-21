@@ -83,6 +83,63 @@ def test_load_fresh_root_index_maps_to_slash(tmp_path):
     assert result["/"] == b"<pre></pre>"
 
 
+def test_append_only_path_with_removals_flags_drift(tmp_path):
+    # append_only guarantee: files only get added, never removed.
+    # Mirror has /a/ and /b/; fresh drops /b/ — removal violates the guarantee.
+    policy_path = _policy(tmp_path, "/Data_Append/**", "append_only")
+    mirror_root = tmp_path / "nemweb-mirror"
+    _mirror(tmp_path, "/Data_Append/x/", ["/a/", "/b/"])
+    fresh = {"/Data_Append/x/": b'<pre><A HREF="/a/">a</A></pre>'}
+    findings = run_audit(policy_path, mirror_root, fresh)
+    assert any(f.kind == "append_only_drift" and f.path == "/Data_Append/x/" for f in findings)
+
+
+def test_append_only_path_with_additions_only_is_clean(tmp_path):
+    # Additions are the EXPECTED behaviour for append_only — must not trigger a finding.
+    policy_path = _policy(tmp_path, "/Data_Append/**", "append_only")
+    mirror_root = tmp_path / "nemweb-mirror"
+    _mirror(tmp_path, "/Data_Append/x/", ["/a/"])
+    fresh = {"/Data_Append/x/": b'<pre><A HREF="/a/">a</A><A HREF="/b/">b</A></pre>'}
+    findings = run_audit(policy_path, mirror_root, fresh)
+    assert findings == []
+
+
+def test_append_only_path_no_change_is_clean(tmp_path):
+    # No change at all — completely clean, no finding.
+    policy_path = _policy(tmp_path, "/Data_Append/**", "append_only")
+    mirror_root = tmp_path / "nemweb-mirror"
+    _mirror(tmp_path, "/Data_Append/x/", ["/a/", "/b/"])
+    fresh = {"/Data_Append/x/": b'<pre><A HREF="/a/">a</A><A HREF="/b/">b</A></pre>'}
+    findings = run_audit(policy_path, mirror_root, fresh)
+    assert findings == []
+
+
+def test_parent_index_path_with_any_change_flags_drift(tmp_path):
+    # parent_index lists children; any set-level HREF change warrants review.
+    # Mirror has /child1/ and /child2/; fresh adds /child3/ — flag it.
+    policy_path = _policy(tmp_path, "/Reports/PARENT/**", "parent_index")
+    mirror_root = tmp_path / "nemweb-mirror"
+    _mirror(tmp_path, "/Reports/PARENT/", ["/child1/", "/child2/"])
+    fresh = {
+        "/Reports/PARENT/": (
+            b'<pre><A HREF="/child1/">a</A><A HREF="/child2/">b</A><A HREF="/child3/">c</A></pre>'
+        )
+    }
+    findings = run_audit(policy_path, mirror_root, fresh)
+    assert any(f.kind == "parent_index_drift" and f.path == "/Reports/PARENT/" for f in findings)
+
+
+def test_parent_index_path_no_change_is_clean(tmp_path):
+    # Identical cached and fresh HREF sets — no finding.
+    policy_path = _policy(tmp_path, "/Reports/PARENT/**", "parent_index")
+    mirror_root = tmp_path / "nemweb-mirror"
+    _mirror(tmp_path, "/Reports/PARENT/", ["/child1/", "/child2/"])
+    # Same hrefs, different HTML order — set equality must not trigger a finding.
+    fresh = {"/Reports/PARENT/": (b'<pre><A HREF="/child2/">b</A><A HREF="/child1/">a</A></pre>')}
+    findings = run_audit(policy_path, mirror_root, fresh)
+    assert findings == []
+
+
 def test_load_fresh_nested_index_maps_correctly(tmp_path):
     from scripts.audit_policy import _load_fresh
 
