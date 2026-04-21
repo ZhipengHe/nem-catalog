@@ -24,6 +24,17 @@ Force-refresh all cached listings (bypass the cached-file shortcut so rolling
 
 Force-refresh a specific path only: delete its index.html on disk, then run
 the default walk or ``--gaps`` mode.
+
+Policy-driven refetch:
+    Load a freshness-policy YAML to skip ``static`` paths and limit
+    ``rolling`` / ``append_only`` fetches to the budget.  Can be combined
+    with ``--threads`` and ``--gaps`` for the canonical weekly-refresh
+    workflow:
+
+        POLICY=patterns/curated/freshness-policy.yaml
+        python3 scripts/nemweb_download.py --policy $POLICY [MAX_FETCHES]
+        python3 scripts/nemweb_download.py --threads 8 --gaps \
+            --policy $POLICY 10000
 """
 
 from __future__ import annotations
