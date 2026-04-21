@@ -1,0 +1,244 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+#
+# CodeRabbit configuration for nem-catalog.
+# Design goals, in priority order:
+#   1. Never review byte-preserved AEMO captures or generated artifacts
+#      (mirrors .pre-commit-config.yaml's `exclude:` block).
+#   2. Flag SDK backward-compat risk in src/nem_catalog/ — pre-1.0 but still
+#      user-facing (catalog.json URL, resolve() shape).
+#   3. Flag ground-truth violations in scripts/ — hand-written URLs/regexes
+#      that should have come from reference/ or the mirror.
+#   4. Flag tag-pinned GitHub Actions — must be commit-SHA-pinned.
+
+language: "en-US"
+early_access: false
+
+reviews:
+  profile: "chill"
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - "master"
+
+  # Suggest PR labels based on the change (orthogonal to issue_enrichment
+  # below, which labels issues). Uses the same label vocabulary.
+  suggested_labels: true
+
+  # Mirrors .pre-commit-config.yaml `exclude:`. These paths are either
+  # byte-preserved source-of-truth, generated artifacts, or lockfiles —
+  # CodeRabbit should not suggest edits to any of them.
+  path_filters:
+    - "!nemweb-mirror/**"
+    - "!reference/**"
+    - "!patterns/auto/**"
+    - "!catalog.json"
+    - "!uv.lock"
+    - "!.plans/**"
+
+  path_instructions:
+    - path: "src/nem_catalog/**/*.py"
+      instructions: |
+        - This is the public Python SDK surface. Flag any change that breaks
+          backward compatibility for `load_catalog()`, `resolve()`, or the
+          error classes in `errors.py` without a matching CHANGELOG entry.
+        - mypy runs in --strict mode. Flag missing type annotations on
+          public functions and any use of `Any` that could be narrowed.
+        - No runtime network I/O in the SDK. `load_catalog()` reads a local
+          path only; HTTP fetching belongs in `scripts/`.
+        - Flag broad `except Exception` in library code — prefer narrow
+          exceptions from `errors.py`.
+
+    - path: "scripts/*.py"
+      instructions: |
+        - Ground-truth discipline: never hand-write NEMWEB URLs, dataset
+          names, or filename regex patterns. Any such literal must be
+          traceable to `reference/URL-CONVENTIONS.md`, `reference/URL-CONVENTIONS.csv`,
+          or a capture under `nemweb-mirror/`. Flag magic strings that don't
+          have a reference-doc citation in an adjacent comment.
+        - `extract_patterns.py` is the authoritative pattern extractor; other
+          scripts (e.g. `merge_catalog.py`) should consume its output, not
+          re-derive patterns. Flag any duplicated regex logic.
+        - Flag any change to `audit_policy.py` / `policy.py` that relaxes
+          robots.txt handling.
+
+    - path: "tests/**/*.py"
+      instructions: |
+        - Flag mocks that fake AEMO HTTP responses without fixtures derived
+          from `nemweb-mirror/` or `reference/aemo-catalog/`. Real captures
+          beat invented responses.
+        - Test names should describe the behavior under test; vague names
+          like `test_it_works` should be flagged.
+        - Skip suggesting type annotations in tests (mypy override excludes
+          tests/ already).
+
+    - path: "patterns/curated/*.yaml"
+      instructions: |
+        - Every curated entry must include `anomaly_note` explaining why
+          this entry overrides the extractor. Flag entries missing it.
+        - Curated YAML must parse via `tests/test_merge_catalog.py`. Flag
+          unknown top-level keys or schema drift.
+        - Curated entries are for *anomalies only* — flag entries that
+          just duplicate what the extractor would produce.
+
+    - path: ".github/workflows/*.yml"
+      instructions: |
+        - All GitHub Actions must be pinned to a full 40-character commit
+          SHA, not a tag (e.g. `actions/checkout@<sha>  # v5.0.0`).
+          Flag any `@v<number>`, `@main`, `@master`, or short-SHA pin.
+          Annotated tags resolve to a tag-object SHA, NOT a commit SHA,
+          so tag pins are not equivalent to SHA pins.
+        - `permissions:` must be declared at workflow or job level. Flag
+          workflows missing an explicit `permissions:` block (default is
+          write-all on some triggers).
+        - Scheduled workflows should note the cron schedule in a comment
+          in UTC terms (this repo has prior drift on schedule docs).
+
+    - path: "schemas/*.json"
+      instructions: |
+        - This is the public JSON Schema for catalog.json. Any change is a
+          breaking change for downstream consumers. Flag additive fields
+          without `default` and any removed/renamed fields.
+        - Must validate with `jsonschema` Draft 2020-12.
+
+    - path: "**/*.md"
+      instructions: |
+        - Flag references to URLs, dataset names, or file paths that are
+          not grounded in `reference/` or `nemweb-mirror/`.
+        - Keep CHANGELOG.md in Keep-a-Changelog format; every user-facing
+          change needs an entry.
+
+  tools:
+    ruff:
+      enabled: true
+      config_file: "pyproject.toml"
+    gitleaks:
+      enabled: true
+    actionlint:
+      enabled: true
+    yamllint:
+      enabled: true
+    markdownlint:
+      enabled: true
+    shellcheck:
+      enabled: true
+
+chat:
+  auto_reply: true
+
+knowledge_base:
+  opt_out: false
+
+# Issue enrichment: runs on newly opened GitHub issues.
+#   - auto_enrich: duplicate detection + related issues/PRs + assignee hints
+#   - labeling:    auto-apply repo labels based on the instructions below
+#   - planning:    generate a Coding Plan for issues labelled `enhancement`
+#
+# Label vocabulary is grounded in `gh label list` — only labels that actually
+# exist in the repo are referenced. Priority labels (p0, p1) and triage labels
+# (duplicate, wontfix, invalid, good first issue, help wanted) are left to
+# human judgment. Dependabot owns `dependencies` and `github_actions`.
+issue_enrichment:
+  auto_enrich:
+    enabled: true
+
+  labeling:
+    auto_apply_labels: true
+    labeling_instructions:
+      - label: bug
+        instructions: |
+          Something is not working as documented or expected — runtime errors,
+          wrong URL/content from `resolve()`, schema validation failures,
+          SDK exceptions on valid inputs, regressions vs. prior release.
+          Observable mismatch between what the catalog says and what NEMWEB
+          actually serves also counts (see issue #3, #17 for exemplars).
+
+      - label: enhancement
+        instructions: |
+          New SDK feature, new dataset coverage, new schema field, new
+          script, or improvement to existing behavior that is NOT a bug
+          fix. Feature requests from users. Exemplars: #15 (list_urls),
+          #16 (observed-range retention), #13 (retention classification).
+
+      - label: documentation
+        instructions: |
+          README / CHANGELOG / CONTRIBUTING / docs/ changes, URL-CONVENTIONS
+          clarifications, missing developer docs, outdated examples. Does
+          NOT include `reference/` source-of-truth files (those are data,
+          not docs).
+
+      - label: chore
+        instructions: |
+          Housekeeping that is neither a bug nor a user-facing feature:
+          workflow polish, refactoring, dependency bumps (when not already
+          auto-labelled `dependencies`), release tagging, comment cleanup.
+          Exemplar: #11 (pre-v0.2 polish pass), #14 (release gate).
+
+      - label: question
+        instructions: |
+          Issue asks for clarification rather than reporting a defect or
+          requesting work. No action required beyond a reply. If the
+          question reveals a doc gap, ALSO apply `documentation`.
+
+      - label: data-catalog
+        instructions: |
+          Scope label — apply whenever the issue concerns catalog.json
+          shape, dataset keys, URL conventions, patterns/curated entries,
+          schema changes, or the SDK's interpretation of catalog data.
+          This is the primary scope label; most issues get it. Co-apply
+          with bug/enhancement/documentation as appropriate.
+
+      - label: policy-audit
+        instructions: |
+          Issue relates to monthly `policy-audit.yml` workflow output:
+          robots.txt classification drift, new unclassified paths,
+          retention-policy classification (append_only / bounded_rolling
+          / caveat), CURRENT vs. ARCHIVE boundaries.
+
+      - label: weekly-refresh
+        instructions: |
+          Issue relates to `weekly-refresh.yml` workflow: catalog
+          regeneration, observed-range updates, diff generation,
+          crawl-badge refresh.
+
+      - label: crawl-failure
+        instructions: |
+          Weekly-refresh crawl step exited non-zero. Usually opened
+          automatically by the workflow. Co-apply `weekly-refresh`.
+
+      - label: merge
+        instructions: |
+          `merge_catalog.py` step failed — schema validation error,
+          curated/auto conflict, duplicate dataset key, or output
+          diff regression.
+
+      - label: robots-halt
+        instructions: |
+          robots.txt disallowed a path the crawler was configured to
+          hit; crawl halted. Co-apply `policy-audit` if the halt
+          reveals a policy misclassification.
+
+      - label: aemo-coordination
+        instructions: |
+          Requires AEMO (external party) to act — crawl permissions,
+          dataset clarification, schema contract questions. NOT for
+          bugs we can fix internally.
+
+  planning:
+    enabled: true
+    auto_planning:
+      enabled: true
+      labels:
+        - "enhancement"      # auto-plan feature work
+        - "!question"        # never plan questions
+        - "!aemo-coordination"  # external blocker, not a coding task
+        - "!wontfix"
+        - "!duplicate"
+        - "!invalid"
+
