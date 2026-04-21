@@ -66,3 +66,34 @@ def test_clean_audit_returns_no_findings(tmp_path):
     fresh = {"/Reports/CURRENT/x/": b'<pre><A HREF="/b/">b</A><A HREF="/c/">c</A></pre>'}
     findings = run_audit(policy_path, mirror_root, fresh)
     assert findings == []
+
+
+def test_load_fresh_root_index_maps_to_slash(tmp_path):
+    from scripts.audit_policy import _load_fresh
+
+    # Root-level index.html — fresh_dir itself contains the file.
+    root_idx = tmp_path / "index.html"
+    root_idx.write_bytes(b"<pre></pre>")
+
+    result = _load_fresh(tmp_path)
+
+    # Must produce "/" not "/./"
+    assert "/" in result, f"Expected key '/' in result, got: {list(result.keys())}"
+    assert "/./" not in result, f"Got wrong key '/./'; keys: {list(result.keys())}"
+    assert result["/"] == b"<pre></pre>"
+
+
+def test_load_fresh_nested_index_maps_correctly(tmp_path):
+    from scripts.audit_policy import _load_fresh
+
+    # Nested index.html — should produce /Reports/CURRENT/ (no regression).
+    nested = tmp_path / "Reports" / "CURRENT"
+    nested.mkdir(parents=True)
+    (nested / "index.html").write_bytes(b"<pre>nested</pre>")
+
+    result = _load_fresh(tmp_path)
+
+    assert "/Reports/CURRENT/" in result, (
+        f"Expected '/Reports/CURRENT/' in result, got: {list(result.keys())}"
+    )
+    assert result["/Reports/CURRENT/"] == b"<pre>nested</pre>"

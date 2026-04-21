@@ -146,7 +146,7 @@ def _load_fresh(fresh_dir: Path) -> dict[str, bytes]:
     out: dict[str, bytes] = {}
     for idx in fresh_dir.rglob("index.html"):
         rel = idx.parent.relative_to(fresh_dir).as_posix()
-        url = "/" + rel + "/" if rel else "/"
+        url = "/" + rel + "/" if rel and rel != "." else "/"
         out[url] = idx.read_bytes()
     return out
 
