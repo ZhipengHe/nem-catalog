@@ -59,12 +59,13 @@ class Policy:
             raise PolicyLoadError(f"policy 'rules' must be a non-empty list in {p}")
 
         raw_version = raw.get("version", 0)
-        try:
-            version = int(raw_version)
-        except (TypeError, ValueError) as e:
-            raise PolicyLoadError(
-                f"{p}: policy version must be an integer, got {raw_version!r}"
-            ) from e
+        # Strict type check: YAML can deliver bool, float, str, list, null —
+        # `int(...)` would silently coerce bool/float (int(True)=1, int(1.5)=1),
+        # letting malformed schemas pass as v1. Accept only Python int, and
+        # exclude bool explicitly since `isinstance(True, int)` is True.
+        if isinstance(raw_version, bool) or not isinstance(raw_version, int):
+            raise PolicyLoadError(f"{p}: policy version must be an integer, got {raw_version!r}")
+        version = raw_version
         if version != 1:
             raise PolicyLoadError(f"{p}: unsupported policy version {version}, expected 1")
 
