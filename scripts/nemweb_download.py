@@ -321,7 +321,7 @@ def walk(
     max_fetches: int,
     force: bool = False,
     policy: object | None = None,
-) -> tuple[int, int, int]:
+) -> tuple[int, int, int, int]:
     """Wave-batched BFS. Each wave dispatches current frontier to a thread pool;
     children discovered become the next wave. Terminates when frontier is empty or
     max_fetches budget exhausted.
@@ -332,17 +332,23 @@ def walk(
     When ``policy`` is None and ``force`` is False, all cached paths are
     reused (legacy behaviour — matches original --gaps semantics).
 
-    Returns: (fetched, reused, skipped)
+    Returns: (fetched, fetched_noop, reused, skipped)
+      fetched      — paths where save_listing wrote new or changed content (mtime changed).
+      fetched_noop — paths fetched from the network but whose content was identical to the
+                     cached copy; save_listing's content-aware dedup short-circuited
+                     (mtime unchanged).
+      reused       — paths served entirely from the on-disk cache without a network fetch.
+      skipped      — paths skipped due to exhausted budget or non-200 response.
     """
     visited: set[str] = set()
-    fetched = reused = skipped = 0
+    fetched = fetched_noop = reused = skipped = 0
     frontier: list[str] = [s for s in seeds if s.endswith("/")]
 
     budget_lock = threading.Lock()
     budget = {"remaining": max_fetches}
 
     def process_one(path: str) -> tuple[str, str, list[str]]:
-        """Returns (path, outcome, children). Outcome: 'fetch' | 'reuse' | 'skip'."""
+        """Returns (path, outcome, children). Outcome: 'fetch' | 'fetch_noop' | 'reuse' | 'skip'."""
         cached = local_path(path)
         if cached.is_file() and not _should_refetch(path, force, policy):
             try:
@@ -360,8 +366,11 @@ def walk(
         if data is None or status != 200:
             print(f"  skip {path} status={status}")
             return (path, "skip", [])
+        before_mtime = cached.stat().st_mtime_ns if cached.is_file() else None
         save_listing(path, data)
-        return (path, "fetch", extract_children(path, data))
+        after_mtime = cached.stat().st_mtime_ns if cached.is_file() else None
+        outcome = "fetch_noop" if before_mtime == after_mtime else "fetch"
+        return (path, outcome, extract_children(path, data))
 
     wave_n = 0
     while frontier and budget["remaining"] > 0:
@@ -379,6 +388,9 @@ def walk(
                 if outcome == "fetch":
                     fetched += 1
                     print(f"  fetch[{fetched:4d}]  {path}")
+                elif outcome == "fetch_noop":
+                    fetched_noop += 1
+                    print(f"  fetch_noop[{fetched_noop:4d}]  {path}")
                 elif outcome == "reuse":
                     reused += 1
                 elif outcome == "skip":
@@ -386,7 +398,7 @@ def walk(
                 for c in children:
                     if c not in visited:
                         frontier.append(c)
-    return fetched, reused, skipped
+    return fetched, fetched_noop, reused, skipped
 
 
 # ----- CLI -----
@@ -425,12 +437,17 @@ def main(argv: list[str]) -> int:
     print(f"Seeds: {len(seeds)}  threads: {threads}  max_fetches: {max_fetches}  mode: {mode_str}")
 
     try:
-        fetched, reused, skipped = walk(seeds, threads, max_fetches, force=force, policy=policy)
+        fetched, fetched_noop, reused, skipped = walk(
+            seeds, threads, max_fetches, force=force, policy=policy
+        )
     except HREFExtractionShiftError as e:
         print(f"ERROR: {e}", file=sys.stderr)
         return 2
 
-    print(f"\nDone. fetched={fetched}  reused={reused}  skipped={skipped}  under {OUT}/")
+    print(
+        f"\nDone. fetched={fetched}  fetch_noop={fetched_noop}"
+        f"  reused={reused}  skipped={skipped}  under {OUT}/"
+    )
     return 0
 
 

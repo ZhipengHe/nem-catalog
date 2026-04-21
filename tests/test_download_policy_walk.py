@@ -189,3 +189,54 @@ def _policy(tmp_path: Path, pattern: str, cls: str) -> Path:
         f'  - pattern: "{pattern}"\n    class: {cls}\n'
     )
     return p
+
+
+# --- EXT-3: walk() fetch vs fetch_noop distinction ---
+
+
+def test_walk_emits_fetch_when_mtime_changes(tmp_path: Path, monkeypatch) -> None:
+    """walk() must return outcome 'fetch' when save_listing writes new content (mtime changes)."""
+    import nemweb_download as mod
+
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+
+    seed = "/Reports/NEW/"
+    # No pre-existing cached file → mtime will change from None to something.
+    html = b"<pre></pre>"
+    with patch.object(mod, "throttled_fetch", return_value=(html, 200)):
+        result = mod.walk([seed], threads=1, max_fetches=10)
+
+    # New 4-tuple: (fetched, fetched_noop, reused, skipped)
+    assert len(result) == 4
+    fetched, fetched_noop, _reused, _skipped = result
+    assert fetched == 1
+    assert fetched_noop == 0
+
+
+def test_walk_emits_fetch_noop_when_mtime_unchanged(tmp_path: Path, monkeypatch) -> None:
+    """walk() must return 'fetch_noop' when save_listing short-circuits on identical content."""
+    import nemweb_download as mod
+
+    from scripts.policy import Policy
+
+    # Use a rolling policy so the walker refetches despite cache.
+    policy = Policy.load(_policy(tmp_path, "/Reports/**", "rolling"))
+    monkeypatch.setattr(mod, "OUT", tmp_path)
+
+    seed = "/Reports/CURRENT/x/"
+    # Empty listing — no child links, so no wave 2 fetches.
+    html = b"<pre></pre>"
+
+    # Pre-populate the cached file with the same bytes that the server will return.
+    cached = tmp_path / "Reports/CURRENT/x/index.html"
+    cached.parent.mkdir(parents=True)
+    cached.write_bytes(html)
+
+    with patch.object(mod, "throttled_fetch", return_value=(html, 200)):
+        result = mod.walk([seed], threads=1, max_fetches=10, policy=policy)
+
+    assert len(result) == 4
+    fetched, fetched_noop, _reused, _skipped = result
+    # Content-identical → save_listing short-circuits → mtime unchanged → fetch_noop
+    assert fetched_noop == 1
+    assert fetched == 0
