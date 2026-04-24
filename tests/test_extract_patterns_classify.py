@@ -60,6 +60,34 @@ def test_extract_mmsdm_table_preserves_hash_format_compatibility():
     )
 
 
+def test_extract_mmsdm_table_hash_five_part_all_dialect():
+    # 5-part dialect seen in P5MIN_ALL_DATA / PREDISP_ALL_DATA view tiers:
+    # PUBLIC_ARCHIVE # TABLE # ALL # FILE<NN> # <date>.<ext>
+    assert (
+        extract_patterns.extract_mmsdm_table(
+            "PUBLIC_ARCHIVE%23P5MIN_CONSTRAINTSOLUTION%23ALL%23FILE01%23202408010000.zip"
+        )
+        == "P5MIN_CONSTRAINTSOLUTION"
+    )
+    assert (
+        extract_patterns.extract_mmsdm_table(
+            "PUBLIC_ARCHIVE%23PREDISPATCHLOAD%23ALL%23FILE01%23202408010000.zip"
+        )
+        == "PREDISPATCHLOAD"
+    )
+
+
+def test_extract_mmsdm_table_hash_rejects_unknown_dialects():
+    # Defensive: a #-containing filename that doesn't match a known dialect
+    # must return None so the caller surfaces it as UNPARSED (a gap signal),
+    # not silently promote a random substring to an intra_repo_id.
+    assert extract_patterns.extract_mmsdm_table("garbage#foo#bar") is None
+    assert (
+        extract_patterns.extract_mmsdm_table("PUBLIC_ARCHIVE#TABLE#NOT_A_FILE#202408.ctl") is None
+    )
+    assert extract_patterns.extract_mmsdm_table("PUBLIC_ARCHIVE#TABLE#FILE01#notadate.ctl") is None
+
+
 # ---------- classify: MMSDM_MONTHLY_BULK (dead branch revived) ----------
 
 

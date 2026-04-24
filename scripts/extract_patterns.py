@@ -435,6 +435,14 @@ def aux_id_from_filename_template(tpl: str) -> str:
     byte casing is preserved so two AEMO-served filenames that differ only
     in case get distinct ids.
 
+    Aux signal lives on the ``retention_tier`` (e.g. ``MONTH_ROOT_AUX``,
+    ``{view}_AUX``), NOT on this id. ``write_json._curate_keys()`` excludes
+    aux-only datasets from the user-facing ``dataset_keys`` list by checking
+    that all tier names end with ``_AUX``. Do not try to encode the aux
+    marker in the id itself — the stem should stay filename-faithful so
+    byte-exact case variants (``Readme.htm`` vs ``readme.htm``) remain
+    distinct per §3.1.
+
     Examples::
 
         AUTORUN.INF          -> AUTORUN_INF
@@ -478,9 +486,28 @@ def extract_mmsdm_table(filename: str) -> str | None:
     decoded = urllib.parse.unquote(filename)
     if "#" in decoded:
         parts = decoded.split("#")
-        if len(parts) >= 2 and parts[0] in ("PUBLIC_ARCHIVE", "PUBLIC"):
+        # Validate the archive dialect before promoting `parts[1]` to a table id.
+        # Two observed shapes (verified against nemweb-mirror/, 2026-04-25):
+        #   4-part:  PUBLIC_ARCHIVE # TABLE # FILE<NN> # <date>.<ext>
+        #   5-part:  PUBLIC_ARCHIVE # TABLE # ALL # FILE<NN> # <date>.<ext>
+        # The 5-part shape appears in the *_ALL_DATA view tiers (P5MIN_ALL_DATA,
+        # PREDISP_ALL_DATA). Anything else with '#' is not a recognised table
+        # file — fall through to None so the caller can surface it as UNPARSED.
+        date_re = r"\d{6,14}\.[A-Za-z0-9]+"
+        if (
+            len(parts) == 4
+            and parts[0] in ("PUBLIC_ARCHIVE", "PUBLIC")
+            and re.fullmatch(r"FILE\d+", parts[2])
+            and re.fullmatch(date_re, parts[3])
+        ):
             return parts[1]
-        if len(parts) >= 2:
+        if (
+            len(parts) == 5
+            and parts[0] in ("PUBLIC_ARCHIVE", "PUBLIC")
+            and parts[2] == "ALL"
+            and re.fullmatch(r"FILE\d+", parts[3])
+            and re.fullmatch(date_re, parts[4])
+        ):
             return parts[1]
         return None
     m = _MMSDM_DVD_RE.match(decoded)

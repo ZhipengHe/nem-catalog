@@ -138,30 +138,20 @@ def test_mmsdm_publicdvd_rows_resolved(
 def test_catalog_json_dataset_keys_grew_substantially_for_mmsdm(
     regenerated_outputs: tuple[Path, Path],
 ) -> None:
-    """Acceptance criterion 6 from #21 — verified against the JSON output.
+    """Acceptance criterion 6 from #21 — verified against the curated
+    ``dataset_keys`` list (the user-facing surface), not the raw ``datasets``
+    dict. ``_curate_keys()`` already excludes aux-only entries, so this is the
+    right field to pin.
 
-    Issue #21's criterion text says "dataset_keys list grows by ≥500 real MMSDM
-    table keys". The 500 number is the CSV row-count delta (528 PUBLIC_DVD_
-    rows recovered from the UNPARSED dumping ground) — and that is asserted by
-    ``test_mmsdm_publicdvd_rows_resolved``.
-
-    In ``patterns/auto/catalog.json``, the ``datasets`` dict keys are
-    ``REPO:INTRA_ID`` tuples collapsed across retention tiers: the 169 recovered
-    tables appear as 169 distinct keys regardless of whether they live in CTL,
-    DATA, BCP_FMT, or BCP_DATA. Pre-#21 MMSDM had ~160 real dataset keys;
-    post-#21 the count is ~320+. Assert ≥250 here as a defensible floor with
-    margin; the exact growth is tracked in the plan's Task 9 spot-check.
+    Pre-#21: ~160 curated MMSDM keys. Post-#21: ~300+. Assert ≥250 as a
+    defensible floor with margin. The CSV row-count delta (528 PUBLIC_DVD_
+    rows recovered) is separately asserted by ``test_mmsdm_publicdvd_rows_resolved``.
     """
     _, json_path = regenerated_outputs
     data = json.loads(json_path.read_text())
-    assert "datasets" in data, "catalog.json missing top-level 'datasets'"
-    mmsdm_keys = [k for k in data["datasets"] if k.startswith("MMSDM:")]
-    real_mmsdm = [k for k in mmsdm_keys if k.split(":", 1)[1] not in PLACEHOLDER_IDS]
-    assert len(real_mmsdm) >= 250, (
-        f"MMSDM real-dataset count {len(real_mmsdm)} < 250; "
-        f"total MMSDM keys = {len(mmsdm_keys)}, "
-        f"placeholder keys = {len(mmsdm_keys) - len(real_mmsdm)}"
-    )
+    assert "dataset_keys" in data, "catalog.json missing top-level 'dataset_keys'"
+    curated_mmsdm = [k for k in data["dataset_keys"] if k.startswith("MMSDM:")]
+    assert len(curated_mmsdm) >= 250, f"curated MMSDM dataset_keys count {len(curated_mmsdm)} < 250"
 
 
 def test_mmsdm_monthly_bulk_present(
