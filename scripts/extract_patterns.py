@@ -329,8 +329,24 @@ def classify_mmsdm(segs: list[str], filename: str) -> tuple[str, str, str, dict]
                 # SQLLoader view file: extract table identifier from filename.
                 # `view` is CTL / DATA / BCP_FMT / BCP_DATA / MYSQL / INDEX /
                 # UTILITIES / LOGS / P5MIN_ALL_DATA / PREDISP_ALL_DATA.
-                table = extract_mmsdm_table(filename) or "UNPARSED"
-                return "MMSDM", view, table, {"sqlloader_view": view}
+                table = extract_mmsdm_table(filename)
+                if table is not None:
+                    return "MMSDM", view, table, {"sqlloader_view": view}
+                # extract_mmsdm_table returned None. Two cases:
+                # 1. Filename is a known table-file dialect (PUBLIC_ARCHIVE# or
+                #    PUBLIC_DVD_) that didn't match → surface as UNPARSED so
+                #    the regex gap gets audited. The catch-all PUBLIC_ prefix
+                #    is intentionally NOT included here because AEMO publishes
+                #    many utility/index filenames with that prefix (e.g.
+                #    PUBLIC_RUN_BCP_<yearmonth>.bat, PUBLIC_MONTHLY_DVD_INDEX)
+                #    that are not tables — those should fall to stem-based aux.
+                # 2. Otherwise (aux chrome like Readme.htm, batch scripts,
+                #    BCPTransform.log, etc.) → stem-based id so each filename
+                #    stays a distinct catalog row.
+                if filename.startswith(("PUBLIC_ARCHIVE", "PUBLIC_DVD_")):
+                    return "MMSDM", view, "UNPARSED", {"sqlloader_view": view}
+                aux_id = aux_id_from_filename_template(skeletonize(filename))
+                return "MMSDM", view, aux_id, {"sqlloader_view": view, "sqlloader_aux": True}
 
     # Fallback: unknown MMSDM path
     return "MMSDM", "OTHER", "UNKNOWN", {}
@@ -433,10 +449,15 @@ def aux_id_from_filename_template(tpl: str) -> str:
 
 # MMSDM SQLLoader view files come in two filename dialects.
 # Pre-2024 (~): PUBLIC_ARCHIVE#<TABLE>#FILE<NN>#<date>.<ext>  (URL-encoded '#' = %23)
-# 2024-present: PUBLIC_DVD_<TABLE>_<yearmonth>.<ext>
+# 2024-present: PUBLIC_DVD_<TABLE>_<date>.<ext>  where <date> is 6-digit
+#   yearmonth (monthly archive) or 12/14-digit timestamp (rolling DATA/.zip).
 # §3.1 byte-exact discipline: both dialects coexist for back-catalogue months;
 # treat as two distinct patterns, not one. Case is preserved as-served.
-_MMSDM_DVD_RE = re.compile(r"^PUBLIC_DVD_(?P<table>.+)_\d{6}\.(?:ctl|CTL|DATA|fmt|bcp|zip)$")
+# Extension list drawn from reference/URL-CONVENTIONS.csv — includes .ctlbak
+# and .ctlBak backup files that AEMO retains alongside the live .ctl files.
+_MMSDM_DVD_RE = re.compile(
+    r"^PUBLIC_DVD_(?P<table>.+)_\d{6,14}\.(?:ctl|CTL|DATA|fmt|bcp|zip|ctlbak|ctlBak)$"
+)
 
 
 def extract_mmsdm_table(filename: str) -> str | None:
