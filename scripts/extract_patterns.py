@@ -279,24 +279,28 @@ def classify_mmsdm(segs: list[str], filename: str) -> tuple[str, str, str, dict]
         if len(rel) == 2 and re.fullmatch(r"MMSDM_\d{4}_\d{2}\.zip", rel[1]):
             return "MMSDM", "MONTHLY_BULK", "MMSDM_MONTHLY_BULK", {}
 
-        # MMSDM/{year}/MMSDM_{year}_{mm}/...
-        if len(rel) >= 2 and re.fullmatch(r"MMSDM_\d{4}_\d{2}", rel[1]):
-            # MMSDM/{year}/{month}/  root (e.g. AUTORUN.INF, disclaimer.htm)
-            if len(rel) == 2:
-                return "MMSDM", "MONTH_ROOT", "MONTH_ROOT_AUX", {}
+        # MMSDM/{year}/MMSDM_{year}_{mm}/<deeper>/<file>
+        # rel[-1] is always the filename segment.
+        if len(rel) >= 3 and re.fullmatch(r"MMSDM_\d{4}_\d{2}", rel[1]):
+            # MMSDM/{year}/{month}/{filename} — month-root aux chrome
+            # (AUTORUN.INF, disclaimer.htm, nemlogo1.gif, shelexec.exe, etc.)
+            if len(rel) == 3:
+                aux_id = aux_id_from_filename_template(skeletonize(filename))
+                return "MMSDM", "MONTH_ROOT_AUX", aux_id, {}
 
             # MMSDM/{year}/{month}/MMSDM_Historical_Data_SQLLoader/...
-            if len(rel) >= 3 and rel[2] == "MMSDM_Historical_Data_SQLLoader":
-                if len(rel) == 3:
-                    return "MMSDM", "SQLLOADER_ROOT", "SQLLOADER_AUX", {}
+            if len(rel) >= 4 and rel[2] == "MMSDM_Historical_Data_SQLLoader":
+                # Files directly under SQLLoader/ (rare aux): len(rel) == 4.
+                if len(rel) == 4:
+                    aux_id = aux_id_from_filename_template(skeletonize(filename))
+                    return "MMSDM", "SQLLOADER_AUX", aux_id, {}
                 view = rel[3]  # CTL, DATA, BCP_FMT, etc.
 
                 # DOCUMENTATION is a further nested tree (MMS Data Model/v*/...)
                 if view == "DOCUMENTATION":
-                    # intra_repo_id from path segments (MMS Data Model version) if present
-                    path_tail = "/".join(rel[4:])
-                    # e.g. "MMS%20Data%20Model/v5.1/..."
-                    m = re.match(r"MMS%20Data%20Model/(v[\w.]+)/?", path_tail)
+                    dir_tail = "/".join(rel[4:-1])  # rel[-1] is filename
+                    # MMS Data Model versioned subtree: e.g. "MMS%20Data%20Model/v5.1/..."
+                    m = re.match(r"MMS%20Data%20Model/(v[\w.]+)/?", dir_tail)
                     if m:
                         return (
                             "MMSDM",
@@ -304,9 +308,18 @@ def classify_mmsdm(segs: list[str], filename: str) -> tuple[str, str, str, dict]
                             f"MMS_DATA_MODEL_{m.group(1)}",
                             {"mms_version": m.group(1)},
                         )
-                    return "MMSDM", "DOCUMENTATION", "DOCUMENTATION_AUX", {}
+                    # marketnoticedata_{yearmonth}.par is a real dataset living
+                    # directly under DOCUMENTATION/ — promote it out of aux.
+                    if re.fullmatch(r"marketnoticedata_\d{6}\.par", filename):
+                        return "MMSDM", "DOCUMENTATION", "MARKETNOTICEDATA", {}
+                    # Remaining files are aux chrome / boilerplate — emit a
+                    # stem-derived id so each filename has its own row.
+                    aux_id = aux_id_from_filename_template(skeletonize(filename))
+                    return "MMSDM", "DOCUMENTATION_AUX", aux_id, {}
 
-                # SQLLoader view file: extract #TABLE# from filename
+                # SQLLoader view file: extract table identifier from filename.
+                # `view` is CTL / DATA / BCP_FMT / BCP_DATA / MYSQL / INDEX /
+                # UTILITIES / LOGS / P5MIN_ALL_DATA / PREDISP_ALL_DATA.
                 table = extract_mmsdm_table(filename) or "UNPARSED"
                 return "MMSDM", view, table, {"sqlloader_view": view}
 
@@ -327,6 +340,46 @@ def classify_nemde(segs: list[str], filename: str) -> tuple[str, str, str, dict]
 
     # Other NEMDE paths (root, year, month, Market_Data root)
     return "NEMDE", "ROOT_AUX", "ROOT_AUX", {}
+
+
+# Aux / CD-chrome / documentation boilerplate filenames are classified with a
+# stem-derived intra_repo_id so each filename stays a distinct dataset entry
+# rather than all collapsing into a shared AUX placeholder (which write_json
+# would then fold into a single catalog row, losing 20+ rows silently).
+#
+# Byte-exact casing (§3.1) is preserved — do NOT uppercase/lowercase. Case
+# variants like Readme.htm vs readme.htm are AEMO-served distinct files and
+# must emit distinct aux_ids.
+#
+# The helper accepts a filename **template** — output of skeletonize() in
+# <dN> angle-bracket form, or output of label_digit_positions() in {token}
+# curly-brace form, or a bare filename. All three produce the same result
+# when the filename is identical modulo digit-runs.
+_AUX_ID_TOKEN = re.compile(r"<[^>]+>|\{[^}]+\}")
+_AUX_ID_NONWORD = re.compile(r"[^A-Za-z0-9]+")
+
+
+def aux_id_from_filename_template(tpl: str) -> str:
+    """Derive a stable, case-preserving, stem-based intra_repo_id for an aux file.
+
+    Strips skeleton tokens (both ``<dN>`` and ``{token}`` forms), replaces
+    non-alphanumeric runs with ``_``, and trims leading/trailing ``_``. Source
+    byte casing is preserved so two AEMO-served filenames that differ only
+    in case get distinct ids.
+
+    Examples::
+
+        AUTORUN.INF          -> AUTORUN_INF
+        Readme.htm           -> Readme_htm        (distinct from readme.htm)
+        readme.htm           -> readme_htm
+        nemlogo<d1>.gif      -> nemlogo_gif
+        nemlogo{d1}.gif      -> nemlogo_gif
+        marketnoticedata_{yearmonth}.par -> marketnoticedata_par
+    """
+    stripped = _AUX_ID_TOKEN.sub("", tpl)
+    collapsed = _AUX_ID_NONWORD.sub("_", stripped)
+    trimmed = collapsed.strip("_")
+    return trimmed if trimmed else "AUX"
 
 
 # MMSDM SQLLoader view files come in two filename dialects.

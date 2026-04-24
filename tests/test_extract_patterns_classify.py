@@ -74,14 +74,141 @@ def test_classify_mmsdm_monthly_bulk_zip_promoted():
     assert intra == "MMSDM_MONTHLY_BULK"
 
 
-def test_classify_mmsdm_month_root_still_unknown_before_task4():
-    # Locked behaviour until Task 4 reclassifies it. Files under
-    # MMSDM/{year}/MMSDM_{year}_{mm}/ still fall through to UNKNOWN/OTHER
-    # because the MONTH_ROOT_AUX branch hasn't been fixed yet.
+# ---------- aux_id_from_filename_template helper ----------
+
+
+def test_aux_id_simple_filename():
+    assert extract_patterns.aux_id_from_filename_template("AUTORUN.INF") == "AUTORUN_INF"
+
+
+def test_aux_id_case_variants_remain_distinct():
+    # §3.1 byte-exact casing: Readme.htm (115 files) and readme.htm (1 file)
+    # are served by AEMO as distinct filenames — they MUST resolve to distinct
+    # aux_ids so write_json doesn't collapse them into a single catalog row.
+    a = extract_patterns.aux_id_from_filename_template("Readme.htm")
+    b = extract_patterns.aux_id_from_filename_template("readme.htm")
+    assert a == "Readme_htm"
+    assert b == "readme_htm"
+    assert a != b
+
+
+def test_aux_id_skeleton_tokens_stripped_angle_bracket_form():
+    # skeletonize() emits <dN>. Helper receives skeletonize() output from
+    # classify_mmsdm / classify_nemde, so it MUST strip <dN> form too.
+    assert extract_patterns.aux_id_from_filename_template("nemlogo<d1>.gif") == "nemlogo_gif"
+    assert extract_patterns.aux_id_from_filename_template("background<d1>.gif") == "background_gif"
+
+
+def test_aux_id_skeleton_tokens_stripped_curly_form():
+    # label_digit_positions() emits {year} / {yearmonth} / {d1}. Helper may
+    # receive either form depending on call site; strip both.
+    assert extract_patterns.aux_id_from_filename_template("nemlogo{d1}.gif") == "nemlogo_gif"
+    assert (
+        extract_patterns.aux_id_from_filename_template("marketnoticedata_{yearmonth}.par")
+        == "marketnoticedata_par"
+    )
+
+
+def test_aux_id_pipeline_via_skeletonize():
+    # End-to-end: the actual call pattern classify_mmsdm uses.
+    raw = "nemlogo1.gif"
+    assert (
+        extract_patterns.aux_id_from_filename_template(extract_patterns.skeletonize(raw))
+        == "nemlogo_gif"
+    )
+
+
+def test_aux_id_multi_dot_filename():
+    assert (
+        extract_patterns.aux_id_from_filename_template("Participant_Monthly_DVD.doc")
+        == "Participant_Monthly_DVD_doc"
+    )
+    assert (
+        extract_patterns.aux_id_from_filename_template("monthlydvd_tables.bat")
+        == "monthlydvd_tables_bat"
+    )
+
+
+def test_aux_id_empty_after_strip_falls_back():
+    # Defensive: all-token filename (would produce empty string otherwise).
+    assert extract_patterns.aux_id_from_filename_template("{token}") == "AUX"
+    assert extract_patterns.aux_id_from_filename_template("<d4>") == "AUX"
+
+
+# ---------- MONTH_ROOT_AUX / SQLLOADER_AUX / DOCUMENTATION_AUX / MARKETNOTICEDATA ----------
+
+
+def test_classify_mmsdm_month_root_autorun_inf_promoted():
     url = "/Data_Archive/Wholesale_Electricity/MMSDM/2009/MMSDM_2009_07/AUTORUN.INF"
     result = extract_patterns.classify(url, "AUTORUN.INF")
     assert result is not None
     repo, tier, intra, _ = result
     assert repo == "MMSDM"
-    # Task 4 will change this to MONTH_ROOT_AUX / AUTORUN_INF.
-    assert (tier, intra) == ("OTHER", "UNKNOWN")
+    assert tier == "MONTH_ROOT_AUX"
+    assert intra == "AUTORUN_INF"
+
+
+def test_classify_mmsdm_month_root_case_variants_stay_distinct():
+    # Byte-exact: two real case variants must emit distinct intra_repo_ids.
+    url_cap = "/Data_Archive/Wholesale_Electricity/MMSDM/2009/MMSDM_2009_07/Readme.htm"
+    url_low = "/Data_Archive/Wholesale_Electricity/MMSDM/2009/MMSDM_2009_07/readme.htm"
+    _, _, cap_id, _ = extract_patterns.classify(url_cap, "Readme.htm")
+    _, _, low_id, _ = extract_patterns.classify(url_low, "readme.htm")
+    assert cap_id == "Readme_htm"
+    assert low_id == "readme_htm"
+    assert cap_id != low_id
+
+
+def test_classify_mmsdm_sqlloader_root_file_promoted():
+    # Files directly under MMSDM_Historical_Data_SQLLoader/ (not in a view subdir)
+    url = (
+        "/Data_Archive/Wholesale_Electricity/MMSDM/2009/MMSDM_2009_07/"
+        "MMSDM_Historical_Data_SQLLoader/README.txt"
+    )
+    result = extract_patterns.classify(url, "README.txt")
+    assert result is not None
+    repo, tier, intra, _ = result
+    assert repo == "MMSDM"
+    assert tier == "SQLLOADER_AUX"
+    assert intra == "README_txt"
+
+
+def test_classify_mmsdm_documentation_marketnoticedata_promoted():
+    url = (
+        "/Data_Archive/Wholesale_Electricity/MMSDM/2011/MMSDM_2011_06/"
+        "MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/marketnoticedata_201106.par"
+    )
+    result = extract_patterns.classify(url, "marketnoticedata_201106.par")
+    assert result is not None
+    repo, tier, intra, _ = result
+    assert repo == "MMSDM"
+    assert tier == "DOCUMENTATION"
+    assert intra == "MARKETNOTICEDATA"
+
+
+def test_classify_mmsdm_documentation_aux_other_files_stem_derived():
+    url = (
+        "/Data_Archive/Wholesale_Electricity/MMSDM/2011/MMSDM_2011_06/"
+        "MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/Participant_Monthly_DVD.pdf"
+    )
+    result = extract_patterns.classify(url, "Participant_Monthly_DVD.pdf")
+    assert result is not None
+    repo, tier, intra, _ = result
+    assert repo == "MMSDM"
+    assert tier == "DOCUMENTATION_AUX"
+    assert intra == "Participant_Monthly_DVD_pdf"
+
+
+def test_classify_mmsdm_mms_data_model_versioned_preserved():
+    # Regression guard: the existing MMS%20Data%20Model/v<x> branch must stay.
+    url = (
+        "/Data_Archive/Wholesale_Electricity/MMSDM/2011/MMSDM_2011_06/"
+        "MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/MMS%20Data%20Model/v5.1/index.htm"
+    )
+    result = extract_patterns.classify(url, "index.htm")
+    assert result is not None
+    repo, tier, intra, extras = result
+    assert repo == "MMSDM"
+    assert tier == "DOCUMENTATION"
+    assert intra == "MMS_DATA_MODEL_v5.1"
+    assert extras == {"mms_version": "v5.1"}
