@@ -32,6 +32,22 @@ Primary-source verification during implementation resolved only 2 of the 17 orig
 
 Co-shipped: `reference/NEMWEB-STRUCTURE.md §2.1.1` primary-source correction (2 class-(a), not 12; prose arithmetic "9 CURRENT and 4 ARCHIVE" legit-nested).
 
+### Shipped to master — #21 extractor classifier gaps
+
+**#21 MMSDM/NEMDE classifier gap fixes** merged 2026-04-24 as PR #23 / merge commit `72a6755`. Closes all 11 placeholder-bucket collapses in `reference/URL-CONVENTIONS.csv`:
+
+- `extract_mmsdm_table()` rewritten to parse both `PUBLIC_ARCHIVE#<TABLE>#...` (4 and 5-part dialects) and `PUBLIC_DVD_<TABLE>_<date>.<ext>` (6-digit yearmonth + 12/14-digit timestamp; extensions validated against real mirror: `.ctl, .ctlbak, .ctlBak, .fmt, .zip`). Unknown hash-dialects now return None so the caller surfaces them as UNPARSED for audit.
+- Dead branches revived in `classify_mmsdm` — `MMSDM_MONTHLY_BULK`, `MONTH_ROOT_AUX`, `SQLLOADER_AUX` had been unreachable since the initial commit because guards used `len(rel) == 1/2/3` without accounting for `rel[-1]` being the filename segment.
+- `MTPASA_DATA_EXPORT` directory-as-dataset split into `MTPASA_REGIONAVAIL_TRK` + `MTPASA_REGIONAVAILABILITY`; `marketnoticedata_{yearmonth}.par` promoted out of `DOCUMENTATION_AUX` → `MARKETNOTICEDATA`.
+- `classify_nemde` rewritten: `NEMDE_MONTHLY_BULK` promotion, distinct `MARKET_DATA_AUX` tier, full structural guard on the `NEMDE_Files`/`File_Readers` subtree (requires year + `NEMDE_{year}_{mm}` + `NEMDE_Market_Data` parents before promoting).
+- New `aux_id_from_filename_template` helper: case-preserving filename-stem id for aux chrome files (`Readme.htm` → `Readme_htm`, distinct from `readme.htm` → `readme_htm` per §3.1).
+- Aux signal moved to `retention_tier` (always `*_AUX`-suffixed for aux), and `_curate_keys()` now excludes datasets whose tiers are all aux-suffixed — so aux stem ids stay out of the user-facing `dataset_keys` list.
+- `OUT_JSON` extracted to module constant (test-seam for integration fixtures).
+
+**Metrics**: distinct `(repo, intra_repo_id)` datasets 367 → 442 (+75); distinct tuples 1181 → 1200+; curated MMSDM dataset_keys ~160 → 321 (>2× growth). Test suite: 200/200 passing, coverage 94.68% ≥ 90%.
+
+**Codex alignment audit** caught 2 blockers + 3 major drift findings between plan v1 and v2; PR #23 absorbed 3 CodeRabbit rounds + Copilot + Codex review fixes across 4 commits (d3b9cae, 83e4932, a766fa3, 72a6755 merge). Full plan preserved at `.plans/v0.2-pr1-extractor-classifier-gaps.md` for archaeology.
+
 #### v0.2 pre-tag acceptance gate
 
 Tracked on GitHub: issue #14.
@@ -101,40 +117,31 @@ Tracked on GitHub: issue #12 (classify 57 paths), issue #13 (ARCHIVE retention).
 
 v0.2 addresses v0.1.0's explicit known-issues list. Keep the scope small and focused. Pick 2–4 items from the candidate pool below; don't ship all of them.
 
-Tracked on GitHub: issue #12 (unclassified CURRENT paths), #13 (ARCHIVE retention class), #14 (pre-tag gate), #15 (list_urls), #16 (observed-range), #21 (extractor classifier gap), #22 (write_json schema collapse). Issue #17 was split into #21 + #22 on 2026-04-25 after Codex adversarial review separated a 5-line classifier fix from a schema-breaking emission-shape redesign; see #17 close comment for rationale.
+Tracked on GitHub: issue #12 (unclassified CURRENT paths), #13 (ARCHIVE retention class), #14 (pre-tag gate), #15 (list_urls), #16 (observed-range), ~~#21 (extractor classifier gap) — shipped 2026-04-24 via PR #23~~, #22 (write_json schema collapse). Issue #17 was split into #21 + #22 on 2026-04-25 after Codex adversarial review separated a 5-line classifier fix from a schema-breaking emission-shape redesign; see #17 close comment for rationale.
 
-### Priority ordering (2026-04-25)
+### Priority ordering (2026-04-25, updated post-#21)
 
 Correctness bugs outrank features; schema-shape changes gate features that depend on them; patchable items ship ahead of design-heavy ones.
 
 | Tier | Issue | Gate reason |
 |---|---|---|
-| **P0a — correctness, ship first** | #21 extractor classifier gap | 552 rows mis-attributed to fake placeholder datasets; no schema touch, ~5-line regex extension + 4 AUX bucket audits. Patch-safe, independent. |
-| **P0b — correctness, schema-breaking** | #22 `write_json` collapse | 614 rows silently lost across 56 legitimate groups. Gates #15 and the schema bump for #16. Needs design pass on fix-shape #1 vs alternatives. |
+| ~~P0a — correctness, ship first~~ | ~~#21 extractor classifier gap~~ | **SHIPPED 2026-04-24 via PR #23 / merge `72a6755`.** 563 rows recovered from placeholder buckets; 11 classifier gaps closed; full writeup in shipment record above. |
+| **P0b — correctness, schema-breaking** | #22 `write_json` collapse | 614 rows silently lost across 56 legitimate groups. Gates #15 and the schema bump for #16. Needs design pass on fix-shape #1 vs alternatives. Now the top unshipped item. |
 | **P1a — SDK promise from v0.1.0** | #15 `list_urls()` | CHANGELOG promised this as v0.2 focus. Depends on #22 landing so it can enumerate recovered multi-record tiers. |
-| **P1b — schema add, dependency likely unmet** | #16 observed-range retention | Acceptance requires "≥6 weeks weekly workflow green"; weekly stabilized 2026-04-21 (4 days ago). **Slip to v0.2.1 unless dependency is overridden.** Batch schema bump with #22 if it does land in v0.2. |
+| **P1b — schema add, dependency likely unmet** | #16 observed-range retention | Acceptance requires "≥6 weeks weekly workflow green"; weekly stabilized 2026-04-21. **Slip to v0.2.1 unless dependency is overridden.** Batch schema bump with #22 if it does land in v0.2. |
 | **P2 — release gate, auto-fires** | #14 pre-tag gate | Cron `"0 0 1 * *"` — fires 2026-05-01 00:00 UTC. Zero work. |
 | **P3a — audit hygiene (stretch)** | #13 `/Reports/ARCHIVE/**` rolling retention | Policy currently says `append_only`, reality is ~1yr rolling — consumer-facing lie. Small scope, has 3 candidate shapes to choose. |
 | **P3b — audit hygiene (stretch)** | #12 classify ~57 unclassified CURRENT paths | Recurring `policy-audit.yml` noise. Defer-safe; no catalog correctness impact. |
 
-**Recommended v0.2 shapes:**
+**Recommended v0.2 shapes (revised post-#21):**
 
-- **Minimum viable (strict correctness):** #21 + #22. Recovers all 1166 silently-lost rows; catalog becomes structurally honest. Schema bump 1.0.0 → 2.0.0.
-- **Coherent scope (honors v0.1.0 promise):** #21 + #22 + #15. Adds the SDK feature v0.1.0 promised. 3 items, within the 2-4 guideline.
-- **Stretch (4 items):** add #13 — small-scope policy correctness fix, independent of the schema work.
+- **Minimum viable (strict correctness):** #22. Recovers the remaining 614 silently-lost rows in legitimate multi-record groups; catalog becomes structurally honest. Schema bump 1.0.0 → 2.0.0.
+- **Coherent scope (honors v0.1.0 promise):** #22 + #15. Adds the SDK feature v0.1.0 promised.
+- **Stretch (3 items):** add #13 — small-scope policy correctness fix, independent of the schema work.
 
 **Deferred to v0.2.1 or v0.3:** #12, #16 (both contingent on weekly-workflow stability that won't clear in the v0.2 window). #20 metadata enrichment stays parked for v0.3-v0.5 per ROADMAP.md graduation criteria.
 
-Candidate detail sections below are ordered to match this priority — P0a first, P3b last.
-
-### [P0a] v0.2 candidate — MMSDM/NEMDE classifier gaps (#21) (552 rows mis-bucketed, no schema touch)
-
-- **What:** `extract_mmsdm_table()` at `scripts/extract_patterns.py:328-340` only parses `#`-delimited SQLLoader filenames (`PUBLIC_ARCHIVE#<TABLE>#FILE#<date>.<ext>`) and misses the actual `_`-delimited format `PUBLIC_DVD_<TABLE>_<yearmonth>.<ext>`. Function returns `None` → line 306 substitutes `"UNPARSED"` → 505 distinct MMSDM tables × 3 views (CTL / DATA / BCP_FMT) collapse into 3 placeholder buckets. Plus 4 secondary AUX buckets (`NEMDE:ROOT_AUX`, `MMSDM:UNKNOWN [OTHER]`, `MMSDM:DOCUMENTATION_AUX`, `MMSDM:MTPASA_DATA_EXPORT`) that need row-by-row audit to decide classifier-fix vs. legit-aux.
-- **Why:** 11 placeholder-bucket groups hold 563 rows in the flat CSV; `write_json` then collapses them to 11 single-tier records — silently losing 552 rows. These are NOT real datasets; fixing `write_json` alone would leave 552 rows mis-attributed to fake `UNPARSED`/`UNKNOWN` keys. Fix is upstream.
-- **Fix shape:** extend `extract_mmsdm_table()` to parse `PUBLIC_DVD_*` filenames (byte-exact, no `.casefold()` — §3.1 case-sensitivity discipline). Audit 4 secondary AUX buckets. Add regression test pinning the distinct `(repo, intra_repo_id, retention_tier)` tuple set.
-- **Schema impact:** NONE. Extractor-only. Patchable, can ship ahead of #22.
-- **Evidence:** measured 2026-04-25 primary-source audit, Codex-reviewed 2026-04-25. Reproducer and full AUX breakdown on #21.
-- **Source:** 2026-04-25 audit, supersedes the extractor-gap portion of the old #17.
+Candidate detail sections below are ordered to match this priority — P0b first, P3b last.
 
 ### [P0b] v0.2 candidate — `write_json` multi-record collapse fix (#22) (56 legitimate groups / 614 rows lost, schema-breaking)
 
@@ -208,6 +215,7 @@ Resolved items. Kept for "why is X the way it is" archaeology.
 - **Superseded PR-1 plan** [2026-04-20, commit `7611928`] Original `.plans/2026-04-20-v0.1.2-pr1-duplicate-filter.md` deleted because it proposed a binary `/DUPLICATE/` filter — the same shape that shipped as PR #9 (closed for losing 640 files). Replaced by the fresh plan anchored to `NEMWEB-STRUCTURE.md §2.1.1`.
 - **DUPLICATE-T0** [2026-04-20, PR #10 / squash commit `45392b2`] Fresh 117-line PR-1 plan authored at `.plans/v0.1.2-pr1-duplicate-filter.md` (filename retained for git-history archaeology; the "v0.1.2" prefix is a historical artifact — no v0.1.2 tag was cut). Shipped as the branch's first commit so it rides inside the PR.
 - **DUPLICATE-T1** [2026-04-20, PR #10 / squash commit `45392b2`] 3-class DUPLICATE filter shipped. Walk-layer guard skips only listings where every file ends in `_LEGACY.zip` under `/DUPLICATE/`. Real-mirror effect: 2 class-(a) dirs skipped (`Dispatch_Reports/DUPLICATE/` + `Predispatch_Reports/DUPLICATE/`); 15 class-(b) non-LEGACY stragglers + 617 class-(c) GBB files stay indexed. Co-shipped §2.1.1 primary-source correction (12→2 class-(a), 5→15 class-(b), prose "8 CURRENT/5 ARCHIVE" → "9/4"). Closes issue #5. Full 17-of-17 fix deferred to v0.2 `write_json` collapse work (see above) — that's 28 victims total, broader than the walk-filter scope shipped here.
+- **#21-T1** [2026-04-24, PR #23 / merge commit `72a6755`] MMSDM/NEMDE classifier gap fixes shipped. 11 placeholder-bucket collapses resolved: `extract_mmsdm_table()` extended to parse `PUBLIC_DVD_<TABLE>_<date>.<ext>` dialect (6-digit yearmonth + 12/14-digit timestamp) plus `#ALL#` 5-part archive dialect for `*_ALL_DATA` tiers; dead branches revived for `MMSDM_MONTHLY_BULK` / `MONTH_ROOT_AUX` / `SQLLOADER_AUX` (guards ignored `rel[-1]` being filename segment, unreachable since initial commit); `MTPASA_DATA_EXPORT` split into two real datasets; `MARKETNOTICEDATA` promoted out of DOCUMENTATION_AUX; `classify_nemde` gains `NEMDE_MONTHLY_BULK` + `MARKET_DATA_AUX` tier + full structural guard on `NEMDE_Files`/`File_Readers` subtree; new `aux_id_from_filename_template` helper (case-preserving per §3.1 — `Readme.htm` ≠ `readme.htm`); aux signal moved to `*_AUX`-suffixed tiers with `_curate_keys()` tier-based exclusion so aux stems stay out of user-facing `dataset_keys`; `OUT_JSON` extracted to module constant for test redirection. Metrics: datasets 367 → 442 (+75), curated MMSDM dataset_keys ~160 → 321. Codex alignment audit caught 2 blockers + 3 major drift findings pre-execution; PR absorbed 3 CodeRabbit rounds + Copilot + Codex review cycles. Closes #21. Plan archived at `.plans/v0.2-pr1-extractor-classifier-gaps.md`.
 
 ### Notes (not deferrals)
 
