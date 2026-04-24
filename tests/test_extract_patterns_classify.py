@@ -243,3 +243,64 @@ def test_classify_mmsdm_mms_data_model_versioned_preserved():
     assert tier == "DOCUMENTATION"
     assert intra == "MMS_DATA_MODEL_v5.1"
     assert extras == {"mms_version": "v5.1"}
+
+
+# ---------- NEMDE ----------
+
+
+def test_classify_nemde_monthly_bulk_zip_promoted():
+    url = "/Data_Archive/Wholesale_Electricity/NEMDE/2009/NEMDE_2009_07.zip"
+    result = extract_patterns.classify(url, "NEMDE_2009_07.zip")
+    assert result is not None
+    repo, tier, intra, _ = result
+    assert repo == "NEMDE"
+    assert tier == "MONTHLY_BULK"
+    assert intra == "NEMDE_MONTHLY_BULK"
+
+
+def test_classify_nemde_month_root_aux_promoted_by_filename():
+    url = "/Data_Archive/Wholesale_Electricity/NEMDE/2009/NEMDE_2009_07/AUTORUN.INF"
+    result = extract_patterns.classify(url, "AUTORUN.INF")
+    assert result is not None
+    repo, tier, intra, _ = result
+    assert repo == "NEMDE"
+    assert tier == "ROOT_AUX"
+    assert intra == "AUTORUN_INF"
+
+
+def test_classify_nemde_readme_case_variants_stay_distinct():
+    # Readme.htm (115 files) and readme.htm (1 file) — byte-exact casing.
+    url_cap = "/Data_Archive/Wholesale_Electricity/NEMDE/2014/NEMDE_2014_12/Readme.htm"
+    url_low = "/Data_Archive/Wholesale_Electricity/NEMDE/2014/NEMDE_2014_12/readme.htm"
+    _, _, cap_id, _ = extract_patterns.classify(url_cap, "Readme.htm")
+    _, _, low_id, _ = extract_patterns.classify(url_low, "readme.htm")
+    assert cap_id != low_id
+
+
+def test_classify_nemde_market_data_aux_subtree_distinct_tier():
+    # Files under NEMDE_Market_Data/ (not the NEMDE_Files / File_Readers
+    # subtree) get tier = MARKET_DATA_AUX.
+    url = (
+        "/Data_Archive/Wholesale_Electricity/NEMDE/2009/NEMDE_2009_07/"
+        "NEMDE_Market_Data/disclaimer.htm"
+    )
+    result = extract_patterns.classify(url, "disclaimer.htm")
+    assert result is not None
+    repo, tier, intra, _ = result
+    assert repo == "NEMDE"
+    assert tier == "MARKET_DATA_AUX"
+    assert intra == "disclaimer_htm"
+
+
+def test_classify_nemde_preserves_nemde_files_subtree():
+    # Regression guard: the NEMDE_Files subtree branch must still work.
+    url = (
+        "/Data_Archive/Wholesale_Electricity/NEMDE/2014/NEMDE_2014_12/"
+        "NEMDE_Market_Data/NEMDE_Files/NemPriceSetter_20141201_xml.zip"
+    )
+    result = extract_patterns.classify(url, "NemPriceSetter_20141201_xml.zip")
+    assert result is not None
+    repo, tier, intra, _ = result
+    assert repo == "NEMDE"
+    assert tier == "NEMDE_Files"
+    assert intra == "NemPriceSetter"

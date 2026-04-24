@@ -336,18 +336,58 @@ def classify_mmsdm(segs: list[str], filename: str) -> tuple[str, str, str, dict]
 
 
 def classify_nemde(segs: list[str], filename: str) -> tuple[str, str, str, dict]:
-    """Classify an NEMDE file. segs starts with Data_Archive/Wholesale_Electricity/NEMDE/..."""
-    rel = segs[3:]  # everything after NEMDE/
+    """Classify an NEMDE file. segs starts with Data_Archive/Wholesale_Electricity/NEMDE/...
 
-    # NEMDE/{year}/NEMDE_{year}_{mm}/NEMDE_Market_Data/{NEMDE_Files|File_Readers}/...
-    if len(rel) >= 4 and rel[3] in ("NEMDE_Files", "File_Readers"):
+    Layout (per NEMWEB-STRUCTURE.md §4):
+        NEMDE/{year}/NEMDE_{year}_{mm}.zip                      # monthly bulk
+        NEMDE/{year}/NEMDE_{year}_{mm}/<file>                   # CD-image chrome aux
+        NEMDE/{year}/NEMDE_{year}_{mm}/NEMDE_Market_Data/<file> # UI chrome aux
+        NEMDE/{year}/NEMDE_{year}_{mm}/NEMDE_Market_Data/NEMDE_Files/<file>    # real
+        NEMDE/{year}/NEMDE_{year}_{mm}/NEMDE_Market_Data/File_Readers/<file>   # real
+    """
+    rel = segs[3:]  # includes filename as rel[-1]
+
+    # NEMDE_Files / File_Readers subtree (the real-data layer).
+    # rel = [year, month_dir, 'NEMDE_Market_Data', 'NEMDE_Files'|'File_Readers', filename] (len 5)
+    if len(rel) >= 5 and rel[3] in ("NEMDE_Files", "File_Readers"):
         subtree = rel[3]
-        # intra_repo_id = filename prefix (before first digit-run or extension)
         intra_id = extract_nemde_prefix(filename) or "UNKNOWN"
         return "NEMDE", subtree, intra_id, {"nemde_subtree": subtree}
 
-    # Other NEMDE paths (root, year, month, Market_Data root)
-    return "NEMDE", "ROOT_AUX", "ROOT_AUX", {}
+    # NEMDE/{year}/NEMDE_{year}_{mm}.zip — monthly bulk archive.
+    # rel = [year, 'NEMDE_{year}_{mm}.zip'] (len 2)
+    if (
+        len(rel) == 2
+        and re.fullmatch(r"\d{4}", rel[0])
+        and re.fullmatch(r"NEMDE_\d{4}_\d{2}\.zip", rel[1])
+    ):
+        return "NEMDE", "MONTHLY_BULK", "NEMDE_MONTHLY_BULK", {}
+
+    # NEMDE/{year}/NEMDE_{year}_{mm}/NEMDE_Market_Data/<aux-file> — Market_Data chrome.
+    # rel = [year, month_dir, 'NEMDE_Market_Data', filename] (len 4)
+    if (
+        len(rel) == 4
+        and re.fullmatch(r"\d{4}", rel[0])
+        and re.fullmatch(r"NEMDE_\d{4}_\d{2}", rel[1])
+        and rel[2] == "NEMDE_Market_Data"
+    ):
+        aux_id = aux_id_from_filename_template(skeletonize(filename))
+        return "NEMDE", "MARKET_DATA_AUX", aux_id, {}
+
+    # NEMDE/{year}/NEMDE_{year}_{mm}/<aux-file> — month-root CD chrome.
+    # rel = [year, month_dir, filename] (len 3)
+    if (
+        len(rel) == 3
+        and re.fullmatch(r"\d{4}", rel[0])
+        and re.fullmatch(r"NEMDE_\d{4}_\d{2}", rel[1])
+    ):
+        aux_id = aux_id_from_filename_template(skeletonize(filename))
+        return "NEMDE", "ROOT_AUX", aux_id, {}
+
+    # Unknown NEMDE path — surface as an explicit gap. Keep ROOT_AUX tier
+    # for back-compat (existing callers key off it) but use a stem-based id.
+    aux_id = aux_id_from_filename_template(skeletonize(filename))
+    return "NEMDE", "ROOT_AUX", aux_id, {}
 
 
 # Aux / CD-chrome / documentation boilerplate filenames are classified with a
