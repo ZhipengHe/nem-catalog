@@ -325,18 +325,37 @@ def classify_nemde(segs: list[str], filename: str) -> tuple[str, str, str, dict]
     return "NEMDE", "ROOT_AUX", "ROOT_AUX", {}
 
 
+# MMSDM SQLLoader view files come in two filename dialects.
+# Pre-2024 (~): PUBLIC_ARCHIVE#<TABLE>#FILE<NN>#<date>.<ext>  (URL-encoded '#' = %23)
+# 2024-present: PUBLIC_DVD_<TABLE>_<yearmonth>.<ext>
+# §3.1 byte-exact discipline: both dialects coexist for back-catalogue months;
+# treat as two distinct patterns, not one. Case is preserved as-served.
+_MMSDM_DVD_RE = re.compile(r"^PUBLIC_DVD_(?P<table>.+)_\d{6}\.(?:ctl|CTL|DATA|fmt|bcp|zip)$")
+
+
 def extract_mmsdm_table(filename: str) -> str | None:
-    """MMSDM SQLLoader filenames: PUBLIC_ARCHIVE%23<TABLE>%23FILE<NN>%23<date>.<ext>
-    URL-decoded: PUBLIC_ARCHIVE#<TABLE>#FILE<NN>#<date>.<ext>
+    """Extract the MMSDM table name from a SQLLoader-view filename.
+
+    Supports two dialects observed in the mirror:
+      * ``PUBLIC_ARCHIVE#<TABLE>#FILE<NN>#<date>.<ext>``
+        (URL-encoded as ``PUBLIC_ARCHIVE%23…``; pre-2024 archive).
+      * ``PUBLIC_DVD_<TABLE>_<yearmonth>.<ext>``
+        (2024-present; underscore-delimited).
+
+    Returns None if neither dialect matches, so the caller can emit an
+    UNPARSED placeholder and surface it as a classifier-gap signal.
     """
     decoded = urllib.parse.unquote(filename)
-    if "#" not in decoded:
+    if "#" in decoded:
+        parts = decoded.split("#")
+        if len(parts) >= 2 and parts[0] in ("PUBLIC_ARCHIVE", "PUBLIC"):
+            return parts[1]
+        if len(parts) >= 2:
+            return parts[1]
         return None
-    parts = decoded.split("#")
-    if len(parts) >= 2 and parts[0] in ("PUBLIC_ARCHIVE", "PUBLIC"):
-        return parts[1]
-    if len(parts) >= 2:
-        return parts[1]
+    m = _MMSDM_DVD_RE.match(decoded)
+    if m:
+        return m.group("table")
     return None
 
 
