@@ -79,6 +79,7 @@ from scripts.policy import Policy
 MIRROR = Path("nemweb-mirror")
 OUT_MD = Path("reference/URL-CONVENTIONS.md")
 OUT_CSV = Path("reference/URL-CONVENTIONS.csv")
+OUT_JSON = Path("patterns/auto/catalog.json")
 
 # IIS auto-index row: "Thursday, April 16, 2026  4:40 AM  19629 <A HREF=...>name</A>"
 ROW_RE = re.compile(
@@ -747,10 +748,10 @@ def main(policy: object | None = None) -> int:
     except Exception:
         commit = "unknown"
 
-    Path("patterns/auto/").mkdir(parents=True, exist_ok=True)
+    OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     write_json(
         rows,
-        out_path=Path("patterns/auto/catalog.json"),
+        out_path=OUT_JSON,
         catalog_version=datetime.now(UTC).strftime("%Y.%m.%d"),
         as_of=datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         source_mirror_commit=commit,
