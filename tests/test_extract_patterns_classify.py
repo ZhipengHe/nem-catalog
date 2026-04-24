@@ -58,3 +58,30 @@ def test_extract_mmsdm_table_preserves_hash_format_compatibility():
         extract_patterns.extract_mmsdm_table("PUBLIC_ARCHIVE%23DISPATCH%23FILE01%23202408.ctl")
         == "DISPATCH"
     )
+
+
+# ---------- classify: MMSDM_MONTHLY_BULK (dead branch revived) ----------
+
+
+def test_classify_mmsdm_monthly_bulk_zip_promoted():
+    # Real URL from mirror: /Data_Archive/Wholesale_Electricity/MMSDM/2009/MMSDM_2009_07.zip
+    url = "/Data_Archive/Wholesale_Electricity/MMSDM/2009/MMSDM_2009_07.zip"
+    result = extract_patterns.classify(url, "MMSDM_2009_07.zip")
+    assert result is not None
+    repo, tier, intra, _extras = result
+    assert repo == "MMSDM"
+    assert tier == "MONTHLY_BULK"
+    assert intra == "MMSDM_MONTHLY_BULK"
+
+
+def test_classify_mmsdm_month_root_still_unknown_before_task4():
+    # Locked behaviour until Task 4 reclassifies it. Files under
+    # MMSDM/{year}/MMSDM_{year}_{mm}/ still fall through to UNKNOWN/OTHER
+    # because the MONTH_ROOT_AUX branch hasn't been fixed yet.
+    url = "/Data_Archive/Wholesale_Electricity/MMSDM/2009/MMSDM_2009_07/AUTORUN.INF"
+    result = extract_patterns.classify(url, "AUTORUN.INF")
+    assert result is not None
+    repo, tier, intra, _ = result
+    assert repo == "MMSDM"
+    # Task 4 will change this to MONTH_ROOT_AUX / AUTORUN_INF.
+    assert (tier, intra) == ("OTHER", "UNKNOWN")

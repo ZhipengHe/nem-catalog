@@ -270,9 +270,13 @@ def classify_mmsdm(segs: list[str], filename: str) -> tuple[str, str, str, dict]
         return "MMSDM", "MTPASA_DATA_EXPORT", "MTPASA_DATA_EXPORT", {}
 
     # Year-rooted paths: MMSDM/{year}/...
+    # NOTE: `rel` always includes the filename as rel[-1]. The guards below
+    # are therefore indexed with filename awareness. (The MMSDM_MONTHLY_BULK
+    # branch below was unreachable in the pre-#21 code; see plan context.)
     if rel and re.fullmatch(r"\d{4}", rel[0]):
-        # MMSDM/{year}/MMSDM_{year}_{mm}.zip (monthly bulk zip)
-        if len(rel) == 1:
+        # MMSDM/{year}/MMSDM_{year}_{mm}.zip — monthly bulk archive.
+        # rel = ['{year}', 'MMSDM_{year}_{mm}.zip'] (len == 2).
+        if len(rel) == 2 and re.fullmatch(r"MMSDM_\d{4}_\d{2}\.zip", rel[1]):
             return "MMSDM", "MONTHLY_BULK", "MMSDM_MONTHLY_BULK", {}
 
         # MMSDM/{year}/MMSDM_{year}_{mm}/...
