@@ -266,8 +266,16 @@ def classify_mmsdm(segs: list[str], filename: str) -> tuple[str, str, str, dict]
     rel = segs[3:]  # everything after MMSDM/
 
     # Special case: MMSDM/MTPASA_DATA_EXPORT/<file>
+    # The directory holds two structurally-distinct datasets — split by
+    # filename pattern, do NOT bucket by directory name.
     if rel and rel[0] == "MTPASA_DATA_EXPORT":
-        return "MMSDM", "MTPASA_DATA_EXPORT", "MTPASA_DATA_EXPORT", {}
+        if re.match(r"PUBLIC_MTPASA_REGIONAVAIL_TRK_", filename):
+            return "MMSDM", "MTPASA_DATA_EXPORT", "MTPASA_REGIONAVAIL_TRK", {}
+        if re.match(r"\d{4}_DATA_EXPORT_MTPASA_REGIONAVAILABILITY", filename):
+            return "MMSDM", "MTPASA_DATA_EXPORT", "MTPASA_REGIONAVAILABILITY", {}
+        # Unknown MTPASA filename dialect — surface as an explicit gap.
+        aux_id = aux_id_from_filename_template(skeletonize(filename))
+        return "MMSDM", "MTPASA_DATA_EXPORT", aux_id, {}
 
     # Year-rooted paths: MMSDM/{year}/...
     # NOTE: `rel` always includes the filename as rel[-1]. The guards below

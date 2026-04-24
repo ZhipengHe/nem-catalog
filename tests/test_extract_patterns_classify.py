@@ -199,6 +199,37 @@ def test_classify_mmsdm_documentation_aux_other_files_stem_derived():
     assert intra == "Participant_Monthly_DVD_pdf"
 
 
+# ---------- MTPASA_DATA_EXPORT split ----------
+
+
+def test_classify_mmsdm_mtpasa_regionavail_trk_promoted():
+    url = (
+        "/Data_Archive/Wholesale_Electricity/MMSDM/MTPASA_DATA_EXPORT/"
+        "PUBLIC_MTPASA_REGIONAVAIL_TRK_20191024093822_NEM02.zip"
+    )
+    result = extract_patterns.classify(
+        url, "PUBLIC_MTPASA_REGIONAVAIL_TRK_20191024093822_NEM02.zip"
+    )
+    assert result is not None
+    repo, tier, intra, _ = result
+    assert repo == "MMSDM"
+    assert tier == "MTPASA_DATA_EXPORT"
+    assert intra == "MTPASA_REGIONAVAIL_TRK"
+
+
+def test_classify_mmsdm_mtpasa_regionavailability_promoted():
+    url = (
+        "/Data_Archive/Wholesale_Electricity/MMSDM/MTPASA_DATA_EXPORT/"
+        "2014_DATA_EXPORT_MTPASA_REGIONAVAILABILITY.zip"
+    )
+    result = extract_patterns.classify(url, "2014_DATA_EXPORT_MTPASA_REGIONAVAILABILITY.zip")
+    assert result is not None
+    repo, tier, intra, _ = result
+    assert repo == "MMSDM"
+    assert tier == "MTPASA_DATA_EXPORT"
+    assert intra == "MTPASA_REGIONAVAILABILITY"
+
+
 def test_classify_mmsdm_mms_data_model_versioned_preserved():
     # Regression guard: the existing MMS%20Data%20Model/v<x> branch must stay.
     url = (
