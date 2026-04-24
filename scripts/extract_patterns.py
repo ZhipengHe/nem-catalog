@@ -79,6 +79,7 @@ from scripts.policy import Policy
 MIRROR = Path("nemweb-mirror")
 OUT_MD = Path("reference/URL-CONVENTIONS.md")
 OUT_CSV = Path("reference/URL-CONVENTIONS.csv")
+OUT_JSON = Path("patterns/auto/catalog.json")
 
 # IIS auto-index row: "Thursday, April 16, 2026  4:40 AM  19629 <A HREF=...>name</A>"
 ROW_RE = re.compile(
@@ -266,33 +267,50 @@ def classify_mmsdm(segs: list[str], filename: str) -> tuple[str, str, str, dict]
     rel = segs[3:]  # everything after MMSDM/
 
     # Special case: MMSDM/MTPASA_DATA_EXPORT/<file>
+    # The directory holds two structurally-distinct datasets — split by
+    # filename pattern, do NOT bucket by directory name. Anchored full-match
+    # with explicit `.zip` tail so future non-zip filenames surface as aux.
     if rel and rel[0] == "MTPASA_DATA_EXPORT":
-        return "MMSDM", "MTPASA_DATA_EXPORT", "MTPASA_DATA_EXPORT", {}
+        if re.fullmatch(r"PUBLIC_MTPASA_REGIONAVAIL_TRK_.*\.zip", filename):
+            return "MMSDM", "MTPASA_DATA_EXPORT", "MTPASA_REGIONAVAIL_TRK", {}
+        if re.fullmatch(r"\d{4}_DATA_EXPORT_MTPASA_REGIONAVAILABILITY.*\.zip", filename):
+            return "MMSDM", "MTPASA_DATA_EXPORT", "MTPASA_REGIONAVAILABILITY", {}
+        # Unknown MTPASA filename dialect — surface as an explicit gap.
+        aux_id = aux_id_from_filename_template(skeletonize(filename))
+        return "MMSDM", "MTPASA_DATA_EXPORT_AUX", aux_id, {}
 
     # Year-rooted paths: MMSDM/{year}/...
+    # NOTE: `rel` always includes the filename as rel[-1]. The guards below
+    # are therefore indexed with filename awareness. (The MMSDM_MONTHLY_BULK
+    # branch below was unreachable in the pre-#21 code; see plan context.)
     if rel and re.fullmatch(r"\d{4}", rel[0]):
-        # MMSDM/{year}/MMSDM_{year}_{mm}.zip (monthly bulk zip)
-        if len(rel) == 1:
+        # MMSDM/{year}/MMSDM_{year}_{mm}.zip — monthly bulk archive.
+        # rel = ['{year}', 'MMSDM_{year}_{mm}.zip'] (len == 2).
+        if len(rel) == 2 and re.fullmatch(r"MMSDM_\d{4}_\d{2}\.zip", rel[1]):
             return "MMSDM", "MONTHLY_BULK", "MMSDM_MONTHLY_BULK", {}
 
-        # MMSDM/{year}/MMSDM_{year}_{mm}/...
-        if len(rel) >= 2 and re.fullmatch(r"MMSDM_\d{4}_\d{2}", rel[1]):
-            # MMSDM/{year}/{month}/  root (e.g. AUTORUN.INF, disclaimer.htm)
-            if len(rel) == 2:
-                return "MMSDM", "MONTH_ROOT", "MONTH_ROOT_AUX", {}
+        # MMSDM/{year}/MMSDM_{year}_{mm}/<deeper>/<file>
+        # rel[-1] is always the filename segment.
+        if len(rel) >= 3 and re.fullmatch(r"MMSDM_\d{4}_\d{2}", rel[1]):
+            # MMSDM/{year}/{month}/{filename} — month-root aux chrome
+            # (AUTORUN.INF, disclaimer.htm, nemlogo1.gif, shelexec.exe, etc.)
+            if len(rel) == 3:
+                aux_id = aux_id_from_filename_template(skeletonize(filename))
+                return "MMSDM", "MONTH_ROOT_AUX", aux_id, {}
 
             # MMSDM/{year}/{month}/MMSDM_Historical_Data_SQLLoader/...
-            if len(rel) >= 3 and rel[2] == "MMSDM_Historical_Data_SQLLoader":
-                if len(rel) == 3:
-                    return "MMSDM", "SQLLOADER_ROOT", "SQLLOADER_AUX", {}
+            if len(rel) >= 4 and rel[2] == "MMSDM_Historical_Data_SQLLoader":
+                # Files directly under SQLLoader/ (rare aux): len(rel) == 4.
+                if len(rel) == 4:
+                    aux_id = aux_id_from_filename_template(skeletonize(filename))
+                    return "MMSDM", "SQLLOADER_AUX", aux_id, {}
                 view = rel[3]  # CTL, DATA, BCP_FMT, etc.
 
                 # DOCUMENTATION is a further nested tree (MMS Data Model/v*/...)
                 if view == "DOCUMENTATION":
-                    # intra_repo_id from path segments (MMS Data Model version) if present
-                    path_tail = "/".join(rel[4:])
-                    # e.g. "MMS%20Data%20Model/v5.1/..."
-                    m = re.match(r"MMS%20Data%20Model/(v[\w.]+)/?", path_tail)
+                    dir_tail = "/".join(rel[4:-1])  # rel[-1] is filename
+                    # MMS Data Model versioned subtree: e.g. "MMS%20Data%20Model/v5.1/..."
+                    m = re.match(r"MMS%20Data%20Model/(v[\w.]+)/?", dir_tail)
                     if m:
                         return (
                             "MMSDM",
@@ -300,43 +318,212 @@ def classify_mmsdm(segs: list[str], filename: str) -> tuple[str, str, str, dict]
                             f"MMS_DATA_MODEL_{m.group(1)}",
                             {"mms_version": m.group(1)},
                         )
-                    return "MMSDM", "DOCUMENTATION", "DOCUMENTATION_AUX", {}
+                    # marketnoticedata_{yearmonth}.par is a real dataset living
+                    # directly under DOCUMENTATION/ — promote it out of aux.
+                    if re.fullmatch(r"marketnoticedata_\d{6}\.par", filename):
+                        return "MMSDM", "DOCUMENTATION", "MARKETNOTICEDATA", {}
+                    # Remaining files are aux chrome / boilerplate — emit a
+                    # stem-derived id so each filename has its own row.
+                    aux_id = aux_id_from_filename_template(skeletonize(filename))
+                    return "MMSDM", "DOCUMENTATION_AUX", aux_id, {}
 
-                # SQLLoader view file: extract #TABLE# from filename
-                table = extract_mmsdm_table(filename) or "UNPARSED"
-                return "MMSDM", view, table, {"sqlloader_view": view}
+                # SQLLoader view file: extract table identifier from filename.
+                # `view` is CTL / DATA / BCP_FMT / BCP_DATA / MYSQL / INDEX /
+                # UTILITIES / LOGS / P5MIN_ALL_DATA / PREDISP_ALL_DATA.
+                table = extract_mmsdm_table(filename)
+                if table is not None:
+                    return "MMSDM", view, table, {"sqlloader_view": view}
+                # extract_mmsdm_table returned None. Two cases:
+                # 1. Filename is a known table-file dialect (PUBLIC_ARCHIVE# or
+                #    PUBLIC_DVD_) that didn't match → surface as UNPARSED so
+                #    the regex gap gets audited. The catch-all PUBLIC_ prefix
+                #    is intentionally NOT included here because AEMO publishes
+                #    many utility/index filenames with that prefix (e.g.
+                #    PUBLIC_RUN_BCP_<yearmonth>.bat, PUBLIC_MONTHLY_DVD_INDEX)
+                #    that are not tables — those should fall to stem-based aux.
+                # 2. Otherwise (aux chrome like Readme.htm, batch scripts,
+                #    BCPTransform.log, etc.) → stem-based id on a {view}_AUX
+                #    tier so write_json._curate_keys() excludes them from the
+                #    user-facing dataset_keys list (they are artifacts, not
+                #    data products).
+                if filename.startswith(("PUBLIC_ARCHIVE", "PUBLIC_DVD_")):
+                    return "MMSDM", view, "UNPARSED", {"sqlloader_view": view}
+                aux_id = aux_id_from_filename_template(skeletonize(filename))
+                return "MMSDM", f"{view}_AUX", aux_id, {"sqlloader_view": view}
 
     # Fallback: unknown MMSDM path
     return "MMSDM", "OTHER", "UNKNOWN", {}
 
 
 def classify_nemde(segs: list[str], filename: str) -> tuple[str, str, str, dict]:
-    """Classify an NEMDE file. segs starts with Data_Archive/Wholesale_Electricity/NEMDE/..."""
-    rel = segs[3:]  # everything after NEMDE/
+    """Classify an NEMDE file. segs starts with Data_Archive/Wholesale_Electricity/NEMDE/...
 
-    # NEMDE/{year}/NEMDE_{year}_{mm}/NEMDE_Market_Data/{NEMDE_Files|File_Readers}/...
-    if len(rel) >= 4 and rel[3] in ("NEMDE_Files", "File_Readers"):
+    Layout (per NEMWEB-STRUCTURE.md §4):
+        NEMDE/{year}/NEMDE_{year}_{mm}.zip                      # monthly bulk
+        NEMDE/{year}/NEMDE_{year}_{mm}/<file>                   # CD-image chrome aux
+        NEMDE/{year}/NEMDE_{year}_{mm}/NEMDE_Market_Data/<file> # UI chrome aux
+        NEMDE/{year}/NEMDE_{year}_{mm}/NEMDE_Market_Data/NEMDE_Files/<file>    # real
+        NEMDE/{year}/NEMDE_{year}_{mm}/NEMDE_Market_Data/File_Readers/<file>   # real
+    """
+    rel = segs[3:]  # includes filename as rel[-1]
+
+    # NEMDE_Files / File_Readers subtree (the real-data layer).
+    # rel = [year, month_dir, 'NEMDE_Market_Data', <subtree>, filename] (len >= 5)
+    # where <subtree> is 'NEMDE_Files' or 'File_Readers'.
+    # Full structural guard: promote to real data ONLY when the parent shape
+    # (year / month / NEMDE_Market_Data / <subtree>) is also well-formed.
+    # Without this, an unexpected directory shape with a `NEMDE_Files` child
+    # would silently promote arbitrary filenames as real data.
+    if (
+        len(rel) >= 5
+        and re.fullmatch(r"\d{4}", rel[0])
+        and re.fullmatch(r"NEMDE_\d{4}_\d{2}", rel[1])
+        and rel[2] == "NEMDE_Market_Data"
+        and rel[3] in ("NEMDE_Files", "File_Readers")
+    ):
         subtree = rel[3]
-        # intra_repo_id = filename prefix (before first digit-run or extension)
         intra_id = extract_nemde_prefix(filename) or "UNKNOWN"
         return "NEMDE", subtree, intra_id, {"nemde_subtree": subtree}
 
-    # Other NEMDE paths (root, year, month, Market_Data root)
-    return "NEMDE", "ROOT_AUX", "ROOT_AUX", {}
+    # NEMDE/{year}/NEMDE_{year}_{mm}.zip — monthly bulk archive.
+    # rel = [year, 'NEMDE_{year}_{mm}.zip'] (len 2)
+    if (
+        len(rel) == 2
+        and re.fullmatch(r"\d{4}", rel[0])
+        and re.fullmatch(r"NEMDE_\d{4}_\d{2}\.zip", rel[1])
+    ):
+        return "NEMDE", "MONTHLY_BULK", "NEMDE_MONTHLY_BULK", {}
+
+    # NEMDE/{year}/NEMDE_{year}_{mm}/NEMDE_Market_Data/<aux-file> — Market_Data chrome.
+    # rel = [year, month_dir, 'NEMDE_Market_Data', filename] (len 4)
+    if (
+        len(rel) == 4
+        and re.fullmatch(r"\d{4}", rel[0])
+        and re.fullmatch(r"NEMDE_\d{4}_\d{2}", rel[1])
+        and rel[2] == "NEMDE_Market_Data"
+    ):
+        aux_id = aux_id_from_filename_template(skeletonize(filename))
+        return "NEMDE", "MARKET_DATA_AUX", aux_id, {}
+
+    # NEMDE/{year}/NEMDE_{year}_{mm}/<aux-file> — month-root CD chrome.
+    # rel = [year, month_dir, filename] (len 3)
+    if (
+        len(rel) == 3
+        and re.fullmatch(r"\d{4}", rel[0])
+        and re.fullmatch(r"NEMDE_\d{4}_\d{2}", rel[1])
+    ):
+        aux_id = aux_id_from_filename_template(skeletonize(filename))
+        return "NEMDE", "ROOT_AUX", aux_id, {}
+
+    # Unknown NEMDE path — surface as an explicit gap. Keep ROOT_AUX tier
+    # for back-compat (existing callers key off it) but use a stem-based id.
+    aux_id = aux_id_from_filename_template(skeletonize(filename))
+    return "NEMDE", "ROOT_AUX", aux_id, {}
+
+
+# Aux / CD-chrome / documentation boilerplate filenames are classified with a
+# stem-derived intra_repo_id so each filename stays a distinct dataset entry
+# rather than all collapsing into a shared AUX placeholder (which write_json
+# would then fold into a single catalog row, losing 20+ rows silently).
+#
+# Byte-exact casing (§3.1) is preserved — do NOT uppercase/lowercase. Case
+# variants like Readme.htm vs readme.htm are AEMO-served distinct files and
+# must emit distinct aux_ids.
+#
+# The helper accepts a filename **template** — output of skeletonize() in
+# <dN> angle-bracket form, or output of label_digit_positions() in {token}
+# curly-brace form, or a bare filename. All three produce the same result
+# when the filename is identical modulo digit-runs.
+_AUX_ID_TOKEN = re.compile(r"<[^>]+>|\{[^}]+\}")
+_AUX_ID_NONWORD = re.compile(r"[^A-Za-z0-9]+")
+
+
+def aux_id_from_filename_template(tpl: str) -> str:
+    """Derive a stable, case-preserving, stem-based intra_repo_id for an aux file.
+
+    Strips skeleton tokens (both ``<dN>`` and ``{token}`` forms), replaces
+    non-alphanumeric runs with ``_``, and trims leading/trailing ``_``. Source
+    byte casing is preserved so two AEMO-served filenames that differ only
+    in case get distinct ids.
+
+    Aux signal lives on the ``retention_tier`` (e.g. ``MONTH_ROOT_AUX``,
+    ``{view}_AUX``), NOT on this id. ``write_json._curate_keys()`` excludes
+    aux-only datasets from the user-facing ``dataset_keys`` list by checking
+    that all tier names end with ``_AUX``. Do not try to encode the aux
+    marker in the id itself — the stem should stay filename-faithful so
+    byte-exact case variants (``Readme.htm`` vs ``readme.htm``) remain
+    distinct per §3.1.
+
+    Examples::
+
+        AUTORUN.INF          -> AUTORUN_INF
+        Readme.htm           -> Readme_htm        (distinct from readme.htm)
+        readme.htm           -> readme_htm
+        nemlogo<d1>.gif      -> nemlogo_gif
+        nemlogo{d1}.gif      -> nemlogo_gif
+        marketnoticedata_{yearmonth}.par -> marketnoticedata_par
+    """
+    stripped = _AUX_ID_TOKEN.sub("", tpl)
+    collapsed = _AUX_ID_NONWORD.sub("_", stripped)
+    trimmed = collapsed.strip("_")
+    return trimmed if trimmed else "AUX"
+
+
+# MMSDM SQLLoader view files come in two filename dialects.
+# Pre-2024 (~): PUBLIC_ARCHIVE#<TABLE>#FILE<NN>#<date>.<ext>  (URL-encoded '#' = %23)
+# 2024-present: PUBLIC_DVD_<TABLE>_<date>.<ext>  where <date> is 6-digit
+#   yearmonth (monthly archive) or 12/14-digit timestamp (rolling DATA/.zip).
+# §3.1 byte-exact discipline: both dialects coexist for back-catalogue months;
+# treat as two distinct patterns, not one. Case is preserved as-served.
+# Extension list drawn from `grep -rho 'PUBLIC_DVD_[^"]*\.[a-zA-Z]*' nemweb-mirror/`
+# (2026-04-25): only .ctl, .ctlbak, .ctlBak, .fmt, .zip are actually served.
+# Do not add .DATA or .bcp unless AEMO starts publishing them — unrestricted
+# extension matching would over-classify aux files as tables.
+_MMSDM_DVD_RE = re.compile(r"^PUBLIC_DVD_(?P<table>.+)_\d{6,14}\.(?:ctl|ctlbak|ctlBak|fmt|zip)$")
 
 
 def extract_mmsdm_table(filename: str) -> str | None:
-    """MMSDM SQLLoader filenames: PUBLIC_ARCHIVE%23<TABLE>%23FILE<NN>%23<date>.<ext>
-    URL-decoded: PUBLIC_ARCHIVE#<TABLE>#FILE<NN>#<date>.<ext>
+    """Extract the MMSDM table name from a SQLLoader-view filename.
+
+    Supports two dialects observed in the mirror:
+      * ``PUBLIC_ARCHIVE#<TABLE>#FILE<NN>#<date>.<ext>``
+        (URL-encoded as ``PUBLIC_ARCHIVE%23…``; pre-2024 archive).
+      * ``PUBLIC_DVD_<TABLE>_<yearmonth>.<ext>``
+        (2024-present; underscore-delimited).
+
+    Returns None if neither dialect matches, so the caller can emit an
+    UNPARSED placeholder and surface it as a classifier-gap signal.
     """
     decoded = urllib.parse.unquote(filename)
-    if "#" not in decoded:
+    if "#" in decoded:
+        parts = decoded.split("#")
+        # Validate the archive dialect before promoting `parts[1]` to a table id.
+        # Two observed shapes (verified against nemweb-mirror/, 2026-04-25):
+        #   4-part:  PUBLIC_ARCHIVE # TABLE # FILE<NN> # <date>.<ext>
+        #   5-part:  PUBLIC_ARCHIVE # TABLE # ALL # FILE<NN> # <date>.<ext>
+        # The 5-part shape appears in the *_ALL_DATA view tiers (P5MIN_ALL_DATA,
+        # PREDISP_ALL_DATA). Anything else with '#' is not a recognised table
+        # file — fall through to None so the caller can surface it as UNPARSED.
+        date_re = r"\d{6,14}\.[A-Za-z0-9]+"
+        if (
+            len(parts) == 4
+            and parts[0] in ("PUBLIC_ARCHIVE", "PUBLIC")
+            and re.fullmatch(r"FILE\d+", parts[2])
+            and re.fullmatch(date_re, parts[3])
+        ):
+            return parts[1]
+        if (
+            len(parts) == 5
+            and parts[0] in ("PUBLIC_ARCHIVE", "PUBLIC")
+            and parts[2] == "ALL"
+            and re.fullmatch(r"FILE\d+", parts[3])
+            and re.fullmatch(date_re, parts[4])
+        ):
+            return parts[1]
         return None
-    parts = decoded.split("#")
-    if len(parts) >= 2 and parts[0] in ("PUBLIC_ARCHIVE", "PUBLIC"):
-        return parts[1]
-    if len(parts) >= 2:
-        return parts[1]
+    m = _MMSDM_DVD_RE.match(decoded)
+    if m:
+        return m.group("table")
     return None
 
 
@@ -623,10 +810,10 @@ def main(policy: object | None = None) -> int:
     except Exception:
         commit = "unknown"
 
-    Path("patterns/auto/").mkdir(parents=True, exist_ok=True)
+    OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     write_json(
         rows,
-        out_path=Path("patterns/auto/catalog.json"),
+        out_path=OUT_JSON,
         catalog_version=datetime.now(UTC).strftime("%Y.%m.%d"),
         as_of=datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         source_mirror_commit=commit,
@@ -973,14 +1160,29 @@ def _infer_cadence(repo: str, tier: str) -> str:
 
 
 _AUX_SUFFIXES = {"_AUX", "DOCUMENTATION_AUX", "ROOT_AUX", "MONTH_ROOT_AUX", "SQLLOADER_AUX"}
-_AUX_EXACT = {"MMSDM_MONTHLY_BULK", "MTPASA_DATA_EXPORT", "UNKNOWN", "UNPARSED"}
+_AUX_EXACT = {
+    "MMSDM_MONTHLY_BULK",
+    "NEMDE_MONTHLY_BULK",
+    "MTPASA_DATA_EXPORT",
+    "UNKNOWN",
+    "UNPARSED",
+}
 _UTILITY_EXTENSIONS = {".dll", ".exe", ".bat", ".sh", ".cmd", ".tar", ".gz"}
 
 
 def _curate_keys(all_keys: list[str], datasets: dict) -> list[str]:
     """Return the curated user-facing subset of dataset keys.
 
-    Rule: resolvable=true AND intra_repo_id not AUX/placeholder AND not utility-file.
+    Rule: resolvable=true AND intra_repo_id not AUX/placeholder AND not
+    utility-file AND at least one tier is not aux-tiered.
+
+    The tier check catches the #21 stem-based aux ids (e.g. ``AUTORUN_INF``,
+    ``Readme_htm``, ``PUBLIC_RUN_BCP_bat``) that slip past the intra-id
+    filters because their stems do not end with ``_AUX``. Aux tiers (which
+    all end with ``_AUX`` by convention — ``MONTH_ROOT_AUX``, ``ROOT_AUX``,
+    ``DOCUMENTATION_AUX``, ``SQLLOADER_AUX``, ``MARKET_DATA_AUX``, and the
+    per-view ``{CTL|DATA|INDEX|UTILITIES|...}_AUX``) mark aux artifacts even
+    when the intra-id is a filename stem.
     """
     out = []
     for key in sorted(all_keys):
@@ -993,6 +1195,9 @@ def _curate_keys(all_keys: list[str], datasets: dict) -> list[str]:
         if any(iid.endswith(suf) for suf in _AUX_SUFFIXES):
             continue
         if any(iid.lower().endswith(ext) for ext in _UTILITY_EXTENSIONS):
+            continue
+        tier_names = set(ds.get("tiers", {}).keys())
+        if tier_names and all(t.endswith("_AUX") for t in tier_names):
             continue
         out.append(key)
     return out

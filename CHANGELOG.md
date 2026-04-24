@@ -4,6 +4,10 @@ All notable changes to nem-catalog are tracked here. Format: [Keep a Changelog](
 
 ## [Unreleased]
 
+### Fixed
+
+- Extractor classifier no longer dumps 563 rows into placeholder `UNPARSED` / `UNKNOWN` / `ROOT_AUX` / `DOCUMENTATION_AUX` / `MTPASA_DATA_EXPORT` buckets. `extract_mmsdm_table` now parses underscore-delimited `PUBLIC_DVD_<TABLE>_<date>.<ext>` filenames (both 6-digit yearmonth and 12-digit timestamp variants, plus `.ctlbak`/`.ctlBak` backup files). The previously-dead `classify_mmsdm` branches for `MMSDM_MONTHLY_BULK` / `MONTH_ROOT_AUX` / `SQLLOADER_AUX` are revived (guards were indexed without accounting for `rel[-1]` being the filename segment). `classify_nemde` gains `NEMDE_MONTHLY_BULK` promotion, a distinct `MARKET_DATA_AUX` tier for `NEMDE_Market_Data/` aux chrome, and stem-based `ROOT_AUX` ids. `MTPASA_DATA_EXPORT` splits into `MTPASA_REGIONAVAIL_TRK` + `MTPASA_REGIONAVAILABILITY` (two real datasets no longer bucketed by directory name). `marketnoticedata_{yearmonth}.par` promoted out of DOCUMENTATION_AUX to `MARKETNOTICEDATA`. CD-chrome aux files get stable filename-stem-derived `intra_repo_id`s via a new `aux_id_from_filename_template` helper that preserves source byte casing per §3.1 (case variants like `Readme.htm` vs `readme.htm` stay distinct). Distinct `(repo, intra_repo_id)` count grows from 367 → 442. No schema change; `catalog.json` consumers are unaffected until #17 (`write_json` row-collapse) lands. Closes #21.
+
 ## [0.1.1] — 2026-04-20
 
 ### Added

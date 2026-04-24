@@ -1,6 +1,6 @@
 # NEMWeb URL Conventions
 
-Empirically derived from 2863 IIS directory listings in `nemweb-mirror/`. 2549 listings contained files; 217772 filenames analyzed. **367 distinct datasets** across 4 of 4 repositories, 2347 (dataset, tier, path, pattern) rows.
+Empirically derived from 2863 IIS directory listings in `nemweb-mirror/`. 2549 listings contained files; 217772 filenames analyzed. **442 distinct datasets** across 4 of 4 repositories, 2363 (dataset, tier, path, pattern) rows.
 
 **Taxonomy** (per `reference/NEMWEB-STRUCTURE.md` §1):
 
@@ -1296,7 +1296,7 @@ _1 pattern row, 1 files (snapshot), observed 2016-12-23 → 2016-12-23 (snapshot
 |---|---|---|---|---|---:|---|---|
 | `CURRENT` | `/Reports/CURRENT/Yesterdays_Bids_Reports/DUPLICATE/` | `PUBLIC_YESTBID_{timestamp}_{datetime}.zip` | `PUBLIC_YESTBID_\d{12}_\d{14}\.zip` | `PUBLIC_YESTBID_201612220000_20161223040519.zip` | 1 | 2016-12-23 | 2016-12-23 |
 
-## Repo: `MMSDM`  (263 datasets, 1700 rows)
+## Repo: `MMSDM`  (328 datasets, 1716 rows)
 
 ### `MMSDM` · `ADG_DETAIL`
 
@@ -1322,80 +1322,109 @@ _4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `ANCILLARY_RECOVERY_SPLIT`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#ANCILLARY_RECOVERY_SPLIT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#ANCILLARY_RECOVERY_SPLIT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#ANCILLARY_RECOVERY_SPLIT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_{yearmonth}.fmt` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_\d{6}\.fmt` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#ANCILLARY_RECOVERY_SPLIT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#ANCILLARY_RECOVERY_SPLIT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#ANCILLARY_RECOVERY_SPLIT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_{yearmonth}.ctl` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_\d{6}\.ctl` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#ANCILLARY_RECOVERY_SPLIT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#ANCILLARY_RECOVERY_SPLIT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#ANCILLARY_RECOVERY_SPLIT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_{timestamp}.zip` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_\d{12}\.zip` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#ANCILLARY_RECOVERY_SPLIT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#ANCILLARY_RECOVERY_SPLIT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#ANCILLARY_RECOVERY_SPLIT#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `APEVENT`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 119 files (snapshot), observed 2017-01-15 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#APEVENT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#APEVENT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#APEVENT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_APEVENT_{yearmonth}.fmt` | `PUBLIC_DVD_APEVENT_\d{6}\.fmt` | `PUBLIC_DVD_APEVENT_201510.fmt` | 13 | 2019-09-06 | 2024-06-12 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#APEVENT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#APEVENT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#APEVENT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_APEVENT_{yearmonth}.ctl` | `PUBLIC_DVD_APEVENT_\d{6}\.ctl` | `PUBLIC_DVD_APEVENT_201510.ctl` | 13 | 2017-01-15 | 2024-06-12 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#APEVENT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#APEVENT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#APEVENT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_APEVENT_{timestamp}.zip` | `PUBLIC_DVD_APEVENT_\d{12}\.zip` | `PUBLIC_DVD_APEVENT_201510010000.zip` | 13 | 2017-01-15 | 2024-06-12 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#APEVENT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#APEVENT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#APEVENT#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `APEVENTREGION`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 119 files (snapshot), observed 2017-01-15 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#APEVENTREGION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#APEVENTREGION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#APEVENTREGION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_APEVENTREGION_{yearmonth}.fmt` | `PUBLIC_DVD_APEVENTREGION_\d{6}\.fmt` | `PUBLIC_DVD_APEVENTREGION_201510.fmt` | 13 | 2019-09-06 | 2024-06-12 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#APEVENTREGION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#APEVENTREGION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#APEVENTREGION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_APEVENTREGION_{yearmonth}.ctl` | `PUBLIC_DVD_APEVENTREGION_\d{6}\.ctl` | `PUBLIC_DVD_APEVENTREGION_201510.ctl` | 13 | 2017-01-15 | 2024-06-12 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#APEVENTREGION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#APEVENTREGION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#APEVENTREGION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_APEVENTREGION_{timestamp}.zip` | `PUBLIC_DVD_APEVENTREGION_\d{12}\.zip` | `PUBLIC_DVD_APEVENTREGION_201510010000.zip` | 13 | 2017-01-15 | 2024-06-12 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#APEVENTREGION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#APEVENTREGION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#APEVENTREGION#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `AUCTION`
 
-_4 pattern rows, 52 files (snapshot), observed 2024-10-08 → 2026-04-08 (snapshot)_
+_7 pattern rows, 289 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#AUCTION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#AUCTION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#AUCTION#FILE01#202409.fmt` | 13 | 2024-10-08 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_AUCTION_{yearmonth}.fmt` | `PUBLIC_DVD_AUCTION_\d{6}\.fmt` | `PUBLIC_DVD_AUCTION_201503.fmt` | 79 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#AUCTION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#AUCTION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#AUCTION#FILE01#202409.ctl` | 13 | 2024-10-08 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_AUCTION_{yearmonth}.ctl` | `PUBLIC_DVD_AUCTION_\d{6}\.ctl` | `PUBLIC_DVD_AUCTION_201503.ctl` | 79 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#AUCTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#AUCTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#AUCTION#FILE01#202409010000.zip` | 13 | 2024-10-08 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_AUCTION_{timestamp}.zip` | `PUBLIC_DVD_AUCTION_\d{12}\.zip` | `PUBLIC_DVD_AUCTION_201503010000.zip` | 79 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#AUCTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#AUCTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#AUCTION#FILE01#202409.sql` | 13 | 2024-10-08 | 2026-04-08 |
 
 ### `MMSDM` · `AUCTION_CALENDAR`
 
-_4 pattern rows, 28 files (snapshot), observed 2024-10-08 → 2026-04-08 (snapshot)_
+_7 pattern rows, 187 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#AUCTION_CALENDAR#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#AUCTION_CALENDAR\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#AUCTION_CALENDAR#FILE01#202409.fmt` | 7 | 2024-10-08 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_AUCTION_CALENDAR_{yearmonth}.fmt` | `PUBLIC_DVD_AUCTION_CALENDAR_\d{6}\.fmt` | `PUBLIC_DVD_AUCTION_CALENDAR_201501.fmt` | 53 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#AUCTION_CALENDAR#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#AUCTION_CALENDAR\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#AUCTION_CALENDAR#FILE01#202409.ctl` | 7 | 2024-10-08 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_AUCTION_CALENDAR_{yearmonth}.ctl` | `PUBLIC_DVD_AUCTION_CALENDAR_\d{6}\.ctl` | `PUBLIC_DVD_AUCTION_CALENDAR_201501.ctl` | 53 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#AUCTION_CALENDAR#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#AUCTION_CALENDAR\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#AUCTION_CALENDAR#FILE01#202409010000.zip` | 7 | 2024-10-08 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_AUCTION_CALENDAR_{timestamp}.zip` | `PUBLIC_DVD_AUCTION_CALENDAR_\d{12}\.zip` | `PUBLIC_DVD_AUCTION_CALENDAR_201501010000.zip` | 53 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#AUCTION_CALENDAR#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#AUCTION_CALENDAR\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#AUCTION_CALENDAR#FILE01#202409.sql` | 7 | 2024-10-08 | 2026-04-08 |
 
 ### `MMSDM` · `AUCTION_IC_ALLOCATIONS`
 
-_4 pattern rows, 56 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 290 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#AUCTION_IC_ALLOCATIONS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#AUCTION_IC_ALLOCATIONS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#AUCTION_IC_ALLOCATIONS#FILE01#202408.fmt` | 14 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_{yearmonth}.fmt` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_\d{6}\.fmt` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_201501.fmt` | 78 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#AUCTION_IC_ALLOCATIONS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#AUCTION_IC_ALLOCATIONS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#AUCTION_IC_ALLOCATIONS#FILE01#202408.ctl` | 14 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_{yearmonth}.ctl` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_\d{6}\.ctl` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_201501.ctl` | 78 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#AUCTION_IC_ALLOCATIONS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#AUCTION_IC_ALLOCATIONS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#AUCTION_IC_ALLOCATIONS#FILE01#202408010000.zip` | 14 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_{timestamp}.zip` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_\d{12}\.zip` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_201501010000.zip` | 78 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#AUCTION_IC_ALLOCATIONS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#AUCTION_IC_ALLOCATIONS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#AUCTION_IC_ALLOCATIONS#FILE01#202408.sql` | 14 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `AUCTION_TRANCHE`
 
-_4 pattern rows, 28 files (snapshot), observed 2024-10-08 → 2026-04-08 (snapshot)_
+_7 pattern rows, 151 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#AUCTION_TRANCHE#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#AUCTION_TRANCHE\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#AUCTION_TRANCHE#FILE01#202409.fmt` | 7 | 2024-10-08 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_AUCTION_TRANCHE_{yearmonth}.fmt` | `PUBLIC_DVD_AUCTION_TRANCHE_\d{6}\.fmt` | `PUBLIC_DVD_AUCTION_TRANCHE_201501.fmt` | 41 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#AUCTION_TRANCHE#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#AUCTION_TRANCHE\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#AUCTION_TRANCHE#FILE01#202409.ctl` | 7 | 2024-10-08 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_AUCTION_TRANCHE_{yearmonth}.ctl` | `PUBLIC_DVD_AUCTION_TRANCHE_\d{6}\.ctl` | `PUBLIC_DVD_AUCTION_TRANCHE_201501.ctl` | 41 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#AUCTION_TRANCHE#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#AUCTION_TRANCHE\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#AUCTION_TRANCHE#FILE01#202409010000.zip` | 7 | 2024-10-08 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_AUCTION_TRANCHE_{timestamp}.zip` | `PUBLIC_DVD_AUCTION_TRANCHE_\d{12}\.zip` | `PUBLIC_DVD_AUCTION_TRANCHE_201501010000.zip` | 41 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#AUCTION_TRANCHE#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#AUCTION_TRANCHE\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#AUCTION_TRANCHE#FILE01#202409.sql` | 7 | 2024-10-08 | 2026-04-08 |
+
+### `MMSDM` · `AUTORUN_INF`
+
+_1 pattern row, 135 files (snapshot), observed 2017-01-12 → 2026-04-13 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MONTH_ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `AUTORUN.INF` | `AUTORUN\.INF` | `AUTORUN.INF` | 135 | 2017-01-12 | 2026-04-13 |
 
 ### `MMSDM` · `AVERAGEPRICE30`
 
@@ -1408,48 +1437,68 @@ _4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#AVERAGEPRICE{d21}#FILE{d22}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#AVERAGEPRICE\d{2}\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#AVERAGEPRICE30#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#AVERAGEPRICE{d21}#FILE{d22}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#AVERAGEPRICE\d{2}\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#AVERAGEPRICE30#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
+### `MMSDM` · `BCPTransform_log`
+
+_1 pattern row, 41 files (snapshot), observed 2022-12-11 → 2025-10-17 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `BCPTransform.log` | `BCPTransform\.log` | `BCPTransform.log` | 41 | 2022-12-11 | 2025-10-17 |
+
 ### `MMSDM` · `BIDDAYOFFER`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BIDDAYOFFER#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BIDDAYOFFER\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BIDDAYOFFER#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDDAYOFFER_{yearmonth}.fmt` | `PUBLIC_DVD_BIDDAYOFFER_\d{6}\.fmt` | `PUBLIC_DVD_BIDDAYOFFER_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BIDDAYOFFER#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BIDDAYOFFER\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BIDDAYOFFER#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDDAYOFFER_{yearmonth}.ctl` | `PUBLIC_DVD_BIDDAYOFFER_\d{6}\.ctl` | `PUBLIC_DVD_BIDDAYOFFER_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BIDDAYOFFER#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BIDDAYOFFER\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BIDDAYOFFER#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDDAYOFFER_{timestamp}.zip` | `PUBLIC_DVD_BIDDAYOFFER_\d{12}\.zip` | `PUBLIC_DVD_BIDDAYOFFER_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BIDDAYOFFER#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BIDDAYOFFER\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BIDDAYOFFER#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BIDDAYOFFER_D`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 302 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BIDDAYOFFER_D#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BIDDAYOFFER_D\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BIDDAYOFFER_D#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDDAYOFFER_D_{yearmonth}.fmt` | `PUBLIC_DVD_BIDDAYOFFER_D_\d{6}\.fmt` | `PUBLIC_DVD_BIDDAYOFFER_D_201501.fmt` | 74 | 2019-09-05 | 2021-03-22 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BIDDAYOFFER_D#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BIDDAYOFFER_D\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BIDDAYOFFER_D#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDDAYOFFER_D_{yearmonth}.ctl` | `PUBLIC_DVD_BIDDAYOFFER_D_\d{6}\.ctl` | `PUBLIC_DVD_BIDDAYOFFER_D_201501.ctl` | 74 | 2017-01-14 | 2021-03-22 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BIDDAYOFFER_D#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BIDDAYOFFER_D\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BIDDAYOFFER_D#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDDAYOFFER_D_{timestamp}.zip` | `PUBLIC_DVD_BIDDAYOFFER_D_\d{12}\.zip` | `PUBLIC_DVD_BIDDAYOFFER_D_201501010000.zip` | 74 | 2017-01-14 | 2021-03-22 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BIDDAYOFFER_D#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BIDDAYOFFER_D\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BIDDAYOFFER_D#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BIDDUIDDETAILS`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BIDDUIDDETAILS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BIDDUIDDETAILS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BIDDUIDDETAILS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDDUIDDETAILS_{yearmonth}.fmt` | `PUBLIC_DVD_BIDDUIDDETAILS_\d{6}\.fmt` | `PUBLIC_DVD_BIDDUIDDETAILS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BIDDUIDDETAILS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BIDDUIDDETAILS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BIDDUIDDETAILS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDDUIDDETAILS_{yearmonth}.ctl` | `PUBLIC_DVD_BIDDUIDDETAILS_\d{6}\.ctl` | `PUBLIC_DVD_BIDDUIDDETAILS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BIDDUIDDETAILS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BIDDUIDDETAILS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BIDDUIDDETAILS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDDUIDDETAILS_{timestamp}.zip` | `PUBLIC_DVD_BIDDUIDDETAILS_\d{12}\.zip` | `PUBLIC_DVD_BIDDUIDDETAILS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BIDDUIDDETAILS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BIDDUIDDETAILS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BIDDUIDDETAILS#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BIDDUIDDETAILSTRK`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BIDDUIDDETAILSTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BIDDUIDDETAILSTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BIDDUIDDETAILSTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_{yearmonth}.fmt` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_\d{6}\.fmt` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BIDDUIDDETAILSTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BIDDUIDDETAILSTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BIDDUIDDETAILSTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_{yearmonth}.ctl` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_\d{6}\.ctl` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BIDDUIDDETAILSTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BIDDUIDDETAILSTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BIDDUIDDETAILSTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_{timestamp}.zip` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_\d{12}\.zip` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BIDDUIDDETAILSTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BIDDUIDDETAILSTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BIDDUIDDETAILSTRK#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BIDOFFERPERIOD`
@@ -1463,125 +1512,188 @@ _4 pattern rows, 3480 files (snapshot), observed 2024-09-12 → 2026-04-08 (snap
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BIDOFFERPERIOD#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BIDOFFERPERIOD\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BIDOFFERPERIOD#FILE01#202408010000.zip` | 870 | 2024-09-12 | 2026-04-08 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BIDOFFERPERIOD#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BIDOFFERPERIOD\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BIDOFFERPERIOD#FILE01#202408.sql` | 870 | 2024-09-13 | 2026-04-08 |
 
+### `MMSDM` · `BIDPEROFFER`
+
+_3 pattern rows, 262 files (snapshot), observed 2017-01-14 → 2022-06-09 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDPEROFFER_{yearmonth}.fmt` | `PUBLIC_DVD_BIDPEROFFER_\d{6}\.fmt` | `PUBLIC_DVD_BIDPEROFFER_201501.fmt` | 87 | 2019-09-05 | 2022-06-09 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDPEROFFER_{yearmonth}.ctl` | `PUBLIC_DVD_BIDPEROFFER_\d{6}\.ctl` | `PUBLIC_DVD_BIDPEROFFER_201501.ctl` | 87 | 2017-01-14 | 2022-06-09 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDPEROFFER_{timestamp}.zip` | `PUBLIC_DVD_BIDPEROFFER_\d{12}\.zip` | `PUBLIC_DVD_BIDPEROFFER_201501010000.zip` | 88 | 2017-01-14 | 2022-06-09 |
+
+### `MMSDM` · `BIDPEROFFER1`
+
+_3 pattern rows, 78 files (snapshot), observed 2022-07-20 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDPEROFFER{d1}_{yearmonth}.fmt` | `PUBLIC_DVD_BIDPEROFFER\d{1}_\d{6}\.fmt` | `PUBLIC_DVD_BIDPEROFFER1_202206.fmt` | 26 | 2022-07-20 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDPEROFFER{d1}_{yearmonth}.ctl` | `PUBLIC_DVD_BIDPEROFFER\d{1}_\d{6}\.ctl` | `PUBLIC_DVD_BIDPEROFFER1_202206.ctl` | 26 | 2022-07-20 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDPEROFFER{d1}_{timestamp}.zip` | `PUBLIC_DVD_BIDPEROFFER\d{1}_\d{12}\.zip` | `PUBLIC_DVD_BIDPEROFFER1_202206010000.zip` | 26 | 2022-07-21 | 2024-08-16 |
+
+### `MMSDM` · `BIDPEROFFER2`
+
+_3 pattern rows, 78 files (snapshot), observed 2022-07-20 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDPEROFFER{d1}_{yearmonth}.fmt` | `PUBLIC_DVD_BIDPEROFFER\d{1}_\d{6}\.fmt` | `PUBLIC_DVD_BIDPEROFFER2_202206.fmt` | 26 | 2022-07-20 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDPEROFFER{d1}_{yearmonth}.ctl` | `PUBLIC_DVD_BIDPEROFFER\d{1}_\d{6}\.ctl` | `PUBLIC_DVD_BIDPEROFFER2_202206.ctl` | 26 | 2022-07-20 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDPEROFFER{d1}_{timestamp}.zip` | `PUBLIC_DVD_BIDPEROFFER\d{1}_\d{12}\.zip` | `PUBLIC_DVD_BIDPEROFFER2_202206010000.zip` | 26 | 2022-07-21 | 2024-08-16 |
+
 ### `MMSDM` · `BIDPEROFFER_D`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 302 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BIDPEROFFER_D#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BIDPEROFFER_D\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BIDPEROFFER_D#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDPEROFFER_D_{yearmonth}.fmt` | `PUBLIC_DVD_BIDPEROFFER_D_\d{6}\.fmt` | `PUBLIC_DVD_BIDPEROFFER_D_201501.fmt` | 74 | 2019-09-05 | 2021-03-22 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BIDPEROFFER_D#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BIDPEROFFER_D\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BIDPEROFFER_D#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDPEROFFER_D_{yearmonth}.ctl` | `PUBLIC_DVD_BIDPEROFFER_D_\d{6}\.ctl` | `PUBLIC_DVD_BIDPEROFFER_D_201501.ctl` | 74 | 2017-01-14 | 2021-03-22 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BIDPEROFFER_D#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BIDPEROFFER_D\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BIDPEROFFER_D#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDPEROFFER_D_{timestamp}.zip` | `PUBLIC_DVD_BIDPEROFFER_D_\d{12}\.zip` | `PUBLIC_DVD_BIDPEROFFER_D_201501010000.zip` | 74 | 2017-01-14 | 2021-03-22 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BIDPEROFFER_D#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BIDPEROFFER_D\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BIDPEROFFER_D#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BIDTYPES`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BIDTYPES#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BIDTYPES\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BIDTYPES#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDTYPES_{yearmonth}.fmt` | `PUBLIC_DVD_BIDTYPES_\d{6}\.fmt` | `PUBLIC_DVD_BIDTYPES_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BIDTYPES#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BIDTYPES\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BIDTYPES#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDTYPES_{yearmonth}.ctl` | `PUBLIC_DVD_BIDTYPES_\d{6}\.ctl` | `PUBLIC_DVD_BIDTYPES_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BIDTYPES#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BIDTYPES\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BIDTYPES#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDTYPES_{timestamp}.zip` | `PUBLIC_DVD_BIDTYPES_\d{12}\.zip` | `PUBLIC_DVD_BIDTYPES_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BIDTYPES#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BIDTYPES\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BIDTYPES#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BIDTYPESTRK`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BIDTYPESTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BIDTYPESTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BIDTYPESTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDTYPESTRK_{yearmonth}.fmt` | `PUBLIC_DVD_BIDTYPESTRK_\d{6}\.fmt` | `PUBLIC_DVD_BIDTYPESTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BIDTYPESTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BIDTYPESTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BIDTYPESTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDTYPESTRK_{yearmonth}.ctl` | `PUBLIC_DVD_BIDTYPESTRK_\d{6}\.ctl` | `PUBLIC_DVD_BIDTYPESTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BIDTYPESTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BIDTYPESTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BIDTYPESTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDTYPESTRK_{timestamp}.zip` | `PUBLIC_DVD_BIDTYPESTRK_\d{12}\.zip` | `PUBLIC_DVD_BIDTYPESTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BIDTYPESTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BIDTYPESTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BIDTYPESTRK#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BILLINGCALENDAR`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BILLINGCALENDAR#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BILLINGCALENDAR\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BILLINGCALENDAR#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLINGCALENDAR_{yearmonth}.fmt` | `PUBLIC_DVD_BILLINGCALENDAR_\d{6}\.fmt` | `PUBLIC_DVD_BILLINGCALENDAR_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BILLINGCALENDAR#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BILLINGCALENDAR\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BILLINGCALENDAR#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLINGCALENDAR_{yearmonth}.ctl` | `PUBLIC_DVD_BILLINGCALENDAR_\d{6}\.ctl` | `PUBLIC_DVD_BILLINGCALENDAR_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BILLINGCALENDAR#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BILLINGCALENDAR\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BILLINGCALENDAR#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLINGCALENDAR_{timestamp}.zip` | `PUBLIC_DVD_BILLINGCALENDAR_\d{12}\.zip` | `PUBLIC_DVD_BILLINGCALENDAR_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BILLINGCALENDAR#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BILLINGCALENDAR\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BILLINGCALENDAR#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BILLINGDAYTRK`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BILLINGDAYTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BILLINGDAYTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BILLINGDAYTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLINGDAYTRK_{yearmonth}.fmt` | `PUBLIC_DVD_BILLINGDAYTRK_\d{6}\.fmt` | `PUBLIC_DVD_BILLINGDAYTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BILLINGDAYTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BILLINGDAYTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BILLINGDAYTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLINGDAYTRK_{yearmonth}.ctl` | `PUBLIC_DVD_BILLINGDAYTRK_\d{6}\.ctl` | `PUBLIC_DVD_BILLINGDAYTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BILLINGDAYTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BILLINGDAYTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BILLINGDAYTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLINGDAYTRK_{timestamp}.zip` | `PUBLIC_DVD_BILLINGDAYTRK_\d{12}\.zip` | `PUBLIC_DVD_BILLINGDAYTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BILLINGDAYTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BILLINGDAYTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BILLINGDAYTRK#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BILLINGREGIONEXPORTS`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 422 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BILLINGREGIONEXPORTS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BILLINGREGIONEXPORTS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BILLINGREGIONEXPORTS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_{yearmonth}.fmt` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_\d{6}\.fmt` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BILLINGREGIONEXPORTS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BILLINGREGIONEXPORTS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BILLINGREGIONEXPORTS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_{yearmonth}.ctl` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_\d{6}\.ctl` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BILLINGREGIONEXPORTS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BILLINGREGIONEXPORTS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BILLINGREGIONEXPORTS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_{timestamp}.zip` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_\d{12}\.zip` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BILLINGREGIONEXPORTS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BILLINGREGIONEXPORTS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BILLINGREGIONEXPORTS#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BILLINGREGIONFIGURES`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 422 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BILLINGREGIONFIGURES#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BILLINGREGIONFIGURES\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BILLINGREGIONFIGURES#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLINGREGIONFIGURES_{yearmonth}.fmt` | `PUBLIC_DVD_BILLINGREGIONFIGURES_\d{6}\.fmt` | `PUBLIC_DVD_BILLINGREGIONFIGURES_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BILLINGREGIONFIGURES#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BILLINGREGIONFIGURES\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BILLINGREGIONFIGURES#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLINGREGIONFIGURES_{yearmonth}.ctl` | `PUBLIC_DVD_BILLINGREGIONFIGURES_\d{6}\.ctl` | `PUBLIC_DVD_BILLINGREGIONFIGURES_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BILLINGREGIONFIGURES#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BILLINGREGIONFIGURES\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BILLINGREGIONFIGURES#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLINGREGIONFIGURES_{timestamp}.zip` | `PUBLIC_DVD_BILLINGREGIONFIGURES_\d{12}\.zip` | `PUBLIC_DVD_BILLINGREGIONFIGURES_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BILLINGREGIONFIGURES#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BILLINGREGIONFIGURES\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BILLINGREGIONFIGURES#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BILLINGREGIONIMPORTS`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 422 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BILLINGREGIONIMPORTS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BILLINGREGIONIMPORTS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BILLINGREGIONIMPORTS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_{yearmonth}.fmt` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_\d{6}\.fmt` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BILLINGREGIONIMPORTS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BILLINGREGIONIMPORTS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BILLINGREGIONIMPORTS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_{yearmonth}.ctl` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_\d{6}\.ctl` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BILLINGREGIONIMPORTS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BILLINGREGIONIMPORTS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BILLINGREGIONIMPORTS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_{timestamp}.zip` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_\d{12}\.zip` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BILLINGREGIONIMPORTS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BILLINGREGIONIMPORTS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BILLINGREGIONIMPORTS#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BILLINGRUNTRK`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 423 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BILLINGRUNTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BILLINGRUNTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BILLINGRUNTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLINGRUNTRK_{yearmonth}.fmt` | `PUBLIC_DVD_BILLINGRUNTRK_\d{6}\.fmt` | `PUBLIC_DVD_BILLINGRUNTRK_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BILLINGRUNTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BILLINGRUNTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BILLINGRUNTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLINGRUNTRK_{yearmonth}.ctl` | `PUBLIC_DVD_BILLINGRUNTRK_\d{6}\.ctl` | `PUBLIC_DVD_BILLINGRUNTRK_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BILLINGRUNTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BILLINGRUNTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BILLINGRUNTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLINGRUNTRK_{timestamp}.zip` | `PUBLIC_DVD_BILLINGRUNTRK_\d{12}\.zip` | `PUBLIC_DVD_BILLINGRUNTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BILLINGRUNTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BILLINGRUNTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BILLINGRUNTRK#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BILLING_CO2E_PUBLICATION`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 422 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BILLING_CO{d1}E_PUBLICATION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BILLING_CO\d{1}E_PUBLICATION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BILLING_CO2E_PUBLICATION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLING_CO{d1}E_PUBLICATION_{yearmonth}.fmt` | `PUBLIC_DVD_BILLING_CO\d{1}E_PUBLICATION_\d{6}\.fmt` | `PUBLIC_DVD_BILLING_CO2E_PUBLICATION_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BILLING_CO{d1}E_PUBLICATION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BILLING_CO\d{1}E_PUBLICATION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BILLING_CO2E_PUBLICATION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLING_CO{d1}E_PUBLICATION_{yearmonth}.ctl` | `PUBLIC_DVD_BILLING_CO\d{1}E_PUBLICATION_\d{6}\.ctl` | `PUBLIC_DVD_BILLING_CO2E_PUBLICATION_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BILLING_CO{d1}E_PUBLICATION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BILLING_CO\d{1}E_PUBLICATION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BILLING_CO2E_PUBLICATION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLING_CO{d1}E_PUBLICATION_{timestamp}.zip` | `PUBLIC_DVD_BILLING_CO\d{1}E_PUBLICATION_\d{12}\.zip` | `PUBLIC_DVD_BILLING_CO2E_PUBLICATION_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BILLING_CO{d1}E_PUBLICATION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BILLING_CO\d{1}E_PUBLICATION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BILLING_CO2E_PUBLICATION#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BILLING_CO2E_PUBLICATION_TRK`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 422 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#BILLING_CO{d1}E_PUBLICATION_TRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#BILLING_CO\d{1}E_PUBLICATION_TRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#BILLING_CO2E_PUBLICATION_TRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLING_CO{d1}E_PUBLICATION_TRK_{yearmonth}.fmt` | `PUBLIC_DVD_BILLING_CO\d{1}E_PUBLICATION_TRK_\d{6}\.fmt` | `PUBLIC_DVD_BILLING_CO2E_PUBLICATION_TRK_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#BILLING_CO{d1}E_PUBLICATION_TRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#BILLING_CO\d{1}E_PUBLICATION_TRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#BILLING_CO2E_PUBLICATION_TRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLING_CO{d1}E_PUBLICATION_TRK_{yearmonth}.ctl` | `PUBLIC_DVD_BILLING_CO\d{1}E_PUBLICATION_TRK_\d{6}\.ctl` | `PUBLIC_DVD_BILLING_CO2E_PUBLICATION_TRK_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BILLING_CO{d1}E_PUBLICATION_TRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BILLING_CO\d{1}E_PUBLICATION_TRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BILLING_CO2E_PUBLICATION_TRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLING_CO{d1}E_PUBLICATION_TRK_{timestamp}.zip` | `PUBLIC_DVD_BILLING_CO\d{1}E_PUBLICATION_TRK_\d{12}\.zip` | `PUBLIC_DVD_BILLING_CO2E_PUBLICATION_TRK_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BILLING_CO{d1}E_PUBLICATION_TRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BILLING_CO\d{1}E_PUBLICATION_TRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BILLING_CO2E_PUBLICATION_TRK#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `BILLING_DIRECTION_RECON_OTHER`
@@ -1617,6 +1729,25 @@ _4 pattern rows, 44 files (snapshot), observed 2025-01-10 → 2026-04-08 (snapsh
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#BILLING_NMAS_TST_RECVRY_TRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#BILLING_NMAS_TST_RECVRY_TRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#BILLING_NMAS_TST_RECVRY_TRK#FILE01#202412010000.zip` | 11 | 2025-01-10 | 2026-04-07 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#BILLING_NMAS_TST_RECVRY_TRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#BILLING_NMAS_TST_RECVRY_TRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#BILLING_NMAS_TST_RECVRY_TRK#FILE01#202412.sql` | 11 | 2025-01-10 | 2026-04-08 |
 
+### `MMSDM` · `BILLSMELTERRATE`
+
+_3 pattern rows, 345 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLSMELTERRATE_{yearmonth}.fmt` | `PUBLIC_DVD_BILLSMELTERRATE_\d{6}\.fmt` | `PUBLIC_DVD_BILLSMELTERRATE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLSMELTERRATE_{yearmonth}.ctl` | `PUBLIC_DVD_BILLSMELTERRATE_\d{6}\.ctl` | `PUBLIC_DVD_BILLSMELTERRATE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLSMELTERRATE_{timestamp}.zip` | `PUBLIC_DVD_BILLSMELTERRATE_\d{12}\.zip` | `PUBLIC_DVD_BILLSMELTERRATE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
+
+### `MMSDM` · `Back_gif`
+
+_2 pattern rows, 100 files (snapshot), observed 1999-05-23 → 2019-03-14 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MONTH_ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `Back.gif` | `Back\.gif` | `Back.gif` | 50 | 1999-05-23 | 2019-03-14 |
+| `SQLLOADER_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `Back.gif` | `Back\.gif` | `Back.gif` | 50 | 1999-05-23 | 2019-03-14 |
+
 ### `MMSDM` · `CONSTRAINTRELAXATION_OCD`
 
 _4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
@@ -1628,15 +1759,34 @@ _4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#CONSTRAINTRELAXATION_OCD#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#CONSTRAINTRELAXATION_OCD\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#CONSTRAINTRELAXATION_OCD#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#CONSTRAINTRELAXATION_OCD#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#CONSTRAINTRELAXATION_OCD\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#CONSTRAINTRELAXATION_OCD#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
+### `MMSDM` · `CRLF_TXT`
+
+_1 pattern row, 134 files (snapshot), observed 2019-09-05 → 2025-10-17 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `CRLF.TXT` | `CRLF\.TXT` | `CRLF.TXT` | 134 | 2019-09-05 | 2025-10-17 |
+
+### `MMSDM` · `Crlf_exe`
+
+_1 pattern row, 134 files (snapshot), observed 2019-09-05 → 2025-10-17 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `Crlf.exe` | `Crlf\.exe` | `Crlf.exe` | 134 | 2019-09-05 | 2025-10-17 |
+
 ### `MMSDM` · `DAYTRACK`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 422 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DAYTRACK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DAYTRACK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DAYTRACK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DAYTRACK_{yearmonth}.fmt` | `PUBLIC_DVD_DAYTRACK_\d{6}\.fmt` | `PUBLIC_DVD_DAYTRACK_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DAYTRACK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DAYTRACK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DAYTRACK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DAYTRACK_{yearmonth}.ctl` | `PUBLIC_DVD_DAYTRACK_\d{6}\.ctl` | `PUBLIC_DVD_DAYTRACK_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DAYTRACK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DAYTRACK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DAYTRACK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DAYTRACK_{timestamp}.zip` | `PUBLIC_DVD_DAYTRACK_\d{12}\.zip` | `PUBLIC_DVD_DAYTRACK_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DAYTRACK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DAYTRACK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DAYTRACK#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `DEMANDOPERATIONALACTUAL`
@@ -1663,13 +1813,16 @@ _4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `DISPATCHABLEUNIT`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DISPATCHABLEUNIT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DISPATCHABLEUNIT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DISPATCHABLEUNIT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHABLEUNIT_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHABLEUNIT_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHABLEUNIT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DISPATCHABLEUNIT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DISPATCHABLEUNIT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DISPATCHABLEUNIT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHABLEUNIT_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHABLEUNIT_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHABLEUNIT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DISPATCHABLEUNIT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DISPATCHABLEUNIT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DISPATCHABLEUNIT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHABLEUNIT_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHABLEUNIT_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHABLEUNIT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DISPATCHABLEUNIT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DISPATCHABLEUNIT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DISPATCHABLEUNIT#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `DISPATCHBLOCKEDCONSTRAINT`
@@ -1685,79 +1838,100 @@ _4 pattern rows, 44 files (snapshot), observed 2024-10-08 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `DISPATCHCASESOLUTION`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DISPATCHCASESOLUTION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DISPATCHCASESOLUTION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DISPATCHCASESOLUTION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHCASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHCASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHCASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DISPATCHCASESOLUTION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DISPATCHCASESOLUTION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DISPATCHCASESOLUTION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHCASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHCASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHCASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DISPATCHCASESOLUTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DISPATCHCASESOLUTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DISPATCHCASESOLUTION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHCASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHCASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHCASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DISPATCHCASESOLUTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DISPATCHCASESOLUTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DISPATCHCASESOLUTION#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `DISPATCHCONSTRAINT`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DISPATCHCONSTRAINT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DISPATCHCONSTRAINT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DISPATCHCONSTRAINT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHCONSTRAINT_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHCONSTRAINT_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHCONSTRAINT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DISPATCHCONSTRAINT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DISPATCHCONSTRAINT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DISPATCHCONSTRAINT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHCONSTRAINT_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHCONSTRAINT_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHCONSTRAINT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DISPATCHCONSTRAINT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DISPATCHCONSTRAINT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DISPATCHCONSTRAINT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHCONSTRAINT_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHCONSTRAINT_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHCONSTRAINT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DISPATCHCONSTRAINT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DISPATCHCONSTRAINT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DISPATCHCONSTRAINT#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `DISPATCHINTERCONNECTORRES`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DISPATCHINTERCONNECTORRES#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DISPATCHINTERCONNECTORRES\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DISPATCHINTERCONNECTORRES#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DISPATCHINTERCONNECTORRES#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DISPATCHINTERCONNECTORRES\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DISPATCHINTERCONNECTORRES#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DISPATCHINTERCONNECTORRES#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DISPATCHINTERCONNECTORRES\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DISPATCHINTERCONNECTORRES#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DISPATCHINTERCONNECTORRES#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DISPATCHINTERCONNECTORRES\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DISPATCHINTERCONNECTORRES#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `DISPATCHLOAD`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DISPATCHLOAD#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DISPATCHLOAD\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DISPATCHLOAD#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHLOAD_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHLOAD_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHLOAD_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DISPATCHLOAD#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DISPATCHLOAD\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DISPATCHLOAD#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHLOAD_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHLOAD_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHLOAD_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DISPATCHLOAD#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DISPATCHLOAD\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DISPATCHLOAD#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHLOAD_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHLOAD_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHLOAD_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DISPATCHLOAD#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DISPATCHLOAD\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DISPATCHLOAD#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `DISPATCHOFFERTRK`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DISPATCHOFFERTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DISPATCHOFFERTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DISPATCHOFFERTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHOFFERTRK_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHOFFERTRK_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHOFFERTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DISPATCHOFFERTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DISPATCHOFFERTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DISPATCHOFFERTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHOFFERTRK_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHOFFERTRK_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHOFFERTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DISPATCHOFFERTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DISPATCHOFFERTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DISPATCHOFFERTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHOFFERTRK_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHOFFERTRK_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHOFFERTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DISPATCHOFFERTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DISPATCHOFFERTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DISPATCHOFFERTRK#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `DISPATCHPRICE`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DISPATCHPRICE#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DISPATCHPRICE\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DISPATCHPRICE#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHPRICE_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHPRICE_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHPRICE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DISPATCHPRICE#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DISPATCHPRICE\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DISPATCHPRICE#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHPRICE_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHPRICE_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHPRICE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DISPATCHPRICE#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DISPATCHPRICE\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DISPATCHPRICE#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHPRICE_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHPRICE_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHPRICE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DISPATCHPRICE#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DISPATCHPRICE\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DISPATCHPRICE#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `DISPATCHREGIONSUM`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DISPATCHREGIONSUM#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DISPATCHREGIONSUM\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DISPATCHREGIONSUM#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHREGIONSUM_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHREGIONSUM_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHREGIONSUM_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DISPATCHREGIONSUM#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DISPATCHREGIONSUM\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DISPATCHREGIONSUM#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHREGIONSUM_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHREGIONSUM_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHREGIONSUM_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DISPATCHREGIONSUM#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DISPATCHREGIONSUM\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DISPATCHREGIONSUM#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHREGIONSUM_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHREGIONSUM_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHREGIONSUM_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DISPATCHREGIONSUM#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DISPATCHREGIONSUM\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DISPATCHREGIONSUM#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `DISPATCH_CONSTRAINT_FCAS_OCD`
@@ -1773,13 +1947,16 @@ _4 pattern rows, 20 files (snapshot), observed 2024-11-11 → 2026-03-10 (snapsh
 
 ### `MMSDM` · `DISPATCH_FCAS_REQ`
 
-_4 pattern rows, 40 files (snapshot), observed 2024-09-12 → 2025-10-17 (snapshot)_
+_7 pattern rows, 382 files (snapshot), observed 2017-01-14 → 2025-10-17 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DISPATCH_FCAS_REQ#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DISPATCH_FCAS_REQ\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DISPATCH_FCAS_REQ#FILE01#202408.fmt` | 10 | 2024-09-12 | 2025-10-17 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DISPATCH_FCAS_REQ#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DISPATCH_FCAS_REQ\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DISPATCH_FCAS_REQ#FILE01#202408.ctl` | 10 | 2024-09-12 | 2025-10-17 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DISPATCH_FCAS_REQ#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DISPATCH_FCAS_REQ\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DISPATCH_FCAS_REQ#FILE01#202408010000.zip` | 10 | 2024-09-12 | 2025-10-17 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_{timestamp}.zip` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_\d{12}\.zip` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DISPATCH_FCAS_REQ#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DISPATCH_FCAS_REQ\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DISPATCH_FCAS_REQ#FILE01#202408.sql` | 10 | 2024-09-13 | 2025-10-17 |
 
 ### `MMSDM` · `DISPATCH_FCAS_REQ_CONSTRAINT`
@@ -1828,92 +2005,100 @@ _4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `DISPATCH_MNSPBIDTRK`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DISPATCH_MNSPBIDTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DISPATCH_MNSPBIDTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DISPATCH_MNSPBIDTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DISPATCH_MNSPBIDTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DISPATCH_MNSPBIDTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DISPATCH_MNSPBIDTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DISPATCH_MNSPBIDTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DISPATCH_MNSPBIDTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DISPATCH_MNSPBIDTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_{timestamp}.zip` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_\d{12}\.zip` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DISPATCH_MNSPBIDTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DISPATCH_MNSPBIDTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DISPATCH_MNSPBIDTRK#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `DISPATCH_PRICE_REVISION`
 
-_4 pattern rows, 12 files (snapshot), observed 2024-10-08 → 2026-04-08 (snapshot)_
+_7 pattern rows, 87 files (snapshot), observed 2017-01-15 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DISPATCH_PRICE_REVISION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DISPATCH_PRICE_REVISION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DISPATCH_PRICE_REVISION#FILE01#202409.fmt` | 3 | 2024-10-08 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_201502.fmt` | 25 | 2019-09-06 | 2024-03-09 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DISPATCH_PRICE_REVISION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DISPATCH_PRICE_REVISION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DISPATCH_PRICE_REVISION#FILE01#202409.ctl` | 3 | 2024-10-08 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_201502.ctl` | 25 | 2017-01-15 | 2024-03-09 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DISPATCH_PRICE_REVISION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DISPATCH_PRICE_REVISION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DISPATCH_PRICE_REVISION#FILE01#202409010000.zip` | 3 | 2024-10-08 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_{timestamp}.zip` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_\d{12}\.zip` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_201502010000.zip` | 25 | 2017-01-15 | 2024-03-09 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DISPATCH_PRICE_REVISION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DISPATCH_PRICE_REVISION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DISPATCH_PRICE_REVISION#FILE01#202409.sql` | 3 | 2024-10-08 | 2026-04-08 |
 
 ### `MMSDM` · `DISPATCH_UNIT_SCADA`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DISPATCH_UNIT_SCADA#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DISPATCH_UNIT_SCADA\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DISPATCH_UNIT_SCADA#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DISPATCH_UNIT_SCADA#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DISPATCH_UNIT_SCADA\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DISPATCH_UNIT_SCADA#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DISPATCH_UNIT_SCADA#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DISPATCH_UNIT_SCADA\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DISPATCH_UNIT_SCADA#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_{timestamp}.zip` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_\d{12}\.zip` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DISPATCH_UNIT_SCADA#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DISPATCH_UNIT_SCADA\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DISPATCH_UNIT_SCADA#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
-
-### `MMSDM` · `DOCUMENTATION_AUX`
-
-_6 pattern rows, 682 files (snapshot), observed 2009-12-30 → 2025-10-17 (snapshot)_
-
-| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
-|---|---|---|---|---|---:|---|---|
-| `DOCUMENTATION` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/` | `Participant_Monthly_DVD.doc` | `Participant_Monthly_DVD\.doc` | `Participant_Monthly_DVD.doc` | 135 | 2009-12-30 | 2025-10-17 |
-| `DOCUMENTATION` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/` | `Participant_Monthly_DVD.pdf` | `Participant_Monthly_DVD\.pdf` | `Participant_Monthly_DVD.pdf` | 135 | 2009-12-30 | 2025-10-17 |
-| `DOCUMENTATION` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/` | `README.txt` | `README\.txt` | `README.txt` | 135 | 2009-12-30 | 2025-10-17 |
-| `DOCUMENTATION` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
-| `DOCUMENTATION` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/` | `marketnoticedata_{yearmonth}.par` | `marketnoticedata_\d{6}\.par` | `marketnoticedata_201106.par` | 135 | 2011-07-08 | 2025-10-17 |
-| `DOCUMENTATION` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/` | `monthlydvd_tables.bat` | `monthlydvd_tables\.bat` | `monthlydvd_tables.bat` | 115 | 2011-07-08 | 2024-08-15 |
 
 ### `MMSDM` · `DUALLOC`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 218 files (snapshot), observed 2020-11-12 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DUALLOC#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DUALLOC\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DUALLOC#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DUALLOC_{yearmonth}.fmt` | `PUBLIC_DVD_DUALLOC_\d{6}\.fmt` | `PUBLIC_DVD_DUALLOC_202010.fmt` | 46 | 2020-11-12 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DUALLOC#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DUALLOC\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DUALLOC#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DUALLOC_{yearmonth}.ctl` | `PUBLIC_DVD_DUALLOC_\d{6}\.ctl` | `PUBLIC_DVD_DUALLOC_202010.ctl` | 46 | 2020-11-12 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DUALLOC#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DUALLOC\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DUALLOC#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DUALLOC_{timestamp}.zip` | `PUBLIC_DVD_DUALLOC_\d{12}\.zip` | `PUBLIC_DVD_DUALLOC_202010010000.zip` | 46 | 2020-11-12 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DUALLOC#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DUALLOC\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DUALLOC#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `DUDETAIL`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DUDETAIL#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DUDETAIL\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DUDETAIL#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DUDETAIL_{yearmonth}.fmt` | `PUBLIC_DVD_DUDETAIL_\d{6}\.fmt` | `PUBLIC_DVD_DUDETAIL_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DUDETAIL#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DUDETAIL\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DUDETAIL#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DUDETAIL_{yearmonth}.ctl` | `PUBLIC_DVD_DUDETAIL_\d{6}\.ctl` | `PUBLIC_DVD_DUDETAIL_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DUDETAIL#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DUDETAIL\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DUDETAIL#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DUDETAIL_{timestamp}.zip` | `PUBLIC_DVD_DUDETAIL_\d{12}\.zip` | `PUBLIC_DVD_DUDETAIL_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DUDETAIL#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DUDETAIL\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DUDETAIL#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `DUDETAILSUMMARY`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#DUDETAILSUMMARY#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#DUDETAILSUMMARY\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#DUDETAILSUMMARY#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DUDETAILSUMMARY_{yearmonth}.fmt` | `PUBLIC_DVD_DUDETAILSUMMARY_\d{6}\.fmt` | `PUBLIC_DVD_DUDETAILSUMMARY_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#DUDETAILSUMMARY#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#DUDETAILSUMMARY\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#DUDETAILSUMMARY#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DUDETAILSUMMARY_{yearmonth}.ctl` | `PUBLIC_DVD_DUDETAILSUMMARY_\d{6}\.ctl` | `PUBLIC_DVD_DUDETAILSUMMARY_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#DUDETAILSUMMARY#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#DUDETAILSUMMARY\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#DUDETAILSUMMARY#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DUDETAILSUMMARY_{timestamp}.zip` | `PUBLIC_DVD_DUDETAILSUMMARY_\d{12}\.zip` | `PUBLIC_DVD_DUDETAILSUMMARY_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#DUDETAILSUMMARY#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#DUDETAILSUMMARY\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#DUDETAILSUMMARY#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `EMSMASTER`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#EMSMASTER#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#EMSMASTER\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#EMSMASTER#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_EMSMASTER_{yearmonth}.fmt` | `PUBLIC_DVD_EMSMASTER_\d{6}\.fmt` | `PUBLIC_DVD_EMSMASTER_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#EMSMASTER#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#EMSMASTER\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#EMSMASTER#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_EMSMASTER_{yearmonth}.ctl` | `PUBLIC_DVD_EMSMASTER_\d{6}\.ctl` | `PUBLIC_DVD_EMSMASTER_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#EMSMASTER#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#EMSMASTER\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#EMSMASTER#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_EMSMASTER_{timestamp}.zip` | `PUBLIC_DVD_EMSMASTER_\d{12}\.zip` | `PUBLIC_DVD_EMSMASTER_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#EMSMASTER#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#EMSMASTER\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#EMSMASTER#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `FCAS_REGU_USAGE_FACTORS`
@@ -2149,101 +2334,128 @@ _4 pattern rows, 64 files (snapshot), observed 2025-01-10 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `GDINSTRUCT`
 
-_4 pattern rows, 44 files (snapshot), observed 2025-06-10 → 2026-04-08 (snapshot)_
+_7 pattern rows, 116 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#GDINSTRUCT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#GDINSTRUCT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#GDINSTRUCT#FILE01#202505.fmt` | 11 | 2025-06-10 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GDINSTRUCT_{yearmonth}.fmt` | `PUBLIC_DVD_GDINSTRUCT_\d{6}\.fmt` | `PUBLIC_DVD_GDINSTRUCT_201501.fmt` | 24 | 2019-09-09 | 2019-09-16 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#GDINSTRUCT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#GDINSTRUCT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#GDINSTRUCT#FILE01#202505.ctl` | 11 | 2025-06-10 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GDINSTRUCT_{yearmonth}.ctl` | `PUBLIC_DVD_GDINSTRUCT_\d{6}\.ctl` | `PUBLIC_DVD_GDINSTRUCT_201501.ctl` | 24 | 2017-01-14 | 2018-07-09 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#GDINSTRUCT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#GDINSTRUCT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#GDINSTRUCT#FILE01#202505010000.zip` | 11 | 2025-06-10 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GDINSTRUCT_{timestamp}.zip` | `PUBLIC_DVD_GDINSTRUCT_\d{12}\.zip` | `PUBLIC_DVD_GDINSTRUCT_201501010000.zip` | 24 | 2017-01-14 | 2018-07-09 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#GDINSTRUCT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#GDINSTRUCT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#GDINSTRUCT#FILE01#202505.sql` | 11 | 2025-06-10 | 2026-04-08 |
 
 ### `MMSDM` · `GENCONDATA`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#GENCONDATA#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#GENCONDATA\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#GENCONDATA#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENCONDATA_{yearmonth}.fmt` | `PUBLIC_DVD_GENCONDATA_\d{6}\.fmt` | `PUBLIC_DVD_GENCONDATA_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#GENCONDATA#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#GENCONDATA\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#GENCONDATA#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENCONDATA_{yearmonth}.ctl` | `PUBLIC_DVD_GENCONDATA_\d{6}\.ctl` | `PUBLIC_DVD_GENCONDATA_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#GENCONDATA#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#GENCONDATA\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#GENCONDATA#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENCONDATA_{timestamp}.zip` | `PUBLIC_DVD_GENCONDATA_\d{12}\.zip` | `PUBLIC_DVD_GENCONDATA_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#GENCONDATA#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#GENCONDATA\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#GENCONDATA#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `GENCONSET`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#GENCONSET#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#GENCONSET\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#GENCONSET#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENCONSET_{yearmonth}.fmt` | `PUBLIC_DVD_GENCONSET_\d{6}\.fmt` | `PUBLIC_DVD_GENCONSET_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#GENCONSET#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#GENCONSET\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#GENCONSET#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENCONSET_{yearmonth}.ctl` | `PUBLIC_DVD_GENCONSET_\d{6}\.ctl` | `PUBLIC_DVD_GENCONSET_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#GENCONSET#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#GENCONSET\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#GENCONSET#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENCONSET_{timestamp}.zip` | `PUBLIC_DVD_GENCONSET_\d{12}\.zip` | `PUBLIC_DVD_GENCONSET_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#GENCONSET#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#GENCONSET\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#GENCONSET#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `GENCONSETINVOKE`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#GENCONSETINVOKE#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#GENCONSETINVOKE\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#GENCONSETINVOKE#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENCONSETINVOKE_{yearmonth}.fmt` | `PUBLIC_DVD_GENCONSETINVOKE_\d{6}\.fmt` | `PUBLIC_DVD_GENCONSETINVOKE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#GENCONSETINVOKE#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#GENCONSETINVOKE\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#GENCONSETINVOKE#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENCONSETINVOKE_{yearmonth}.ctl` | `PUBLIC_DVD_GENCONSETINVOKE_\d{6}\.ctl` | `PUBLIC_DVD_GENCONSETINVOKE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#GENCONSETINVOKE#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#GENCONSETINVOKE\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#GENCONSETINVOKE#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENCONSETINVOKE_{timestamp}.zip` | `PUBLIC_DVD_GENCONSETINVOKE_\d{12}\.zip` | `PUBLIC_DVD_GENCONSETINVOKE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#GENCONSETINVOKE#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#GENCONSETINVOKE\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#GENCONSETINVOKE#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `GENCONSETTRK`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#GENCONSETTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#GENCONSETTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#GENCONSETTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENCONSETTRK_{yearmonth}.fmt` | `PUBLIC_DVD_GENCONSETTRK_\d{6}\.fmt` | `PUBLIC_DVD_GENCONSETTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#GENCONSETTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#GENCONSETTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#GENCONSETTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENCONSETTRK_{yearmonth}.ctl` | `PUBLIC_DVD_GENCONSETTRK_\d{6}\.ctl` | `PUBLIC_DVD_GENCONSETTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#GENCONSETTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#GENCONSETTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#GENCONSETTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENCONSETTRK_{timestamp}.zip` | `PUBLIC_DVD_GENCONSETTRK_\d{12}\.zip` | `PUBLIC_DVD_GENCONSETTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#GENCONSETTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#GENCONSETTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#GENCONSETTRK#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `GENERICCONSTRAINTRHS`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#GENERICCONSTRAINTRHS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#GENERICCONSTRAINTRHS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#GENERICCONSTRAINTRHS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_{yearmonth}.fmt` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_\d{6}\.fmt` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#GENERICCONSTRAINTRHS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#GENERICCONSTRAINTRHS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#GENERICCONSTRAINTRHS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_{yearmonth}.ctl` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_\d{6}\.ctl` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#GENERICCONSTRAINTRHS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#GENERICCONSTRAINTRHS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#GENERICCONSTRAINTRHS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_{timestamp}.zip` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_\d{12}\.zip` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#GENERICCONSTRAINTRHS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#GENERICCONSTRAINTRHS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#GENERICCONSTRAINTRHS#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `GENERICEQUATIONDESC`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 395 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#GENERICEQUATIONDESC#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#GENERICEQUATIONDESC\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#GENERICEQUATIONDESC#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENERICEQUATIONDESC_{yearmonth}.fmt` | `PUBLIC_DVD_GENERICEQUATIONDESC_\d{6}\.fmt` | `PUBLIC_DVD_GENERICEQUATIONDESC_201501.fmt` | 105 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#GENERICEQUATIONDESC#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#GENERICEQUATIONDESC\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#GENERICEQUATIONDESC#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENERICEQUATIONDESC_{yearmonth}.ctl` | `PUBLIC_DVD_GENERICEQUATIONDESC_\d{6}\.ctl` | `PUBLIC_DVD_GENERICEQUATIONDESC_201501.ctl` | 105 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#GENERICEQUATIONDESC#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#GENERICEQUATIONDESC\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#GENERICEQUATIONDESC#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENERICEQUATIONDESC_{timestamp}.zip` | `PUBLIC_DVD_GENERICEQUATIONDESC_\d{12}\.zip` | `PUBLIC_DVD_GENERICEQUATIONDESC_201501010000.zip` | 105 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#GENERICEQUATIONDESC#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#GENERICEQUATIONDESC\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#GENERICEQUATIONDESC#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `GENERICEQUATIONRHS`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 407 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#GENERICEQUATIONRHS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#GENERICEQUATIONRHS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#GENERICEQUATIONRHS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENERICEQUATIONRHS_{yearmonth}.fmt` | `PUBLIC_DVD_GENERICEQUATIONRHS_\d{6}\.fmt` | `PUBLIC_DVD_GENERICEQUATIONRHS_201501.fmt` | 109 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#GENERICEQUATIONRHS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#GENERICEQUATIONRHS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#GENERICEQUATIONRHS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENERICEQUATIONRHS_{yearmonth}.ctl` | `PUBLIC_DVD_GENERICEQUATIONRHS_\d{6}\.ctl` | `PUBLIC_DVD_GENERICEQUATIONRHS_201501.ctl` | 109 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#GENERICEQUATIONRHS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#GENERICEQUATIONRHS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#GENERICEQUATIONRHS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENERICEQUATIONRHS_{timestamp}.zip` | `PUBLIC_DVD_GENERICEQUATIONRHS_\d{12}\.zip` | `PUBLIC_DVD_GENERICEQUATIONRHS_201501010000.zip` | 109 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#GENERICEQUATIONRHS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#GENERICEQUATIONRHS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#GENERICEQUATIONRHS#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `GENUNITS`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#GENUNITS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#GENUNITS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#GENUNITS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENUNITS_{yearmonth}.fmt` | `PUBLIC_DVD_GENUNITS_\d{6}\.fmt` | `PUBLIC_DVD_GENUNITS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#GENUNITS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#GENUNITS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#GENUNITS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENUNITS_{yearmonth}.ctl` | `PUBLIC_DVD_GENUNITS_\d{6}\.ctl` | `PUBLIC_DVD_GENUNITS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#GENUNITS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#GENUNITS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#GENUNITS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENUNITS_{timestamp}.zip` | `PUBLIC_DVD_GENUNITS_\d{12}\.zip` | `PUBLIC_DVD_GENUNITS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#GENUNITS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#GENUNITS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#GENUNITS#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `GENUNITS_UNIT`
@@ -2259,91 +2471,133 @@ _4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `GST_BAS_CLASS`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#GST_BAS_CLASS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#GST_BAS_CLASS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#GST_BAS_CLASS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GST_BAS_CLASS_{yearmonth}.fmt` | `PUBLIC_DVD_GST_BAS_CLASS_\d{6}\.fmt` | `PUBLIC_DVD_GST_BAS_CLASS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#GST_BAS_CLASS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#GST_BAS_CLASS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#GST_BAS_CLASS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GST_BAS_CLASS_{yearmonth}.ctl` | `PUBLIC_DVD_GST_BAS_CLASS_\d{6}\.ctl` | `PUBLIC_DVD_GST_BAS_CLASS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#GST_BAS_CLASS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#GST_BAS_CLASS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#GST_BAS_CLASS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GST_BAS_CLASS_{timestamp}.zip` | `PUBLIC_DVD_GST_BAS_CLASS_\d{12}\.zip` | `PUBLIC_DVD_GST_BAS_CLASS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#GST_BAS_CLASS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#GST_BAS_CLASS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#GST_BAS_CLASS#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `GST_RATE`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#GST_RATE#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#GST_RATE\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#GST_RATE#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GST_RATE_{yearmonth}.fmt` | `PUBLIC_DVD_GST_RATE_\d{6}\.fmt` | `PUBLIC_DVD_GST_RATE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#GST_RATE#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#GST_RATE\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#GST_RATE#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GST_RATE_{yearmonth}.ctl` | `PUBLIC_DVD_GST_RATE_\d{6}\.ctl` | `PUBLIC_DVD_GST_RATE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#GST_RATE#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#GST_RATE\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#GST_RATE#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GST_RATE_{timestamp}.zip` | `PUBLIC_DVD_GST_RATE_\d{12}\.zip` | `PUBLIC_DVD_GST_RATE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#GST_RATE#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#GST_RATE\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#GST_RATE#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `GST_TRANSACTION_CLASS`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#GST_TRANSACTION_CLASS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#GST_TRANSACTION_CLASS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#GST_TRANSACTION_CLASS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_{yearmonth}.fmt` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_\d{6}\.fmt` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#GST_TRANSACTION_CLASS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#GST_TRANSACTION_CLASS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#GST_TRANSACTION_CLASS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_{yearmonth}.ctl` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_\d{6}\.ctl` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#GST_TRANSACTION_CLASS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#GST_TRANSACTION_CLASS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#GST_TRANSACTION_CLASS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_{timestamp}.zip` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_\d{12}\.zip` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#GST_TRANSACTION_CLASS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#GST_TRANSACTION_CLASS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#GST_TRANSACTION_CLASS#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `GST_TRANSACTION_TYPE`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#GST_TRANSACTION_TYPE#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#GST_TRANSACTION_TYPE\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#GST_TRANSACTION_TYPE#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_{yearmonth}.fmt` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_\d{6}\.fmt` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#GST_TRANSACTION_TYPE#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#GST_TRANSACTION_TYPE\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#GST_TRANSACTION_TYPE#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_{yearmonth}.ctl` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_\d{6}\.ctl` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#GST_TRANSACTION_TYPE#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#GST_TRANSACTION_TYPE\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#GST_TRANSACTION_TYPE#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_{timestamp}.zip` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_\d{12}\.zip` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#GST_TRANSACTION_TYPE#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#GST_TRANSACTION_TYPE\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#GST_TRANSACTION_TYPE#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `ICSharpCode_SharpZipLib_dll`
+
+_1 pattern row, 93 files (snapshot), observed 2019-09-17 → 2022-10-09 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `ICSharpCode.SharpZipLib.dll` | `ICSharpCode\.SharpZipLib\.dll` | `ICSharpCode.SharpZipLib.dll` | 93 | 2019-09-17 | 2022-10-09 |
 
 ### `MMSDM` · `INSTRUCTIONSUBTYPE`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#INSTRUCTIONSUBTYPE#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#INSTRUCTIONSUBTYPE\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#INSTRUCTIONSUBTYPE#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_{yearmonth}.fmt` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_\d{6}\.fmt` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#INSTRUCTIONSUBTYPE#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#INSTRUCTIONSUBTYPE\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#INSTRUCTIONSUBTYPE#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_{yearmonth}.ctl` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_\d{6}\.ctl` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#INSTRUCTIONSUBTYPE#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#INSTRUCTIONSUBTYPE\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#INSTRUCTIONSUBTYPE#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_{timestamp}.zip` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_\d{12}\.zip` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#INSTRUCTIONSUBTYPE#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#INSTRUCTIONSUBTYPE\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#INSTRUCTIONSUBTYPE#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `INSTRUCTIONTYPE`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#INSTRUCTIONTYPE#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#INSTRUCTIONTYPE\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#INSTRUCTIONTYPE#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_INSTRUCTIONTYPE_{yearmonth}.fmt` | `PUBLIC_DVD_INSTRUCTIONTYPE_\d{6}\.fmt` | `PUBLIC_DVD_INSTRUCTIONTYPE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#INSTRUCTIONTYPE#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#INSTRUCTIONTYPE\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#INSTRUCTIONTYPE#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_INSTRUCTIONTYPE_{yearmonth}.ctl` | `PUBLIC_DVD_INSTRUCTIONTYPE_\d{6}\.ctl` | `PUBLIC_DVD_INSTRUCTIONTYPE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#INSTRUCTIONTYPE#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#INSTRUCTIONTYPE\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#INSTRUCTIONTYPE#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_INSTRUCTIONTYPE_{timestamp}.zip` | `PUBLIC_DVD_INSTRUCTIONTYPE_\d{12}\.zip` | `PUBLIC_DVD_INSTRUCTIONTYPE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#INSTRUCTIONTYPE#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#INSTRUCTIONTYPE\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#INSTRUCTIONTYPE#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `INTERCONNECTOR`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#INTERCONNECTOR#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#INTERCONNECTOR\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#INTERCONNECTOR#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_INTERCONNECTOR_{yearmonth}.fmt` | `PUBLIC_DVD_INTERCONNECTOR_\d{6}\.fmt` | `PUBLIC_DVD_INTERCONNECTOR_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#INTERCONNECTOR#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#INTERCONNECTOR\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#INTERCONNECTOR#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_INTERCONNECTOR_{yearmonth}.ctl` | `PUBLIC_DVD_INTERCONNECTOR_\d{6}\.ctl` | `PUBLIC_DVD_INTERCONNECTOR_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#INTERCONNECTOR#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#INTERCONNECTOR\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#INTERCONNECTOR#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_INTERCONNECTOR_{timestamp}.zip` | `PUBLIC_DVD_INTERCONNECTOR_\d{12}\.zip` | `PUBLIC_DVD_INTERCONNECTOR_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#INTERCONNECTOR#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#INTERCONNECTOR\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#INTERCONNECTOR#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `INTERCONNECTORCONSTRAINT`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#INTERCONNECTORCONSTRAINT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#INTERCONNECTORCONSTRAINT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#INTERCONNECTORCONSTRAINT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_{yearmonth}.fmt` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_\d{6}\.fmt` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#INTERCONNECTORCONSTRAINT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#INTERCONNECTORCONSTRAINT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#INTERCONNECTORCONSTRAINT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_{yearmonth}.ctl` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_\d{6}\.ctl` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#INTERCONNECTORCONSTRAINT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#INTERCONNECTORCONSTRAINT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#INTERCONNECTORCONSTRAINT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_{timestamp}.zip` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_\d{12}\.zip` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#INTERCONNECTORCONSTRAINT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#INTERCONNECTORCONSTRAINT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#INTERCONNECTORCONSTRAINT#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `INTERCONNMWFLOW`
+
+_3 pattern rows, 231 files (snapshot), observed 2017-01-14 → 2021-07-03 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_INTERCONNMWFLOW_{yearmonth}.fmt` | `PUBLIC_DVD_INTERCONNMWFLOW_\d{6}\.fmt` | `PUBLIC_DVD_INTERCONNMWFLOW_201501.fmt` | 77 | 2019-09-05 | 2021-07-03 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_INTERCONNMWFLOW_{yearmonth}.ctl` | `PUBLIC_DVD_INTERCONNMWFLOW_\d{6}\.ctl` | `PUBLIC_DVD_INTERCONNMWFLOW_201501.ctl` | 77 | 2017-01-14 | 2021-07-03 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_INTERCONNMWFLOW_{timestamp}.zip` | `PUBLIC_DVD_INTERCONNMWFLOW_\d{12}\.zip` | `PUBLIC_DVD_INTERCONNMWFLOW_201501010000.zip` | 77 | 2017-01-14 | 2021-07-03 |
 
 ### `MMSDM` · `INTERMITTENT_CLUSTER_AVAIL`
 
@@ -2435,123 +2689,169 @@ _4 pattern rows, 68 files (snapshot), observed 2025-01-10 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `IRFMAMOUNT`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#IRFMAMOUNT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#IRFMAMOUNT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#IRFMAMOUNT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_IRFMAMOUNT_{yearmonth}.fmt` | `PUBLIC_DVD_IRFMAMOUNT_\d{6}\.fmt` | `PUBLIC_DVD_IRFMAMOUNT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#IRFMAMOUNT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#IRFMAMOUNT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#IRFMAMOUNT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_IRFMAMOUNT_{yearmonth}.ctl` | `PUBLIC_DVD_IRFMAMOUNT_\d{6}\.ctl` | `PUBLIC_DVD_IRFMAMOUNT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#IRFMAMOUNT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#IRFMAMOUNT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#IRFMAMOUNT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_IRFMAMOUNT_{timestamp}.zip` | `PUBLIC_DVD_IRFMAMOUNT_\d{12}\.zip` | `PUBLIC_DVD_IRFMAMOUNT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#IRFMAMOUNT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#IRFMAMOUNT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#IRFMAMOUNT#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `IRFMEVENTS`
 
-_4 pattern rows, 80 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 425 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#IRFMEVENTS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#IRFMEVENTS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#IRFMEVENTS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_IRFMEVENTS_{yearmonth}.fmt` | `PUBLIC_DVD_IRFMEVENTS_\d{6}\.fmt` | `PUBLIC_DVD_IRFMEVENTS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#IRFMEVENTS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#IRFMEVENTS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#IRFMEVENTS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_IRFMEVENTS_{yearmonth}.ctl` | `PUBLIC_DVD_IRFMEVENTS_\d{6}\.ctl` | `PUBLIC_DVD_IRFMEVENTS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#IRFMEVENTS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#IRFMEVENTS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#IRFMEVENTS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_IRFMEVENTS_{timestamp}.zip` | `PUBLIC_DVD_IRFMEVENTS_\d{12}\.zip` | `PUBLIC_DVD_IRFMEVENTS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#IRFMEVENTS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#IRFMEVENTS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#IRFMEVENTS#FILE01#202408.sql` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `LOSSFACTORMODEL`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#LOSSFACTORMODEL#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#LOSSFACTORMODEL\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#LOSSFACTORMODEL#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_LOSSFACTORMODEL_{yearmonth}.fmt` | `PUBLIC_DVD_LOSSFACTORMODEL_\d{6}\.fmt` | `PUBLIC_DVD_LOSSFACTORMODEL_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#LOSSFACTORMODEL#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#LOSSFACTORMODEL\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#LOSSFACTORMODEL#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_LOSSFACTORMODEL_{yearmonth}.ctl` | `PUBLIC_DVD_LOSSFACTORMODEL_\d{6}\.ctl` | `PUBLIC_DVD_LOSSFACTORMODEL_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#LOSSFACTORMODEL#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#LOSSFACTORMODEL\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#LOSSFACTORMODEL#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_LOSSFACTORMODEL_{timestamp}.zip` | `PUBLIC_DVD_LOSSFACTORMODEL_\d{12}\.zip` | `PUBLIC_DVD_LOSSFACTORMODEL_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#LOSSFACTORMODEL#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#LOSSFACTORMODEL\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#LOSSFACTORMODEL#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `LOSSMODEL`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#LOSSMODEL#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#LOSSMODEL\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#LOSSMODEL#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_LOSSMODEL_{yearmonth}.fmt` | `PUBLIC_DVD_LOSSMODEL_\d{6}\.fmt` | `PUBLIC_DVD_LOSSMODEL_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#LOSSMODEL#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#LOSSMODEL\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#LOSSMODEL#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_LOSSMODEL_{yearmonth}.ctl` | `PUBLIC_DVD_LOSSMODEL_\d{6}\.ctl` | `PUBLIC_DVD_LOSSMODEL_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#LOSSMODEL#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#LOSSMODEL\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#LOSSMODEL#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_LOSSMODEL_{timestamp}.zip` | `PUBLIC_DVD_LOSSMODEL_\d{12}\.zip` | `PUBLIC_DVD_LOSSMODEL_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#LOSSMODEL#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#LOSSMODEL\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#LOSSMODEL#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MARKETFEE`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MARKETFEE#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MARKETFEE\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MARKETFEE#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETFEE_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETFEE_\d{6}\.fmt` | `PUBLIC_DVD_MARKETFEE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MARKETFEE#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MARKETFEE\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MARKETFEE#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETFEE_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETFEE_\d{6}\.ctl` | `PUBLIC_DVD_MARKETFEE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MARKETFEE#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MARKETFEE\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MARKETFEE#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETFEE_{timestamp}.zip` | `PUBLIC_DVD_MARKETFEE_\d{12}\.zip` | `PUBLIC_DVD_MARKETFEE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MARKETFEE#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MARKETFEE\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MARKETFEE#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MARKETFEEDATA`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 423 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MARKETFEEDATA#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MARKETFEEDATA\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MARKETFEEDATA#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETFEEDATA_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETFEEDATA_\d{6}\.fmt` | `PUBLIC_DVD_MARKETFEEDATA_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MARKETFEEDATA#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MARKETFEEDATA\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MARKETFEEDATA#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETFEEDATA_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETFEEDATA_\d{6}\.ctl` | `PUBLIC_DVD_MARKETFEEDATA_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MARKETFEEDATA#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MARKETFEEDATA\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MARKETFEEDATA#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETFEEDATA_{timestamp}.zip` | `PUBLIC_DVD_MARKETFEEDATA_\d{12}\.zip` | `PUBLIC_DVD_MARKETFEEDATA_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MARKETFEEDATA#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MARKETFEEDATA\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MARKETFEEDATA#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MARKETFEETRK`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MARKETFEETRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MARKETFEETRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MARKETFEETRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETFEETRK_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETFEETRK_\d{6}\.fmt` | `PUBLIC_DVD_MARKETFEETRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MARKETFEETRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MARKETFEETRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MARKETFEETRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETFEETRK_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETFEETRK_\d{6}\.ctl` | `PUBLIC_DVD_MARKETFEETRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MARKETFEETRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MARKETFEETRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MARKETFEETRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETFEETRK_{timestamp}.zip` | `PUBLIC_DVD_MARKETFEETRK_\d{12}\.zip` | `PUBLIC_DVD_MARKETFEETRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MARKETFEETRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MARKETFEETRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MARKETFEETRK#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `MARKETNOTICEDATA`
+
+_6 pattern rows, 404 files (snapshot), observed 2011-07-08 → 2025-10-17 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETNOTICEDATA_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETNOTICEDATA_\d{6}\.fmt` | `PUBLIC_DVD_MARKETNOTICEDATA_201501.fmt` | 101 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETNOTICEDATA_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETNOTICEDATA_\d{6}\.ctl` | `PUBLIC_DVD_MARKETNOTICEDATA_201506.ctl` | 38 | 2017-01-15 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETNOTICEDATA_{yearmonth}.ctlBak` | `PUBLIC_DVD_MARKETNOTICEDATA_\d{6}\.ctlBak` | `PUBLIC_DVD_MARKETNOTICEDATA_201511.ctlBak` | 1 | 2017-01-15 | 2017-01-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETNOTICEDATA_{yearmonth}.ctlbak` | `PUBLIC_DVD_MARKETNOTICEDATA_\d{6}\.ctlbak` | `PUBLIC_DVD_MARKETNOTICEDATA_201501.ctlbak` | 14 | 2017-01-14 | 2017-01-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETNOTICEDATA_{timestamp}.zip` | `PUBLIC_DVD_MARKETNOTICEDATA_\d{12}\.zip` | `PUBLIC_DVD_MARKETNOTICEDATA_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
+| `DOCUMENTATION` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/` | `marketnoticedata_{yearmonth}.par` | `marketnoticedata_\d{6}\.par` | `marketnoticedata_201106.par` | 135 | 2011-07-08 | 2025-10-17 |
 
 ### `MMSDM` · `MARKETNOTICETYPE`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MARKETNOTICETYPE#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MARKETNOTICETYPE\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MARKETNOTICETYPE#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETNOTICETYPE_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETNOTICETYPE_\d{6}\.fmt` | `PUBLIC_DVD_MARKETNOTICETYPE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MARKETNOTICETYPE#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MARKETNOTICETYPE\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MARKETNOTICETYPE#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETNOTICETYPE_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETNOTICETYPE_\d{6}\.ctl` | `PUBLIC_DVD_MARKETNOTICETYPE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MARKETNOTICETYPE#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MARKETNOTICETYPE\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MARKETNOTICETYPE#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETNOTICETYPE_{timestamp}.zip` | `PUBLIC_DVD_MARKETNOTICETYPE_\d{12}\.zip` | `PUBLIC_DVD_MARKETNOTICETYPE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MARKETNOTICETYPE#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MARKETNOTICETYPE\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MARKETNOTICETYPE#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MARKETSUSPENSION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MARKETSUSPENSION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MARKETSUSPENSION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MARKETSUSPENSION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETSUSPENSION_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETSUSPENSION_\d{6}\.fmt` | `PUBLIC_DVD_MARKETSUSPENSION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MARKETSUSPENSION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MARKETSUSPENSION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MARKETSUSPENSION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETSUSPENSION_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETSUSPENSION_\d{6}\.ctl` | `PUBLIC_DVD_MARKETSUSPENSION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MARKETSUSPENSION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MARKETSUSPENSION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MARKETSUSPENSION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETSUSPENSION_{timestamp}.zip` | `PUBLIC_DVD_MARKETSUSPENSION_\d{12}\.zip` | `PUBLIC_DVD_MARKETSUSPENSION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MARKETSUSPENSION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MARKETSUSPENSION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MARKETSUSPENSION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MARKETSUSREGION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MARKETSUSREGION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MARKETSUSREGION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MARKETSUSREGION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETSUSREGION_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETSUSREGION_\d{6}\.fmt` | `PUBLIC_DVD_MARKETSUSREGION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MARKETSUSREGION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MARKETSUSREGION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MARKETSUSREGION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETSUSREGION_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETSUSREGION_\d{6}\.ctl` | `PUBLIC_DVD_MARKETSUSREGION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MARKETSUSREGION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MARKETSUSREGION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MARKETSUSREGION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETSUSREGION_{timestamp}.zip` | `PUBLIC_DVD_MARKETSUSREGION_\d{12}\.zip` | `PUBLIC_DVD_MARKETSUSREGION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MARKETSUSREGION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MARKETSUSREGION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MARKETSUSREGION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MARKET_PRICE_THRESHOLDS`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MARKET_PRICE_THRESHOLDS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MARKET_PRICE_THRESHOLDS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MARKET_PRICE_THRESHOLDS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_{yearmonth}.fmt` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_\d{6}\.fmt` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MARKET_PRICE_THRESHOLDS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MARKET_PRICE_THRESHOLDS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MARKET_PRICE_THRESHOLDS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_{yearmonth}.ctl` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_\d{6}\.ctl` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MARKET_PRICE_THRESHOLDS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MARKET_PRICE_THRESHOLDS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MARKET_PRICE_THRESHOLDS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_{timestamp}.zip` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_\d{12}\.zip` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MARKET_PRICE_THRESHOLDS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MARKET_PRICE_THRESHOLDS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MARKET_PRICE_THRESHOLDS#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MARKET_SUSPEND_REGIME_SUM`
@@ -2600,24 +2900,30 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `MCC_CASESOLUTION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MCC_CASESOLUTION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MCC_CASESOLUTION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MCC_CASESOLUTION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MCC_CASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MCC_CASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MCC_CASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MCC_CASESOLUTION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MCC_CASESOLUTION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MCC_CASESOLUTION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MCC_CASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MCC_CASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MCC_CASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MCC_CASESOLUTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MCC_CASESOLUTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MCC_CASESOLUTION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MCC_CASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MCC_CASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MCC_CASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MCC_CASESOLUTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MCC_CASESOLUTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MCC_CASESOLUTION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MCC_CONSTRAINTSOLUTION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MCC_CONSTRAINTSOLUTION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MCC_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MCC_CONSTRAINTSOLUTION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MCC_CONSTRAINTSOLUTION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MCC_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MCC_CONSTRAINTSOLUTION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MCC_CONSTRAINTSOLUTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MCC_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MCC_CONSTRAINTSOLUTION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MCC_CONSTRAINTSOLUTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MCC_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MCC_CONSTRAINTSOLUTION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `METERDATA_INTERCONNECTOR`
@@ -2630,6 +2936,14 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#METERDATA_INTERCONNECTOR#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#METERDATA_INTERCONNECTOR\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#METERDATA_INTERCONNECTOR#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#METERDATA_INTERCONNECTOR#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#METERDATA_INTERCONNECTOR\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#METERDATA_INTERCONNECTOR#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#METERDATA_INTERCONNECTOR#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#METERDATA_INTERCONNECTOR\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#METERDATA_INTERCONNECTOR#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `MMSDM_MONTHLY_BULK`
+
+_1 pattern row, 201 files (snapshot), observed 2017-02-06 → 2026-04-13 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MONTHLY_BULK` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/` | `MMSDM_{year}_{d2}.zip` | `MMSDM_\d{4}_\d{2}\.zip` | `MMSDM_2009_07.zip` | 201 | 2017-02-06 | 2026-04-13 |
 
 ### `MMSDM` · `MMS_DATA_MODEL_v4.26`
 
@@ -2889,78 +3203,127 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `MNSP_DAYOFFER`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 421 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MNSP_DAYOFFER#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MNSP_DAYOFFER\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MNSP_DAYOFFER#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MNSP_DAYOFFER_{yearmonth}.fmt` | `PUBLIC_DVD_MNSP_DAYOFFER_\d{6}\.fmt` | `PUBLIC_DVD_MNSP_DAYOFFER_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MNSP_DAYOFFER#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MNSP_DAYOFFER\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MNSP_DAYOFFER#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MNSP_DAYOFFER_{yearmonth}.ctl` | `PUBLIC_DVD_MNSP_DAYOFFER_\d{6}\.ctl` | `PUBLIC_DVD_MNSP_DAYOFFER_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MNSP_DAYOFFER#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MNSP_DAYOFFER\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MNSP_DAYOFFER#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MNSP_DAYOFFER_{timestamp}.zip` | `PUBLIC_DVD_MNSP_DAYOFFER_\d{12}\.zip` | `PUBLIC_DVD_MNSP_DAYOFFER_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MNSP_DAYOFFER#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MNSP_DAYOFFER\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MNSP_DAYOFFER#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MNSP_INTERCONNECTOR`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MNSP_INTERCONNECTOR#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MNSP_INTERCONNECTOR\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MNSP_INTERCONNECTOR#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_{yearmonth}.fmt` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_\d{6}\.fmt` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MNSP_INTERCONNECTOR#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MNSP_INTERCONNECTOR\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MNSP_INTERCONNECTOR#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_{yearmonth}.ctl` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_\d{6}\.ctl` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MNSP_INTERCONNECTOR#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MNSP_INTERCONNECTOR\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MNSP_INTERCONNECTOR#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_{timestamp}.zip` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_\d{12}\.zip` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MNSP_INTERCONNECTOR#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MNSP_INTERCONNECTOR\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MNSP_INTERCONNECTOR#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `MNSP_OFFERTRK`
+
+_3 pattern rows, 219 files (snapshot), observed 2017-01-14 → 2021-03-22 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MNSP_OFFERTRK_{yearmonth}.fmt` | `PUBLIC_DVD_MNSP_OFFERTRK_\d{6}\.fmt` | `PUBLIC_DVD_MNSP_OFFERTRK_201501.fmt` | 73 | 2019-09-05 | 2021-03-22 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MNSP_OFFERTRK_{yearmonth}.ctl` | `PUBLIC_DVD_MNSP_OFFERTRK_\d{6}\.ctl` | `PUBLIC_DVD_MNSP_OFFERTRK_201501.ctl` | 73 | 2017-01-14 | 2021-03-22 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MNSP_OFFERTRK_{timestamp}.zip` | `PUBLIC_DVD_MNSP_OFFERTRK_\d{12}\.zip` | `PUBLIC_DVD_MNSP_OFFERTRK_201501010000.zip` | 73 | 2017-01-14 | 2021-03-22 |
 
 ### `MMSDM` · `MNSP_PARTICIPANT`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MNSP_PARTICIPANT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MNSP_PARTICIPANT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MNSP_PARTICIPANT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MNSP_PARTICIPANT_{yearmonth}.fmt` | `PUBLIC_DVD_MNSP_PARTICIPANT_\d{6}\.fmt` | `PUBLIC_DVD_MNSP_PARTICIPANT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MNSP_PARTICIPANT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MNSP_PARTICIPANT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MNSP_PARTICIPANT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MNSP_PARTICIPANT_{yearmonth}.ctl` | `PUBLIC_DVD_MNSP_PARTICIPANT_\d{6}\.ctl` | `PUBLIC_DVD_MNSP_PARTICIPANT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MNSP_PARTICIPANT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MNSP_PARTICIPANT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MNSP_PARTICIPANT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MNSP_PARTICIPANT_{timestamp}.zip` | `PUBLIC_DVD_MNSP_PARTICIPANT_\d{12}\.zip` | `PUBLIC_DVD_MNSP_PARTICIPANT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MNSP_PARTICIPANT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MNSP_PARTICIPANT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MNSP_PARTICIPANT#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `MNSP_PEROFFER`
+
+_3 pattern rows, 342 files (snapshot), observed 2017-01-14 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MNSP_PEROFFER_{yearmonth}.fmt` | `PUBLIC_DVD_MNSP_PEROFFER_\d{6}\.fmt` | `PUBLIC_DVD_MNSP_PEROFFER_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MNSP_PEROFFER_{yearmonth}.ctl` | `PUBLIC_DVD_MNSP_PEROFFER_\d{6}\.ctl` | `PUBLIC_DVD_MNSP_PEROFFER_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MNSP_PEROFFER_{timestamp}.zip` | `PUBLIC_DVD_MNSP_PEROFFER_\d{12}\.zip` | `PUBLIC_DVD_MNSP_PEROFFER_201501010000.zip` | 114 | 2017-01-14 | 2024-08-16 |
 
 ### `MMSDM` · `MTPASA_CASERESULT`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 270 files (snapshot), observed 2019-10-18 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MTPASA_CASERESULT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MTPASA_CASERESULT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MTPASA_CASERESULT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_CASERESULT_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_CASERESULT_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_CASERESULT_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MTPASA_CASERESULT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MTPASA_CASERESULT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MTPASA_CASERESULT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_CASERESULT_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_CASERESULT_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_CASERESULT_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MTPASA_CASERESULT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MTPASA_CASERESULT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MTPASA_CASERESULT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_CASERESULT_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_CASERESULT_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_CASERESULT_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MTPASA_CASERESULT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MTPASA_CASERESULT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MTPASA_CASERESULT#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `MTPASA_CASESOLUTION`
+
+_3 pattern rows, 345 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_CASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_CASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_CASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_CASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_CASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_CASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_CASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_CASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_CASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 
 ### `MMSDM` · `MTPASA_CONSTRAINTRESULT`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 270 files (snapshot), observed 2019-10-18 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTRESULT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MTPASA_CONSTRAINTRESULT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTRESULT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTRESULT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MTPASA_CONSTRAINTRESULT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTRESULT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTRESULT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MTPASA_CONSTRAINTRESULT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTRESULT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTRESULT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MTPASA_CONSTRAINTRESULT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTRESULT#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `MTPASA_CONSTRAINTSOLUTION`
+
+_3 pattern rows, 123 files (snapshot), observed 2017-01-14 → 2019-09-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_201501.fmt` | 41 | 2019-09-09 | 2019-09-16 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_201501.ctl` | 41 | 2017-01-14 | 2018-06-13 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_201501010000.zip` | 41 | 2017-01-14 | 2018-06-13 |
 
 ### `MMSDM` · `MTPASA_CONSTRAINTSUMMARY`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 270 files (snapshot), observed 2019-10-18 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTSUMMARY#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MTPASA_CONSTRAINTSUMMARY\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTSUMMARY#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTSUMMARY#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MTPASA_CONSTRAINTSUMMARY\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTSUMMARY#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTSUMMARY#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MTPASA_CONSTRAINTSUMMARY\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTSUMMARY#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTSUMMARY#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MTPASA_CONSTRAINTSUMMARY\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MTPASA_CONSTRAINTSUMMARY#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
-
-### `MMSDM` · `MTPASA_DATA_EXPORT`
-
-_2 pattern rows, 7 files (snapshot), observed 2019-10-23 → 2019-10-24 (snapshot)_
-
-| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
-|---|---|---|---|---|---:|---|---|
-| `MTPASA_DATA_EXPORT` | `/Data_Archive/Wholesale_Electricity/MMSDM/MTPASA_DATA_EXPORT/` | `PUBLIC_MTPASA_REGIONAVAIL_TRK_{datetime}_NEM{d2}.zip` | `PUBLIC_MTPASA_REGIONAVAIL_TRK_\d{14}_NEM\d{2}\.zip` | `PUBLIC_MTPASA_REGIONAVAIL_TRK_20191024093822_NEM02.zip` | 1 | 2019-10-24 | 2019-10-24 |
-| `MTPASA_DATA_EXPORT` | `/Data_Archive/Wholesale_Electricity/MMSDM/MTPASA_DATA_EXPORT/` | `{year}_DATA_EXPORT_MTPASA_REGIONAVAILABILITY.zip` | `\d{4}_DATA_EXPORT_MTPASA_REGIONAVAILABILITY\.zip` | `2014_DATA_EXPORT_MTPASA_REGIONAVAILABILITY.zip` | 6 | 2019-10-23 | 2019-10-23 |
 
 ### `MMSDM` · `MTPASA_DUIDAVAILABILITY`
 
@@ -2975,112 +3338,168 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `MTPASA_INTERCONNECTORRESULT`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 270 files (snapshot), observed 2019-10-18 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MTPASA_INTERCONNECTORRESULT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MTPASA_INTERCONNECTORRESULT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MTPASA_INTERCONNECTORRESULT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MTPASA_INTERCONNECTORRESULT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MTPASA_INTERCONNECTORRESULT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MTPASA_INTERCONNECTORRESULT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MTPASA_INTERCONNECTORRESULT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MTPASA_INTERCONNECTORRESULT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MTPASA_INTERCONNECTORRESULT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MTPASA_INTERCONNECTORRESULT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MTPASA_INTERCONNECTORRESULT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MTPASA_INTERCONNECTORRESULT#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `MTPASA_INTERCONNECTORSOLUTION`
+
+_3 pattern rows, 123 files (snapshot), observed 2017-01-14 → 2019-09-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_201501.fmt` | 41 | 2019-09-09 | 2019-09-16 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_201501.ctl` | 41 | 2017-01-14 | 2018-06-13 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_201501010000.zip` | 41 | 2017-01-14 | 2018-06-13 |
 
 ### `MMSDM` · `MTPASA_LOLPRESULT`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 270 files (snapshot), observed 2019-10-18 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MTPASA_LOLPRESULT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MTPASA_LOLPRESULT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MTPASA_LOLPRESULT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_LOLPRESULT_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_LOLPRESULT_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_LOLPRESULT_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MTPASA_LOLPRESULT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MTPASA_LOLPRESULT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MTPASA_LOLPRESULT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_LOLPRESULT_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_LOLPRESULT_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_LOLPRESULT_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MTPASA_LOLPRESULT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MTPASA_LOLPRESULT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MTPASA_LOLPRESULT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_LOLPRESULT_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_LOLPRESULT_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_LOLPRESULT_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MTPASA_LOLPRESULT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MTPASA_LOLPRESULT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MTPASA_LOLPRESULT#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MTPASA_REGIONAVAILABILITY`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_5 pattern rows, 85 files (snapshot), observed 2019-10-23 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAILABILITY#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MTPASA_REGIONAVAILABILITY\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAILABILITY#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAILABILITY#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MTPASA_REGIONAVAILABILITY\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAILABILITY#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAILABILITY#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MTPASA_REGIONAVAILABILITY\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAILABILITY#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `MTPASA_DATA_EXPORT` | `/Data_Archive/Wholesale_Electricity/MMSDM/MTPASA_DATA_EXPORT/` | `{year}_DATA_EXPORT_MTPASA_REGIONAVAILABILITY.zip` | `\d{4}_DATA_EXPORT_MTPASA_REGIONAVAILABILITY\.zip` | `2014_DATA_EXPORT_MTPASA_REGIONAVAILABILITY.zip` | 6 | 2019-10-23 | 2019-10-23 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAILABILITY#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MTPASA_REGIONAVAILABILITY\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAILABILITY#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MTPASA_REGIONAVAIL_TRK`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_5 pattern rows, 80 files (snapshot), observed 2019-10-24 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAIL_TRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MTPASA_REGIONAVAIL_TRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAIL_TRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAIL_TRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MTPASA_REGIONAVAIL_TRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAIL_TRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAIL_TRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MTPASA_REGIONAVAIL_TRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAIL_TRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `MTPASA_DATA_EXPORT` | `/Data_Archive/Wholesale_Electricity/MMSDM/MTPASA_DATA_EXPORT/` | `PUBLIC_MTPASA_REGIONAVAIL_TRK_{datetime}_NEM{d2}.zip` | `PUBLIC_MTPASA_REGIONAVAIL_TRK_\d{14}_NEM\d{2}\.zip` | `PUBLIC_MTPASA_REGIONAVAIL_TRK_20191024093822_NEM02.zip` | 1 | 2019-10-24 | 2019-10-24 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAIL_TRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MTPASA_REGIONAVAIL_TRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MTPASA_REGIONAVAIL_TRK#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MTPASA_REGIONITERATION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 270 files (snapshot), observed 2019-10-18 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MTPASA_REGIONITERATION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MTPASA_REGIONITERATION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MTPASA_REGIONITERATION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_REGIONITERATION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_REGIONITERATION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_REGIONITERATION_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MTPASA_REGIONITERATION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MTPASA_REGIONITERATION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MTPASA_REGIONITERATION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_REGIONITERATION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_REGIONITERATION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_REGIONITERATION_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MTPASA_REGIONITERATION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MTPASA_REGIONITERATION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MTPASA_REGIONITERATION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_REGIONITERATION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_REGIONITERATION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_REGIONITERATION_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MTPASA_REGIONITERATION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MTPASA_REGIONITERATION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MTPASA_REGIONITERATION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MTPASA_REGIONRESULT`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 270 files (snapshot), observed 2019-10-18 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MTPASA_REGIONRESULT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MTPASA_REGIONRESULT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MTPASA_REGIONRESULT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_REGIONRESULT_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_REGIONRESULT_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_REGIONRESULT_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MTPASA_REGIONRESULT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MTPASA_REGIONRESULT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MTPASA_REGIONRESULT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_REGIONRESULT_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_REGIONRESULT_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_REGIONRESULT_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MTPASA_REGIONRESULT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MTPASA_REGIONRESULT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MTPASA_REGIONRESULT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_REGIONRESULT_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_REGIONRESULT_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_REGIONRESULT_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MTPASA_REGIONRESULT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MTPASA_REGIONRESULT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MTPASA_REGIONRESULT#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `MTPASA_REGIONSOLUTION`
+
+_3 pattern rows, 123 files (snapshot), observed 2017-01-14 → 2019-09-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_201501.fmt` | 41 | 2019-09-09 | 2019-09-16 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_201501.ctl` | 41 | 2017-01-14 | 2018-06-13 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_201501010000.zip` | 41 | 2017-01-14 | 2018-06-13 |
 
 ### `MMSDM` · `MTPASA_REGIONSUMMARY`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 270 files (snapshot), observed 2019-10-18 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MTPASA_REGIONSUMMARY#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MTPASA_REGIONSUMMARY\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MTPASA_REGIONSUMMARY#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MTPASA_REGIONSUMMARY#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MTPASA_REGIONSUMMARY\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MTPASA_REGIONSUMMARY#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MTPASA_REGIONSUMMARY#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MTPASA_REGIONSUMMARY\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MTPASA_REGIONSUMMARY#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MTPASA_REGIONSUMMARY#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MTPASA_REGIONSUMMARY\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MTPASA_REGIONSUMMARY#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MTPASA_RESERVELIMIT`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MTPASA_RESERVELIMIT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MTPASA_RESERVELIMIT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MTPASA_RESERVELIMIT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MTPASA_RESERVELIMIT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `MTPASA_RESERVELIMITSOLUTION`
+
+_3 pattern rows, 123 files (snapshot), observed 2017-01-14 → 2019-09-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_201501.fmt` | 41 | 2019-09-09 | 2019-09-16 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_201501.ctl` | 41 | 2017-01-14 | 2018-06-13 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_201501010000.zip` | 41 | 2017-01-14 | 2018-06-13 |
 
 ### `MMSDM` · `MTPASA_RESERVELIMIT_REGION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_REGION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MTPASA_RESERVELIMIT_REGION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_REGION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_REGION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MTPASA_RESERVELIMIT_REGION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_REGION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_REGION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MTPASA_RESERVELIMIT_REGION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_REGION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_REGION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MTPASA_RESERVELIMIT_REGION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_REGION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `MTPASA_RESERVELIMIT_SET`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_SET#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#MTPASA_RESERVELIMIT_SET\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_SET#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_SET#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#MTPASA_RESERVELIMIT_SET\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_SET#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_SET#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#MTPASA_RESERVELIMIT_SET\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_SET#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_SET#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#MTPASA_RESERVELIMIT_SET\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#MTPASA_RESERVELIMIT_SET#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `NEGATIVE_RESIDUE`
@@ -3173,14 +3592,37 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `OVERRIDERRP`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#OVERRIDERRP#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#OVERRIDERRP\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#OVERRIDERRP#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_OVERRIDERRP_{yearmonth}.fmt` | `PUBLIC_DVD_OVERRIDERRP_\d{6}\.fmt` | `PUBLIC_DVD_OVERRIDERRP_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#OVERRIDERRP#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#OVERRIDERRP\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#OVERRIDERRP#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_OVERRIDERRP_{yearmonth}.ctl` | `PUBLIC_DVD_OVERRIDERRP_\d{6}\.ctl` | `PUBLIC_DVD_OVERRIDERRP_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#OVERRIDERRP#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#OVERRIDERRP\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#OVERRIDERRP#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_OVERRIDERRP_{timestamp}.zip` | `PUBLIC_DVD_OVERRIDERRP_\d{12}\.zip` | `PUBLIC_DVD_OVERRIDERRP_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#OVERRIDERRP#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#OVERRIDERRP\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#OVERRIDERRP#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `P5MINSCENARIODEMAND`
+
+_3 pattern rows, 114 files (snapshot), observed 2021-07-13 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d1}MINSCENARIODEMAND_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MINSCENARIODEMAND_\d{6}\.fmt` | `PUBLIC_DVD_P5MINSCENARIODEMAND_202106.fmt` | 38 | 2021-07-13 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d1}MINSCENARIODEMAND_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MINSCENARIODEMAND_\d{6}\.ctl` | `PUBLIC_DVD_P5MINSCENARIODEMAND_202106.ctl` | 38 | 2021-07-13 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d1}MINSCENARIODEMAND_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MINSCENARIODEMAND_\d{12}\.zip` | `PUBLIC_DVD_P5MINSCENARIODEMAND_202106010000.zip` | 38 | 2021-07-13 | 2024-08-15 |
+
+### `MMSDM` · `P5MINSCENARIODEMANDTRK`
+
+_3 pattern rows, 114 files (snapshot), observed 2021-07-13 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d1}MINSCENARIODEMANDTRK_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MINSCENARIODEMANDTRK_\d{6}\.fmt` | `PUBLIC_DVD_P5MINSCENARIODEMANDTRK_202106.fmt` | 38 | 2021-07-13 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d1}MINSCENARIODEMANDTRK_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MINSCENARIODEMANDTRK_\d{6}\.ctl` | `PUBLIC_DVD_P5MINSCENARIODEMANDTRK_202106.ctl` | 38 | 2021-07-13 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d1}MINSCENARIODEMANDTRK_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MINSCENARIODEMANDTRK_\d{12}\.zip` | `PUBLIC_DVD_P5MINSCENARIODEMANDTRK_202106010000.zip` | 38 | 2021-07-13 | 2024-08-15 |
 
 ### `MMSDM` · `P5MIN_BLOCKEDCONSTRAINT`
 
@@ -3195,13 +3637,16 @@ _4 pattern rows, 43 files (snapshot), observed 2024-10-08 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `P5MIN_CASESOLUTION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#P{d1}MIN_CASESOLUTION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#P\d{1}MIN_CASESOLUTION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#P5MIN_CASESOLUTION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d1}MIN_CASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MIN_CASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_P5MIN_CASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#P{d1}MIN_CASESOLUTION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#P\d{1}MIN_CASESOLUTION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#P5MIN_CASESOLUTION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d1}MIN_CASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MIN_CASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_P5MIN_CASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#P{d1}MIN_CASESOLUTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#P\d{1}MIN_CASESOLUTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#P5MIN_CASESOLUTION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d1}MIN_CASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_CASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_CASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#P{d1}MIN_CASESOLUTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#P\d{1}MIN_CASESOLUTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#P5MIN_CASESOLUTION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `P5MIN_CONSTRAINTSOLUTION`
@@ -3215,6 +3660,78 @@ _5 pattern rows, 297 files (snapshot), observed 2024-09-12 → 2026-04-08 (snaps
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#P{d1}MIN_CONSTRAINTSOLUTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#P\d{1}MIN_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#P5MIN_CONSTRAINTSOLUTION#FILE01#202408010000.zip` | 60 | 2024-09-12 | 2026-04-07 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#P{d1}MIN_CONSTRAINTSOLUTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#P\d{1}MIN_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#P5MIN_CONSTRAINTSOLUTION#FILE01#202408.sql` | 57 | 2024-09-13 | 2026-04-08 |
 | `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_ARCHIVE#P{d1}MIN_CONSTRAINTSOLUTION#ALL#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#P\d{1}MIN_CONSTRAINTSOLUTION\#ALL\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#P5MIN_CONSTRAINTSOLUTION#ALL#FILE01#202408010000.zip` | 60 | 2024-09-13 | 2026-04-07 |
+
+### `MMSDM` · `P5MIN_CONSTRAINTSOLUTION1`
+
+_3 pattern rows, 345 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{6}\.fmt` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION1_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{6}\.ctl` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION1_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION1_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
+
+### `MMSDM` · `P5MIN_CONSTRAINTSOLUTION1_ALL`
+
+_1 pattern row, 65 files (snapshot), observed 2019-05-15 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_ALL_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_ALL_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION1_ALL_201903010000.zip` | 65 | 2019-05-15 | 2024-08-16 |
+
+### `MMSDM` · `P5MIN_CONSTRAINTSOLUTION2`
+
+_3 pattern rows, 343 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{6}\.fmt` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION2_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{6}\.ctl` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION2_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION2_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
+
+### `MMSDM` · `P5MIN_CONSTRAINTSOLUTION2_ALL`
+
+_1 pattern row, 65 files (snapshot), observed 2019-05-15 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_ALL_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_ALL_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION2_ALL_201903010000.zip` | 65 | 2019-05-15 | 2024-08-16 |
+
+### `MMSDM` · `P5MIN_CONSTRAINTSOLUTION3`
+
+_3 pattern rows, 345 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{6}\.fmt` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION3_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{6}\.ctl` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION3_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION3_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
+
+### `MMSDM` · `P5MIN_CONSTRAINTSOLUTION3_ALL`
+
+_1 pattern row, 65 files (snapshot), observed 2019-05-15 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_ALL_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_ALL_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION3_ALL_201903010000.zip` | 65 | 2019-05-15 | 2024-08-16 |
+
+### `MMSDM` · `P5MIN_CONSTRAINTSOLUTION4`
+
+_3 pattern rows, 345 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{6}\.fmt` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION4_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{6}\.ctl` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION4_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION4_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
+
+### `MMSDM` · `P5MIN_CONSTRAINTSOLUTION4_ALL`
+
+_1 pattern row, 65 files (snapshot), observed 2019-05-15 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_ALL_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_ALL_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION4_ALL_201903010000.zip` | 65 | 2019-05-15 | 2024-08-16 |
 
 ### `MMSDM` · `P5MIN_FCAS_REQ_CONSTRAINT`
 
@@ -3240,15 +3757,26 @@ _4 pattern rows, 63 files (snapshot), observed 2025-01-10 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `P5MIN_INTERCONNECTORSOLN`
 
-_5 pattern rows, 99 files (snapshot), observed 2024-09-12 → 2026-04-14 (snapshot)_
+_8 pattern rows, 444 files (snapshot), observed 2017-01-14 → 2026-04-14 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#P{d1}MIN_INTERCONNECTORSOLN#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#P\d{1}MIN_INTERCONNECTORSOLN\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#P5MIN_INTERCONNECTORSOLN#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d1}MIN_INTERCONNECTORSOLN_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MIN_INTERCONNECTORSOLN_\d{6}\.fmt` | `PUBLIC_DVD_P5MIN_INTERCONNECTORSOLN_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#P{d1}MIN_INTERCONNECTORSOLN#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#P\d{1}MIN_INTERCONNECTORSOLN\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#P5MIN_INTERCONNECTORSOLN#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d1}MIN_INTERCONNECTORSOLN_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MIN_INTERCONNECTORSOLN_\d{6}\.ctl` | `PUBLIC_DVD_P5MIN_INTERCONNECTORSOLN_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#P{d1}MIN_INTERCONNECTORSOLN#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#P\d{1}MIN_INTERCONNECTORSOLN\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#P5MIN_INTERCONNECTORSOLN#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-14 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d1}MIN_INTERCONNECTORSOLN_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_INTERCONNECTORSOLN_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_INTERCONNECTORSOLN_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#P{d1}MIN_INTERCONNECTORSOLN#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#P\d{1}MIN_INTERCONNECTORSOLN\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#P5MIN_INTERCONNECTORSOLN#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 | `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_ARCHIVE#P{d1}MIN_INTERCONNECTORSOLN#ALL#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#P\d{1}MIN_INTERCONNECTORSOLN\#ALL\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#P5MIN_INTERCONNECTORSOLN#ALL#FILE01#202408010000.zip` | 20 | 2024-09-13 | 2026-04-07 |
+
+### `MMSDM` · `P5MIN_INTERCONNECTORSOLN_ALL`
+
+_1 pattern row, 65 files (snapshot), observed 2019-05-15 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_DVD_P{d1}MIN_INTERCONNECTORSOLN_ALL_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_INTERCONNECTORSOLN_ALL_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_INTERCONNECTORSOLN_ALL_201903010000.zip` | 65 | 2019-05-15 | 2024-08-16 |
 
 ### `MMSDM` · `P5MIN_INTERSENSITIVITIES`
 
@@ -3285,15 +3813,26 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `P5MIN_REGIONSOLUTION`
 
-_5 pattern rows, 99 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_8 pattern rows, 444 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#P{d1}MIN_REGIONSOLUTION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#P\d{1}MIN_REGIONSOLUTION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#P5MIN_REGIONSOLUTION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d1}MIN_REGIONSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MIN_REGIONSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_P5MIN_REGIONSOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#P{d1}MIN_REGIONSOLUTION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#P\d{1}MIN_REGIONSOLUTION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#P5MIN_REGIONSOLUTION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d1}MIN_REGIONSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MIN_REGIONSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_P5MIN_REGIONSOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#P{d1}MIN_REGIONSOLUTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#P\d{1}MIN_REGIONSOLUTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#P5MIN_REGIONSOLUTION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d1}MIN_REGIONSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_REGIONSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_REGIONSOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#P{d1}MIN_REGIONSOLUTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#P\d{1}MIN_REGIONSOLUTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#P5MIN_REGIONSOLUTION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 | `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_ARCHIVE#P{d1}MIN_REGIONSOLUTION#ALL#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#P\d{1}MIN_REGIONSOLUTION\#ALL\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#P5MIN_REGIONSOLUTION#ALL#FILE01#202408010000.zip` | 20 | 2024-09-13 | 2026-04-07 |
+
+### `MMSDM` · `P5MIN_REGIONSOLUTION_ALL`
+
+_1 pattern row, 65 files (snapshot), observed 2019-05-15 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_DVD_P{d1}MIN_REGIONSOLUTION_ALL_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_REGIONSOLUTION_ALL_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_REGIONSOLUTION_ALL_201903010000.zip` | 65 | 2019-05-15 | 2024-08-16 |
 
 ### `MMSDM` · `P5MIN_SCENARIODEMAND`
 
@@ -3317,48 +3856,78 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#P{d1}MIN_SCENARIODEMANDTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#P\d{1}MIN_SCENARIODEMANDTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#P5MIN_SCENARIODEMANDTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#P{d1}MIN_SCENARIODEMANDTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#P\d{1}MIN_SCENARIODEMANDTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#P5MIN_SCENARIODEMANDTRK#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
+### `MMSDM` · `P5MIN_UNITSOLUTION`
+
+_3 pattern rows, 342 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d1}MIN_UNITSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MIN_UNITSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_P5MIN_UNITSOLUTION_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d1}MIN_UNITSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MIN_UNITSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_P5MIN_UNITSOLUTION_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d1}MIN_UNITSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_UNITSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_UNITSOLUTION_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
+
+### `MMSDM` · `P5MIN_UNITSOLUTION_ALL`
+
+_1 pattern row, 65 files (snapshot), observed 2019-05-15 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_DVD_P{d1}MIN_UNITSOLUTION_ALL_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_UNITSOLUTION_ALL_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_UNITSOLUTION_ALL_201903010000.zip` | 65 | 2019-05-15 | 2024-08-16 |
+
 ### `MMSDM` · `PARTICIPANT`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PARTICIPANT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PARTICIPANT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PARTICIPANT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PARTICIPANT_{yearmonth}.fmt` | `PUBLIC_DVD_PARTICIPANT_\d{6}\.fmt` | `PUBLIC_DVD_PARTICIPANT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PARTICIPANT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PARTICIPANT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PARTICIPANT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PARTICIPANT_{yearmonth}.ctl` | `PUBLIC_DVD_PARTICIPANT_\d{6}\.ctl` | `PUBLIC_DVD_PARTICIPANT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PARTICIPANT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PARTICIPANT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PARTICIPANT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PARTICIPANT_{timestamp}.zip` | `PUBLIC_DVD_PARTICIPANT_\d{12}\.zip` | `PUBLIC_DVD_PARTICIPANT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PARTICIPANT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PARTICIPANT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PARTICIPANT#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PARTICIPANTCATEGORY`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORY#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PARTICIPANTCATEGORY\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORY#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PARTICIPANTCATEGORY_{yearmonth}.fmt` | `PUBLIC_DVD_PARTICIPANTCATEGORY_\d{6}\.fmt` | `PUBLIC_DVD_PARTICIPANTCATEGORY_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORY#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PARTICIPANTCATEGORY\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORY#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PARTICIPANTCATEGORY_{yearmonth}.ctl` | `PUBLIC_DVD_PARTICIPANTCATEGORY_\d{6}\.ctl` | `PUBLIC_DVD_PARTICIPANTCATEGORY_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORY#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PARTICIPANTCATEGORY\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORY#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PARTICIPANTCATEGORY_{timestamp}.zip` | `PUBLIC_DVD_PARTICIPANTCATEGORY_\d{12}\.zip` | `PUBLIC_DVD_PARTICIPANTCATEGORY_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORY#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PARTICIPANTCATEGORY\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORY#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PARTICIPANTCATEGORYALLOC`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORYALLOC#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PARTICIPANTCATEGORYALLOC\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORYALLOC#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_{yearmonth}.fmt` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_\d{6}\.fmt` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORYALLOC#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PARTICIPANTCATEGORYALLOC\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORYALLOC#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_{yearmonth}.ctl` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_\d{6}\.ctl` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORYALLOC#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PARTICIPANTCATEGORYALLOC\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORYALLOC#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_{timestamp}.zip` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_\d{12}\.zip` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORYALLOC#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PARTICIPANTCATEGORYALLOC\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PARTICIPANTCATEGORYALLOC#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PARTICIPANTCLASS`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PARTICIPANTCLASS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PARTICIPANTCLASS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PARTICIPANTCLASS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PARTICIPANTCLASS_{yearmonth}.fmt` | `PUBLIC_DVD_PARTICIPANTCLASS_\d{6}\.fmt` | `PUBLIC_DVD_PARTICIPANTCLASS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PARTICIPANTCLASS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PARTICIPANTCLASS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PARTICIPANTCLASS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PARTICIPANTCLASS_{yearmonth}.ctl` | `PUBLIC_DVD_PARTICIPANTCLASS_\d{6}\.ctl` | `PUBLIC_DVD_PARTICIPANTCLASS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PARTICIPANTCLASS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PARTICIPANTCLASS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PARTICIPANTCLASS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PARTICIPANTCLASS_{timestamp}.zip` | `PUBLIC_DVD_PARTICIPANTCLASS_\d{12}\.zip` | `PUBLIC_DVD_PARTICIPANTCLASS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PARTICIPANTCLASS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PARTICIPANTCLASS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PARTICIPANTCLASS#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PD7DAY_CASESOLUTION`
@@ -3418,24 +3987,30 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `PDPASA_CASESOLUTION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PDPASA_CASESOLUTION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PDPASA_CASESOLUTION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PDPASA_CASESOLUTION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PDPASA_CASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_PDPASA_CASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_PDPASA_CASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PDPASA_CASESOLUTION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PDPASA_CASESOLUTION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PDPASA_CASESOLUTION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PDPASA_CASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_PDPASA_CASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_PDPASA_CASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PDPASA_CASESOLUTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PDPASA_CASESOLUTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PDPASA_CASESOLUTION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PDPASA_CASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_PDPASA_CASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_PDPASA_CASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PDPASA_CASESOLUTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PDPASA_CASESOLUTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PDPASA_CASESOLUTION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PDPASA_CONSTRAINTSOLUTION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 201 files (snapshot), observed 2021-03-22 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PDPASA_CONSTRAINTSOLUTION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PDPASA_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PDPASA_CONSTRAINTSOLUTION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_202104.fmt` | 40 | 2021-05-12 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PDPASA_CONSTRAINTSOLUTION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PDPASA_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PDPASA_CONSTRAINTSOLUTION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_202104.ctl` | 40 | 2021-05-12 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PDPASA_CONSTRAINTSOLUTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PDPASA_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PDPASA_CONSTRAINTSOLUTION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_202102010000.zip` | 42 | 2021-03-22 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PDPASA_CONSTRAINTSOLUTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PDPASA_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PDPASA_CONSTRAINTSOLUTION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PDPASA_DUIDAVAILABILITY`
@@ -3451,24 +4026,30 @@ _4 pattern rows, 118 files (snapshot), observed 2025-08-08 → 2026-04-08 (snaps
 
 ### `MMSDM` · `PDPASA_INTERCONNECTORSOLN`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 201 files (snapshot), observed 2021-03-22 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PDPASA_INTERCONNECTORSOLN#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PDPASA_INTERCONNECTORSOLN\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PDPASA_INTERCONNECTORSOLN#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_{yearmonth}.fmt` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_\d{6}\.fmt` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_202104.fmt` | 40 | 2021-05-12 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PDPASA_INTERCONNECTORSOLN#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PDPASA_INTERCONNECTORSOLN\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PDPASA_INTERCONNECTORSOLN#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_{yearmonth}.ctl` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_\d{6}\.ctl` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_202104.ctl` | 40 | 2021-05-12 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PDPASA_INTERCONNECTORSOLN#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PDPASA_INTERCONNECTORSOLN\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PDPASA_INTERCONNECTORSOLN#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_{timestamp}.zip` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_\d{12}\.zip` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_202102010000.zip` | 42 | 2021-03-22 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PDPASA_INTERCONNECTORSOLN#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PDPASA_INTERCONNECTORSOLN\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PDPASA_INTERCONNECTORSOLN#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PDPASA_REGIONSOLUTION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PDPASA_REGIONSOLUTION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PDPASA_REGIONSOLUTION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PDPASA_REGIONSOLUTION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PDPASA_REGIONSOLUTION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PDPASA_REGIONSOLUTION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PDPASA_REGIONSOLUTION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PDPASA_REGIONSOLUTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PDPASA_REGIONSOLUTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PDPASA_REGIONSOLUTION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PDPASA_REGIONSOLUTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PDPASA_REGIONSOLUTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PDPASA_REGIONSOLUTION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PD_FCAS_REQ_CONSTRAINT`
@@ -3495,13 +4076,16 @@ _4 pattern rows, 63 files (snapshot), observed 2025-01-10 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `PERDEMAND`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PERDEMAND#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PERDEMAND\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PERDEMAND#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PERDEMAND_{yearmonth}.fmt` | `PUBLIC_DVD_PERDEMAND_\d{6}\.fmt` | `PUBLIC_DVD_PERDEMAND_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PERDEMAND#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PERDEMAND\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PERDEMAND#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PERDEMAND_{yearmonth}.ctl` | `PUBLIC_DVD_PERDEMAND_\d{6}\.ctl` | `PUBLIC_DVD_PERDEMAND_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PERDEMAND#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PERDEMAND\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PERDEMAND#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PERDEMAND_{timestamp}.zip` | `PUBLIC_DVD_PERDEMAND_\d{12}\.zip` | `PUBLIC_DVD_PERDEMAND_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PERDEMAND#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PERDEMAND\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PERDEMAND#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PMS_GROUP`
@@ -3539,13 +4123,16 @@ _4 pattern rows, 35 files (snapshot), observed 2025-06-10 → 2026-03-10 (snapsh
 
 ### `MMSDM` · `PREDISPATCHCASESOLUTION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PREDISPATCHCASESOLUTION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PREDISPATCHCASESOLUTION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PREDISPATCHCASESOLUTION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PREDISPATCHCASESOLUTION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PREDISPATCHCASESOLUTION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PREDISPATCHCASESOLUTION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PREDISPATCHCASESOLUTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCHCASESOLUTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCHCASESOLUTION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PREDISPATCHCASESOLUTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PREDISPATCHCASESOLUTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PREDISPATCHCASESOLUTION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PREDISPATCHCONSTRAINT`
@@ -3560,9 +4147,38 @@ _5 pattern rows, 121 files (snapshot), observed 2024-09-12 → 2026-04-08 (snaps
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PREDISPATCHCONSTRAINT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PREDISPATCHCONSTRAINT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PREDISPATCHCONSTRAINT#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 | `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_ARCHIVE#PREDISPATCHCONSTRAINT#ALL#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCHCONSTRAINT\#ALL\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCHCONSTRAINT#ALL#FILE01#202408010000.zip` | 42 | 2024-09-13 | 2026-04-07 |
 
+### `MMSDM` · `PREDISPATCHCONSTRAINT1`
+
+_1 pattern row, 115 files (snapshot), observed 2017-01-14 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT{d1}_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT\d{1}_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT1_201501010000.zip` | 115 | 2017-01-14 | 2024-08-16 |
+
+### `MMSDM` · `PREDISPATCHCONSTRAINT2`
+
+_4 pattern rows, 116 files (snapshot), observed 2017-01-14 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT{d1}_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT\d{1}_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT2_201803.fmt` | 1 | 2019-09-09 | 2019-09-09 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT{d1}_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT\d{1}_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT2_201803.ctl` | 1 | 2018-04-20 | 2018-04-20 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT{d1}_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT\d{1}_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT2_201803010000.zip` | 1 | 2018-04-26 | 2018-04-26 |
+| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT{d1}_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT\d{1}_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT2_201501010000.zip` | 113 | 2017-01-14 | 2024-08-16 |
+
+### `MMSDM` · `PREDISPATCHCONSTRAINT_D`
+
+_3 pattern rows, 345 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
+
 ### `MMSDM` · `PREDISPATCHINTERCONNECTORRES`
 
-_5 pattern rows, 99 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_6 pattern rows, 213 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
@@ -3571,6 +4187,27 @@ _5 pattern rows, 99 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PREDISPATCHINTERCONNECTORRES#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCHINTERCONNECTORRES\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCHINTERCONNECTORRES#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PREDISPATCHINTERCONNECTORRES#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PREDISPATCHINTERCONNECTORRES\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PREDISPATCHINTERCONNECTORRES#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 | `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_ARCHIVE#PREDISPATCHINTERCONNECTORRES#ALL#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCHINTERCONNECTORRES\#ALL\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCHINTERCONNECTORRES#ALL#FILE01#202408010000.zip` | 20 | 2024-09-13 | 2026-04-07 |
+| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_201501010000.zip` | 114 | 2017-01-14 | 2024-08-16 |
+
+### `MMSDM` · `PREDISPATCHINTERCONNECTORRES_D`
+
+_3 pattern rows, 345 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
+
+### `MMSDM` · `PREDISPATCHINTERCONNECTR_SENS_D`
+
+_3 pattern rows, 345 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 
 ### `MMSDM` · `PREDISPATCHLOAD`
 
@@ -3584,20 +4221,49 @@ _5 pattern rows, 99 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PREDISPATCHLOAD#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PREDISPATCHLOAD\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PREDISPATCHLOAD#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 | `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_ARCHIVE#PREDISPATCHLOAD#ALL#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCHLOAD\#ALL\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCHLOAD#ALL#FILE01#202408010000.zip` | 20 | 2024-09-13 | 2026-04-07 |
 
+### `MMSDM` · `PREDISPATCHLOAD1`
+
+_1 pattern row, 114 files (snapshot), observed 2017-01-14 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_DVD_PREDISPATCHLOAD{d1}_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHLOAD\d{1}_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHLOAD1_201501010000.zip` | 114 | 2017-01-14 | 2024-08-16 |
+
+### `MMSDM` · `PREDISPATCHLOAD2`
+
+_1 pattern row, 114 files (snapshot), observed 2017-01-14 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_DVD_PREDISPATCHLOAD{d1}_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHLOAD\d{1}_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHLOAD2_201501010000.zip` | 114 | 2017-01-14 | 2024-08-16 |
+
+### `MMSDM` · `PREDISPATCHLOAD_D`
+
+_3 pattern rows, 345 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHLOAD_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHLOAD_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHLOAD_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHLOAD_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHLOAD_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHLOAD_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHLOAD_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHLOAD_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHLOAD_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
+
 ### `MMSDM` · `PREDISPATCHOFFERTRK`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PREDISPATCHOFFERTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PREDISPATCHOFFERTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PREDISPATCHOFFERTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PREDISPATCHOFFERTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PREDISPATCHOFFERTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PREDISPATCHOFFERTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PREDISPATCHOFFERTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCHOFFERTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCHOFFERTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PREDISPATCHOFFERTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PREDISPATCHOFFERTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PREDISPATCHOFFERTRK#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PREDISPATCHPRICE`
 
-_5 pattern rows, 99 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_6 pattern rows, 213 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
@@ -3606,6 +4272,7 @@ _5 pattern rows, 99 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PREDISPATCHPRICE#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCHPRICE\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCHPRICE#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PREDISPATCHPRICE#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PREDISPATCHPRICE\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PREDISPATCHPRICE#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 | `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCHPRICE\#ALL\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCHPRICE#ALL#FILE01#202408010000.zip` | 20 | 2024-09-13 | 2026-04-07 |
+| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_DVD_PREDISPATCHPRICE_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHPRICE_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHPRICE_201501010000.zip` | 114 | 2017-01-14 | 2024-08-16 |
 
 ### `MMSDM` · `PREDISPATCHPRICESENSITIVITIES`
 
@@ -3618,9 +4285,29 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PREDISPATCHPRICESENSITIVITIES#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCHPRICESENSITIVITIES\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCHPRICESENSITIVITIES#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PREDISPATCHPRICESENSITIVITIES#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PREDISPATCHPRICESENSITIVITIES\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PREDISPATCHPRICESENSITIVITIES#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
+### `MMSDM` · `PREDISPATCHPRICESENSITIVITIE_D`
+
+_3 pattern rows, 345 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
+
+### `MMSDM` · `PREDISPATCHPRICE_D`
+
+_3 pattern rows, 345 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHPRICE_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHPRICE_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHPRICE_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHPRICE_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHPRICE_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHPRICE_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHPRICE_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHPRICE_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHPRICE_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
+
 ### `MMSDM` · `PREDISPATCHREGIONSUM`
 
-_5 pattern rows, 99 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_6 pattern rows, 213 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
@@ -3629,27 +4316,44 @@ _5 pattern rows, 99 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCHREGIONSUM\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PREDISPATCHREGIONSUM\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 | `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCHREGIONSUM\#ALL\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCHREGIONSUM#ALL#FILE01#202408010000.zip` | 20 | 2024-09-13 | 2026-04-07 |
+| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_201501010000.zip` | 114 | 2017-01-14 | 2024-08-16 |
+
+### `MMSDM` · `PREDISPATCHREGIONSUM_D`
+
+_3 pattern rows, 345 files (snapshot), observed 2017-01-14 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 
 ### `MMSDM` · `PREDISPATCHSCENARIODEMAND`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMAND#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PREDISPATCHSCENARIODEMAND\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMAND#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMAND#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PREDISPATCHSCENARIODEMAND\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMAND#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMAND#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCHSCENARIODEMAND\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMAND#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMAND#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PREDISPATCHSCENARIODEMAND\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMAND#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PREDISPATCHSCENARIODEMANDTRK`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMANDTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PREDISPATCHSCENARIODEMANDTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMANDTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMANDTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PREDISPATCHSCENARIODEMANDTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMANDTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMANDTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCHSCENARIODEMANDTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMANDTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMANDTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PREDISPATCHSCENARIODEMANDTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PREDISPATCHSCENARIODEMANDTRK#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PREDISPATCH_FCAS_REQ`
@@ -3662,6 +4366,16 @@ _4 pattern rows, 40 files (snapshot), observed 2024-09-12 → 2025-10-17 (snapsh
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PREDISPATCH_FCAS_REQ#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PREDISPATCH_FCAS_REQ\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PREDISPATCH_FCAS_REQ#FILE01#202408.ctl` | 10 | 2024-09-12 | 2025-10-17 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PREDISPATCH_FCAS_REQ#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCH_FCAS_REQ\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCH_FCAS_REQ#FILE01#202408010000.zip` | 10 | 2024-09-12 | 2025-10-17 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PREDISPATCH_FCAS_REQ#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PREDISPATCH_FCAS_REQ\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PREDISPATCH_FCAS_REQ#FILE01#202408.sql` | 10 | 2024-09-13 | 2025-10-17 |
+
+### `MMSDM` · `PREDISPATCH_FCAS_REQ_D`
+
+_3 pattern rows, 72 files (snapshot), observed 2022-11-03 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_202210.fmt` | 22 | 2022-11-09 | 2024-08-15 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_202210.ctl` | 22 | 2022-11-09 | 2024-08-15 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_202204010000.zip` | 28 | 2022-11-03 | 2024-08-16 |
 
 ### `MMSDM` · `PREDISPATCH_LOCAL_PRICE`
 
@@ -3676,157 +4390,298 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `PREDISPATCH_MNSPBIDTRK`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PREDISPATCH_MNSPBIDTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PREDISPATCH_MNSPBIDTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PREDISPATCH_MNSPBIDTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PREDISPATCH_MNSPBIDTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PREDISPATCH_MNSPBIDTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PREDISPATCH_MNSPBIDTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PREDISPATCH_MNSPBIDTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PREDISPATCH_MNSPBIDTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PREDISPATCH_MNSPBIDTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PREDISPATCH_MNSPBIDTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PREDISPATCH_MNSPBIDTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PREDISPATCH_MNSPBIDTRK#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PRUDENTIALRUNTRK`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 310 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#PRUDENTIALRUNTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#PRUDENTIALRUNTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#PRUDENTIALRUNTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PRUDENTIALRUNTRK_{yearmonth}.fmt` | `PUBLIC_DVD_PRUDENTIALRUNTRK_\d{6}\.fmt` | `PUBLIC_DVD_PRUDENTIALRUNTRK_201501.fmt` | 77 | 2019-09-05 | 2021-07-03 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#PRUDENTIALRUNTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#PRUDENTIALRUNTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#PRUDENTIALRUNTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PRUDENTIALRUNTRK_{yearmonth}.ctl` | `PUBLIC_DVD_PRUDENTIALRUNTRK_\d{6}\.ctl` | `PUBLIC_DVD_PRUDENTIALRUNTRK_201501.ctl` | 77 | 2017-01-14 | 2021-07-03 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#PRUDENTIALRUNTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#PRUDENTIALRUNTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#PRUDENTIALRUNTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PRUDENTIALRUNTRK_{timestamp}.zip` | `PUBLIC_DVD_PRUDENTIALRUNTRK_\d{12}\.zip` | `PUBLIC_DVD_PRUDENTIALRUNTRK_201501010000.zip` | 77 | 2017-01-14 | 2021-07-03 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#PRUDENTIALRUNTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#PRUDENTIALRUNTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#PRUDENTIALRUNTRK#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `PUBLIC_CONVERT_BCP_bat`
+
+_1 pattern row, 134 files (snapshot), observed 2019-09-05 → 2025-10-17 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `PUBLIC_CONVERT_BCP.bat` | `PUBLIC_CONVERT_BCP\.bat` | `PUBLIC_CONVERT_BCP.bat` | 134 | 2019-09-05 | 2025-10-17 |
+
+### `MMSDM` · `PUBLIC_MARKETNOTICEDATA_DMP`
+
+_1 pattern row, 115 files (snapshot), observed 2017-01-14 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `DATA_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_MARKETNOTICEDATA_{yearmonth}.DMP` | `PUBLIC_MARKETNOTICEDATA_\d{6}\.DMP` | `PUBLIC_MARKETNOTICEDATA_201501.DMP` | 115 | 2017-01-14 | 2024-08-16 |
+
+### `MMSDM` · `PUBLIC_MONTHLY_DVD_INDEX_TXT`
+
+_1 pattern row, 115 files (snapshot), observed 2017-01-14 → 2024-08-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `INDEX_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/INDEX/` | `PUBLIC_MONTHLY_DVD_INDEX_{yearmonth}.TXT` | `PUBLIC_MONTHLY_DVD_INDEX_\d{6}\.TXT` | `PUBLIC_MONTHLY_DVD_INDEX_201501.TXT` | 115 | 2017-01-14 | 2024-08-16 |
+
+### `MMSDM` · `PUBLIC_RUN_BCP_bat`
+
+_1 pattern row, 134 files (snapshot), observed 2019-09-05 → 2026-04-08 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `PUBLIC_RUN_BCP_{yearmonth}.bat` | `PUBLIC_RUN_BCP_\d{6}\.bat` | `PUBLIC_RUN_BCP_201501.bat` | 134 | 2019-09-05 | 2026-04-08 |
+
+### `MMSDM` · `PUBLIC_RUN_MYSQL_bat`
+
+_1 pattern row, 20 files (snapshot), observed 2024-09-13 → 2026-04-08 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `PUBLIC_RUN_MYSQL_{yearmonth}.bat` | `PUBLIC_RUN_MYSQL_\d{6}\.bat` | `PUBLIC_RUN_MYSQL_202408.bat` | 20 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `PUBLIC_RUN_SQLLDR_bat`
+
+_1 pattern row, 135 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `DATA_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_RUN_SQLLDR_{yearmonth}.bat` | `PUBLIC_RUN_SQLLDR_\d{6}\.bat` | `PUBLIC_RUN_SQLLDR_201501.bat` | 135 | 2017-01-14 | 2026-04-08 |
+
+### `MMSDM` · `Participant_Monthly_DVD_doc`
+
+_1 pattern row, 135 files (snapshot), observed 2009-12-30 → 2025-10-17 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `DOCUMENTATION_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/` | `Participant_Monthly_DVD.doc` | `Participant_Monthly_DVD\.doc` | `Participant_Monthly_DVD.doc` | 135 | 2009-12-30 | 2025-10-17 |
+
+### `MMSDM` · `Participant_Monthly_DVD_pdf`
+
+_1 pattern row, 135 files (snapshot), observed 2009-12-30 → 2025-10-17 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `DOCUMENTATION_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/` | `Participant_Monthly_DVD.pdf` | `Participant_Monthly_DVD\.pdf` | `Participant_Monthly_DVD.pdf` | 135 | 2009-12-30 | 2025-10-17 |
+
+### `MMSDM` · `README_txt`
+
+_1 pattern row, 135 files (snapshot), observed 2009-12-30 → 2025-10-17 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `DOCUMENTATION_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/` | `README.txt` | `README\.txt` | `README.txt` | 135 | 2009-12-30 | 2025-10-17 |
 
 ### `MMSDM` · `REGION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#REGION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#REGION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#REGION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_REGION_{yearmonth}.fmt` | `PUBLIC_DVD_REGION_\d{6}\.fmt` | `PUBLIC_DVD_REGION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#REGION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#REGION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#REGION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_REGION_{yearmonth}.ctl` | `PUBLIC_DVD_REGION_\d{6}\.ctl` | `PUBLIC_DVD_REGION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#REGION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#REGION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#REGION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_REGION_{timestamp}.zip` | `PUBLIC_DVD_REGION_\d{12}\.zip` | `PUBLIC_DVD_REGION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#REGION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#REGION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#REGION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `REGIONAPC`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#REGIONAPC#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#REGIONAPC\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#REGIONAPC#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_REGIONAPC_{yearmonth}.fmt` | `PUBLIC_DVD_REGIONAPC_\d{6}\.fmt` | `PUBLIC_DVD_REGIONAPC_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#REGIONAPC#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#REGIONAPC\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#REGIONAPC#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_REGIONAPC_{yearmonth}.ctl` | `PUBLIC_DVD_REGIONAPC_\d{6}\.ctl` | `PUBLIC_DVD_REGIONAPC_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#REGIONAPC#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#REGIONAPC\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#REGIONAPC#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_REGIONAPC_{timestamp}.zip` | `PUBLIC_DVD_REGIONAPC_\d{12}\.zip` | `PUBLIC_DVD_REGIONAPC_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#REGIONAPC#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#REGIONAPC\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#REGIONAPC#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `REGIONAPCINTERVALS`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#REGIONAPCINTERVALS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#REGIONAPCINTERVALS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#REGIONAPCINTERVALS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_REGIONAPCINTERVALS_{yearmonth}.fmt` | `PUBLIC_DVD_REGIONAPCINTERVALS_\d{6}\.fmt` | `PUBLIC_DVD_REGIONAPCINTERVALS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#REGIONAPCINTERVALS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#REGIONAPCINTERVALS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#REGIONAPCINTERVALS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_REGIONAPCINTERVALS_{yearmonth}.ctl` | `PUBLIC_DVD_REGIONAPCINTERVALS_\d{6}\.ctl` | `PUBLIC_DVD_REGIONAPCINTERVALS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#REGIONAPCINTERVALS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#REGIONAPCINTERVALS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#REGIONAPCINTERVALS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_REGIONAPCINTERVALS_{timestamp}.zip` | `PUBLIC_DVD_REGIONAPCINTERVALS_\d{12}\.zip` | `PUBLIC_DVD_REGIONAPCINTERVALS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#REGIONAPCINTERVALS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#REGIONAPCINTERVALS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#REGIONAPCINTERVALS#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `REGIONSTANDINGDATA`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#REGIONSTANDINGDATA#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#REGIONSTANDINGDATA\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#REGIONSTANDINGDATA#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_REGIONSTANDINGDATA_{yearmonth}.fmt` | `PUBLIC_DVD_REGIONSTANDINGDATA_\d{6}\.fmt` | `PUBLIC_DVD_REGIONSTANDINGDATA_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#REGIONSTANDINGDATA#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#REGIONSTANDINGDATA\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#REGIONSTANDINGDATA#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_REGIONSTANDINGDATA_{yearmonth}.ctl` | `PUBLIC_DVD_REGIONSTANDINGDATA_\d{6}\.ctl` | `PUBLIC_DVD_REGIONSTANDINGDATA_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#REGIONSTANDINGDATA#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#REGIONSTANDINGDATA\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#REGIONSTANDINGDATA#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_REGIONSTANDINGDATA_{timestamp}.zip` | `PUBLIC_DVD_REGIONSTANDINGDATA_\d{12}\.zip` | `PUBLIC_DVD_REGIONSTANDINGDATA_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#REGIONSTANDINGDATA#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#REGIONSTANDINGDATA\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#REGIONSTANDINGDATA#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `RESDEMANDTRK`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#RESDEMANDTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#RESDEMANDTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#RESDEMANDTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESDEMANDTRK_{yearmonth}.fmt` | `PUBLIC_DVD_RESDEMANDTRK_\d{6}\.fmt` | `PUBLIC_DVD_RESDEMANDTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#RESDEMANDTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#RESDEMANDTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#RESDEMANDTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESDEMANDTRK_{yearmonth}.ctl` | `PUBLIC_DVD_RESDEMANDTRK_\d{6}\.ctl` | `PUBLIC_DVD_RESDEMANDTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#RESDEMANDTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#RESDEMANDTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#RESDEMANDTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESDEMANDTRK_{timestamp}.zip` | `PUBLIC_DVD_RESDEMANDTRK_\d{12}\.zip` | `PUBLIC_DVD_RESDEMANDTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#RESDEMANDTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#RESDEMANDTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#RESDEMANDTRK#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `RESERVE`
+
+_3 pattern rows, 81 files (snapshot), observed 2017-01-14 → 2019-09-16 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESERVE_{yearmonth}.fmt` | `PUBLIC_DVD_RESERVE_\d{6}\.fmt` | `PUBLIC_DVD_RESERVE_201501.fmt` | 27 | 2019-09-09 | 2019-09-16 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESERVE_{yearmonth}.ctl` | `PUBLIC_DVD_RESERVE_\d{6}\.ctl` | `PUBLIC_DVD_RESERVE_201501.ctl` | 27 | 2017-01-14 | 2018-06-13 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESERVE_{timestamp}.zip` | `PUBLIC_DVD_RESERVE_\d{12}\.zip` | `PUBLIC_DVD_RESERVE_201501010000.zip` | 27 | 2017-01-14 | 2018-06-13 |
 
 ### `MMSDM` · `RESIDUE_CONTRACTS`
 
-_4 pattern rows, 51 files (snapshot), observed 2024-10-08 → 2026-04-08 (snapshot)_
+_7 pattern rows, 288 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#RESIDUE_CONTRACTS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#RESIDUE_CONTRACTS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#RESIDUE_CONTRACTS#FILE01#202409.fmt` | 13 | 2024-10-08 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESIDUE_CONTRACTS_{yearmonth}.fmt` | `PUBLIC_DVD_RESIDUE_CONTRACTS_\d{6}\.fmt` | `PUBLIC_DVD_RESIDUE_CONTRACTS_201503.fmt` | 79 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#RESIDUE_CONTRACTS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#RESIDUE_CONTRACTS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#RESIDUE_CONTRACTS#FILE01#202409.ctl` | 13 | 2024-10-08 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESIDUE_CONTRACTS_{yearmonth}.ctl` | `PUBLIC_DVD_RESIDUE_CONTRACTS_\d{6}\.ctl` | `PUBLIC_DVD_RESIDUE_CONTRACTS_201503.ctl` | 79 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#RESIDUE_CONTRACTS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#RESIDUE_CONTRACTS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#RESIDUE_CONTRACTS#FILE01#202409010000.zip` | 13 | 2024-10-08 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESIDUE_CONTRACTS_{timestamp}.zip` | `PUBLIC_DVD_RESIDUE_CONTRACTS_\d{12}\.zip` | `PUBLIC_DVD_RESIDUE_CONTRACTS_201503010000.zip` | 79 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#RESIDUE_CONTRACTS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#RESIDUE_CONTRACTS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#RESIDUE_CONTRACTS#FILE01#202409.sql` | 12 | 2024-10-08 | 2026-04-08 |
 
 ### `MMSDM` · `RESIDUE_CON_FUNDS`
 
-_4 pattern rows, 24 files (snapshot), observed 2024-11-11 → 2026-02-10 (snapshot)_
+_7 pattern rows, 141 files (snapshot), observed 2017-01-15 → 2026-02-10 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#RESIDUE_CON_FUNDS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#RESIDUE_CON_FUNDS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#RESIDUE_CON_FUNDS#FILE01#202410.fmt` | 6 | 2024-11-11 | 2026-02-10 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_{yearmonth}.fmt` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_\d{6}\.fmt` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_201505.fmt` | 39 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#RESIDUE_CON_FUNDS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#RESIDUE_CON_FUNDS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#RESIDUE_CON_FUNDS#FILE01#202410.ctl` | 6 | 2024-11-11 | 2026-02-10 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_{yearmonth}.ctl` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_\d{6}\.ctl` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_201505.ctl` | 39 | 2017-01-15 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#RESIDUE_CON_FUNDS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#RESIDUE_CON_FUNDS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#RESIDUE_CON_FUNDS#FILE01#202410010000.zip` | 6 | 2024-11-11 | 2026-02-09 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_{timestamp}.zip` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_\d{12}\.zip` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_201505010000.zip` | 39 | 2017-01-15 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#RESIDUE_CON_FUNDS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#RESIDUE_CON_FUNDS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#RESIDUE_CON_FUNDS#FILE01#202410.sql` | 6 | 2024-11-11 | 2026-02-10 |
 
 ### `MMSDM` · `RESIDUE_PRICE_FUNDS_BID`
 
-_4 pattern rows, 27 files (snapshot), observed 2024-10-08 → 2026-04-08 (snapshot)_
+_7 pattern rows, 153 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#RESIDUE_PRICE_FUNDS_BID#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#RESIDUE_PRICE_FUNDS_BID\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#RESIDUE_PRICE_FUNDS_BID#FILE01#202409.fmt` | 7 | 2024-10-08 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_{yearmonth}.fmt` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_\d{6}\.fmt` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_201503.fmt` | 42 | 2019-09-06 | 2024-07-23 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#RESIDUE_PRICE_FUNDS_BID#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#RESIDUE_PRICE_FUNDS_BID\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#RESIDUE_PRICE_FUNDS_BID#FILE01#202409.ctl` | 7 | 2024-10-08 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_{yearmonth}.ctl` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_\d{6}\.ctl` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_201503.ctl` | 42 | 2017-01-14 | 2024-07-23 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#RESIDUE_PRICE_FUNDS_BID#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#RESIDUE_PRICE_FUNDS_BID\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#RESIDUE_PRICE_FUNDS_BID#FILE01#202409010000.zip` | 7 | 2024-10-08 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_{timestamp}.zip` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_\d{12}\.zip` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_201503010000.zip` | 42 | 2017-01-14 | 2024-07-23 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#RESIDUE_PRICE_FUNDS_BID#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#RESIDUE_PRICE_FUNDS_BID\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#RESIDUE_PRICE_FUNDS_BID#FILE01#202409.sql` | 6 | 2024-10-08 | 2026-04-08 |
 
 ### `MMSDM` · `RESIDUE_PUBLIC_DATA`
 
-_4 pattern rows, 27 files (snapshot), observed 2024-10-08 → 2026-04-08 (snapshot)_
+_7 pattern rows, 165 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#RESIDUE_PUBLIC_DATA#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#RESIDUE_PUBLIC_DATA\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#RESIDUE_PUBLIC_DATA#FILE01#202409.fmt` | 7 | 2024-10-08 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_{yearmonth}.fmt` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_\d{6}\.fmt` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_201503.fmt` | 46 | 2019-09-06 | 2024-07-23 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#RESIDUE_PUBLIC_DATA#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#RESIDUE_PUBLIC_DATA\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#RESIDUE_PUBLIC_DATA#FILE01#202409.ctl` | 7 | 2024-10-08 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_{yearmonth}.ctl` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_\d{6}\.ctl` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_201503.ctl` | 46 | 2017-01-14 | 2024-07-23 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#RESIDUE_PUBLIC_DATA#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#RESIDUE_PUBLIC_DATA\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#RESIDUE_PUBLIC_DATA#FILE01#202409010000.zip` | 7 | 2024-10-08 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_{timestamp}.zip` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_\d{12}\.zip` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_201503010000.zip` | 46 | 2017-01-14 | 2024-07-23 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#RESIDUE_PUBLIC_DATA#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#RESIDUE_PUBLIC_DATA\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#RESIDUE_PUBLIC_DATA#FILE01#202409.sql` | 6 | 2024-10-08 | 2026-04-08 |
 
 ### `MMSDM` · `RESIDUE_TRK`
 
-_4 pattern rows, 27 files (snapshot), observed 2024-10-08 → 2026-04-08 (snapshot)_
+_7 pattern rows, 168 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#RESIDUE_TRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#RESIDUE_TRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#RESIDUE_TRK#FILE01#202409.fmt` | 7 | 2024-10-08 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESIDUE_TRK_{yearmonth}.fmt` | `PUBLIC_DVD_RESIDUE_TRK_\d{6}\.fmt` | `PUBLIC_DVD_RESIDUE_TRK_201503.fmt` | 47 | 2019-09-06 | 2024-07-23 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#RESIDUE_TRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#RESIDUE_TRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#RESIDUE_TRK#FILE01#202409.ctl` | 7 | 2024-10-08 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESIDUE_TRK_{yearmonth}.ctl` | `PUBLIC_DVD_RESIDUE_TRK_\d{6}\.ctl` | `PUBLIC_DVD_RESIDUE_TRK_201503.ctl` | 47 | 2017-01-14 | 2024-07-23 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#RESIDUE_TRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#RESIDUE_TRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#RESIDUE_TRK#FILE01#202409010000.zip` | 7 | 2024-10-08 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESIDUE_TRK_{timestamp}.zip` | `PUBLIC_DVD_RESIDUE_TRK_\d{12}\.zip` | `PUBLIC_DVD_RESIDUE_TRK_201503010000.zip` | 47 | 2017-01-14 | 2024-07-23 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#RESIDUE_TRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#RESIDUE_TRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#RESIDUE_TRK#FILE01#202409.sql` | 6 | 2024-10-08 | 2026-04-08 |
 
 ### `MMSDM` · `ROOFTOP_PV_ACTUAL`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 291 files (snapshot), observed 2019-10-18 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#ROOFTOP_PV_ACTUAL#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#ROOFTOP_PV_ACTUAL\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#ROOFTOP_PV_ACTUAL#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_{yearmonth}.fmt` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_\d{6}\.fmt` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#ROOFTOP_PV_ACTUAL#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#ROOFTOP_PV_ACTUAL\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#ROOFTOP_PV_ACTUAL#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_{yearmonth}.ctl` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_\d{6}\.ctl` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#ROOFTOP_PV_ACTUAL#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#ROOFTOP_PV_ACTUAL\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#ROOFTOP_PV_ACTUAL#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_{timestamp}.zip` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_\d{12}\.zip` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_201608010000.zip` | 96 | 2019-10-18 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#ROOFTOP_PV_ACTUAL#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#ROOFTOP_PV_ACTUAL\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#ROOFTOP_PV_ACTUAL#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `ROOFTOP_PV_FORECAST`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 291 files (snapshot), observed 2019-10-18 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#ROOFTOP_PV_FORECAST#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#ROOFTOP_PV_FORECAST\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#ROOFTOP_PV_FORECAST#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_{yearmonth}.fmt` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_\d{6}\.fmt` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#ROOFTOP_PV_FORECAST#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#ROOFTOP_PV_FORECAST\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#ROOFTOP_PV_FORECAST#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_{yearmonth}.ctl` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_\d{6}\.ctl` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#ROOFTOP_PV_FORECAST#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#ROOFTOP_PV_FORECAST\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#ROOFTOP_PV_FORECAST#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_{timestamp}.zip` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_\d{12}\.zip` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_201608010000.zip` | 96 | 2019-10-18 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#ROOFTOP_PV_FORECAST#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#ROOFTOP_PV_FORECAST\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#ROOFTOP_PV_FORECAST#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `Readme_htm`
+
+_10 pattern rows, 442 files (snapshot), observed 2017-02-06 → 2025-10-17 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_DATA_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_DATA/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 123 | 2017-02-06 | 2025-10-17 |
+| `BCP_FMT_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 81 | 2017-02-15 | 2025-10-17 |
+| `CTL_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
+| `DATA_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
+| `DOCUMENTATION_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
+| `INDEX_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/INDEX/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
+| `LOGS_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/LOGS/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
+| `MONTH_ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 38 | 2017-05-11 | 2019-03-14 |
+| `PREDISP_ALL_DATA_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
+| `SQLLOADER_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 38 | 2017-02-07 | 2019-03-14 |
 
 ### `MMSDM` · `SECDEPOSIT_INTEREST_RATE`
 
@@ -3841,24 +4696,30 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `SETCFG_PARTICIPANT_MPF`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPF#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#SETCFG_PARTICIPANT_MPF\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPF#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_{yearmonth}.fmt` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_\d{6}\.fmt` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPF#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#SETCFG_PARTICIPANT_MPF\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPF#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_{yearmonth}.ctl` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_\d{6}\.ctl` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPF#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#SETCFG_PARTICIPANT_MPF\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPF#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_{timestamp}.zip` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_\d{12}\.zip` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPF#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#SETCFG_PARTICIPANT_MPF\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPF#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `SETCFG_PARTICIPANT_MPFTRK`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPFTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#SETCFG_PARTICIPANT_MPFTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPFTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_{yearmonth}.fmt` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_\d{6}\.fmt` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPFTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#SETCFG_PARTICIPANT_MPFTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPFTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_{yearmonth}.ctl` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_\d{6}\.ctl` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPFTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#SETCFG_PARTICIPANT_MPFTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPFTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_{timestamp}.zip` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_\d{12}\.zip` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPFTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#SETCFG_PARTICIPANT_MPFTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#SETCFG_PARTICIPANT_MPFTRK#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `SETCFG_SAPS_SETT_PRICE`
@@ -3896,57 +4757,72 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `SETCPDATAREGION`
 
-_4 pattern rows, 20 files (snapshot), observed 2024-09-12 → 2025-01-10 (snapshot)_
+_7 pattern rows, 362 files (snapshot), observed 2017-01-14 → 2025-01-10 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#SETCPDATAREGION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#SETCPDATAREGION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#SETCPDATAREGION#FILE01#202408.fmt` | 5 | 2024-09-12 | 2025-01-10 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETCPDATAREGION_{yearmonth}.fmt` | `PUBLIC_DVD_SETCPDATAREGION_\d{6}\.fmt` | `PUBLIC_DVD_SETCPDATAREGION_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#SETCPDATAREGION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#SETCPDATAREGION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#SETCPDATAREGION#FILE01#202408.ctl` | 5 | 2024-09-12 | 2025-01-10 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETCPDATAREGION_{yearmonth}.ctl` | `PUBLIC_DVD_SETCPDATAREGION_\d{6}\.ctl` | `PUBLIC_DVD_SETCPDATAREGION_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#SETCPDATAREGION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#SETCPDATAREGION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#SETCPDATAREGION#FILE01#202408010000.zip` | 5 | 2024-09-12 | 2025-01-10 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETCPDATAREGION_{timestamp}.zip` | `PUBLIC_DVD_SETCPDATAREGION_\d{12}\.zip` | `PUBLIC_DVD_SETCPDATAREGION_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#SETCPDATAREGION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#SETCPDATAREGION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#SETCPDATAREGION#FILE01#202408.sql` | 5 | 2024-09-13 | 2025-01-10 |
 
 ### `MMSDM` · `SETFCASREGIONRECOVERY`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 421 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#SETFCASREGIONRECOVERY#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#SETFCASREGIONRECOVERY\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#SETFCASREGIONRECOVERY#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_{yearmonth}.fmt` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_\d{6}\.fmt` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#SETFCASREGIONRECOVERY#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#SETFCASREGIONRECOVERY\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#SETFCASREGIONRECOVERY#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_{yearmonth}.ctl` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_\d{6}\.ctl` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#SETFCASREGIONRECOVERY#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#SETFCASREGIONRECOVERY\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#SETFCASREGIONRECOVERY#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_{timestamp}.zip` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_\d{12}\.zip` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#SETFCASREGIONRECOVERY#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#SETFCASREGIONRECOVERY\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#SETFCASREGIONRECOVERY#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `SETGENDATAREGION`
 
-_4 pattern rows, 20 files (snapshot), observed 2024-09-12 → 2025-01-10 (snapshot)_
+_7 pattern rows, 362 files (snapshot), observed 2017-01-14 → 2025-01-10 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#SETGENDATAREGION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#SETGENDATAREGION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#SETGENDATAREGION#FILE01#202408.fmt` | 5 | 2024-09-12 | 2025-01-10 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETGENDATAREGION_{yearmonth}.fmt` | `PUBLIC_DVD_SETGENDATAREGION_\d{6}\.fmt` | `PUBLIC_DVD_SETGENDATAREGION_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#SETGENDATAREGION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#SETGENDATAREGION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#SETGENDATAREGION#FILE01#202408.ctl` | 5 | 2024-09-12 | 2025-01-10 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETGENDATAREGION_{yearmonth}.ctl` | `PUBLIC_DVD_SETGENDATAREGION_\d{6}\.ctl` | `PUBLIC_DVD_SETGENDATAREGION_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#SETGENDATAREGION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#SETGENDATAREGION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#SETGENDATAREGION#FILE01#202408010000.zip` | 5 | 2024-09-12 | 2025-01-10 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETGENDATAREGION_{timestamp}.zip` | `PUBLIC_DVD_SETGENDATAREGION_\d{12}\.zip` | `PUBLIC_DVD_SETGENDATAREGION_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#SETGENDATAREGION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#SETGENDATAREGION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#SETGENDATAREGION#FILE01#202408.sql` | 5 | 2024-09-13 | 2025-01-10 |
 
 ### `MMSDM` · `SETINTRAREGIONRESIDUES`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 421 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#SETINTRAREGIONRESIDUES#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#SETINTRAREGIONRESIDUES\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#SETINTRAREGIONRESIDUES#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_{yearmonth}.fmt` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_\d{6}\.fmt` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#SETINTRAREGIONRESIDUES#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#SETINTRAREGIONRESIDUES\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#SETINTRAREGIONRESIDUES#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_{yearmonth}.ctl` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_\d{6}\.ctl` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#SETINTRAREGIONRESIDUES#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#SETINTRAREGIONRESIDUES\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#SETINTRAREGIONRESIDUES#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_{timestamp}.zip` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_\d{12}\.zip` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#SETINTRAREGIONRESIDUES#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#SETINTRAREGIONRESIDUES\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#SETINTRAREGIONRESIDUES#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `SETIRSURPLUS`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 421 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#SETIRSURPLUS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#SETIRSURPLUS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#SETIRSURPLUS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETIRSURPLUS_{yearmonth}.fmt` | `PUBLIC_DVD_SETIRSURPLUS_\d{6}\.fmt` | `PUBLIC_DVD_SETIRSURPLUS_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#SETIRSURPLUS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#SETIRSURPLUS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#SETIRSURPLUS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETIRSURPLUS_{yearmonth}.ctl` | `PUBLIC_DVD_SETIRSURPLUS_\d{6}\.ctl` | `PUBLIC_DVD_SETIRSURPLUS_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#SETIRSURPLUS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#SETIRSURPLUS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#SETIRSURPLUS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETIRSURPLUS_{timestamp}.zip` | `PUBLIC_DVD_SETIRSURPLUS_\d{12}\.zip` | `PUBLIC_DVD_SETIRSURPLUS_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#SETIRSURPLUS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#SETIRSURPLUS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#SETIRSURPLUS#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `SETLOCALAREAENERGY`
@@ -3973,13 +4849,16 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `SET_ANCILLARY_SUMMARY`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 421 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#SET_ANCILLARY_SUMMARY#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#SET_ANCILLARY_SUMMARY\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#SET_ANCILLARY_SUMMARY#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_{yearmonth}.fmt` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_\d{6}\.fmt` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#SET_ANCILLARY_SUMMARY#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#SET_ANCILLARY_SUMMARY\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#SET_ANCILLARY_SUMMARY#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_{yearmonth}.ctl` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_\d{6}\.ctl` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#SET_ANCILLARY_SUMMARY#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#SET_ANCILLARY_SUMMARY\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#SET_ANCILLARY_SUMMARY#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_{timestamp}.zip` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_\d{12}\.zip` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#SET_ANCILLARY_SUMMARY#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#SET_ANCILLARY_SUMMARY\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#SET_ANCILLARY_SUMMARY#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `SET_ENERGY_REGION_SUMMARY`
@@ -4017,13 +4896,16 @@ _4 pattern rows, 12 files (snapshot), observed 2026-02-09 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `SET_FCAS_REGULATION_TRK`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 421 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#SET_FCAS_REGULATION_TRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#SET_FCAS_REGULATION_TRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#SET_FCAS_REGULATION_TRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_{yearmonth}.fmt` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_\d{6}\.fmt` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#SET_FCAS_REGULATION_TRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#SET_FCAS_REGULATION_TRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#SET_FCAS_REGULATION_TRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_{yearmonth}.ctl` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_\d{6}\.ctl` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#SET_FCAS_REGULATION_TRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#SET_FCAS_REGULATION_TRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#SET_FCAS_REGULATION_TRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_{timestamp}.zip` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_\d{12}\.zip` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#SET_FCAS_REGULATION_TRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#SET_FCAS_REGULATION_TRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#SET_FCAS_REGULATION_TRK#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `SET_NMAS_RECOVERY_RBF`
@@ -4039,35 +4921,44 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `SPDCONNECTIONPOINTCONSTRAINT`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#SPDCONNECTIONPOINTCONSTRAINT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#SPDCONNECTIONPOINTCONSTRAINT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#SPDCONNECTIONPOINTCONSTRAINT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_{yearmonth}.fmt` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_\d{6}\.fmt` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#SPDCONNECTIONPOINTCONSTRAINT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#SPDCONNECTIONPOINTCONSTRAINT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#SPDCONNECTIONPOINTCONSTRAINT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_{yearmonth}.ctl` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_\d{6}\.ctl` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#SPDCONNECTIONPOINTCONSTRAINT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#SPDCONNECTIONPOINTCONSTRAINT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#SPDCONNECTIONPOINTCONSTRAINT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_{timestamp}.zip` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_\d{12}\.zip` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#SPDCONNECTIONPOINTCONSTRAINT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#SPDCONNECTIONPOINTCONSTRAINT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#SPDCONNECTIONPOINTCONSTRAINT#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `SPDINTERCONNECTORCONSTRAINT`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#SPDINTERCONNECTORCONSTRAINT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#SPDINTERCONNECTORCONSTRAINT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#SPDINTERCONNECTORCONSTRAINT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_{yearmonth}.fmt` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_\d{6}\.fmt` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#SPDINTERCONNECTORCONSTRAINT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#SPDINTERCONNECTORCONSTRAINT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#SPDINTERCONNECTORCONSTRAINT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_{yearmonth}.ctl` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_\d{6}\.ctl` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#SPDINTERCONNECTORCONSTRAINT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#SPDINTERCONNECTORCONSTRAINT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#SPDINTERCONNECTORCONSTRAINT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_{timestamp}.zip` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_\d{12}\.zip` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#SPDINTERCONNECTORCONSTRAINT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#SPDINTERCONNECTORCONSTRAINT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#SPDINTERCONNECTORCONSTRAINT#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `SPDREGIONCONSTRAINT`
 
-_4 pattern rows, 75 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 312 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#SPDREGIONCONSTRAINT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#SPDREGIONCONSTRAINT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#SPDREGIONCONSTRAINT#FILE01#202408.fmt` | 19 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_{yearmonth}.fmt` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_\d{6}\.fmt` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_201501.fmt` | 79 | 2019-09-06 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#SPDREGIONCONSTRAINT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#SPDREGIONCONSTRAINT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#SPDREGIONCONSTRAINT#FILE01#202408.ctl` | 19 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_{yearmonth}.ctl` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_\d{6}\.ctl` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_201501.ctl` | 79 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#SPDREGIONCONSTRAINT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#SPDREGIONCONSTRAINT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#SPDREGIONCONSTRAINT#FILE01#202408010000.zip` | 19 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_{timestamp}.zip` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_\d{12}\.zip` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_201501010000.zip` | 79 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#SPDREGIONCONSTRAINT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#SPDREGIONCONSTRAINT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#SPDREGIONCONSTRAINT#FILE01#202408.sql` | 18 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `SRA_FINANCIAL_RUNTRK`
@@ -4116,79 +5007,100 @@ _4 pattern rows, 20 files (snapshot), observed 2025-12-08 → 2026-04-08 (snapsh
 
 ### `MMSDM` · `STADUALLOC`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#STADUALLOC#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#STADUALLOC\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#STADUALLOC#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STADUALLOC_{yearmonth}.fmt` | `PUBLIC_DVD_STADUALLOC_\d{6}\.fmt` | `PUBLIC_DVD_STADUALLOC_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#STADUALLOC#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#STADUALLOC\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#STADUALLOC#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STADUALLOC_{yearmonth}.ctl` | `PUBLIC_DVD_STADUALLOC_\d{6}\.ctl` | `PUBLIC_DVD_STADUALLOC_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#STADUALLOC#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#STADUALLOC\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#STADUALLOC#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STADUALLOC_{timestamp}.zip` | `PUBLIC_DVD_STADUALLOC_\d{12}\.zip` | `PUBLIC_DVD_STADUALLOC_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#STADUALLOC#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#STADUALLOC\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#STADUALLOC#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `STATION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#STATION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#STATION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#STATION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STATION_{yearmonth}.fmt` | `PUBLIC_DVD_STATION_\d{6}\.fmt` | `PUBLIC_DVD_STATION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#STATION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#STATION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#STATION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STATION_{yearmonth}.ctl` | `PUBLIC_DVD_STATION_\d{6}\.ctl` | `PUBLIC_DVD_STATION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#STATION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#STATION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#STATION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STATION_{timestamp}.zip` | `PUBLIC_DVD_STATION_\d{12}\.zip` | `PUBLIC_DVD_STATION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#STATION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#STATION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#STATION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `STATIONOPERATINGSTATUS`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#STATIONOPERATINGSTATUS#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#STATIONOPERATINGSTATUS\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#STATIONOPERATINGSTATUS#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_{yearmonth}.fmt` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_\d{6}\.fmt` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#STATIONOPERATINGSTATUS#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#STATIONOPERATINGSTATUS\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#STATIONOPERATINGSTATUS#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_{yearmonth}.ctl` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_\d{6}\.ctl` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#STATIONOPERATINGSTATUS#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#STATIONOPERATINGSTATUS\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#STATIONOPERATINGSTATUS#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_{timestamp}.zip` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_\d{12}\.zip` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#STATIONOPERATINGSTATUS#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#STATIONOPERATINGSTATUS\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#STATIONOPERATINGSTATUS#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `STATIONOWNER`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#STATIONOWNER#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#STATIONOWNER\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#STATIONOWNER#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STATIONOWNER_{yearmonth}.fmt` | `PUBLIC_DVD_STATIONOWNER_\d{6}\.fmt` | `PUBLIC_DVD_STATIONOWNER_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#STATIONOWNER#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#STATIONOWNER\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#STATIONOWNER#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STATIONOWNER_{yearmonth}.ctl` | `PUBLIC_DVD_STATIONOWNER_\d{6}\.ctl` | `PUBLIC_DVD_STATIONOWNER_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#STATIONOWNER#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#STATIONOWNER\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#STATIONOWNER#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STATIONOWNER_{timestamp}.zip` | `PUBLIC_DVD_STATIONOWNER_\d{12}\.zip` | `PUBLIC_DVD_STATIONOWNER_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#STATIONOWNER#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#STATIONOWNER\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#STATIONOWNER#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `STATIONOWNERTRK`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#STATIONOWNERTRK#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#STATIONOWNERTRK\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#STATIONOWNERTRK#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STATIONOWNERTRK_{yearmonth}.fmt` | `PUBLIC_DVD_STATIONOWNERTRK_\d{6}\.fmt` | `PUBLIC_DVD_STATIONOWNERTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#STATIONOWNERTRK#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#STATIONOWNERTRK\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#STATIONOWNERTRK#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STATIONOWNERTRK_{yearmonth}.ctl` | `PUBLIC_DVD_STATIONOWNERTRK_\d{6}\.ctl` | `PUBLIC_DVD_STATIONOWNERTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#STATIONOWNERTRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#STATIONOWNERTRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#STATIONOWNERTRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STATIONOWNERTRK_{timestamp}.zip` | `PUBLIC_DVD_STATIONOWNERTRK_\d{12}\.zip` | `PUBLIC_DVD_STATIONOWNERTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#STATIONOWNERTRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#STATIONOWNERTRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#STATIONOWNERTRK#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `STPASA_CASESOLUTION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#STPASA_CASESOLUTION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#STPASA_CASESOLUTION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#STPASA_CASESOLUTION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STPASA_CASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_STPASA_CASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_STPASA_CASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#STPASA_CASESOLUTION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#STPASA_CASESOLUTION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#STPASA_CASESOLUTION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STPASA_CASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_STPASA_CASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_STPASA_CASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#STPASA_CASESOLUTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#STPASA_CASESOLUTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#STPASA_CASESOLUTION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STPASA_CASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_STPASA_CASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_STPASA_CASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#STPASA_CASESOLUTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#STPASA_CASESOLUTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#STPASA_CASESOLUTION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `STPASA_CONSTRAINTSOLUTION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#STPASA_CONSTRAINTSOLUTION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#STPASA_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#STPASA_CONSTRAINTSOLUTION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#STPASA_CONSTRAINTSOLUTION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#STPASA_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#STPASA_CONSTRAINTSOLUTION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#STPASA_CONSTRAINTSOLUTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#STPASA_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#STPASA_CONSTRAINTSOLUTION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#STPASA_CONSTRAINTSOLUTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#STPASA_CONSTRAINTSOLUTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#STPASA_CONSTRAINTSOLUTION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `STPASA_DUIDAVAILABILITY`
@@ -4204,618 +5116,93 @@ _4 pattern rows, 284 files (snapshot), observed 2025-08-08 → 2026-04-08 (snaps
 
 ### `MMSDM` · `STPASA_INTERCONNECTORSOLN`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#STPASA_INTERCONNECTORSOLN#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#STPASA_INTERCONNECTORSOLN\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#STPASA_INTERCONNECTORSOLN#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_{yearmonth}.fmt` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_\d{6}\.fmt` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#STPASA_INTERCONNECTORSOLN#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#STPASA_INTERCONNECTORSOLN\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#STPASA_INTERCONNECTORSOLN#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_{yearmonth}.ctl` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_\d{6}\.ctl` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#STPASA_INTERCONNECTORSOLN#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#STPASA_INTERCONNECTORSOLN\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#STPASA_INTERCONNECTORSOLN#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_{timestamp}.zip` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_\d{12}\.zip` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#STPASA_INTERCONNECTORSOLN#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#STPASA_INTERCONNECTORSOLN\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#STPASA_INTERCONNECTORSOLN#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `STPASA_REGIONSOLUTION`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#STPASA_REGIONSOLUTION#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#STPASA_REGIONSOLUTION\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#STPASA_REGIONSOLUTION#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#STPASA_REGIONSOLUTION#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#STPASA_REGIONSOLUTION\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#STPASA_REGIONSOLUTION#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#STPASA_REGIONSOLUTION#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#STPASA_REGIONSOLUTION\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#STPASA_REGIONSOLUTION#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#STPASA_REGIONSOLUTION#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#STPASA_REGIONSOLUTION\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#STPASA_REGIONSOLUTION#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `TRADINGINTERCONNECT`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#TRADINGINTERCONNECT#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#TRADINGINTERCONNECT\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#TRADINGINTERCONNECT#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_TRADINGINTERCONNECT_{yearmonth}.fmt` | `PUBLIC_DVD_TRADINGINTERCONNECT_\d{6}\.fmt` | `PUBLIC_DVD_TRADINGINTERCONNECT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#TRADINGINTERCONNECT#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#TRADINGINTERCONNECT\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#TRADINGINTERCONNECT#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_TRADINGINTERCONNECT_{yearmonth}.ctl` | `PUBLIC_DVD_TRADINGINTERCONNECT_\d{6}\.ctl` | `PUBLIC_DVD_TRADINGINTERCONNECT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#TRADINGINTERCONNECT#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#TRADINGINTERCONNECT\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#TRADINGINTERCONNECT#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_TRADINGINTERCONNECT_{timestamp}.zip` | `PUBLIC_DVD_TRADINGINTERCONNECT_\d{12}\.zip` | `PUBLIC_DVD_TRADINGINTERCONNECT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#TRADINGINTERCONNECT#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#TRADINGINTERCONNECT\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#TRADINGINTERCONNECT#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `TRADINGLOAD`
+
+_3 pattern rows, 243 files (snapshot), observed 2017-01-14 → 2021-10-11 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_TRADINGLOAD_{yearmonth}.fmt` | `PUBLIC_DVD_TRADINGLOAD_\d{6}\.fmt` | `PUBLIC_DVD_TRADINGLOAD_201501.fmt` | 81 | 2019-09-05 | 2021-10-11 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_TRADINGLOAD_{yearmonth}.ctl` | `PUBLIC_DVD_TRADINGLOAD_\d{6}\.ctl` | `PUBLIC_DVD_TRADINGLOAD_201501.ctl` | 81 | 2017-01-14 | 2021-10-11 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_TRADINGLOAD_{timestamp}.zip` | `PUBLIC_DVD_TRADINGLOAD_\d{12}\.zip` | `PUBLIC_DVD_TRADINGLOAD_201501010000.zip` | 81 | 2017-01-14 | 2021-10-11 |
 
 ### `MMSDM` · `TRADINGPRICE`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 424 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#TRADINGPRICE#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#TRADINGPRICE\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#TRADINGPRICE#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_TRADINGPRICE_{yearmonth}.fmt` | `PUBLIC_DVD_TRADINGPRICE_\d{6}\.fmt` | `PUBLIC_DVD_TRADINGPRICE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#TRADINGPRICE#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#TRADINGPRICE\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#TRADINGPRICE#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_TRADINGPRICE_{yearmonth}.ctl` | `PUBLIC_DVD_TRADINGPRICE_\d{6}\.ctl` | `PUBLIC_DVD_TRADINGPRICE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#TRADINGPRICE#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#TRADINGPRICE\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#TRADINGPRICE#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_TRADINGPRICE_{timestamp}.zip` | `PUBLIC_DVD_TRADINGPRICE_\d{12}\.zip` | `PUBLIC_DVD_TRADINGPRICE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#TRADINGPRICE#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#TRADINGPRICE\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#TRADINGPRICE#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
+
+### `MMSDM` · `TRADINGREGIONSUM`
+
+_3 pattern rows, 243 files (snapshot), observed 2017-01-14 → 2021-10-11 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_TRADINGREGIONSUM_{yearmonth}.fmt` | `PUBLIC_DVD_TRADINGREGIONSUM_\d{6}\.fmt` | `PUBLIC_DVD_TRADINGREGIONSUM_201501.fmt` | 81 | 2019-09-05 | 2021-10-11 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_TRADINGREGIONSUM_{yearmonth}.ctl` | `PUBLIC_DVD_TRADINGREGIONSUM_\d{6}\.ctl` | `PUBLIC_DVD_TRADINGREGIONSUM_201501.ctl` | 81 | 2017-01-14 | 2021-10-11 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_TRADINGREGIONSUM_{timestamp}.zip` | `PUBLIC_DVD_TRADINGREGIONSUM_\d{12}\.zip` | `PUBLIC_DVD_TRADINGREGIONSUM_201501010000.zip` | 81 | 2017-01-14 | 2021-10-11 |
 
 ### `MMSDM` · `TRANSMISSIONLOSSFACTOR`
 
-_4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapshot)_
+_7 pattern rows, 409 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE{d2}#{yearmonth}.fmt` | `PUBLIC_ARCHIVE\#TRANSMISSIONLOSSFACTOR\#FILE\d{2}\#\d{6}\.fmt` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE01#202408.fmt` | 20 | 2024-09-12 | 2026-04-08 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#TRANSMISSIONLOSSFACTOR\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#TRANSMISSIONLOSSFACTOR\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
-| `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#TRANSMISSIONLOSSFACTOR\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
-
-### `MMSDM` · `UNKNOWN`
-
-_9 pattern rows, 652 files (snapshot), observed 1996-10-08 → 2026-04-13 (snapshot)_
-
-| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
-|---|---|---|---|---|---:|---|---|
-| `OTHER` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/` | `MMSDM_{year}_{d2}.zip` | `MMSDM_\d{4}_\d{2}\.zip` | `MMSDM_2009_07.zip` | 201 | 2017-02-06 | 2026-04-13 |
-| `OTHER` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `AUTORUN.INF` | `AUTORUN\.INF` | `AUTORUN.INF` | 135 | 2017-01-12 | 2026-04-13 |
-| `OTHER` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `Back.gif` | `Back\.gif` | `Back.gif` | 50 | 1999-05-23 | 2019-03-14 |
-| `OTHER` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 38 | 2017-05-11 | 2019-03-14 |
-| `OTHER` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `background{d1}.gif` | `background\d{1}\.gif` | `background1.gif` | 13 | 2018-03-19 | 2019-03-14 |
-| `OTHER` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `disclaimer.htm` | `disclaimer\.htm` | `disclaimer.htm` | 38 | 2017-02-07 | 2019-03-14 |
-| `OTHER` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `file.gif` | `file\.gif` | `file.gif` | 50 | 1999-05-23 | 2019-03-14 |
-| `OTHER` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `nemlogo{d1}.gif` | `nemlogo\d{1}\.gif` | `nemlogo1.gif` | 100 | 2009-08-17 | 2019-03-14 |
-| `OTHER` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `shelexec.exe` | `shelexec\.exe` | `shelexec.exe` | 27 | 1996-10-08 | 2019-03-14 |
-
-### `MMSDM` · `UNPARSED`
-
-_537 pattern rows, 53084 files (snapshot), observed 1999-05-23 → 2026-04-08 (snapshot)_
-
-| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
-|---|---|---|---|---|---:|---|---|
-| `BCP_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_DATA/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 123 | 2017-02-06 | 2025-10-17 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_{yearmonth}.fmt` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_\d{6}\.fmt` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_APEVENTREGION_{yearmonth}.fmt` | `PUBLIC_DVD_APEVENTREGION_\d{6}\.fmt` | `PUBLIC_DVD_APEVENTREGION_201510.fmt` | 13 | 2019-09-06 | 2024-06-12 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_APEVENT_{yearmonth}.fmt` | `PUBLIC_DVD_APEVENT_\d{6}\.fmt` | `PUBLIC_DVD_APEVENT_201510.fmt` | 13 | 2019-09-06 | 2024-06-12 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_AUCTION_CALENDAR_{yearmonth}.fmt` | `PUBLIC_DVD_AUCTION_CALENDAR_\d{6}\.fmt` | `PUBLIC_DVD_AUCTION_CALENDAR_201501.fmt` | 53 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_{yearmonth}.fmt` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_\d{6}\.fmt` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_201501.fmt` | 78 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_AUCTION_TRANCHE_{yearmonth}.fmt` | `PUBLIC_DVD_AUCTION_TRANCHE_\d{6}\.fmt` | `PUBLIC_DVD_AUCTION_TRANCHE_201501.fmt` | 41 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_AUCTION_{yearmonth}.fmt` | `PUBLIC_DVD_AUCTION_\d{6}\.fmt` | `PUBLIC_DVD_AUCTION_201503.fmt` | 79 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDDAYOFFER_D_{yearmonth}.fmt` | `PUBLIC_DVD_BIDDAYOFFER_D_\d{6}\.fmt` | `PUBLIC_DVD_BIDDAYOFFER_D_201501.fmt` | 74 | 2019-09-05 | 2021-03-22 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDDAYOFFER_{yearmonth}.fmt` | `PUBLIC_DVD_BIDDAYOFFER_\d{6}\.fmt` | `PUBLIC_DVD_BIDDAYOFFER_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_{yearmonth}.fmt` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_\d{6}\.fmt` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDDUIDDETAILS_{yearmonth}.fmt` | `PUBLIC_DVD_BIDDUIDDETAILS_\d{6}\.fmt` | `PUBLIC_DVD_BIDDUIDDETAILS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDPEROFFER{d1}_{yearmonth}.fmt` | `PUBLIC_DVD_BIDPEROFFER\d{1}_\d{6}\.fmt` | `PUBLIC_DVD_BIDPEROFFER1_202206.fmt` | 52 | 2022-07-20 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDPEROFFER_D_{yearmonth}.fmt` | `PUBLIC_DVD_BIDPEROFFER_D_\d{6}\.fmt` | `PUBLIC_DVD_BIDPEROFFER_D_201501.fmt` | 74 | 2019-09-05 | 2021-03-22 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDPEROFFER_{yearmonth}.fmt` | `PUBLIC_DVD_BIDPEROFFER_\d{6}\.fmt` | `PUBLIC_DVD_BIDPEROFFER_201501.fmt` | 87 | 2019-09-05 | 2022-06-09 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDTYPESTRK_{yearmonth}.fmt` | `PUBLIC_DVD_BIDTYPESTRK_\d{6}\.fmt` | `PUBLIC_DVD_BIDTYPESTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BIDTYPES_{yearmonth}.fmt` | `PUBLIC_DVD_BIDTYPES_\d{6}\.fmt` | `PUBLIC_DVD_BIDTYPES_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLINGCALENDAR_{yearmonth}.fmt` | `PUBLIC_DVD_BILLINGCALENDAR_\d{6}\.fmt` | `PUBLIC_DVD_BILLINGCALENDAR_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLINGDAYTRK_{yearmonth}.fmt` | `PUBLIC_DVD_BILLINGDAYTRK_\d{6}\.fmt` | `PUBLIC_DVD_BILLINGDAYTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_{yearmonth}.fmt` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_\d{6}\.fmt` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLINGREGIONFIGURES_{yearmonth}.fmt` | `PUBLIC_DVD_BILLINGREGIONFIGURES_\d{6}\.fmt` | `PUBLIC_DVD_BILLINGREGIONFIGURES_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_{yearmonth}.fmt` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_\d{6}\.fmt` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLINGRUNTRK_{yearmonth}.fmt` | `PUBLIC_DVD_BILLINGRUNTRK_\d{6}\.fmt` | `PUBLIC_DVD_BILLINGRUNTRK_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLING_CO{d1}E_PUBLICATION_TRK_{yearmonth}.fmt` | `PUBLIC_DVD_BILLING_CO\d{1}E_PUBLICATION_TRK_\d{6}\.fmt` | `PUBLIC_DVD_BILLING_CO2E_PUBLICATION_TRK_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLING_CO{d1}E_PUBLICATION_{yearmonth}.fmt` | `PUBLIC_DVD_BILLING_CO\d{1}E_PUBLICATION_\d{6}\.fmt` | `PUBLIC_DVD_BILLING_CO2E_PUBLICATION_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_BILLSMELTERRATE_{yearmonth}.fmt` | `PUBLIC_DVD_BILLSMELTERRATE_\d{6}\.fmt` | `PUBLIC_DVD_BILLSMELTERRATE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DAYTRACK_{yearmonth}.fmt` | `PUBLIC_DVD_DAYTRACK_\d{6}\.fmt` | `PUBLIC_DVD_DAYTRACK_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHABLEUNIT_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHABLEUNIT_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHABLEUNIT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHCASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHCASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHCASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHCONSTRAINT_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHCONSTRAINT_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHCONSTRAINT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHLOAD_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHLOAD_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHLOAD_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHOFFERTRK_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHOFFERTRK_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHOFFERTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHPRICE_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHPRICE_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHPRICE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCHREGIONSUM_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCHREGIONSUM_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCHREGIONSUM_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_201502.fmt` | 25 | 2019-09-06 | 2024-03-09 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_{yearmonth}.fmt` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_\d{6}\.fmt` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DUALLOC_{yearmonth}.fmt` | `PUBLIC_DVD_DUALLOC_\d{6}\.fmt` | `PUBLIC_DVD_DUALLOC_202010.fmt` | 46 | 2020-11-12 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DUDETAILSUMMARY_{yearmonth}.fmt` | `PUBLIC_DVD_DUDETAILSUMMARY_\d{6}\.fmt` | `PUBLIC_DVD_DUDETAILSUMMARY_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_DUDETAIL_{yearmonth}.fmt` | `PUBLIC_DVD_DUDETAIL_\d{6}\.fmt` | `PUBLIC_DVD_DUDETAIL_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_EMSMASTER_{yearmonth}.fmt` | `PUBLIC_DVD_EMSMASTER_\d{6}\.fmt` | `PUBLIC_DVD_EMSMASTER_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GDINSTRUCT_{yearmonth}.fmt` | `PUBLIC_DVD_GDINSTRUCT_\d{6}\.fmt` | `PUBLIC_DVD_GDINSTRUCT_201501.fmt` | 24 | 2019-09-09 | 2019-09-16 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENCONDATA_{yearmonth}.fmt` | `PUBLIC_DVD_GENCONDATA_\d{6}\.fmt` | `PUBLIC_DVD_GENCONDATA_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENCONSETINVOKE_{yearmonth}.fmt` | `PUBLIC_DVD_GENCONSETINVOKE_\d{6}\.fmt` | `PUBLIC_DVD_GENCONSETINVOKE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENCONSETTRK_{yearmonth}.fmt` | `PUBLIC_DVD_GENCONSETTRK_\d{6}\.fmt` | `PUBLIC_DVD_GENCONSETTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENCONSET_{yearmonth}.fmt` | `PUBLIC_DVD_GENCONSET_\d{6}\.fmt` | `PUBLIC_DVD_GENCONSET_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_{yearmonth}.fmt` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_\d{6}\.fmt` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENERICEQUATIONDESC_{yearmonth}.fmt` | `PUBLIC_DVD_GENERICEQUATIONDESC_\d{6}\.fmt` | `PUBLIC_DVD_GENERICEQUATIONDESC_201501.fmt` | 105 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENERICEQUATIONRHS_{yearmonth}.fmt` | `PUBLIC_DVD_GENERICEQUATIONRHS_\d{6}\.fmt` | `PUBLIC_DVD_GENERICEQUATIONRHS_201501.fmt` | 109 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GENUNITS_{yearmonth}.fmt` | `PUBLIC_DVD_GENUNITS_\d{6}\.fmt` | `PUBLIC_DVD_GENUNITS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GST_BAS_CLASS_{yearmonth}.fmt` | `PUBLIC_DVD_GST_BAS_CLASS_\d{6}\.fmt` | `PUBLIC_DVD_GST_BAS_CLASS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GST_RATE_{yearmonth}.fmt` | `PUBLIC_DVD_GST_RATE_\d{6}\.fmt` | `PUBLIC_DVD_GST_RATE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_{yearmonth}.fmt` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_\d{6}\.fmt` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_{yearmonth}.fmt` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_\d{6}\.fmt` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_{yearmonth}.fmt` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_\d{6}\.fmt` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_INSTRUCTIONTYPE_{yearmonth}.fmt` | `PUBLIC_DVD_INSTRUCTIONTYPE_\d{6}\.fmt` | `PUBLIC_DVD_INSTRUCTIONTYPE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_{yearmonth}.fmt` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_\d{6}\.fmt` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_INTERCONNECTOR_{yearmonth}.fmt` | `PUBLIC_DVD_INTERCONNECTOR_\d{6}\.fmt` | `PUBLIC_DVD_INTERCONNECTOR_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_INTERCONNMWFLOW_{yearmonth}.fmt` | `PUBLIC_DVD_INTERCONNMWFLOW_\d{6}\.fmt` | `PUBLIC_DVD_INTERCONNMWFLOW_201501.fmt` | 77 | 2019-09-05 | 2021-07-03 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_IRFMAMOUNT_{yearmonth}.fmt` | `PUBLIC_DVD_IRFMAMOUNT_\d{6}\.fmt` | `PUBLIC_DVD_IRFMAMOUNT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_IRFMEVENTS_{yearmonth}.fmt` | `PUBLIC_DVD_IRFMEVENTS_\d{6}\.fmt` | `PUBLIC_DVD_IRFMEVENTS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_LOSSFACTORMODEL_{yearmonth}.fmt` | `PUBLIC_DVD_LOSSFACTORMODEL_\d{6}\.fmt` | `PUBLIC_DVD_LOSSFACTORMODEL_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_LOSSMODEL_{yearmonth}.fmt` | `PUBLIC_DVD_LOSSMODEL_\d{6}\.fmt` | `PUBLIC_DVD_LOSSMODEL_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETFEEDATA_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETFEEDATA_\d{6}\.fmt` | `PUBLIC_DVD_MARKETFEEDATA_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETFEETRK_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETFEETRK_\d{6}\.fmt` | `PUBLIC_DVD_MARKETFEETRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETFEE_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETFEE_\d{6}\.fmt` | `PUBLIC_DVD_MARKETFEE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETNOTICEDATA_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETNOTICEDATA_\d{6}\.fmt` | `PUBLIC_DVD_MARKETNOTICEDATA_201501.fmt` | 101 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETNOTICETYPE_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETNOTICETYPE_\d{6}\.fmt` | `PUBLIC_DVD_MARKETNOTICETYPE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETSUSPENSION_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETSUSPENSION_\d{6}\.fmt` | `PUBLIC_DVD_MARKETSUSPENSION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKETSUSREGION_{yearmonth}.fmt` | `PUBLIC_DVD_MARKETSUSREGION_\d{6}\.fmt` | `PUBLIC_DVD_MARKETSUSREGION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_{yearmonth}.fmt` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_\d{6}\.fmt` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MCC_CASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MCC_CASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MCC_CASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MNSP_DAYOFFER_{yearmonth}.fmt` | `PUBLIC_DVD_MNSP_DAYOFFER_\d{6}\.fmt` | `PUBLIC_DVD_MNSP_DAYOFFER_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_{yearmonth}.fmt` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_\d{6}\.fmt` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MNSP_OFFERTRK_{yearmonth}.fmt` | `PUBLIC_DVD_MNSP_OFFERTRK_\d{6}\.fmt` | `PUBLIC_DVD_MNSP_OFFERTRK_201501.fmt` | 73 | 2019-09-05 | 2021-03-22 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MNSP_PARTICIPANT_{yearmonth}.fmt` | `PUBLIC_DVD_MNSP_PARTICIPANT_\d{6}\.fmt` | `PUBLIC_DVD_MNSP_PARTICIPANT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MNSP_PEROFFER_{yearmonth}.fmt` | `PUBLIC_DVD_MNSP_PEROFFER_\d{6}\.fmt` | `PUBLIC_DVD_MNSP_PEROFFER_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_CASERESULT_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_CASERESULT_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_CASERESULT_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_CASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_CASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_CASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_201501.fmt` | 41 | 2019-09-09 | 2019-09-16 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_201501.fmt` | 41 | 2019-09-09 | 2019-09-16 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_LOLPRESULT_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_LOLPRESULT_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_LOLPRESULT_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_REGIONITERATION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_REGIONITERATION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_REGIONITERATION_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_REGIONRESULT_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_REGIONRESULT_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_REGIONRESULT_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_201501.fmt` | 41 | 2019-09-09 | 2019-09-16 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_201501.fmt` | 41 | 2019-09-09 | 2019-09-16 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_{yearmonth}.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_\d{6}\.fmt` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_OVERRIDERRP_{yearmonth}.fmt` | `PUBLIC_DVD_OVERRIDERRP_\d{6}\.fmt` | `PUBLIC_DVD_OVERRIDERRP_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_{yearmonth}.fmt` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_\d{6}\.fmt` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PARTICIPANTCATEGORY_{yearmonth}.fmt` | `PUBLIC_DVD_PARTICIPANTCATEGORY_\d{6}\.fmt` | `PUBLIC_DVD_PARTICIPANTCATEGORY_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PARTICIPANTCLASS_{yearmonth}.fmt` | `PUBLIC_DVD_PARTICIPANTCLASS_\d{6}\.fmt` | `PUBLIC_DVD_PARTICIPANTCLASS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PARTICIPANT_{yearmonth}.fmt` | `PUBLIC_DVD_PARTICIPANT_\d{6}\.fmt` | `PUBLIC_DVD_PARTICIPANT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PDPASA_CASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_PDPASA_CASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_PDPASA_CASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_202104.fmt` | 40 | 2021-05-12 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_{yearmonth}.fmt` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_\d{6}\.fmt` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_202104.fmt` | 40 | 2021-05-12 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PERDEMAND_{yearmonth}.fmt` | `PUBLIC_DVD_PERDEMAND_\d{6}\.fmt` | `PUBLIC_DVD_PERDEMAND_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT{d1}_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT\d{1}_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT2_201803.fmt` | 1 | 2019-09-09 | 2019-09-09 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHLOAD_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHLOAD_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHLOAD_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHPRICE_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHPRICE_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHPRICE_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_202210.fmt` | 22 | 2022-11-09 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_{yearmonth}.fmt` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_\d{6}\.fmt` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_PRUDENTIALRUNTRK_{yearmonth}.fmt` | `PUBLIC_DVD_PRUDENTIALRUNTRK_\d{6}\.fmt` | `PUBLIC_DVD_PRUDENTIALRUNTRK_201501.fmt` | 77 | 2019-09-05 | 2021-07-03 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d1}MINSCENARIODEMANDTRK_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MINSCENARIODEMANDTRK_\d{6}\.fmt` | `PUBLIC_DVD_P5MINSCENARIODEMANDTRK_202106.fmt` | 38 | 2021-07-13 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d1}MINSCENARIODEMAND_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MINSCENARIODEMAND_\d{6}\.fmt` | `PUBLIC_DVD_P5MINSCENARIODEMAND_202106.fmt` | 38 | 2021-07-13 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d1}MIN_CASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MIN_CASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_P5MIN_CASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{6}\.fmt` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION1_201501.fmt` | 459 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d1}MIN_INTERCONNECTORSOLN_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MIN_INTERCONNECTORSOLN_\d{6}\.fmt` | `PUBLIC_DVD_P5MIN_INTERCONNECTORSOLN_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d1}MIN_REGIONSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MIN_REGIONSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_P5MIN_REGIONSOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_P{d1}MIN_UNITSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_P\d{1}MIN_UNITSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_P5MIN_UNITSOLUTION_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_REGIONAPCINTERVALS_{yearmonth}.fmt` | `PUBLIC_DVD_REGIONAPCINTERVALS_\d{6}\.fmt` | `PUBLIC_DVD_REGIONAPCINTERVALS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_REGIONAPC_{yearmonth}.fmt` | `PUBLIC_DVD_REGIONAPC_\d{6}\.fmt` | `PUBLIC_DVD_REGIONAPC_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_REGIONSTANDINGDATA_{yearmonth}.fmt` | `PUBLIC_DVD_REGIONSTANDINGDATA_\d{6}\.fmt` | `PUBLIC_DVD_REGIONSTANDINGDATA_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_REGION_{yearmonth}.fmt` | `PUBLIC_DVD_REGION_\d{6}\.fmt` | `PUBLIC_DVD_REGION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESDEMANDTRK_{yearmonth}.fmt` | `PUBLIC_DVD_RESDEMANDTRK_\d{6}\.fmt` | `PUBLIC_DVD_RESDEMANDTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESERVE_{yearmonth}.fmt` | `PUBLIC_DVD_RESERVE_\d{6}\.fmt` | `PUBLIC_DVD_RESERVE_201501.fmt` | 27 | 2019-09-09 | 2019-09-16 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESIDUE_CONTRACTS_{yearmonth}.fmt` | `PUBLIC_DVD_RESIDUE_CONTRACTS_\d{6}\.fmt` | `PUBLIC_DVD_RESIDUE_CONTRACTS_201503.fmt` | 79 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_{yearmonth}.fmt` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_\d{6}\.fmt` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_201505.fmt` | 39 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_{yearmonth}.fmt` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_\d{6}\.fmt` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_201503.fmt` | 42 | 2019-09-06 | 2024-07-23 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_{yearmonth}.fmt` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_\d{6}\.fmt` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_201503.fmt` | 46 | 2019-09-06 | 2024-07-23 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_RESIDUE_TRK_{yearmonth}.fmt` | `PUBLIC_DVD_RESIDUE_TRK_\d{6}\.fmt` | `PUBLIC_DVD_RESIDUE_TRK_201503.fmt` | 47 | 2019-09-06 | 2024-07-23 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_{yearmonth}.fmt` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_\d{6}\.fmt` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_{yearmonth}.fmt` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_\d{6}\.fmt` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_201910.fmt` | 58 | 2019-11-18 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_{yearmonth}.fmt` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_\d{6}\.fmt` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_{yearmonth}.fmt` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_\d{6}\.fmt` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETCPDATAREGION_{yearmonth}.fmt` | `PUBLIC_DVD_SETCPDATAREGION_\d{6}\.fmt` | `PUBLIC_DVD_SETCPDATAREGION_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_{yearmonth}.fmt` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_\d{6}\.fmt` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETGENDATAREGION_{yearmonth}.fmt` | `PUBLIC_DVD_SETGENDATAREGION_\d{6}\.fmt` | `PUBLIC_DVD_SETGENDATAREGION_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_{yearmonth}.fmt` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_\d{6}\.fmt` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SETIRSURPLUS_{yearmonth}.fmt` | `PUBLIC_DVD_SETIRSURPLUS_\d{6}\.fmt` | `PUBLIC_DVD_SETIRSURPLUS_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_{yearmonth}.fmt` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_\d{6}\.fmt` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_{yearmonth}.fmt` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_\d{6}\.fmt` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_201501.fmt` | 114 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_{yearmonth}.fmt` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_\d{6}\.fmt` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_{yearmonth}.fmt` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_\d{6}\.fmt` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_{yearmonth}.fmt` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_\d{6}\.fmt` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_201501.fmt` | 79 | 2019-09-06 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STADUALLOC_{yearmonth}.fmt` | `PUBLIC_DVD_STADUALLOC_\d{6}\.fmt` | `PUBLIC_DVD_STADUALLOC_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_{yearmonth}.fmt` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_\d{6}\.fmt` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STATIONOWNERTRK_{yearmonth}.fmt` | `PUBLIC_DVD_STATIONOWNERTRK_\d{6}\.fmt` | `PUBLIC_DVD_STATIONOWNERTRK_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STATIONOWNER_{yearmonth}.fmt` | `PUBLIC_DVD_STATIONOWNER_\d{6}\.fmt` | `PUBLIC_DVD_STATIONOWNER_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STATION_{yearmonth}.fmt` | `PUBLIC_DVD_STATION_\d{6}\.fmt` | `PUBLIC_DVD_STATION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STPASA_CASESOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_STPASA_CASESOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_STPASA_CASESOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_{yearmonth}.fmt` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_\d{6}\.fmt` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_{yearmonth}.fmt` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_\d{6}\.fmt` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_TRADINGINTERCONNECT_{yearmonth}.fmt` | `PUBLIC_DVD_TRADINGINTERCONNECT_\d{6}\.fmt` | `PUBLIC_DVD_TRADINGINTERCONNECT_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_TRADINGLOAD_{yearmonth}.fmt` | `PUBLIC_DVD_TRADINGLOAD_\d{6}\.fmt` | `PUBLIC_DVD_TRADINGLOAD_201501.fmt` | 81 | 2019-09-05 | 2021-10-11 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_TRADINGPRICE_{yearmonth}.fmt` | `PUBLIC_DVD_TRADINGPRICE_\d{6}\.fmt` | `PUBLIC_DVD_TRADINGPRICE_201501.fmt` | 115 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_TRADINGREGIONSUM_{yearmonth}.fmt` | `PUBLIC_DVD_TRADINGREGIONSUM_\d{6}\.fmt` | `PUBLIC_DVD_TRADINGREGIONSUM_201501.fmt` | 81 | 2019-09-05 | 2021-10-11 |
 | `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `PUBLIC_DVD_TRANSMISSIONLOSSFACTOR_{yearmonth}.fmt` | `PUBLIC_DVD_TRANSMISSIONLOSSFACTOR_\d{6}\.fmt` | `PUBLIC_DVD_TRANSMISSIONLOSSFACTOR_201501.fmt` | 110 | 2019-09-05 | 2024-08-15 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 81 | 2017-02-15 | 2025-10-17 |
-| `Back.gif` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `Back.gif` | `Back\.gif` | `Back.gif` | 50 | 1999-05-23 | 2019-03-14 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_{yearmonth}.ctl` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_\d{6}\.ctl` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_APEVENTREGION_{yearmonth}.ctl` | `PUBLIC_DVD_APEVENTREGION_\d{6}\.ctl` | `PUBLIC_DVD_APEVENTREGION_201510.ctl` | 13 | 2017-01-15 | 2024-06-12 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_APEVENT_{yearmonth}.ctl` | `PUBLIC_DVD_APEVENT_\d{6}\.ctl` | `PUBLIC_DVD_APEVENT_201510.ctl` | 13 | 2017-01-15 | 2024-06-12 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_AUCTION_CALENDAR_{yearmonth}.ctl` | `PUBLIC_DVD_AUCTION_CALENDAR_\d{6}\.ctl` | `PUBLIC_DVD_AUCTION_CALENDAR_201501.ctl` | 53 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_{yearmonth}.ctl` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_\d{6}\.ctl` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_201501.ctl` | 78 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_AUCTION_TRANCHE_{yearmonth}.ctl` | `PUBLIC_DVD_AUCTION_TRANCHE_\d{6}\.ctl` | `PUBLIC_DVD_AUCTION_TRANCHE_201501.ctl` | 41 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_AUCTION_{yearmonth}.ctl` | `PUBLIC_DVD_AUCTION_\d{6}\.ctl` | `PUBLIC_DVD_AUCTION_201503.ctl` | 79 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDDAYOFFER_D_{yearmonth}.ctl` | `PUBLIC_DVD_BIDDAYOFFER_D_\d{6}\.ctl` | `PUBLIC_DVD_BIDDAYOFFER_D_201501.ctl` | 74 | 2017-01-14 | 2021-03-22 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDDAYOFFER_{yearmonth}.ctl` | `PUBLIC_DVD_BIDDAYOFFER_\d{6}\.ctl` | `PUBLIC_DVD_BIDDAYOFFER_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_{yearmonth}.ctl` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_\d{6}\.ctl` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDDUIDDETAILS_{yearmonth}.ctl` | `PUBLIC_DVD_BIDDUIDDETAILS_\d{6}\.ctl` | `PUBLIC_DVD_BIDDUIDDETAILS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDPEROFFER{d1}_{yearmonth}.ctl` | `PUBLIC_DVD_BIDPEROFFER\d{1}_\d{6}\.ctl` | `PUBLIC_DVD_BIDPEROFFER1_202206.ctl` | 52 | 2022-07-20 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDPEROFFER_D_{yearmonth}.ctl` | `PUBLIC_DVD_BIDPEROFFER_D_\d{6}\.ctl` | `PUBLIC_DVD_BIDPEROFFER_D_201501.ctl` | 74 | 2017-01-14 | 2021-03-22 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDPEROFFER_{yearmonth}.ctl` | `PUBLIC_DVD_BIDPEROFFER_\d{6}\.ctl` | `PUBLIC_DVD_BIDPEROFFER_201501.ctl` | 87 | 2017-01-14 | 2022-06-09 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDTYPESTRK_{yearmonth}.ctl` | `PUBLIC_DVD_BIDTYPESTRK_\d{6}\.ctl` | `PUBLIC_DVD_BIDTYPESTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BIDTYPES_{yearmonth}.ctl` | `PUBLIC_DVD_BIDTYPES_\d{6}\.ctl` | `PUBLIC_DVD_BIDTYPES_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLINGCALENDAR_{yearmonth}.ctl` | `PUBLIC_DVD_BILLINGCALENDAR_\d{6}\.ctl` | `PUBLIC_DVD_BILLINGCALENDAR_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLINGDAYTRK_{yearmonth}.ctl` | `PUBLIC_DVD_BILLINGDAYTRK_\d{6}\.ctl` | `PUBLIC_DVD_BILLINGDAYTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_{yearmonth}.ctl` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_\d{6}\.ctl` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLINGREGIONFIGURES_{yearmonth}.ctl` | `PUBLIC_DVD_BILLINGREGIONFIGURES_\d{6}\.ctl` | `PUBLIC_DVD_BILLINGREGIONFIGURES_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_{yearmonth}.ctl` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_\d{6}\.ctl` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLINGRUNTRK_{yearmonth}.ctl` | `PUBLIC_DVD_BILLINGRUNTRK_\d{6}\.ctl` | `PUBLIC_DVD_BILLINGRUNTRK_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLING_CO{d1}E_PUBLICATION_TRK_{yearmonth}.ctl` | `PUBLIC_DVD_BILLING_CO\d{1}E_PUBLICATION_TRK_\d{6}\.ctl` | `PUBLIC_DVD_BILLING_CO2E_PUBLICATION_TRK_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLING_CO{d1}E_PUBLICATION_{yearmonth}.ctl` | `PUBLIC_DVD_BILLING_CO\d{1}E_PUBLICATION_\d{6}\.ctl` | `PUBLIC_DVD_BILLING_CO2E_PUBLICATION_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_BILLSMELTERRATE_{yearmonth}.ctl` | `PUBLIC_DVD_BILLSMELTERRATE_\d{6}\.ctl` | `PUBLIC_DVD_BILLSMELTERRATE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DAYTRACK_{yearmonth}.ctl` | `PUBLIC_DVD_DAYTRACK_\d{6}\.ctl` | `PUBLIC_DVD_DAYTRACK_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHABLEUNIT_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHABLEUNIT_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHABLEUNIT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHCASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHCASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHCASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHCONSTRAINT_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHCONSTRAINT_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHCONSTRAINT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHLOAD_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHLOAD_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHLOAD_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHOFFERTRK_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHOFFERTRK_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHOFFERTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHPRICE_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHPRICE_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHPRICE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCHREGIONSUM_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCHREGIONSUM_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCHREGIONSUM_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_201502.ctl` | 25 | 2017-01-15 | 2024-03-09 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_{yearmonth}.ctl` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_\d{6}\.ctl` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DUALLOC_{yearmonth}.ctl` | `PUBLIC_DVD_DUALLOC_\d{6}\.ctl` | `PUBLIC_DVD_DUALLOC_202010.ctl` | 46 | 2020-11-12 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DUDETAILSUMMARY_{yearmonth}.ctl` | `PUBLIC_DVD_DUDETAILSUMMARY_\d{6}\.ctl` | `PUBLIC_DVD_DUDETAILSUMMARY_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_DUDETAIL_{yearmonth}.ctl` | `PUBLIC_DVD_DUDETAIL_\d{6}\.ctl` | `PUBLIC_DVD_DUDETAIL_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_EMSMASTER_{yearmonth}.ctl` | `PUBLIC_DVD_EMSMASTER_\d{6}\.ctl` | `PUBLIC_DVD_EMSMASTER_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GDINSTRUCT_{yearmonth}.ctl` | `PUBLIC_DVD_GDINSTRUCT_\d{6}\.ctl` | `PUBLIC_DVD_GDINSTRUCT_201501.ctl` | 24 | 2017-01-14 | 2018-07-09 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENCONDATA_{yearmonth}.ctl` | `PUBLIC_DVD_GENCONDATA_\d{6}\.ctl` | `PUBLIC_DVD_GENCONDATA_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENCONSETINVOKE_{yearmonth}.ctl` | `PUBLIC_DVD_GENCONSETINVOKE_\d{6}\.ctl` | `PUBLIC_DVD_GENCONSETINVOKE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENCONSETTRK_{yearmonth}.ctl` | `PUBLIC_DVD_GENCONSETTRK_\d{6}\.ctl` | `PUBLIC_DVD_GENCONSETTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENCONSET_{yearmonth}.ctl` | `PUBLIC_DVD_GENCONSET_\d{6}\.ctl` | `PUBLIC_DVD_GENCONSET_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_{yearmonth}.ctl` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_\d{6}\.ctl` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENERICEQUATIONDESC_{yearmonth}.ctl` | `PUBLIC_DVD_GENERICEQUATIONDESC_\d{6}\.ctl` | `PUBLIC_DVD_GENERICEQUATIONDESC_201501.ctl` | 105 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENERICEQUATIONRHS_{yearmonth}.ctl` | `PUBLIC_DVD_GENERICEQUATIONRHS_\d{6}\.ctl` | `PUBLIC_DVD_GENERICEQUATIONRHS_201501.ctl` | 109 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GENUNITS_{yearmonth}.ctl` | `PUBLIC_DVD_GENUNITS_\d{6}\.ctl` | `PUBLIC_DVD_GENUNITS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GST_BAS_CLASS_{yearmonth}.ctl` | `PUBLIC_DVD_GST_BAS_CLASS_\d{6}\.ctl` | `PUBLIC_DVD_GST_BAS_CLASS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GST_RATE_{yearmonth}.ctl` | `PUBLIC_DVD_GST_RATE_\d{6}\.ctl` | `PUBLIC_DVD_GST_RATE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_{yearmonth}.ctl` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_\d{6}\.ctl` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_{yearmonth}.ctl` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_\d{6}\.ctl` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_{yearmonth}.ctl` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_\d{6}\.ctl` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_INSTRUCTIONTYPE_{yearmonth}.ctl` | `PUBLIC_DVD_INSTRUCTIONTYPE_\d{6}\.ctl` | `PUBLIC_DVD_INSTRUCTIONTYPE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_{yearmonth}.ctl` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_\d{6}\.ctl` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_INTERCONNECTOR_{yearmonth}.ctl` | `PUBLIC_DVD_INTERCONNECTOR_\d{6}\.ctl` | `PUBLIC_DVD_INTERCONNECTOR_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_INTERCONNMWFLOW_{yearmonth}.ctl` | `PUBLIC_DVD_INTERCONNMWFLOW_\d{6}\.ctl` | `PUBLIC_DVD_INTERCONNMWFLOW_201501.ctl` | 77 | 2017-01-14 | 2021-07-03 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_IRFMAMOUNT_{yearmonth}.ctl` | `PUBLIC_DVD_IRFMAMOUNT_\d{6}\.ctl` | `PUBLIC_DVD_IRFMAMOUNT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_IRFMEVENTS_{yearmonth}.ctl` | `PUBLIC_DVD_IRFMEVENTS_\d{6}\.ctl` | `PUBLIC_DVD_IRFMEVENTS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_LOSSFACTORMODEL_{yearmonth}.ctl` | `PUBLIC_DVD_LOSSFACTORMODEL_\d{6}\.ctl` | `PUBLIC_DVD_LOSSFACTORMODEL_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_LOSSMODEL_{yearmonth}.ctl` | `PUBLIC_DVD_LOSSMODEL_\d{6}\.ctl` | `PUBLIC_DVD_LOSSMODEL_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETFEEDATA_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETFEEDATA_\d{6}\.ctl` | `PUBLIC_DVD_MARKETFEEDATA_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETFEETRK_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETFEETRK_\d{6}\.ctl` | `PUBLIC_DVD_MARKETFEETRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETFEE_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETFEE_\d{6}\.ctl` | `PUBLIC_DVD_MARKETFEE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETNOTICEDATA_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETNOTICEDATA_\d{6}\.ctl` | `PUBLIC_DVD_MARKETNOTICEDATA_201506.ctl` | 38 | 2017-01-15 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETNOTICEDATA_{yearmonth}.ctlBak` | `PUBLIC_DVD_MARKETNOTICEDATA_\d{6}\.ctlBak` | `PUBLIC_DVD_MARKETNOTICEDATA_201511.ctlBak` | 1 | 2017-01-15 | 2017-01-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETNOTICEDATA_{yearmonth}.ctlbak` | `PUBLIC_DVD_MARKETNOTICEDATA_\d{6}\.ctlbak` | `PUBLIC_DVD_MARKETNOTICEDATA_201501.ctlbak` | 14 | 2017-01-14 | 2017-01-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETNOTICETYPE_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETNOTICETYPE_\d{6}\.ctl` | `PUBLIC_DVD_MARKETNOTICETYPE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETSUSPENSION_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETSUSPENSION_\d{6}\.ctl` | `PUBLIC_DVD_MARKETSUSPENSION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKETSUSREGION_{yearmonth}.ctl` | `PUBLIC_DVD_MARKETSUSREGION_\d{6}\.ctl` | `PUBLIC_DVD_MARKETSUSREGION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_{yearmonth}.ctl` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_\d{6}\.ctl` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MCC_CASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MCC_CASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MCC_CASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MNSP_DAYOFFER_{yearmonth}.ctl` | `PUBLIC_DVD_MNSP_DAYOFFER_\d{6}\.ctl` | `PUBLIC_DVD_MNSP_DAYOFFER_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_{yearmonth}.ctl` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_\d{6}\.ctl` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MNSP_OFFERTRK_{yearmonth}.ctl` | `PUBLIC_DVD_MNSP_OFFERTRK_\d{6}\.ctl` | `PUBLIC_DVD_MNSP_OFFERTRK_201501.ctl` | 73 | 2017-01-14 | 2021-03-22 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MNSP_PARTICIPANT_{yearmonth}.ctl` | `PUBLIC_DVD_MNSP_PARTICIPANT_\d{6}\.ctl` | `PUBLIC_DVD_MNSP_PARTICIPANT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MNSP_PEROFFER_{yearmonth}.ctl` | `PUBLIC_DVD_MNSP_PEROFFER_\d{6}\.ctl` | `PUBLIC_DVD_MNSP_PEROFFER_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_CASERESULT_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_CASERESULT_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_CASERESULT_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_CASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_CASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_CASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_201501.ctl` | 41 | 2017-01-14 | 2018-06-13 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_201501.ctl` | 41 | 2017-01-14 | 2018-06-13 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_LOLPRESULT_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_LOLPRESULT_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_LOLPRESULT_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_REGIONITERATION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_REGIONITERATION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_REGIONITERATION_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_REGIONRESULT_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_REGIONRESULT_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_REGIONRESULT_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_201501.ctl` | 41 | 2017-01-14 | 2018-06-13 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_201501.ctl` | 41 | 2017-01-14 | 2018-06-13 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_{yearmonth}.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_\d{6}\.ctl` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_OVERRIDERRP_{yearmonth}.ctl` | `PUBLIC_DVD_OVERRIDERRP_\d{6}\.ctl` | `PUBLIC_DVD_OVERRIDERRP_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_{yearmonth}.ctl` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_\d{6}\.ctl` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PARTICIPANTCATEGORY_{yearmonth}.ctl` | `PUBLIC_DVD_PARTICIPANTCATEGORY_\d{6}\.ctl` | `PUBLIC_DVD_PARTICIPANTCATEGORY_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PARTICIPANTCLASS_{yearmonth}.ctl` | `PUBLIC_DVD_PARTICIPANTCLASS_\d{6}\.ctl` | `PUBLIC_DVD_PARTICIPANTCLASS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PARTICIPANT_{yearmonth}.ctl` | `PUBLIC_DVD_PARTICIPANT_\d{6}\.ctl` | `PUBLIC_DVD_PARTICIPANT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PDPASA_CASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_PDPASA_CASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_PDPASA_CASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_202104.ctl` | 40 | 2021-05-12 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_{yearmonth}.ctl` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_\d{6}\.ctl` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_202104.ctl` | 40 | 2021-05-12 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PERDEMAND_{yearmonth}.ctl` | `PUBLIC_DVD_PERDEMAND_\d{6}\.ctl` | `PUBLIC_DVD_PERDEMAND_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT{d1}_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT\d{1}_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT2_201803.ctl` | 1 | 2018-04-20 | 2018-04-20 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHLOAD_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHLOAD_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHLOAD_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHPRICE_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHPRICE_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHPRICE_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_202210.ctl` | 22 | 2022-11-09 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_{yearmonth}.ctl` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_\d{6}\.ctl` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_PRUDENTIALRUNTRK_{yearmonth}.ctl` | `PUBLIC_DVD_PRUDENTIALRUNTRK_\d{6}\.ctl` | `PUBLIC_DVD_PRUDENTIALRUNTRK_201501.ctl` | 77 | 2017-01-14 | 2021-07-03 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d1}MINSCENARIODEMANDTRK_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MINSCENARIODEMANDTRK_\d{6}\.ctl` | `PUBLIC_DVD_P5MINSCENARIODEMANDTRK_202106.ctl` | 38 | 2021-07-13 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d1}MINSCENARIODEMAND_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MINSCENARIODEMAND_\d{6}\.ctl` | `PUBLIC_DVD_P5MINSCENARIODEMAND_202106.ctl` | 38 | 2021-07-13 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d1}MIN_CASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MIN_CASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_P5MIN_CASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{6}\.ctl` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION1_201501.ctl` | 459 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d1}MIN_INTERCONNECTORSOLN_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MIN_INTERCONNECTORSOLN_\d{6}\.ctl` | `PUBLIC_DVD_P5MIN_INTERCONNECTORSOLN_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d1}MIN_REGIONSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MIN_REGIONSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_P5MIN_REGIONSOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_P{d1}MIN_UNITSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_P\d{1}MIN_UNITSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_P5MIN_UNITSOLUTION_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_REGIONAPCINTERVALS_{yearmonth}.ctl` | `PUBLIC_DVD_REGIONAPCINTERVALS_\d{6}\.ctl` | `PUBLIC_DVD_REGIONAPCINTERVALS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_REGIONAPC_{yearmonth}.ctl` | `PUBLIC_DVD_REGIONAPC_\d{6}\.ctl` | `PUBLIC_DVD_REGIONAPC_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_REGIONSTANDINGDATA_{yearmonth}.ctl` | `PUBLIC_DVD_REGIONSTANDINGDATA_\d{6}\.ctl` | `PUBLIC_DVD_REGIONSTANDINGDATA_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_REGION_{yearmonth}.ctl` | `PUBLIC_DVD_REGION_\d{6}\.ctl` | `PUBLIC_DVD_REGION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESDEMANDTRK_{yearmonth}.ctl` | `PUBLIC_DVD_RESDEMANDTRK_\d{6}\.ctl` | `PUBLIC_DVD_RESDEMANDTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESERVE_{yearmonth}.ctl` | `PUBLIC_DVD_RESERVE_\d{6}\.ctl` | `PUBLIC_DVD_RESERVE_201501.ctl` | 27 | 2017-01-14 | 2018-06-13 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESIDUE_CONTRACTS_{yearmonth}.ctl` | `PUBLIC_DVD_RESIDUE_CONTRACTS_\d{6}\.ctl` | `PUBLIC_DVD_RESIDUE_CONTRACTS_201503.ctl` | 79 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_{yearmonth}.ctl` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_\d{6}\.ctl` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_201505.ctl` | 39 | 2017-01-15 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_{yearmonth}.ctl` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_\d{6}\.ctl` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_201503.ctl` | 42 | 2017-01-14 | 2024-07-23 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_{yearmonth}.ctl` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_\d{6}\.ctl` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_201503.ctl` | 46 | 2017-01-14 | 2024-07-23 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_RESIDUE_TRK_{yearmonth}.ctl` | `PUBLIC_DVD_RESIDUE_TRK_\d{6}\.ctl` | `PUBLIC_DVD_RESIDUE_TRK_201503.ctl` | 47 | 2017-01-14 | 2024-07-23 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_{yearmonth}.ctl` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_\d{6}\.ctl` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_{yearmonth}.ctl` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_\d{6}\.ctl` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_201910.ctl` | 58 | 2019-11-18 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_{yearmonth}.ctl` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_\d{6}\.ctl` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_{yearmonth}.ctl` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_\d{6}\.ctl` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETCPDATAREGION_{yearmonth}.ctl` | `PUBLIC_DVD_SETCPDATAREGION_\d{6}\.ctl` | `PUBLIC_DVD_SETCPDATAREGION_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_{yearmonth}.ctl` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_\d{6}\.ctl` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETGENDATAREGION_{yearmonth}.ctl` | `PUBLIC_DVD_SETGENDATAREGION_\d{6}\.ctl` | `PUBLIC_DVD_SETGENDATAREGION_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_{yearmonth}.ctl` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_\d{6}\.ctl` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SETIRSURPLUS_{yearmonth}.ctl` | `PUBLIC_DVD_SETIRSURPLUS_\d{6}\.ctl` | `PUBLIC_DVD_SETIRSURPLUS_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_{yearmonth}.ctl` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_\d{6}\.ctl` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_{yearmonth}.ctl` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_\d{6}\.ctl` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_201501.ctl` | 114 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_{yearmonth}.ctl` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_\d{6}\.ctl` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_{yearmonth}.ctl` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_\d{6}\.ctl` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_{yearmonth}.ctl` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_\d{6}\.ctl` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_201501.ctl` | 79 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STADUALLOC_{yearmonth}.ctl` | `PUBLIC_DVD_STADUALLOC_\d{6}\.ctl` | `PUBLIC_DVD_STADUALLOC_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_{yearmonth}.ctl` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_\d{6}\.ctl` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STATIONOWNERTRK_{yearmonth}.ctl` | `PUBLIC_DVD_STATIONOWNERTRK_\d{6}\.ctl` | `PUBLIC_DVD_STATIONOWNERTRK_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STATIONOWNER_{yearmonth}.ctl` | `PUBLIC_DVD_STATIONOWNER_\d{6}\.ctl` | `PUBLIC_DVD_STATIONOWNER_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STATION_{yearmonth}.ctl` | `PUBLIC_DVD_STATION_\d{6}\.ctl` | `PUBLIC_DVD_STATION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STPASA_CASESOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_STPASA_CASESOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_STPASA_CASESOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_{yearmonth}.ctl` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_\d{6}\.ctl` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_{yearmonth}.ctl` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_\d{6}\.ctl` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_TRADINGINTERCONNECT_{yearmonth}.ctl` | `PUBLIC_DVD_TRADINGINTERCONNECT_\d{6}\.ctl` | `PUBLIC_DVD_TRADINGINTERCONNECT_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_TRADINGLOAD_{yearmonth}.ctl` | `PUBLIC_DVD_TRADINGLOAD_\d{6}\.ctl` | `PUBLIC_DVD_TRADINGLOAD_201501.ctl` | 81 | 2017-01-14 | 2021-10-11 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_TRADINGPRICE_{yearmonth}.ctl` | `PUBLIC_DVD_TRADINGPRICE_\d{6}\.ctl` | `PUBLIC_DVD_TRADINGPRICE_201501.ctl` | 115 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_TRADINGREGIONSUM_{yearmonth}.ctl` | `PUBLIC_DVD_TRADINGREGIONSUM_\d{6}\.ctl` | `PUBLIC_DVD_TRADINGREGIONSUM_201501.ctl` | 81 | 2017-01-14 | 2021-10-11 |
+| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE{d2}#{yearmonth}.ctl` | `PUBLIC_ARCHIVE\#TRANSMISSIONLOSSFACTOR\#FILE\d{2}\#\d{6}\.ctl` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE01#202408.ctl` | 20 | 2024-09-12 | 2026-04-08 |
 | `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `PUBLIC_DVD_TRANSMISSIONLOSSFACTOR_{yearmonth}.ctl` | `PUBLIC_DVD_TRANSMISSIONLOSSFACTOR_\d{6}\.ctl` | `PUBLIC_DVD_TRANSMISSIONLOSSFACTOR_201501.ctl` | 110 | 2017-01-14 | 2024-08-15 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_{timestamp}.zip` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_\d{12}\.zip` | `PUBLIC_DVD_ANCILLARY_RECOVERY_SPLIT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_APEVENTREGION_{timestamp}.zip` | `PUBLIC_DVD_APEVENTREGION_\d{12}\.zip` | `PUBLIC_DVD_APEVENTREGION_201510010000.zip` | 13 | 2017-01-15 | 2024-06-12 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_APEVENT_{timestamp}.zip` | `PUBLIC_DVD_APEVENT_\d{12}\.zip` | `PUBLIC_DVD_APEVENT_201510010000.zip` | 13 | 2017-01-15 | 2024-06-12 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_AUCTION_CALENDAR_{timestamp}.zip` | `PUBLIC_DVD_AUCTION_CALENDAR_\d{12}\.zip` | `PUBLIC_DVD_AUCTION_CALENDAR_201501010000.zip` | 53 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_{timestamp}.zip` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_\d{12}\.zip` | `PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_201501010000.zip` | 78 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_AUCTION_TRANCHE_{timestamp}.zip` | `PUBLIC_DVD_AUCTION_TRANCHE_\d{12}\.zip` | `PUBLIC_DVD_AUCTION_TRANCHE_201501010000.zip` | 41 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_AUCTION_{timestamp}.zip` | `PUBLIC_DVD_AUCTION_\d{12}\.zip` | `PUBLIC_DVD_AUCTION_201503010000.zip` | 79 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDDAYOFFER_D_{timestamp}.zip` | `PUBLIC_DVD_BIDDAYOFFER_D_\d{12}\.zip` | `PUBLIC_DVD_BIDDAYOFFER_D_201501010000.zip` | 74 | 2017-01-14 | 2021-03-22 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDDAYOFFER_{timestamp}.zip` | `PUBLIC_DVD_BIDDAYOFFER_\d{12}\.zip` | `PUBLIC_DVD_BIDDAYOFFER_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_{timestamp}.zip` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_\d{12}\.zip` | `PUBLIC_DVD_BIDDUIDDETAILSTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDDUIDDETAILS_{timestamp}.zip` | `PUBLIC_DVD_BIDDUIDDETAILS_\d{12}\.zip` | `PUBLIC_DVD_BIDDUIDDETAILS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDPEROFFER{d1}_{timestamp}.zip` | `PUBLIC_DVD_BIDPEROFFER\d{1}_\d{12}\.zip` | `PUBLIC_DVD_BIDPEROFFER1_202206010000.zip` | 52 | 2022-07-21 | 2024-08-16 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDPEROFFER_D_{timestamp}.zip` | `PUBLIC_DVD_BIDPEROFFER_D_\d{12}\.zip` | `PUBLIC_DVD_BIDPEROFFER_D_201501010000.zip` | 74 | 2017-01-14 | 2021-03-22 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDPEROFFER_{timestamp}.zip` | `PUBLIC_DVD_BIDPEROFFER_\d{12}\.zip` | `PUBLIC_DVD_BIDPEROFFER_201501010000.zip` | 88 | 2017-01-14 | 2022-06-09 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDTYPESTRK_{timestamp}.zip` | `PUBLIC_DVD_BIDTYPESTRK_\d{12}\.zip` | `PUBLIC_DVD_BIDTYPESTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BIDTYPES_{timestamp}.zip` | `PUBLIC_DVD_BIDTYPES_\d{12}\.zip` | `PUBLIC_DVD_BIDTYPES_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLINGCALENDAR_{timestamp}.zip` | `PUBLIC_DVD_BILLINGCALENDAR_\d{12}\.zip` | `PUBLIC_DVD_BILLINGCALENDAR_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLINGDAYTRK_{timestamp}.zip` | `PUBLIC_DVD_BILLINGDAYTRK_\d{12}\.zip` | `PUBLIC_DVD_BILLINGDAYTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_{timestamp}.zip` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_\d{12}\.zip` | `PUBLIC_DVD_BILLINGREGIONEXPORTS_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLINGREGIONFIGURES_{timestamp}.zip` | `PUBLIC_DVD_BILLINGREGIONFIGURES_\d{12}\.zip` | `PUBLIC_DVD_BILLINGREGIONFIGURES_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_{timestamp}.zip` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_\d{12}\.zip` | `PUBLIC_DVD_BILLINGREGIONIMPORTS_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLINGRUNTRK_{timestamp}.zip` | `PUBLIC_DVD_BILLINGRUNTRK_\d{12}\.zip` | `PUBLIC_DVD_BILLINGRUNTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLING_CO{d1}E_PUBLICATION_TRK_{timestamp}.zip` | `PUBLIC_DVD_BILLING_CO\d{1}E_PUBLICATION_TRK_\d{12}\.zip` | `PUBLIC_DVD_BILLING_CO2E_PUBLICATION_TRK_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLING_CO{d1}E_PUBLICATION_{timestamp}.zip` | `PUBLIC_DVD_BILLING_CO\d{1}E_PUBLICATION_\d{12}\.zip` | `PUBLIC_DVD_BILLING_CO2E_PUBLICATION_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_BILLSMELTERRATE_{timestamp}.zip` | `PUBLIC_DVD_BILLSMELTERRATE_\d{12}\.zip` | `PUBLIC_DVD_BILLSMELTERRATE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DAYTRACK_{timestamp}.zip` | `PUBLIC_DVD_DAYTRACK_\d{12}\.zip` | `PUBLIC_DVD_DAYTRACK_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHABLEUNIT_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHABLEUNIT_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHABLEUNIT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHCASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHCASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHCASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHCONSTRAINT_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHCONSTRAINT_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHCONSTRAINT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHINTERCONNECTORRES_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHLOAD_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHLOAD_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHLOAD_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHOFFERTRK_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHOFFERTRK_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHOFFERTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHPRICE_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHPRICE_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHPRICE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCHREGIONSUM_{timestamp}.zip` | `PUBLIC_DVD_DISPATCHREGIONSUM_\d{12}\.zip` | `PUBLIC_DVD_DISPATCHREGIONSUM_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_{timestamp}.zip` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_\d{12}\.zip` | `PUBLIC_DVD_DISPATCH_FCAS_REQ_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_{timestamp}.zip` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_\d{12}\.zip` | `PUBLIC_DVD_DISPATCH_MNSPBIDTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_{timestamp}.zip` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_\d{12}\.zip` | `PUBLIC_DVD_DISPATCH_PRICE_REVISION_201502010000.zip` | 25 | 2017-01-15 | 2024-03-09 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_{timestamp}.zip` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_\d{12}\.zip` | `PUBLIC_DVD_DISPATCH_UNIT_SCADA_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DUALLOC_{timestamp}.zip` | `PUBLIC_DVD_DUALLOC_\d{12}\.zip` | `PUBLIC_DVD_DUALLOC_202010010000.zip` | 46 | 2020-11-12 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DUDETAILSUMMARY_{timestamp}.zip` | `PUBLIC_DVD_DUDETAILSUMMARY_\d{12}\.zip` | `PUBLIC_DVD_DUDETAILSUMMARY_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_DUDETAIL_{timestamp}.zip` | `PUBLIC_DVD_DUDETAIL_\d{12}\.zip` | `PUBLIC_DVD_DUDETAIL_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_EMSMASTER_{timestamp}.zip` | `PUBLIC_DVD_EMSMASTER_\d{12}\.zip` | `PUBLIC_DVD_EMSMASTER_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GDINSTRUCT_{timestamp}.zip` | `PUBLIC_DVD_GDINSTRUCT_\d{12}\.zip` | `PUBLIC_DVD_GDINSTRUCT_201501010000.zip` | 24 | 2017-01-14 | 2018-07-09 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENCONDATA_{timestamp}.zip` | `PUBLIC_DVD_GENCONDATA_\d{12}\.zip` | `PUBLIC_DVD_GENCONDATA_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENCONSETINVOKE_{timestamp}.zip` | `PUBLIC_DVD_GENCONSETINVOKE_\d{12}\.zip` | `PUBLIC_DVD_GENCONSETINVOKE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENCONSETTRK_{timestamp}.zip` | `PUBLIC_DVD_GENCONSETTRK_\d{12}\.zip` | `PUBLIC_DVD_GENCONSETTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENCONSET_{timestamp}.zip` | `PUBLIC_DVD_GENCONSET_\d{12}\.zip` | `PUBLIC_DVD_GENCONSET_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_{timestamp}.zip` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_\d{12}\.zip` | `PUBLIC_DVD_GENERICCONSTRAINTRHS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENERICEQUATIONDESC_{timestamp}.zip` | `PUBLIC_DVD_GENERICEQUATIONDESC_\d{12}\.zip` | `PUBLIC_DVD_GENERICEQUATIONDESC_201501010000.zip` | 105 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENERICEQUATIONRHS_{timestamp}.zip` | `PUBLIC_DVD_GENERICEQUATIONRHS_\d{12}\.zip` | `PUBLIC_DVD_GENERICEQUATIONRHS_201501010000.zip` | 109 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GENUNITS_{timestamp}.zip` | `PUBLIC_DVD_GENUNITS_\d{12}\.zip` | `PUBLIC_DVD_GENUNITS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GST_BAS_CLASS_{timestamp}.zip` | `PUBLIC_DVD_GST_BAS_CLASS_\d{12}\.zip` | `PUBLIC_DVD_GST_BAS_CLASS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GST_RATE_{timestamp}.zip` | `PUBLIC_DVD_GST_RATE_\d{12}\.zip` | `PUBLIC_DVD_GST_RATE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_{timestamp}.zip` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_\d{12}\.zip` | `PUBLIC_DVD_GST_TRANSACTION_CLASS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_{timestamp}.zip` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_\d{12}\.zip` | `PUBLIC_DVD_GST_TRANSACTION_TYPE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_{timestamp}.zip` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_\d{12}\.zip` | `PUBLIC_DVD_INSTRUCTIONSUBTYPE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_INSTRUCTIONTYPE_{timestamp}.zip` | `PUBLIC_DVD_INSTRUCTIONTYPE_\d{12}\.zip` | `PUBLIC_DVD_INSTRUCTIONTYPE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_{timestamp}.zip` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_\d{12}\.zip` | `PUBLIC_DVD_INTERCONNECTORCONSTRAINT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_INTERCONNECTOR_{timestamp}.zip` | `PUBLIC_DVD_INTERCONNECTOR_\d{12}\.zip` | `PUBLIC_DVD_INTERCONNECTOR_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_INTERCONNMWFLOW_{timestamp}.zip` | `PUBLIC_DVD_INTERCONNMWFLOW_\d{12}\.zip` | `PUBLIC_DVD_INTERCONNMWFLOW_201501010000.zip` | 77 | 2017-01-14 | 2021-07-03 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_IRFMAMOUNT_{timestamp}.zip` | `PUBLIC_DVD_IRFMAMOUNT_\d{12}\.zip` | `PUBLIC_DVD_IRFMAMOUNT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_IRFMEVENTS_{timestamp}.zip` | `PUBLIC_DVD_IRFMEVENTS_\d{12}\.zip` | `PUBLIC_DVD_IRFMEVENTS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_LOSSFACTORMODEL_{timestamp}.zip` | `PUBLIC_DVD_LOSSFACTORMODEL_\d{12}\.zip` | `PUBLIC_DVD_LOSSFACTORMODEL_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_LOSSMODEL_{timestamp}.zip` | `PUBLIC_DVD_LOSSMODEL_\d{12}\.zip` | `PUBLIC_DVD_LOSSMODEL_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETFEEDATA_{timestamp}.zip` | `PUBLIC_DVD_MARKETFEEDATA_\d{12}\.zip` | `PUBLIC_DVD_MARKETFEEDATA_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETFEETRK_{timestamp}.zip` | `PUBLIC_DVD_MARKETFEETRK_\d{12}\.zip` | `PUBLIC_DVD_MARKETFEETRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETFEE_{timestamp}.zip` | `PUBLIC_DVD_MARKETFEE_\d{12}\.zip` | `PUBLIC_DVD_MARKETFEE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETNOTICEDATA_{timestamp}.zip` | `PUBLIC_DVD_MARKETNOTICEDATA_\d{12}\.zip` | `PUBLIC_DVD_MARKETNOTICEDATA_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETNOTICETYPE_{timestamp}.zip` | `PUBLIC_DVD_MARKETNOTICETYPE_\d{12}\.zip` | `PUBLIC_DVD_MARKETNOTICETYPE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETSUSPENSION_{timestamp}.zip` | `PUBLIC_DVD_MARKETSUSPENSION_\d{12}\.zip` | `PUBLIC_DVD_MARKETSUSPENSION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKETSUSREGION_{timestamp}.zip` | `PUBLIC_DVD_MARKETSUSREGION_\d{12}\.zip` | `PUBLIC_DVD_MARKETSUSREGION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_{timestamp}.zip` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_\d{12}\.zip` | `PUBLIC_DVD_MARKET_PRICE_THRESHOLDS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MCC_CASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MCC_CASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MCC_CASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MCC_CONSTRAINTSOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MNSP_DAYOFFER_{timestamp}.zip` | `PUBLIC_DVD_MNSP_DAYOFFER_\d{12}\.zip` | `PUBLIC_DVD_MNSP_DAYOFFER_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_{timestamp}.zip` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_\d{12}\.zip` | `PUBLIC_DVD_MNSP_INTERCONNECTOR_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MNSP_OFFERTRK_{timestamp}.zip` | `PUBLIC_DVD_MNSP_OFFERTRK_\d{12}\.zip` | `PUBLIC_DVD_MNSP_OFFERTRK_201501010000.zip` | 73 | 2017-01-14 | 2021-03-22 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MNSP_PARTICIPANT_{timestamp}.zip` | `PUBLIC_DVD_MNSP_PARTICIPANT_\d{12}\.zip` | `PUBLIC_DVD_MNSP_PARTICIPANT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MNSP_PEROFFER_{timestamp}.zip` | `PUBLIC_DVD_MNSP_PEROFFER_\d{12}\.zip` | `PUBLIC_DVD_MNSP_PEROFFER_201501010000.zip` | 114 | 2017-01-14 | 2024-08-16 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_CASERESULT_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_CASERESULT_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_CASERESULT_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_CASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_CASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_CASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_CONSTRAINTRESULT_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_CONSTRAINTSOLUTION_201501010000.zip` | 41 | 2017-01-14 | 2018-06-13 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_CONSTRAINTSUMMARY_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_INTERCONNECTORRESULT_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_INTERCONNECTORSOLUTION_201501010000.zip` | 41 | 2017-01-14 | 2018-06-13 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_LOLPRESULT_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_LOLPRESULT_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_LOLPRESULT_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_REGIONITERATION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_REGIONITERATION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_REGIONITERATION_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_REGIONRESULT_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_REGIONRESULT_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_REGIONRESULT_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_REGIONSOLUTION_201501010000.zip` | 41 | 2017-01-14 | 2018-06-13 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_REGIONSUMMARY_201805010000.zip` | 75 | 2019-10-18 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMITSOLUTION_201501010000.zip` | 41 | 2017-01-14 | 2018-06-13 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_REGION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_SET_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_{timestamp}.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_\d{12}\.zip` | `PUBLIC_DVD_MTPASA_RESERVELIMIT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_OVERRIDERRP_{timestamp}.zip` | `PUBLIC_DVD_OVERRIDERRP_\d{12}\.zip` | `PUBLIC_DVD_OVERRIDERRP_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_{timestamp}.zip` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_\d{12}\.zip` | `PUBLIC_DVD_PARTICIPANTCATEGORYALLOC_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PARTICIPANTCATEGORY_{timestamp}.zip` | `PUBLIC_DVD_PARTICIPANTCATEGORY_\d{12}\.zip` | `PUBLIC_DVD_PARTICIPANTCATEGORY_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PARTICIPANTCLASS_{timestamp}.zip` | `PUBLIC_DVD_PARTICIPANTCLASS_\d{12}\.zip` | `PUBLIC_DVD_PARTICIPANTCLASS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PARTICIPANT_{timestamp}.zip` | `PUBLIC_DVD_PARTICIPANT_\d{12}\.zip` | `PUBLIC_DVD_PARTICIPANT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PDPASA_CASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_PDPASA_CASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_PDPASA_CASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_PDPASA_CONSTRAINTSOLUTION_202102010000.zip` | 42 | 2021-03-22 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_{timestamp}.zip` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_\d{12}\.zip` | `PUBLIC_DVD_PDPASA_INTERCONNECTORSOLN_202102010000.zip` | 42 | 2021-03-22 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_PDPASA_REGIONSOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PERDEMAND_{timestamp}.zip` | `PUBLIC_DVD_PERDEMAND_\d{12}\.zip` | `PUBLIC_DVD_PERDEMAND_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHCASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT{d1}_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT\d{1}_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT2_201803010000.zip` | 1 | 2018-04-26 | 2018-04-26 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTR_SENS_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHLOAD_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHLOAD_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHLOAD_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHOFFERTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHPRICESENSITIVITIE_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHPRICE_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHPRICE_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHPRICE_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_D_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMANDTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHSCENARIODEMAND_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCH_FCAS_REQ_D_202204010000.zip` | 28 | 2022-11-03 | 2024-08-16 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCH_MNSPBIDTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_PRUDENTIALRUNTRK_{timestamp}.zip` | `PUBLIC_DVD_PRUDENTIALRUNTRK_\d{12}\.zip` | `PUBLIC_DVD_PRUDENTIALRUNTRK_201501010000.zip` | 77 | 2017-01-14 | 2021-07-03 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d1}MINSCENARIODEMANDTRK_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MINSCENARIODEMANDTRK_\d{12}\.zip` | `PUBLIC_DVD_P5MINSCENARIODEMANDTRK_202106010000.zip` | 38 | 2021-07-13 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d1}MINSCENARIODEMAND_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MINSCENARIODEMAND_\d{12}\.zip` | `PUBLIC_DVD_P5MINSCENARIODEMAND_202106010000.zip` | 38 | 2021-07-13 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d1}MIN_CASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_CASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_CASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION1_201501010000.zip` | 460 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d1}MIN_INTERCONNECTORSOLN_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_INTERCONNECTORSOLN_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_INTERCONNECTORSOLN_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d1}MIN_REGIONSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_REGIONSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_REGIONSOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_P{d1}MIN_UNITSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_UNITSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_UNITSOLUTION_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_REGIONAPCINTERVALS_{timestamp}.zip` | `PUBLIC_DVD_REGIONAPCINTERVALS_\d{12}\.zip` | `PUBLIC_DVD_REGIONAPCINTERVALS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_REGIONAPC_{timestamp}.zip` | `PUBLIC_DVD_REGIONAPC_\d{12}\.zip` | `PUBLIC_DVD_REGIONAPC_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_REGIONSTANDINGDATA_{timestamp}.zip` | `PUBLIC_DVD_REGIONSTANDINGDATA_\d{12}\.zip` | `PUBLIC_DVD_REGIONSTANDINGDATA_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_REGION_{timestamp}.zip` | `PUBLIC_DVD_REGION_\d{12}\.zip` | `PUBLIC_DVD_REGION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESDEMANDTRK_{timestamp}.zip` | `PUBLIC_DVD_RESDEMANDTRK_\d{12}\.zip` | `PUBLIC_DVD_RESDEMANDTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESERVE_{timestamp}.zip` | `PUBLIC_DVD_RESERVE_\d{12}\.zip` | `PUBLIC_DVD_RESERVE_201501010000.zip` | 27 | 2017-01-14 | 2018-06-13 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESIDUE_CONTRACTS_{timestamp}.zip` | `PUBLIC_DVD_RESIDUE_CONTRACTS_\d{12}\.zip` | `PUBLIC_DVD_RESIDUE_CONTRACTS_201503010000.zip` | 79 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_{timestamp}.zip` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_\d{12}\.zip` | `PUBLIC_DVD_RESIDUE_CON_FUNDS_201505010000.zip` | 39 | 2017-01-15 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_{timestamp}.zip` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_\d{12}\.zip` | `PUBLIC_DVD_RESIDUE_PRICE_FUNDS_BID_201503010000.zip` | 42 | 2017-01-14 | 2024-07-23 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_{timestamp}.zip` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_\d{12}\.zip` | `PUBLIC_DVD_RESIDUE_PUBLIC_DATA_201503010000.zip` | 46 | 2017-01-14 | 2024-07-23 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_RESIDUE_TRK_{timestamp}.zip` | `PUBLIC_DVD_RESIDUE_TRK_\d{12}\.zip` | `PUBLIC_DVD_RESIDUE_TRK_201503010000.zip` | 47 | 2017-01-14 | 2024-07-23 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_{timestamp}.zip` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_\d{12}\.zip` | `PUBLIC_DVD_ROOFTOP_PV_ACTUAL_201608010000.zip` | 96 | 2019-10-18 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_{timestamp}.zip` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_\d{12}\.zip` | `PUBLIC_DVD_ROOFTOP_PV_FORECAST_201608010000.zip` | 96 | 2019-10-18 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_{timestamp}.zip` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_\d{12}\.zip` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPFTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_{timestamp}.zip` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_\d{12}\.zip` | `PUBLIC_DVD_SETCFG_PARTICIPANT_MPF_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETCPDATAREGION_{timestamp}.zip` | `PUBLIC_DVD_SETCPDATAREGION_\d{12}\.zip` | `PUBLIC_DVD_SETCPDATAREGION_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_{timestamp}.zip` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_\d{12}\.zip` | `PUBLIC_DVD_SETFCASREGIONRECOVERY_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETGENDATAREGION_{timestamp}.zip` | `PUBLIC_DVD_SETGENDATAREGION_\d{12}\.zip` | `PUBLIC_DVD_SETGENDATAREGION_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_{timestamp}.zip` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_\d{12}\.zip` | `PUBLIC_DVD_SETINTRAREGIONRESIDUES_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SETIRSURPLUS_{timestamp}.zip` | `PUBLIC_DVD_SETIRSURPLUS_\d{12}\.zip` | `PUBLIC_DVD_SETIRSURPLUS_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_{timestamp}.zip` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_\d{12}\.zip` | `PUBLIC_DVD_SET_ANCILLARY_SUMMARY_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_{timestamp}.zip` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_\d{12}\.zip` | `PUBLIC_DVD_SET_FCAS_REGULATION_TRK_201501010000.zip` | 114 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_{timestamp}.zip` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_\d{12}\.zip` | `PUBLIC_DVD_SPDCONNECTIONPOINTCONSTRAINT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_{timestamp}.zip` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_\d{12}\.zip` | `PUBLIC_DVD_SPDINTERCONNECTORCONSTRAINT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_{timestamp}.zip` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_\d{12}\.zip` | `PUBLIC_DVD_SPDREGIONCONSTRAINT_201501010000.zip` | 79 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STADUALLOC_{timestamp}.zip` | `PUBLIC_DVD_STADUALLOC_\d{12}\.zip` | `PUBLIC_DVD_STADUALLOC_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_{timestamp}.zip` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_\d{12}\.zip` | `PUBLIC_DVD_STATIONOPERATINGSTATUS_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STATIONOWNERTRK_{timestamp}.zip` | `PUBLIC_DVD_STATIONOWNERTRK_\d{12}\.zip` | `PUBLIC_DVD_STATIONOWNERTRK_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STATIONOWNER_{timestamp}.zip` | `PUBLIC_DVD_STATIONOWNER_\d{12}\.zip` | `PUBLIC_DVD_STATIONOWNER_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STATION_{timestamp}.zip` | `PUBLIC_DVD_STATION_\d{12}\.zip` | `PUBLIC_DVD_STATION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STPASA_CASESOLUTION_{timestamp}.zip` | `PUBLIC_DVD_STPASA_CASESOLUTION_\d{12}\.zip` | `PUBLIC_DVD_STPASA_CASESOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_STPASA_CONSTRAINTSOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_{timestamp}.zip` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_\d{12}\.zip` | `PUBLIC_DVD_STPASA_INTERCONNECTORSOLN_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_{timestamp}.zip` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_\d{12}\.zip` | `PUBLIC_DVD_STPASA_REGIONSOLUTION_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_TRADINGINTERCONNECT_{timestamp}.zip` | `PUBLIC_DVD_TRADINGINTERCONNECT_\d{12}\.zip` | `PUBLIC_DVD_TRADINGINTERCONNECT_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_TRADINGLOAD_{timestamp}.zip` | `PUBLIC_DVD_TRADINGLOAD_\d{12}\.zip` | `PUBLIC_DVD_TRADINGLOAD_201501010000.zip` | 81 | 2017-01-14 | 2021-10-11 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_TRADINGPRICE_{timestamp}.zip` | `PUBLIC_DVD_TRADINGPRICE_\d{12}\.zip` | `PUBLIC_DVD_TRADINGPRICE_201501010000.zip` | 115 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_TRADINGREGIONSUM_{timestamp}.zip` | `PUBLIC_DVD_TRADINGREGIONSUM_\d{12}\.zip` | `PUBLIC_DVD_TRADINGREGIONSUM_201501010000.zip` | 81 | 2017-01-14 | 2021-10-11 |
+| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#TRANSMISSIONLOSSFACTOR\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_DVD_TRANSMISSIONLOSSFACTOR_{timestamp}.zip` | `PUBLIC_DVD_TRANSMISSIONLOSSFACTOR_\d{12}\.zip` | `PUBLIC_DVD_TRANSMISSIONLOSSFACTOR_201501010000.zip` | 110 | 2017-01-14 | 2024-08-15 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_MARKETNOTICEDATA_{yearmonth}.DMP` | `PUBLIC_MARKETNOTICEDATA_\d{6}\.DMP` | `PUBLIC_MARKETNOTICEDATA_201501.DMP` | 115 | 2017-01-14 | 2024-08-16 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_RUN_SQLLDR_{yearmonth}.bat` | `PUBLIC_RUN_SQLLDR_\d{6}\.bat` | `PUBLIC_RUN_SQLLDR_201501.bat` | 135 | 2017-01-14 | 2026-04-08 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
-| `INDEX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/INDEX/` | `PUBLIC_MONTHLY_DVD_INDEX_{yearmonth}.TXT` | `PUBLIC_MONTHLY_DVD_INDEX_\d{6}\.TXT` | `PUBLIC_MONTHLY_DVD_INDEX_201501.TXT` | 115 | 2017-01-14 | 2024-08-16 |
-| `INDEX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/INDEX/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
-| `LOGS` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/LOGS/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
-| `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_DVD_P{d11}MIN_CONSTRAINTSOLUTION{d12}_ALL_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_CONSTRAINTSOLUTION\d{1}_ALL_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_CONSTRAINTSOLUTION1_ALL_201903010000.zip` | 260 | 2019-05-15 | 2024-08-16 |
-| `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_DVD_P{d1}MIN_INTERCONNECTORSOLN_ALL_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_INTERCONNECTORSOLN_ALL_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_INTERCONNECTORSOLN_ALL_201903010000.zip` | 65 | 2019-05-15 | 2024-08-16 |
-| `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_DVD_P{d1}MIN_REGIONSOLUTION_ALL_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_REGIONSOLUTION_ALL_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_REGIONSOLUTION_ALL_201903010000.zip` | 65 | 2019-05-15 | 2024-08-16 |
-| `P5MIN_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/P{d1}MIN_ALL_DATA/` | `PUBLIC_DVD_P{d1}MIN_UNITSOLUTION_ALL_{timestamp}.zip` | `PUBLIC_DVD_P\d{1}MIN_UNITSOLUTION_ALL_\d{12}\.zip` | `PUBLIC_DVD_P5MIN_UNITSOLUTION_ALL_201903010000.zip` | 65 | 2019-05-15 | 2024-08-16 |
-| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT{d1}_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT\d{1}_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHCONSTRAINT1_201501010000.zip` | 228 | 2017-01-14 | 2024-08-16 |
-| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHINTERCONNECTORRES_201501010000.zip` | 114 | 2017-01-14 | 2024-08-16 |
-| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_DVD_PREDISPATCHLOAD{d1}_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHLOAD\d{1}_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHLOAD1_201501010000.zip` | 228 | 2017-01-14 | 2024-08-16 |
-| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_DVD_PREDISPATCHPRICE_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHPRICE_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHPRICE_201501010000.zip` | 114 | 2017-01-14 | 2024-08-16 |
-| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_{timestamp}.zip` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_\d{12}\.zip` | `PUBLIC_DVD_PREDISPATCHREGIONSUM_201501010000.zip` | 114 | 2017-01-14 | 2024-08-16 |
-| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
-| `Readme.htm` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 38 | 2017-02-07 | 2019-03-14 |
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `BCPTransform.log` | `BCPTransform\.log` | `BCPTransform.log` | 41 | 2022-12-11 | 2025-10-17 |
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `CRLF.TXT` | `CRLF\.TXT` | `CRLF.TXT` | 134 | 2019-09-05 | 2025-10-17 |
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `Crlf.exe` | `Crlf\.exe` | `Crlf.exe` | 134 | 2019-09-05 | 2025-10-17 |
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `ICSharpCode.SharpZipLib.dll` | `ICSharpCode\.SharpZipLib\.dll` | `ICSharpCode.SharpZipLib.dll` | 93 | 2019-09-17 | 2022-10-09 |
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `PUBLIC_CONVERT_BCP.bat` | `PUBLIC_CONVERT_BCP\.bat` | `PUBLIC_CONVERT_BCP.bat` | 134 | 2019-09-05 | 2025-10-17 |
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `PUBLIC_RUN_BCP_{yearmonth}.bat` | `PUBLIC_RUN_BCP_\d{6}\.bat` | `PUBLIC_RUN_BCP_201501.bat` | 134 | 2019-09-05 | 2026-04-08 |
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `PUBLIC_RUN_MYSQL_{yearmonth}.bat` | `PUBLIC_RUN_MYSQL_\d{6}\.bat` | `PUBLIC_RUN_MYSQL_202408.bat` | 20 | 2024-09-13 | 2026-04-08 |
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.dll` | `bcpt\.dll` | `bcpt.dll` | 41 | 2022-12-11 | 2025-10-17 |
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.exe` | `bcpt\.exe` | `bcpt.exe` | 134 | 2019-09-17 | 2025-10-17 |
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.ini` | `bcpt\.ini` | `bcpt.ini` | 134 | 2019-09-17 | 2025-10-17 |
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.runtimeconfig.json` | `bcpt\.runtimeconfig\.json` | `bcpt.runtimeconfig.json` | 41 | 2022-12-11 | 2025-10-17 |
-| `background1.gif` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `background{d1}.gif` | `background\d{1}\.gif` | `background1.gif` | 13 | 2018-03-19 | 2019-03-14 |
-| `disclaimer.htm` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `disclaimer.htm` | `disclaimer\.htm` | `disclaimer.htm` | 38 | 2017-02-07 | 2019-03-14 |
-| `file.gif` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `file.gif` | `file\.gif` | `file.gif` | 50 | 1999-05-23 | 2019-03-14 |
-| `nemlogo1.gif` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `nemlogo{d1}.gif` | `nemlogo\d{1}\.gif` | `nemlogo1.gif` | 50 | 2009-08-17 | 2019-03-14 |
-| `nemlogo2.gif` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `nemlogo{d1}.gif` | `nemlogo\d{1}\.gif` | `nemlogo2.gif` | 50 | 2009-08-17 | 2019-03-14 |
+| `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#TRANSMISSIONLOSSFACTOR\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#TRANSMISSIONLOSSFACTOR#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `VOLTAGE_INSTRUCTION`
 
@@ -4839,7 +5226,108 @@ _4 pattern rows, 79 files (snapshot), observed 2024-09-12 → 2026-04-08 (snapsh
 | `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_ARCHIVE#VOLTAGE_INSTRUCTION_TRK#FILE{d2}#{timestamp}.zip` | `PUBLIC_ARCHIVE\#VOLTAGE_INSTRUCTION_TRK\#FILE\d{2}\#\d{12}\.zip` | `PUBLIC_ARCHIVE#VOLTAGE_INSTRUCTION_TRK#FILE01#202408010000.zip` | 20 | 2024-09-12 | 2026-04-07 |
 | `MYSQL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/MYSQL/` | `PUBLIC_ARCHIVE#VOLTAGE_INSTRUCTION_TRK#FILE{d2}#{yearmonth}.sql` | `PUBLIC_ARCHIVE\#VOLTAGE_INSTRUCTION_TRK\#FILE\d{2}\#\d{6}\.sql` | `PUBLIC_ARCHIVE#VOLTAGE_INSTRUCTION_TRK#FILE01#202408.sql` | 19 | 2024-09-13 | 2026-04-08 |
 
-## Repo: `NEMDE`  (7 datasets, 36 rows)
+### `MMSDM` · `background_gif`
+
+_2 pattern rows, 26 files (snapshot), observed 2018-03-19 → 2019-03-14 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MONTH_ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `background{d1}.gif` | `background\d{1}\.gif` | `background1.gif` | 13 | 2018-03-19 | 2019-03-14 |
+| `SQLLOADER_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `background{d1}.gif` | `background\d{1}\.gif` | `background1.gif` | 13 | 2018-03-19 | 2019-03-14 |
+
+### `MMSDM` · `bcpt_dll`
+
+_1 pattern row, 41 files (snapshot), observed 2022-12-11 → 2025-10-17 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.dll` | `bcpt\.dll` | `bcpt.dll` | 41 | 2022-12-11 | 2025-10-17 |
+
+### `MMSDM` · `bcpt_exe`
+
+_1 pattern row, 134 files (snapshot), observed 2019-09-17 → 2025-10-17 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.exe` | `bcpt\.exe` | `bcpt.exe` | 134 | 2019-09-17 | 2025-10-17 |
+
+### `MMSDM` · `bcpt_ini`
+
+_1 pattern row, 134 files (snapshot), observed 2019-09-17 → 2025-10-17 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.ini` | `bcpt\.ini` | `bcpt.ini` | 134 | 2019-09-17 | 2025-10-17 |
+
+### `MMSDM` · `bcpt_runtimeconfig_json`
+
+_1 pattern row, 41 files (snapshot), observed 2022-12-11 → 2025-10-17 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.runtimeconfig.json` | `bcpt\.runtimeconfig\.json` | `bcpt.runtimeconfig.json` | 41 | 2022-12-11 | 2025-10-17 |
+
+### `MMSDM` · `disclaimer_htm`
+
+_2 pattern rows, 76 files (snapshot), observed 2017-02-07 → 2019-03-14 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MONTH_ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `disclaimer.htm` | `disclaimer\.htm` | `disclaimer.htm` | 38 | 2017-02-07 | 2019-03-14 |
+| `SQLLOADER_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `disclaimer.htm` | `disclaimer\.htm` | `disclaimer.htm` | 38 | 2017-02-07 | 2019-03-14 |
+
+### `MMSDM` · `file_gif`
+
+_2 pattern rows, 100 files (snapshot), observed 1999-05-23 → 2019-03-14 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MONTH_ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `file.gif` | `file\.gif` | `file.gif` | 50 | 1999-05-23 | 2019-03-14 |
+| `SQLLOADER_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `file.gif` | `file\.gif` | `file.gif` | 50 | 1999-05-23 | 2019-03-14 |
+
+### `MMSDM` · `monthlydvd_tables_bat`
+
+_1 pattern row, 115 files (snapshot), observed 2011-07-08 → 2024-08-15 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `DOCUMENTATION_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/` | `monthlydvd_tables.bat` | `monthlydvd_tables\.bat` | `monthlydvd_tables.bat` | 115 | 2011-07-08 | 2024-08-15 |
+
+### `MMSDM` · `nemlogo_gif`
+
+_2 pattern rows, 200 files (snapshot), observed 2009-08-17 → 2019-03-14 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MONTH_ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `nemlogo{d1}.gif` | `nemlogo\d{1}\.gif` | `nemlogo1.gif` | 100 | 2009-08-17 | 2019-03-14 |
+| `SQLLOADER_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `nemlogo{d1}.gif` | `nemlogo\d{1}\.gif` | `nemlogo1.gif` | 100 | 2009-08-17 | 2019-03-14 |
+
+### `MMSDM` · `shelexec_exe`
+
+_1 pattern row, 27 files (snapshot), observed 1996-10-08 → 2019-03-14 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MONTH_ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `shelexec.exe` | `shelexec\.exe` | `shelexec.exe` | 27 | 1996-10-08 | 2019-03-14 |
+
+## Repo: `NEMDE`  (17 datasets, 36 rows)
+
+### `NEMDE` · `AUTORUN_INF`
+
+_1 pattern row, 201 files (snapshot), observed 2017-01-12 → 2026-04-13 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `AUTORUN.INF` | `AUTORUN\.INF` | `AUTORUN.INF` | 201 | 2017-01-12 | 2026-04-13 |
+
+### `NEMDE` · `Back_gif`
+
+_2 pattern rows, 317 files (snapshot), observed 1999-05-23 → 2024-09-13 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MARKET_DATA_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `Back.gif` | `Back\.gif` | `Back.gif` | 201 | 1999-05-23 | 2024-09-13 |
+| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `Back.gif` | `Back\.gif` | `Back.gif` | 116 | 1999-05-23 | 2019-03-14 |
 
 ### `NEMDE` · `NEMDE 1-18 File Readers`
 
@@ -4848,6 +5336,14 @@ _1 pattern row, 201 files (snapshot), observed 2004-05-13 → 2024-09-13 (snapsh
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `File_Readers` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/File_Readers/` | `NEMDE {d1}-{d2} File Readers.zip` | `NEMDE\ \d{1}\-\d{2}\ File\ Readers\.zip` | `NEMDE 1-18 File Readers.zip` | 201 | 2004-05-13 | 2024-09-13 |
+
+### `NEMDE` · `NEMDE_MONTHLY_BULK`
+
+_1 pattern row, 201 files (snapshot), observed 2017-02-06 → 2026-04-13 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MONTHLY_BULK` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/` | `NEMDE_{year}_{d2}.zip` | `NEMDE_\d{4}_\d{2}\.zip` | `NEMDE_2009_07.zip` | 201 | 2017-02-06 | 2026-04-13 |
 
 ### `NEMDE` · `NEMSPDOutputs`
 
@@ -4883,31 +5379,6 @@ _6 pattern rows, 6123 files (snapshot), observed 2017-01-12 → 2026-04-01 (snap
 | `NEMDE_Files` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/NEMDE_Files/` | `NemSpdOutputs_{date}_loaded.zip` | `NemSpdOutputs_\d{8}_loaded\.zip` | `NemSpdOutputs_20090701_loaded.zip` | 6118 | 2017-01-12 | 2026-04-01 |
 | `NEMDE_Files` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/NEMDE_Files/` | `NemSpdOutputs_{date}_loaded_OCD.zip` | `NemSpdOutputs_\d{8}_loaded_OCD\.zip` | `NemSpdOutputs_20161130_loaded_OCD.zip` | 1 | 2017-01-15 | 2017-01-15 |
 
-### `NEMDE` · `ROOT_AUX`
-
-_18 pattern rows, 2445 files (snapshot), observed 1996-10-08 → 2026-04-13 (snapshot)_
-
-| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
-|---|---|---|---|---|---:|---|---|
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/` | `NEMDE_{year}_{d2}.zip` | `NEMDE_\d{4}_\d{2}\.zip` | `NEMDE_2009_07.zip` | 201 | 2017-02-06 | 2026-04-13 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `AUTORUN.INF` | `AUTORUN\.INF` | `AUTORUN.INF` | 201 | 2017-01-12 | 2026-04-13 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `Back.gif` | `Back\.gif` | `Back.gif` | 116 | 1999-05-23 | 2019-03-14 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 115 | 2017-02-07 | 2019-03-14 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `Thumbs.db` | `Thumbs\.db` | `Thumbs.db` | 1 | 2017-01-12 | 2017-01-12 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `background{d1}.gif` | `background\d{1}\.gif` | `background1.gif` | 13 | 2018-03-19 | 2019-03-14 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `disclaimer.htm` | `disclaimer\.htm` | `disclaimer.htm` | 116 | 2017-02-07 | 2019-03-14 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `file.gif` | `file\.gif` | `file.gif` | 116 | 1999-05-23 | 2019-03-14 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `nemlogo{d1}.gif` | `nemlogo\d{1}\.gif` | `nemlogo1.gif` | 232 | 2009-08-17 | 2019-03-14 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `readme.htm` | `readme\.htm` | `readme.htm` | 1 | 2017-02-07 | 2017-02-07 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `shelexec.exe` | `shelexec\.exe` | `shelexec.exe` | 27 | 1996-10-08 | 2019-03-14 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `Back.gif` | `Back\.gif` | `Back.gif` | 201 | 1999-05-23 | 2024-09-13 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 201 | 2017-02-07 | 2024-09-13 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `Thumbs.db` | `Thumbs\.db` | `Thumbs.db` | 2 | 2017-01-12 | 2017-01-12 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `background{d1}.gif` | `background\d{1}\.gif` | `background1.gif` | 98 | 1999-05-23 | 2024-09-13 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `disclaimer.htm` | `disclaimer\.htm` | `disclaimer.htm` | 201 | 2017-02-07 | 2024-09-13 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `file.gif` | `file\.gif` | `file.gif` | 201 | 1999-05-23 | 2024-09-13 |
-| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `nemlogo{d1}.gif` | `nemlogo\d{1}\.gif` | `nemlogo1.gif` | 402 | 2009-08-17 | 2024-09-13 |
-
 ### `NEMDE` · `Readme`
 
 _2 pattern rows, 400 files (snapshot), observed 2017-02-06 → 2024-09-13 (snapshot)_
@@ -4925,6 +5396,76 @@ _2 pattern rows, 2 files (snapshot), observed 2017-01-15 → 2017-01-15 (snapsho
 |---|---|---|---|---|---:|---|---|
 | `File_Readers` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/File_Readers/` | `Readme ({d1}).htm` | `Readme\ \(\d{1}\)\.htm` | `Readme (1).htm` | 1 | 2017-01-15 | 2017-01-15 |
 | `NEMDE_Files` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/NEMDE_Files/` | `Readme ({d1}).htm` | `Readme\ \(\d{1}\)\.htm` | `Readme (1).htm` | 1 | 2017-01-15 | 2017-01-15 |
+
+### `NEMDE` · `Readme_htm`
+
+_2 pattern rows, 316 files (snapshot), observed 2017-02-07 → 2024-09-13 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MARKET_DATA_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 201 | 2017-02-07 | 2024-09-13 |
+| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 115 | 2017-02-07 | 2019-03-14 |
+
+### `NEMDE` · `Thumbs_db`
+
+_2 pattern rows, 3 files (snapshot), observed 2017-01-12 → 2017-01-12 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MARKET_DATA_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `Thumbs.db` | `Thumbs\.db` | `Thumbs.db` | 2 | 2017-01-12 | 2017-01-12 |
+| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `Thumbs.db` | `Thumbs\.db` | `Thumbs.db` | 1 | 2017-01-12 | 2017-01-12 |
+
+### `NEMDE` · `background_gif`
+
+_2 pattern rows, 111 files (snapshot), observed 1999-05-23 → 2024-09-13 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MARKET_DATA_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `background{d1}.gif` | `background\d{1}\.gif` | `background1.gif` | 98 | 1999-05-23 | 2024-09-13 |
+| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `background{d1}.gif` | `background\d{1}\.gif` | `background1.gif` | 13 | 2018-03-19 | 2019-03-14 |
+
+### `NEMDE` · `disclaimer_htm`
+
+_2 pattern rows, 317 files (snapshot), observed 2017-02-07 → 2024-09-13 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MARKET_DATA_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `disclaimer.htm` | `disclaimer\.htm` | `disclaimer.htm` | 201 | 2017-02-07 | 2024-09-13 |
+| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `disclaimer.htm` | `disclaimer\.htm` | `disclaimer.htm` | 116 | 2017-02-07 | 2019-03-14 |
+
+### `NEMDE` · `file_gif`
+
+_2 pattern rows, 317 files (snapshot), observed 1999-05-23 → 2024-09-13 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MARKET_DATA_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `file.gif` | `file\.gif` | `file.gif` | 201 | 1999-05-23 | 2024-09-13 |
+| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `file.gif` | `file\.gif` | `file.gif` | 116 | 1999-05-23 | 2019-03-14 |
+
+### `NEMDE` · `nemlogo_gif`
+
+_2 pattern rows, 634 files (snapshot), observed 2009-08-17 → 2024-09-13 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `MARKET_DATA_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/NEMDE_Market_Data/` | `nemlogo{d1}.gif` | `nemlogo\d{1}\.gif` | `nemlogo1.gif` | 402 | 2009-08-17 | 2024-09-13 |
+| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `nemlogo{d1}.gif` | `nemlogo\d{1}\.gif` | `nemlogo1.gif` | 232 | 2009-08-17 | 2019-03-14 |
+
+### `NEMDE` · `readme_htm`
+
+_1 pattern row, 1 files (snapshot), observed 2017-02-07 → 2017-02-07 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `readme.htm` | `readme\.htm` | `readme.htm` | 1 | 2017-02-07 | 2017-02-07 |
+
+### `NEMDE` · `shelexec_exe`
+
+_1 pattern row, 27 files (snapshot), observed 1996-10-08 → 2019-03-14 (snapshot)_
+
+| Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
+|---|---|---|---|---|---:|---|---|
+| `ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{d2}/` | `shelexec.exe` | `shelexec\.exe` | `shelexec.exe` | 27 | 1996-10-08 | 2019-03-14 |
 
 ## Repo: `FCAS_Causer_Pays`  (1 dataset, 1 rows)
 
