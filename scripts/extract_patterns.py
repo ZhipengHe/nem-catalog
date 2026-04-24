@@ -368,8 +368,19 @@ def classify_nemde(segs: list[str], filename: str) -> tuple[str, str, str, dict]
     rel = segs[3:]  # includes filename as rel[-1]
 
     # NEMDE_Files / File_Readers subtree (the real-data layer).
-    # rel = [year, month_dir, 'NEMDE_Market_Data', 'NEMDE_Files'|'File_Readers', filename] (len 5)
-    if len(rel) >= 5 and rel[3] in ("NEMDE_Files", "File_Readers"):
+    # rel = [year, month_dir, 'NEMDE_Market_Data', <subtree>, filename] (len >= 5)
+    # where <subtree> is 'NEMDE_Files' or 'File_Readers'.
+    # Full structural guard: promote to real data ONLY when the parent shape
+    # (year / month / NEMDE_Market_Data / <subtree>) is also well-formed.
+    # Without this, an unexpected directory shape with a `NEMDE_Files` child
+    # would silently promote arbitrary filenames as real data.
+    if (
+        len(rel) >= 5
+        and re.fullmatch(r"\d{4}", rel[0])
+        and re.fullmatch(r"NEMDE_\d{4}_\d{2}", rel[1])
+        and rel[2] == "NEMDE_Market_Data"
+        and rel[3] in ("NEMDE_Files", "File_Readers")
+    ):
         subtree = rel[3]
         intra_id = extract_nemde_prefix(filename) or "UNKNOWN"
         return "NEMDE", subtree, intra_id, {"nemde_subtree": subtree}

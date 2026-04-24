@@ -332,3 +332,32 @@ def test_classify_nemde_preserves_nemde_files_subtree():
     assert repo == "NEMDE"
     assert tier == "NEMDE_Files"
     assert intra == "NemPriceSetter"
+
+
+def test_classify_nemde_malformed_path_with_nemde_files_not_promoted():
+    # Defensive: a path whose rel[2] is NOT "NEMDE_Market_Data" must NOT be
+    # promoted to real data even if rel[3] happens to be "NEMDE_Files". The
+    # full year / month / NEMDE_Market_Data / <subtree> shape is required.
+    url = (
+        "/Data_Archive/Wholesale_Electricity/NEMDE/2014/NEMDE_2014_12/"
+        "SOMETHING_ELSE/NEMDE_Files/file.zip"
+    )
+    result = extract_patterns.classify(url, "file.zip")
+    assert result is not None
+    repo, tier, _, _ = result
+    assert repo == "NEMDE"
+    # Falls through to the unknown-path fallback; tier MUST NOT be NEMDE_Files.
+    assert tier != "NEMDE_Files"
+
+
+def test_classify_nemde_malformed_year_not_promoted():
+    # Defensive: rel[0] must be a 4-digit year.
+    url = (
+        "/Data_Archive/Wholesale_Electricity/NEMDE/notayear/NEMDE_2014_12/"
+        "NEMDE_Market_Data/NEMDE_Files/file.zip"
+    )
+    result = extract_patterns.classify(url, "file.zip")
+    assert result is not None
+    repo, tier, _, _ = result
+    assert repo == "NEMDE"
+    assert tier != "NEMDE_Files"
