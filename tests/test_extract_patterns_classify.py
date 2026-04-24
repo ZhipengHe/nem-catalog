@@ -37,16 +37,16 @@ def test_extract_mmsdm_table_underscore_public_dvd_multiword_table():
     )
 
 
-def test_extract_mmsdm_table_underscore_public_dvd_data_extension():
-    assert (
-        extract_patterns.extract_mmsdm_table("PUBLIC_DVD_AUCTION_CALENDAR_202403.DATA")
-        == "AUCTION_CALENDAR"
-    )
+def test_extract_mmsdm_table_underscore_public_dvd_timestamp_zip():
+    # DATA-tier files use 12-digit timestamps + .zip (not a .DATA extension).
+    # Real sample from mirror: PUBLIC_DVD_APEVENT_201510010000.zip
+    assert extract_patterns.extract_mmsdm_table("PUBLIC_DVD_APEVENT_201510010000.zip") == "APEVENT"
 
 
 def test_extract_mmsdm_table_underscore_public_dvd_handles_all_observed_extensions():
-    # CTL, DATA, fmt, bcp — every SQLLoader view extension seen in the mirror.
-    for ext in ("ctl", "DATA", "fmt", "bcp"):
+    # Observed extensions per `grep -rho 'PUBLIC_DVD_[^"]*\.[a-zA-Z]*' nemweb-mirror/`
+    # (2026-04-25): .ctl, .ctlbak, .ctlBak, .fmt, .zip. No .DATA / .bcp.
+    for ext in ("ctl", "ctlbak", "ctlBak", "fmt", "zip"):
         fname = f"PUBLIC_DVD_AUCTION_IC_ALLOCATIONS_202403.{ext}"
         assert extract_patterns.extract_mmsdm_table(fname) == "AUCTION_IC_ALLOCATIONS"
 

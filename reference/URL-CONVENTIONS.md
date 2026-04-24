@@ -1443,7 +1443,7 @@ _1 pattern row, 41 files (snapshot), observed 2022-12-11 → 2025-10-17 (snapsho
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `BCPTransform.log` | `BCPTransform\.log` | `BCPTransform.log` | 41 | 2022-12-11 | 2025-10-17 |
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `BCPTransform.log` | `BCPTransform\.log` | `BCPTransform.log` | 41 | 2022-12-11 | 2025-10-17 |
 
 ### `MMSDM` · `BIDDAYOFFER`
 
@@ -1765,7 +1765,7 @@ _1 pattern row, 134 files (snapshot), observed 2019-09-05 → 2025-10-17 (snapsh
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `CRLF.TXT` | `CRLF\.TXT` | `CRLF.TXT` | 134 | 2019-09-05 | 2025-10-17 |
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `CRLF.TXT` | `CRLF\.TXT` | `CRLF.TXT` | 134 | 2019-09-05 | 2025-10-17 |
 
 ### `MMSDM` · `Crlf_exe`
 
@@ -1773,7 +1773,7 @@ _1 pattern row, 134 files (snapshot), observed 2019-09-05 → 2025-10-17 (snapsh
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `Crlf.exe` | `Crlf\.exe` | `Crlf.exe` | 134 | 2019-09-05 | 2025-10-17 |
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `Crlf.exe` | `Crlf\.exe` | `Crlf.exe` | 134 | 2019-09-05 | 2025-10-17 |
 
 ### `MMSDM` · `DAYTRACK`
 
@@ -2531,7 +2531,7 @@ _1 pattern row, 93 files (snapshot), observed 2019-09-17 → 2022-10-09 (snapsho
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `ICSharpCode.SharpZipLib.dll` | `ICSharpCode\.SharpZipLib\.dll` | `ICSharpCode.SharpZipLib.dll` | 93 | 2019-09-17 | 2022-10-09 |
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `ICSharpCode.SharpZipLib.dll` | `ICSharpCode\.SharpZipLib\.dll` | `ICSharpCode.SharpZipLib.dll` | 93 | 2019-09-17 | 2022-10-09 |
 
 ### `MMSDM` · `INSTRUCTIONSUBTYPE`
 
@@ -4422,7 +4422,7 @@ _1 pattern row, 134 files (snapshot), observed 2019-09-05 → 2025-10-17 (snapsh
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `PUBLIC_CONVERT_BCP.bat` | `PUBLIC_CONVERT_BCP\.bat` | `PUBLIC_CONVERT_BCP.bat` | 134 | 2019-09-05 | 2025-10-17 |
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `PUBLIC_CONVERT_BCP.bat` | `PUBLIC_CONVERT_BCP\.bat` | `PUBLIC_CONVERT_BCP.bat` | 134 | 2019-09-05 | 2025-10-17 |
 
 ### `MMSDM` · `PUBLIC_MARKETNOTICEDATA_DMP`
 
@@ -4430,7 +4430,7 @@ _1 pattern row, 115 files (snapshot), observed 2017-01-14 → 2024-08-16 (snapsh
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_MARKETNOTICEDATA_{yearmonth}.DMP` | `PUBLIC_MARKETNOTICEDATA_\d{6}\.DMP` | `PUBLIC_MARKETNOTICEDATA_201501.DMP` | 115 | 2017-01-14 | 2024-08-16 |
+| `DATA_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_MARKETNOTICEDATA_{yearmonth}.DMP` | `PUBLIC_MARKETNOTICEDATA_\d{6}\.DMP` | `PUBLIC_MARKETNOTICEDATA_201501.DMP` | 115 | 2017-01-14 | 2024-08-16 |
 
 ### `MMSDM` · `PUBLIC_MONTHLY_DVD_INDEX_TXT`
 
@@ -4438,7 +4438,7 @@ _1 pattern row, 115 files (snapshot), observed 2017-01-14 → 2024-08-16 (snapsh
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `INDEX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/INDEX/` | `PUBLIC_MONTHLY_DVD_INDEX_{yearmonth}.TXT` | `PUBLIC_MONTHLY_DVD_INDEX_\d{6}\.TXT` | `PUBLIC_MONTHLY_DVD_INDEX_201501.TXT` | 115 | 2017-01-14 | 2024-08-16 |
+| `INDEX_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/INDEX/` | `PUBLIC_MONTHLY_DVD_INDEX_{yearmonth}.TXT` | `PUBLIC_MONTHLY_DVD_INDEX_\d{6}\.TXT` | `PUBLIC_MONTHLY_DVD_INDEX_201501.TXT` | 115 | 2017-01-14 | 2024-08-16 |
 
 ### `MMSDM` · `PUBLIC_RUN_BCP_bat`
 
@@ -4446,7 +4446,7 @@ _1 pattern row, 134 files (snapshot), observed 2019-09-05 → 2026-04-08 (snapsh
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `PUBLIC_RUN_BCP_{yearmonth}.bat` | `PUBLIC_RUN_BCP_\d{6}\.bat` | `PUBLIC_RUN_BCP_201501.bat` | 134 | 2019-09-05 | 2026-04-08 |
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `PUBLIC_RUN_BCP_{yearmonth}.bat` | `PUBLIC_RUN_BCP_\d{6}\.bat` | `PUBLIC_RUN_BCP_201501.bat` | 134 | 2019-09-05 | 2026-04-08 |
 
 ### `MMSDM` · `PUBLIC_RUN_MYSQL_bat`
 
@@ -4454,7 +4454,7 @@ _1 pattern row, 20 files (snapshot), observed 2024-09-13 → 2026-04-08 (snapsho
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `PUBLIC_RUN_MYSQL_{yearmonth}.bat` | `PUBLIC_RUN_MYSQL_\d{6}\.bat` | `PUBLIC_RUN_MYSQL_202408.bat` | 20 | 2024-09-13 | 2026-04-08 |
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `PUBLIC_RUN_MYSQL_{yearmonth}.bat` | `PUBLIC_RUN_MYSQL_\d{6}\.bat` | `PUBLIC_RUN_MYSQL_202408.bat` | 20 | 2024-09-13 | 2026-04-08 |
 
 ### `MMSDM` · `PUBLIC_RUN_SQLLDR_bat`
 
@@ -4462,7 +4462,7 @@ _1 pattern row, 135 files (snapshot), observed 2017-01-14 → 2026-04-08 (snapsh
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_RUN_SQLLDR_{yearmonth}.bat` | `PUBLIC_RUN_SQLLDR_\d{6}\.bat` | `PUBLIC_RUN_SQLLDR_201501.bat` | 135 | 2017-01-14 | 2026-04-08 |
+| `DATA_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `PUBLIC_RUN_SQLLDR_{yearmonth}.bat` | `PUBLIC_RUN_SQLLDR_\d{6}\.bat` | `PUBLIC_RUN_SQLLDR_201501.bat` | 135 | 2017-01-14 | 2026-04-08 |
 
 ### `MMSDM` · `Participant_Monthly_DVD_doc`
 
@@ -4672,15 +4672,15 @@ _10 pattern rows, 442 files (snapshot), observed 2017-02-06 → 2025-10-17 (snap
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `BCP_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_DATA/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 123 | 2017-02-06 | 2025-10-17 |
-| `BCP_FMT` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 81 | 2017-02-15 | 2025-10-17 |
-| `CTL` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
-| `DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
+| `BCP_DATA_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_DATA/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 123 | 2017-02-06 | 2025-10-17 |
+| `BCP_FMT_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/BCP_FMT/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 81 | 2017-02-15 | 2025-10-17 |
+| `CTL_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/CTL/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
+| `DATA_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DATA/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
 | `DOCUMENTATION_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
-| `INDEX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/INDEX/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
-| `LOGS` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/LOGS/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
+| `INDEX_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/INDEX/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
+| `LOGS_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/LOGS/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
 | `MONTH_ROOT_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 38 | 2017-05-11 | 2019-03-14 |
-| `PREDISP_ALL_DATA` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
+| `PREDISP_ALL_DATA_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/PREDISP_ALL_DATA/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 27 | 2017-02-06 | 2018-04-20 |
 | `SQLLOADER_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/` | `Readme.htm` | `Readme\.htm` | `Readme.htm` | 38 | 2017-02-07 | 2019-03-14 |
 
 ### `MMSDM` · `SECDEPOSIT_INTEREST_RATE`
@@ -5241,7 +5241,7 @@ _1 pattern row, 41 files (snapshot), observed 2022-12-11 → 2025-10-17 (snapsho
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.dll` | `bcpt\.dll` | `bcpt.dll` | 41 | 2022-12-11 | 2025-10-17 |
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.dll` | `bcpt\.dll` | `bcpt.dll` | 41 | 2022-12-11 | 2025-10-17 |
 
 ### `MMSDM` · `bcpt_exe`
 
@@ -5249,7 +5249,7 @@ _1 pattern row, 134 files (snapshot), observed 2019-09-17 → 2025-10-17 (snapsh
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.exe` | `bcpt\.exe` | `bcpt.exe` | 134 | 2019-09-17 | 2025-10-17 |
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.exe` | `bcpt\.exe` | `bcpt.exe` | 134 | 2019-09-17 | 2025-10-17 |
 
 ### `MMSDM` · `bcpt_ini`
 
@@ -5257,7 +5257,7 @@ _1 pattern row, 134 files (snapshot), observed 2019-09-17 → 2025-10-17 (snapsh
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.ini` | `bcpt\.ini` | `bcpt.ini` | 134 | 2019-09-17 | 2025-10-17 |
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.ini` | `bcpt\.ini` | `bcpt.ini` | 134 | 2019-09-17 | 2025-10-17 |
 
 ### `MMSDM` · `bcpt_runtimeconfig_json`
 
@@ -5265,7 +5265,7 @@ _1 pattern row, 41 files (snapshot), observed 2022-12-11 → 2025-10-17 (snapsho
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `UTILITIES` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.runtimeconfig.json` | `bcpt\.runtimeconfig\.json` | `bcpt.runtimeconfig.json` | 41 | 2022-12-11 | 2025-10-17 |
+| `UTILITIES_AUX` | `/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{d2}/MMSDM_Historical_Data_SQLLoader/UTILITIES/` | `bcpt.runtimeconfig.json` | `bcpt\.runtimeconfig\.json` | `bcpt.runtimeconfig.json` | 41 | 2022-12-11 | 2025-10-17 |
 
 ### `MMSDM` · `disclaimer_htm`
 

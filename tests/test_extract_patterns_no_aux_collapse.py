@@ -209,6 +209,36 @@ def test_marketnoticedata_promoted(
         ), "MARKETNOTICEDATA missing from DOCUMENTATION tier"
 
 
+def test_aux_stem_ids_not_in_curated_dataset_keys(
+    regenerated_outputs: tuple[Path, Path],
+) -> None:
+    """Regression guard for PR #23 Codex P1 finding.
+
+    Stem-based aux ids (`AUTORUN_INF`, `Readme_htm`, `PUBLIC_RUN_BCP_bat`,
+    `bcpt_dll`, etc.) must NOT appear in ``catalog.json["dataset_keys"]``.
+    The curated list is user-facing and should contain only data products;
+    aux artifacts live in the underlying ``datasets`` dict but get filtered
+    out of ``dataset_keys`` by ``_curate_keys()``.
+    """
+    _, json_path = regenerated_outputs
+    data = json.loads(json_path.read_text())
+    aux_stem_markers = (
+        "_INF",
+        "_htm",
+        "_gif",
+        "_exe",
+        "_dll",
+        "_bat",
+        "_log",
+        "_DMP",
+        "_TXT",
+        "_INI",
+        "_ini",
+    )
+    leaked = [k for k in data["dataset_keys"] if any(k.endswith(suf) for suf in aux_stem_markers)]
+    assert not leaked, f"{len(leaked)} aux stem ids leaked into curated dataset_keys: {leaked[:10]}"
+
+
 def test_nemde_readme_case_variants_distinct_in_csv(
     regenerated_outputs: tuple[Path, Path],
 ) -> None:

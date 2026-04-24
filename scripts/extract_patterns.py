@@ -268,15 +268,16 @@ def classify_mmsdm(segs: list[str], filename: str) -> tuple[str, str, str, dict]
 
     # Special case: MMSDM/MTPASA_DATA_EXPORT/<file>
     # The directory holds two structurally-distinct datasets — split by
-    # filename pattern, do NOT bucket by directory name.
+    # filename pattern, do NOT bucket by directory name. Anchored full-match
+    # with explicit `.zip` tail so future non-zip filenames surface as aux.
     if rel and rel[0] == "MTPASA_DATA_EXPORT":
-        if re.match(r"PUBLIC_MTPASA_REGIONAVAIL_TRK_", filename):
+        if re.fullmatch(r"PUBLIC_MTPASA_REGIONAVAIL_TRK_.*\.zip", filename):
             return "MMSDM", "MTPASA_DATA_EXPORT", "MTPASA_REGIONAVAIL_TRK", {}
-        if re.match(r"\d{4}_DATA_EXPORT_MTPASA_REGIONAVAILABILITY", filename):
+        if re.fullmatch(r"\d{4}_DATA_EXPORT_MTPASA_REGIONAVAILABILITY.*\.zip", filename):
             return "MMSDM", "MTPASA_DATA_EXPORT", "MTPASA_REGIONAVAILABILITY", {}
         # Unknown MTPASA filename dialect — surface as an explicit gap.
         aux_id = aux_id_from_filename_template(skeletonize(filename))
-        return "MMSDM", "MTPASA_DATA_EXPORT", aux_id, {}
+        return "MMSDM", "MTPASA_DATA_EXPORT_AUX", aux_id, {}
 
     # Year-rooted paths: MMSDM/{year}/...
     # NOTE: `rel` always includes the filename as rel[-1]. The guards below
@@ -341,12 +342,14 @@ def classify_mmsdm(segs: list[str], filename: str) -> tuple[str, str, str, dict]
                 #    PUBLIC_RUN_BCP_<yearmonth>.bat, PUBLIC_MONTHLY_DVD_INDEX)
                 #    that are not tables — those should fall to stem-based aux.
                 # 2. Otherwise (aux chrome like Readme.htm, batch scripts,
-                #    BCPTransform.log, etc.) → stem-based id so each filename
-                #    stays a distinct catalog row.
+                #    BCPTransform.log, etc.) → stem-based id on a {view}_AUX
+                #    tier so write_json._curate_keys() excludes them from the
+                #    user-facing dataset_keys list (they are artifacts, not
+                #    data products).
                 if filename.startswith(("PUBLIC_ARCHIVE", "PUBLIC_DVD_")):
                     return "MMSDM", view, "UNPARSED", {"sqlloader_view": view}
                 aux_id = aux_id_from_filename_template(skeletonize(filename))
-                return "MMSDM", view, aux_id, {"sqlloader_view": view, "sqlloader_aux": True}
+                return "MMSDM", f"{view}_AUX", aux_id, {"sqlloader_view": view}
 
     # Fallback: unknown MMSDM path
     return "MMSDM", "OTHER", "UNKNOWN", {}
@@ -453,11 +456,11 @@ def aux_id_from_filename_template(tpl: str) -> str:
 #   yearmonth (monthly archive) or 12/14-digit timestamp (rolling DATA/.zip).
 # §3.1 byte-exact discipline: both dialects coexist for back-catalogue months;
 # treat as two distinct patterns, not one. Case is preserved as-served.
-# Extension list drawn from reference/URL-CONVENTIONS.csv — includes .ctlbak
-# and .ctlBak backup files that AEMO retains alongside the live .ctl files.
-_MMSDM_DVD_RE = re.compile(
-    r"^PUBLIC_DVD_(?P<table>.+)_\d{6,14}\.(?:ctl|CTL|DATA|fmt|bcp|zip|ctlbak|ctlBak)$"
-)
+# Extension list drawn from `grep -rho 'PUBLIC_DVD_[^"]*\.[a-zA-Z]*' nemweb-mirror/`
+# (2026-04-25): only .ctl, .ctlbak, .ctlBak, .fmt, .zip are actually served.
+# Do not add .DATA or .bcp unless AEMO starts publishing them — unrestricted
+# extension matching would over-classify aux files as tables.
+_MMSDM_DVD_RE = re.compile(r"^PUBLIC_DVD_(?P<table>.+)_\d{6,14}\.(?:ctl|ctlbak|ctlBak|fmt|zip)$")
 
 
 def extract_mmsdm_table(filename: str) -> str | None:
@@ -1119,14 +1122,29 @@ def _infer_cadence(repo: str, tier: str) -> str:
 
 
 _AUX_SUFFIXES = {"_AUX", "DOCUMENTATION_AUX", "ROOT_AUX", "MONTH_ROOT_AUX", "SQLLOADER_AUX"}
-_AUX_EXACT = {"MMSDM_MONTHLY_BULK", "MTPASA_DATA_EXPORT", "UNKNOWN", "UNPARSED"}
+_AUX_EXACT = {
+    "MMSDM_MONTHLY_BULK",
+    "NEMDE_MONTHLY_BULK",
+    "MTPASA_DATA_EXPORT",
+    "UNKNOWN",
+    "UNPARSED",
+}
 _UTILITY_EXTENSIONS = {".dll", ".exe", ".bat", ".sh", ".cmd", ".tar", ".gz"}
 
 
 def _curate_keys(all_keys: list[str], datasets: dict) -> list[str]:
     """Return the curated user-facing subset of dataset keys.
 
-    Rule: resolvable=true AND intra_repo_id not AUX/placeholder AND not utility-file.
+    Rule: resolvable=true AND intra_repo_id not AUX/placeholder AND not
+    utility-file AND at least one tier is not aux-tiered.
+
+    The tier check catches the #21 stem-based aux ids (e.g. ``AUTORUN_INF``,
+    ``Readme_htm``, ``PUBLIC_RUN_BCP_bat``) that slip past the intra-id
+    filters because their stems do not end with ``_AUX``. Aux tiers (which
+    all end with ``_AUX`` by convention — ``MONTH_ROOT_AUX``, ``ROOT_AUX``,
+    ``DOCUMENTATION_AUX``, ``SQLLOADER_AUX``, ``MARKET_DATA_AUX``, and the
+    per-view ``{CTL|DATA|INDEX|UTILITIES|...}_AUX``) mark aux artifacts even
+    when the intra-id is a filename stem.
     """
     out = []
     for key in sorted(all_keys):
@@ -1139,6 +1157,9 @@ def _curate_keys(all_keys: list[str], datasets: dict) -> list[str]:
         if any(iid.endswith(suf) for suf in _AUX_SUFFIXES):
             continue
         if any(iid.lower().endswith(ext) for ext in _UTILITY_EXTENSIONS):
+            continue
+        tier_names = set(ds.get("tiers", {}).keys())
+        if tier_names and all(t.endswith("_AUX") for t in tier_names):
             continue
         out.append(key)
     return out
