@@ -140,11 +140,15 @@ def test_resolve_skips_individual_record_with_non_temporal_token():
 
     # Should have exactly one warning about the skipped record
     skipped_warns = [
-        rec for rec in w if "skipped" in str(rec.message).lower() and "aemo_id" in str(rec.message)
+        rec
+        for rec in w
+        if issubclass(rec.category, UserWarning)
+        and "skipped" in str(rec.message).lower()
+        and "aemo_id" in str(rec.message)
     ]
-    assert len(skipped_warns) >= 1, (
-        f"expected at least one skipped-record warning, got {len(skipped_warns)}: "
-        f"{[str(r.message) for r in w]}"
+    assert len(skipped_warns) == 1, (
+        f"expected exactly one skipped-record warning about aemo_id, got {len(skipped_warns)}: "
+        f"{[str(r.message) for r in skipped_warns]}; all warnings: {[str(r.message) for r in w]}"
     )
 
 
@@ -195,13 +199,27 @@ def test_resolve_per_record_observed_range_filter():
 
     urls = cat.resolve("Test:PerRecordObs", from_="2024-06-01", to_="2024-12-31")
 
-    # Should have 7 URLs (June 1 through Dec 31 = 214 days, but let's just count
-    # what we actually get). More precisely: 30 (Jun) + 31 (Jul) + 31 (Aug) + 30 (Sep)
-    # + 31 (Oct) + 30 (Nov) + 31 (Dec) = 214 URLs from rec_2024 only.
+    # Should have exactly 214 URLs from rec_2024 (June 1 through Dec 31).
+    # Breakdown: 30 (Jun) + 31 (Jul) + 31 (Aug) + 30 (Sep) + 31 (Oct) + 30 (Nov) + 31 (Dec) = 214
     # The 2025 record doesn't overlap the request, so it's skipped.
     assert all("data_2024_" in u for u in urls), f"expected all URLs from 2024 record, got: {urls}"
     assert not any("data_2025_" in u for u in urls), f"unexpected 2025 URLs in result: {urls}"
-    assert len(urls) > 0, "expected at least some URLs from the 2024 record"
+
+    expected_count = 214  # Daily 2024-06-01 to 2024-12-31 inclusive
+    assert len(urls) == expected_count, (
+        f"expected {expected_count} URLs from 2024 record (214 days x 1 record), "
+        f"got {len(urls)}: first 5 = {urls[:5]}"
+    )
+
+    # Verify exact boundary dates present (catches off-by-one in observed_range)
+    first_5 = urls[:5] if urls else []
+    last_5 = urls[-5:] if urls else []
+    assert any("20240601" in u for u in urls), (
+        f"June 1 start date missing from URLs; first 5 = {first_5}"
+    )
+    assert any("20241231" in u for u in urls), (
+        f"December 31 end date missing from URLs; last 5 = {last_5}"
+    )
 
 
 def test_resolve_raises_when_every_record_is_non_temporal():
