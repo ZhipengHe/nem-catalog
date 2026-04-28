@@ -1024,11 +1024,13 @@ def write_json(
     source_mirror_commit: str,
     policy: object | None = None,
 ) -> None:
-    """Emit a JSON Schema v1.0.0 conformant catalog from extractor rows.
+    """Emit a JSON Schema v2.0.0 conformant catalog from extractor rows.
 
     Groups flat rows by (repo, intra_repo_id) and nests tier records under
-    each dataset. Preserves exact case of intra_repo_id (do not normalize).
-    Called after classify() + aggregate() produce the flat rows list.
+    each dataset. Tier records are appended; multi-record tier groups (path x
+    filename-family multiplicity) preserve every record. Preserves exact case
+    of intra_repo_id (do not normalize). Called after classify() + aggregate()
+    produce the flat rows list.
 
     Refuses to emit a zero-row catalog — empty mirror or crawl failure is
     always a pipeline bug, never a valid state. Publishing a blank catalog
@@ -1080,21 +1082,29 @@ def write_json(
         else:
             tier_record["observed_range"] = None
 
-        datasets[key]["tiers"][tier_name] = tier_record
+        datasets[key]["tiers"].setdefault(tier_name, []).append(tier_record)
 
     # Join freshness signals onto every dataset.
     for _key, ds in datasets.items():
         tiers = ds.get("tiers", {})
         probe_path = None
         for tier_name in ("CURRENT", "ARCHIVE", "DATA"):
-            t = tiers.get(tier_name)
-            if t and t.get("path_template"):
-                probe_path = t["path_template"]
-                break
-        if probe_path is None:
-            for t in tiers.values():
+            tier_list = tiers.get(tier_name, [])
+            for t in tier_list:
                 if t and t.get("path_template"):
                     probe_path = t["path_template"]
+                    break
+            if probe_path is not None:
+                break
+        if probe_path is None:
+            for tier_list in tiers.values():
+                if not isinstance(tier_list, list):
+                    continue
+                for t in tier_list:
+                    if t and t.get("path_template"):
+                        probe_path = t["path_template"]
+                        break
+                if probe_path is not None:
                     break
         if policy is not None and probe_path:
             ds["freshness_class"] = policy.class_for(probe_path)  # type: ignore[attr-defined]
@@ -1112,7 +1122,7 @@ def write_json(
     placeholders = _placeholders_for(datasets)
 
     payload = {
-        "schema_version": "1.0.0",
+        "schema_version": "2.0.0",
         "catalog_version": catalog_version,
         "as_of": as_of,
         "source_mirror_commit": source_mirror_commit,
@@ -1283,10 +1293,11 @@ def _placeholders_for(datasets: dict) -> dict[str, dict]:
     """
     used: set[str] = set()
     for rec in datasets.values():
-        for tier in rec.get("tiers", {}).values():
-            for key in ("filename_template", "path_template"):
-                value = tier.get(key) or ""
-                used.update(_TOKEN_SCAN_RE.findall(value))
+        for tier_list in rec.get("tiers", {}).values():
+            for tier in tier_list:
+                for key in ("filename_template", "path_template"):
+                    value = tier.get(key) or ""
+                    used.update(_TOKEN_SCAN_RE.findall(value))
 
     result: dict[str, dict] = dict(_DEFAULT_PLACEHOLDERS)
     for name in sorted(used):
