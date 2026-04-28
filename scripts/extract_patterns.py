@@ -1088,23 +1088,18 @@ def write_json(
     for _key, ds in datasets.items():
         tiers = ds.get("tiers", {})
         probe_path = None
+        # probe_path picks tiers[T][0] — for DUPLICATE_STRADDLE pairs the parent
+        # path is sorted before /DUPLICATE/ in emit order, so freshness_class
+        # is determined by the parent stream.
         for tier_name in ("CURRENT", "ARCHIVE", "DATA"):
-            tier_list = tiers.get(tier_name, [])
-            for t in tier_list:
-                if t and t.get("path_template"):
-                    probe_path = t["path_template"]
-                    break
-            if probe_path is not None:
+            recs = tiers.get(tier_name, [])
+            if recs and recs[0].get("path_template"):
+                probe_path = recs[0]["path_template"]
                 break
         if probe_path is None:
-            for tier_list in tiers.values():
-                if not isinstance(tier_list, list):
-                    continue
-                for t in tier_list:
-                    if t and t.get("path_template"):
-                        probe_path = t["path_template"]
-                        break
-                if probe_path is not None:
+            for recs in tiers.values():
+                if recs and recs[0].get("path_template"):
+                    probe_path = recs[0]["path_template"]
                     break
         if policy is not None and probe_path:
             ds["freshness_class"] = policy.class_for(probe_path)  # type: ignore[attr-defined]
