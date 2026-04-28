@@ -7,7 +7,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
-from scripts import extract_patterns as ep  # noqa: E402
+import extract_patterns  # noqa: E402
 
 SCHEMA = json.loads((REPO_ROOT / "schemas" / "catalog.schema.json").read_text())
 
@@ -34,7 +34,7 @@ def test_schema_version_is_2_0_0(tmp_path):
         }
     ]
     out = tmp_path / "catalog.json"
-    ep.write_json(
+    extract_patterns.write_json(
         rows,
         out_path=out,
         catalog_version="2026.04.25",
@@ -107,7 +107,7 @@ def test_writejson_emits_list_for_collision_fixture(tmp_path):
         },
     ]
     out = tmp_path / "catalog.json"
-    ep.write_json(
+    extract_patterns.write_json(
         rows,
         out_path=out,
         catalog_version="2026.04.25",
