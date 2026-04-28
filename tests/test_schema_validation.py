@@ -69,10 +69,11 @@ def test_dataset_keys_is_curated_subset_of_raw_keys(sample):
 def test_unresolvable_record_has_null_filename(sample):
     ds = sample["datasets"]["Reports:NEXT_DAY_OFFER_ENERGY)SPARSE"]
     assert ds["resolvable"] is False
-    for tier_name, tier in ds["tiers"].items():
-        assert tier["filename_template"] is None, (
-            f"tier {tier_name} should have null filename_template"
-        )
+    for tier_name, tier_list in ds["tiers"].items():
+        for tier in tier_list:
+            assert tier["filename_template"] is None, (
+                f"tier {tier_name} should have null filename_template"
+            )
 
 
 def test_mmsdm_dispatchprice_has_multiple_tiers_with_different_granularity(sample):
@@ -80,8 +81,8 @@ def test_mmsdm_dispatchprice_has_multiple_tiers_with_different_granularity(sampl
     tiers = ds["tiers"]
     assert "DATA" in tiers
     assert "CTL" in tiers
-    assert tiers["DATA"]["time_granularity"] == "yyyymmddHHMM"
-    assert tiers["CTL"]["time_granularity"] == "yyyymm"
+    assert tiers["DATA"][0]["time_granularity"] == "yyyymmddHHMM"
+    assert tiers["CTL"][0]["time_granularity"] == "yyyymm"
 
 
 def test_schema_validator_is_draft_2020_12(schema):
@@ -93,23 +94,25 @@ def test_template_tokens_are_defined_in_placeholders(sample):
     placeholders = set(sample["placeholders"].keys())
     missing = []
     for key, ds in sample["datasets"].items():
-        for tier_name, tier in ds["tiers"].items():
-            for field in ("path_template", "filename_template"):
-                template = tier.get(field)
-                if template is None:
-                    continue
-                for token in _TOKEN_RE.findall(template):
-                    if token not in placeholders:
-                        missing.append(f"{key}.tiers.{tier_name}.{field}: {{{token}}}")
+        for tier_name, tier_list in ds["tiers"].items():
+            for tier in tier_list:
+                for field in ("path_template", "filename_template"):
+                    template = tier.get(field)
+                    if template is None:
+                        continue
+                    for token in _TOKEN_RE.findall(template):
+                        if token not in placeholders:
+                            missing.append(f"{key}.tiers.{tier_name}.{field}: {{{token}}}")
     assert not missing, f"Templates reference tokens not in placeholders: {missing}"
 
 
 def test_filename_template_and_regex_null_together(sample):
     for key, ds in sample["datasets"].items():
-        for tier_name, tier in ds["tiers"].items():
-            tmpl = tier.get("filename_template")
-            regex = tier.get("filename_regex")
-            assert (tmpl is None) == (regex is None), (
-                f"{key}.tiers.{tier_name}: filename_template and filename_regex "
-                f"must both be null or both be non-null; got tmpl={tmpl!r} regex={regex!r}"
-            )
+        for tier_name, tier_list in ds["tiers"].items():
+            for tier in tier_list:
+                tmpl = tier.get("filename_template")
+                regex = tier.get("filename_regex")
+                assert (tmpl is None) == (regex is None), (
+                    f"{key}.tiers.{tier_name}: filename_template and filename_regex "
+                    f"must both be null or both be non-null; got tmpl={tmpl!r} regex={regex!r}"
+                )

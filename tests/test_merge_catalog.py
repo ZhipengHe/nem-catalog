@@ -24,7 +24,7 @@ def _write_auto(tmp_path: Path, datasets: dict[str, Any]) -> Path:
     return _write(
         tmp_path / "auto-catalog.json",
         {
-            "schema_version": "1.0.0",
+            "schema_version": "2.0.0",
             "catalog_version": "2026.04.18",
             "as_of": "2026-04-18T00:00:00Z",
             "source_mirror_commit": "deadbee",
@@ -46,7 +46,7 @@ def _write_curated(tmp_path: Path, name: str, content: dict[str, Any]) -> Path:
 def _minimal_auto_with_key(key: str) -> dict[str, Any]:
     repo, intra_repo_id = key.split(":", 1)
     return {
-        "schema_version": "1.0.0",
+        "schema_version": "2.0.0",
         "catalog_version": "2026.04.18",
         "as_of": "2026-04-18T00:00:00Z",
         "placeholders": {},
@@ -58,13 +58,15 @@ def _minimal_auto_with_key(key: str) -> dict[str, Any]:
                 "intra_repo_id": intra_repo_id,
                 "resolvable": True,
                 "tiers": {
-                    "T": {
-                        "path_template": "/x/",
-                        "filename_template": "x_{date}.zip",
-                        "filename_regex": r"^x_\d{8}\.zip$",
-                        "example": "x_20240101.zip",
-                        "observed_range": None,
-                    }
+                    "T": [
+                        {
+                            "path_template": "/x/",
+                            "filename_template": "x_{date}.zip",
+                            "filename_regex": r"^x_\d{8}\.zip$",
+                            "example": "x_20240101.zip",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -104,14 +106,16 @@ def test_curated_only_field_accepted(tmp_path: Path) -> None:
                 "intra_repo_id": "Foo",
                 "resolvable": True,
                 "tiers": {
-                    "CURRENT": {
-                        "path_template": "/Reports/CURRENT/Foo/",
-                        "filename_template": "foo_{date}.zip",
-                        "filename_regex": r"^foo_\d{8}\.zip$",
-                        "example": "foo_20240101.zip",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "CURRENT": [
+                        {
+                            "path_template": "/Reports/CURRENT/Foo/",
+                            "filename_template": "foo_{date}.zip",
+                            "filename_regex": r"^foo_\d{8}\.zip$",
+                            "example": "foo_20240101.zip",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -136,14 +140,16 @@ def test_field_overlap_curated_wins_with_warning(tmp_path: Path) -> None:
                 "intra_repo_id": "Foo",
                 "resolvable": True,
                 "tiers": {
-                    "CURRENT": {
-                        "path_template": "/Reports/CURRENT/Foo/",
-                        "filename_template": "foo_{date}.zip",
-                        "filename_regex": r"^foo_\d{8}\.zip$",
-                        "example": "foo_20240101.zip",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "CURRENT": [
+                        {
+                            "path_template": "/Reports/CURRENT/Foo/",
+                            "filename_template": "foo_{date}.zip",
+                            "filename_regex": r"^foo_\d{8}\.zip$",
+                            "example": "foo_20240101.zip",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -170,14 +176,16 @@ def test_auto_only_dataset_key_passes_through(tmp_path: Path) -> None:
                 "intra_repo_id": "Bar",
                 "resolvable": True,
                 "tiers": {
-                    "CURRENT": {
-                        "path_template": "/Reports/CURRENT/Bar/",
-                        "filename_template": "bar_{date}.zip",
-                        "filename_regex": r"^bar_\d{8}\.zip$",
-                        "example": "bar_20240101.zip",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "CURRENT": [
+                        {
+                            "path_template": "/Reports/CURRENT/Bar/",
+                            "filename_template": "bar_{date}.zip",
+                            "filename_regex": r"^bar_\d{8}\.zip$",
+                            "example": "bar_20240101.zip",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -245,14 +253,16 @@ def test_merge_applies_mmsdm_default_schema_source(tmp_path: Path) -> None:
                 "intra_repo_id": "FOO",
                 "resolvable": True,
                 "tiers": {
-                    "DATA": {
-                        "path_template": "/",
-                        "filename_template": "x",
-                        "filename_regex": "x",
-                        "example": "",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "DATA": [
+                        {
+                            "path_template": "/",
+                            "filename_template": "x",
+                            "filename_regex": "x",
+                            "example": "",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -284,14 +294,16 @@ def test_merge_validates_output_against_schema(tmp_path: Path) -> None:
                 "intra_repo_id": "Foo",
                 "resolvable": True,
                 "tiers": {
-                    "CURRENT": {
-                        "path_template": "/Reports/CURRENT/Foo/",
-                        "filename_template": "foo_{date}.zip",
-                        "filename_regex": r"^foo_\d{8}\.zip$",
-                        "example": "foo_20240101.zip",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "CURRENT": [
+                        {
+                            "path_template": "/Reports/CURRENT/Foo/",
+                            "filename_template": "foo_{date}.zip",
+                            "filename_regex": r"^foo_\d{8}\.zip$",
+                            "example": "foo_20240101.zip",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
