@@ -17,7 +17,7 @@
     "schema_version": {
       "type": "string",
       "pattern": "^\\d+\\.\\d+\\.\\d+$",
-      "description": "SemVer of the JSON Schema itself. MAJOR bump is breaking; SDKs reject unknown major versions."
+      "description": "SemVer of the JSON Schema itself. v2.0.0 introduced array-shaped `tiers[tier_name]`. MAJOR bump is breaking; SDKs reject unknown major versions."
     },
     "catalog_version": {
       "type": "string",
@@ -95,8 +95,13 @@
         },
         "tiers": {
           "type": "object",
-          "description": "Map of tier name to pattern record. Tier names are repo-specific (CURRENT/ARCHIVE for Reports; DATA/CTL/BCP_FMT/MYSQL/DOCUMENTATION/etc for MMSDM; NEMDE_Files/File_Readers for NEMDE; ANNUAL for FCAS_Causer_Pays). Single-tier repos have a map of one entry.",
-          "additionalProperties": {"$ref": "#/$defs/Tier"}
+          "description": "Map of tier name to list of pattern records. v2.0.0+ always emits an array, even for single-record tiers (1-element list), to give consumers a uniform iteration shape. Tier names are repo-specific (CURRENT/ARCHIVE for Reports; DATA/CTL/BCP_FMT/MYSQL/DOCUMENTATION/etc for MMSDM; NEMDE_Files/File_Readers for NEMDE; ANNUAL for FCAS_Causer_Pays).",
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/Tier" },
+            "description": "Array of tier records. v2.0.0+ always emits a list, even for single-record tiers, to give consumers a uniform iteration shape."
+          }
         },
         "query_shape": {
           "type": ["object", "null"],
