@@ -211,14 +211,16 @@ def test_orphan_curated_key_warns_on_first_occurrence(tmp_path: Path) -> None:
                 "intra_repo_id": "Foo",
                 "resolvable": True,
                 "tiers": {
-                    "CURRENT": {
-                        "path_template": "/",
-                        "filename_template": "x",
-                        "filename_regex": "x",
-                        "example": "",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "CURRENT": [
+                        {
+                            "path_template": "/",
+                            "filename_template": "x",
+                            "filename_regex": "x",
+                            "example": "",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -481,14 +483,16 @@ def test_curated_only_shadows_auto_emits_warning(tmp_path: Path) -> None:
                 "intra_repo_id": "Collision",
                 "resolvable": True,
                 "tiers": {
-                    "CURRENT": {
-                        "path_template": "/Reports/CURRENT/Collision/",
-                        "filename_template": "collision_{date}.zip",
-                        "filename_regex": r"^collision_\d{8}\.zip$",
-                        "example": "collision_20240101.zip",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "CURRENT": [
+                        {
+                            "path_template": "/Reports/CURRENT/Collision/",
+                            "filename_template": "collision_{date}.zip",
+                            "filename_regex": r"^collision_\d{8}\.zip$",
+                            "example": "collision_20240101.zip",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
