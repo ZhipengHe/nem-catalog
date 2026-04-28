@@ -180,8 +180,7 @@ class Catalog:
                         skipped_records.append((n, i, leftover))
                         continue
                     urls.extend(_expand_tier(rec, expand_from, expand_to))
-            recs_total = sum(len(recs) for recs in selected.values())
-            _warn_skipped_records(key, skipped_records, recs_total=recs_total)
+            _warn_skipped_records(key, skipped_records)
             if not urls and skipped_records:
                 n, i, leftover = skipped_records[0]
                 raise NonResolvableTemplateError(dataset_key=key, tier=f"{n}[{i}]", tokens=leftover)
@@ -203,7 +202,7 @@ class Catalog:
                     skipped_records.append((n, i, leftover))
                     continue
                 urls.extend(_expand_tier(rec, dt_from, dt_to))
-        _warn_skipped_records(key, skipped_records, recs_total=records_total)
+        _warn_skipped_records(key, skipped_records)
         # Only short-circuit to empty when EVERY selected record had an
         # observed_range AND none overlapped the request window. If any
         # record omits observed_range, treat coverage as unknown and trust
@@ -296,7 +295,6 @@ def _expand_tier(tier: dict[str, Any], dt_from: datetime, dt_to: datetime) -> li
 def _warn_skipped_records(
     key: str,
     skipped: list[tuple[str, int, frozenset[str]]],
-    recs_total: int,
 ) -> None:
     """Emit one UserWarning per RECORD skipped due to non-temporal placeholders.
 
@@ -309,9 +307,9 @@ def _warn_skipped_records(
     for tier_name, i, tokens in skipped:
         tok_str = ", ".join(sorted(tokens))
         warnings.warn(
-            f"resolve({key!r}): skipped tier {tier_name!r} record {i + 1} of "
-            f"{recs_total} — template contains non-temporal placeholder(s) "
-            f"{{{tok_str}}} that v0.1 cannot substitute. Inspect "
+            f"resolve({key!r}): skipped tier {tier_name!r} record {i + 1} — "
+            f"template contains non-temporal placeholder(s) {{{tok_str}}} that "
+            f"v0.1 cannot substitute. Inspect "
             f"catalog.datasets[{key!r}]['tiers'][{tier_name!r}][{i}] for the "
             f"raw template.",
             stacklevel=3,
