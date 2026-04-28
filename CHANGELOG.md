@@ -4,8 +4,20 @@ All notable changes to nem-catalog are tracked here. Format: [Keep a Changelog](
 
 ## [Unreleased]
 
+### Changed (BREAKING)
+
+- **schema_version 1.0.0 → 2.0.0.** `datasets[key].tiers[tier_name]` is now an array of tier records; consumers must iterate. Single-record tiers become 1-element arrays. Closes #22.
+- **Python SDK `Catalog.resolve()`** — public API unchanged (still returns `list[str]` of URLs), but per-record token-skipping and per-record `observed_range` filtering changes which URLs come back when a tier has heterogeneous records (some pure-temporal, some non-temporal). Skipped-record warnings include the record index.
+
+### Migration
+
+- **Python consumers using `catalog.resolve()`:** no change required.
+- **Python consumers reading `catalog.datasets[key]["tiers"][T]` directly:** previously a single tier dict; now a list. Update to iterate.
+- **Non-Python consumers (R, Julia, shell):** parse `tiers[T]` as a JSON array. Read the first element for backward-equivalent behaviour on single-record tiers.
+
 ### Fixed
 
+- **474 colliding `(dataset, tier)` groups** now surface all records (was: silently kept last-write-wins). Recovers 1033 row entries previously dropped from the published catalog. Issue #22.
 - Extractor classifier no longer dumps 563 rows into placeholder `UNPARSED` / `UNKNOWN` / `ROOT_AUX` / `DOCUMENTATION_AUX` / `MTPASA_DATA_EXPORT` buckets. `extract_mmsdm_table` now parses underscore-delimited `PUBLIC_DVD_<TABLE>_<date>.<ext>` filenames (both 6-digit yearmonth and 12-digit timestamp variants, plus `.ctlbak`/`.ctlBak` backup files). The previously-dead `classify_mmsdm` branches for `MMSDM_MONTHLY_BULK` / `MONTH_ROOT_AUX` / `SQLLOADER_AUX` are revived (guards were indexed without accounting for `rel[-1]` being the filename segment). `classify_nemde` gains `NEMDE_MONTHLY_BULK` promotion, a distinct `MARKET_DATA_AUX` tier for `NEMDE_Market_Data/` aux chrome, and stem-based `ROOT_AUX` ids. `MTPASA_DATA_EXPORT` splits into `MTPASA_REGIONAVAIL_TRK` + `MTPASA_REGIONAVAILABILITY` (two real datasets no longer bucketed by directory name). `marketnoticedata_{yearmonth}.par` promoted out of DOCUMENTATION_AUX to `MARKETNOTICEDATA`. CD-chrome aux files get stable filename-stem-derived `intra_repo_id`s via a new `aux_id_from_filename_template` helper that preserves source byte casing per §3.1 (case variants like `Readme.htm` vs `readme.htm` stay distinct). Distinct `(repo, intra_repo_id)` count grows from 367 → 442. No schema change; `catalog.json` consumers are unaffected until #17 (`write_json` row-collapse) lands. Closes #21.
 
 ## [0.1.1] — 2026-04-20
