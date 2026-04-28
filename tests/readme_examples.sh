@@ -7,7 +7,7 @@ FIXTURE="$(dirname "$0")/fixtures/sample_catalog.json"
 
 # Test 1: curl + jq hero one-liner
 # (Substitute local fixture for the live Pages URL since CI has no live catalog yet.)
-result=$(jq '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE' "$FIXTURE")
+result=$(jq '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE[0]' "$FIXTURE")
 echo "$result" | jq -e '.filename_template == "PUBLIC_DISPATCHIS_{date}.zip"' > /dev/null
 echo "README example 1 (curl+jq hero): OK"
 

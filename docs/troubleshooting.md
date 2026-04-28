@@ -26,7 +26,7 @@ The error includes:
 
 1. **Pin to an older date range** that only hits a pure-temporal ARCHIVE tier.
 2. **Use `view=` to force a specific tier.** For MMSDM datasets with multiple views, pick one that's pure-temporal (rarely available — most use `{nn}`/`{d2}`).
-3. **Inspect the raw template** via `catalog.datasets[key]['tiers'][tier]` and build the URL with your own participant ID or by listing the directory on NEMWEB.
+3. **Inspect the raw template** via `catalog.datasets[key]['tiers'][tier][0]` (v2.0.0: each tier is a list of records; `[0]` selects the first) and build the URL with your own participant ID or by listing the directory on NEMWEB.
 4. **Wait for v0.2** — an enumeration API (`list_urls(key, from_, to_, **overrides)`) is planned.
 
 **Background:** AEMO's rolling CURRENT filenames frequently embed a 16-digit participant ID like `PUBLIC_DISPATCHIS_202604160445_0000000513144978.zip`. MMSDM SQLLoader files use a 1- or 2-digit FILE sequence number per month. There's no way to enumerate those values from a date range alone; you have to list the directory on NEMWEB and filter.
@@ -34,7 +34,7 @@ The error includes:
 <a id="incompatible-catalog"></a>
 ## #incompatible-catalog
 
-`IncompatibleCatalogError` means the catalog's `schema_version` MAJOR is not supported by your SDK version. SDK 0.1.x supports schema `1.x`.
+`IncompatibleCatalogError` means the catalog's `schema_version` MAJOR is not supported by your SDK version. SDK 0.1.x (post-#22) supports schema `2.x`.
 
 **Fix:** upgrade the SDK (`pip install -U nem-catalog`) or pin an older catalog version.
 

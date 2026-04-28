@@ -12,10 +12,10 @@ A versioned JSON catalog + JSON Schema that maps `(NEMWEB dataset key, time rang
 
 ```bash
 curl -s https://zhipenghe.me/nem-catalog/catalog.json \
-  | jq '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE'
+  | jq '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE[0]'
 ```
 
-Output:
+Output (schema v2.0.0 wraps each tier in a JSON array; `[0]` selects the first record):
 
 ```json
 {

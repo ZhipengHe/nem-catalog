@@ -19,7 +19,8 @@ built from a date range alone. Rolling CURRENT filenames that embed a
 participant ID (`{aemo_id}`) or file sequence (`{nn}`) raise
 `NonResolvableTemplateError` — see [`troubleshooting.md#non-resolvable-template`](troubleshooting.md#non-resolvable-template).
 Workaround for v0.1: query an ARCHIVE-covered date range, or inspect the raw
-template via `catalog.datasets[key]['tiers']` and build URLs yourself.
+template via `catalog.datasets[key]['tiers'][tier][0]` (v2.0.0: each tier is a
+list of records) and build URLs yourself.
 
 ## 2. Non-Python shell user: grep for datasets, expand template
 
@@ -30,7 +31,7 @@ curl -s https://zhipenghe.me/nem-catalog/catalog.json \
 
 # Get one template, expand it
 curl -s https://zhipenghe.me/nem-catalog/catalog.json \
-  | jq -r '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE'
+  | jq -r '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE[0]'
 ```
 
 ## 3. Tool-builder: consume catalog as a metadata dependency
