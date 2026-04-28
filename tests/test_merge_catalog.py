@@ -582,3 +582,170 @@ def test_last_crawl_fields_absent_when_env_unset(tmp_path, monkeypatch):
     merged = merge(auto, overlays={}, defaults={})
     assert "last_crawl_attempted_at" not in merged
     assert "last_crawl_completed_at" not in merged
+
+
+def test_merge_tiers_broadcasts_curated_field_to_all_records(tmp_path) -> None:
+    """Task 5: RED test for merge-layer array adaptation.
+
+    When auto has tiers["CURRENT"] = [rec1, rec2], and curated overlay sets
+    tiers.CURRENT.retention_hint_unverified_days = 2, the merged output must
+    have retention_hint_unverified_days == 2 on BOTH records.
+    """
+    from scripts.merge_catalog import merge
+
+    auto = {
+        "schema_version": "2.0.0",
+        "catalog_version": "2026.04.28",
+        "as_of": "2026-04-28T00:00:00Z",
+        "source_mirror_commit": "abc1234",
+        "placeholders": {},
+        "dataset_keys": ["Reports:Test_Dataset"],
+        "raw_keys": ["Reports:Test_Dataset"],
+        "datasets": {
+            "Reports:Test_Dataset": {
+                "repo": "Reports",
+                "intra_repo_id": "Test_Dataset",
+                "resolvable": True,
+                "tiers": {
+                    "CURRENT": [
+                        {
+                            "path_template": "/path/",
+                            "filename_template": "FILE_A_{date}.zip",
+                            "filename_regex": ".*",
+                            "example": "FILE_A_20250101.zip",
+                            "cadence": "5min",
+                        },
+                        {
+                            "path_template": "/path/",
+                            "filename_template": "FILE_B_{date}.zip",
+                            "filename_regex": ".*",
+                            "example": "FILE_B_20250101.zip",
+                            "cadence": "5min",
+                        },
+                    ]
+                },
+                "query_shape": None,
+                "schema_source": None,
+                "anomaly_note": None,
+            }
+        },
+    }
+    overlays = {
+        "Reports:Test_Dataset": {"tiers": {"CURRENT": {"retention_hint_unverified_days": 2}}}
+    }
+
+    merged = merge(auto, overlays, {})
+
+    # Both records should have the curated field broadcast to them
+    current_tier = merged["datasets"]["Reports:Test_Dataset"]["tiers"]["CURRENT"]
+    assert isinstance(current_tier, list), "CURRENT tier should be a list"
+    assert len(current_tier) == 2, "CURRENT tier should have 2 records"
+    assert current_tier[0]["retention_hint_unverified_days"] == 2
+    assert current_tier[1]["retention_hint_unverified_days"] == 2
+
+
+def test_merge_tiers_curated_only_tier_wraps_in_list(tmp_path) -> None:
+    """Task 5: RED test for merge-layer array adaptation.
+
+    When curated YAML provides a tiers.NEW_TIER: {…} entry that auto doesn't
+    have, the merged tiers["NEW_TIER"] must be [curated_dict] (list, not dict).
+    """
+    from scripts.merge_catalog import merge
+
+    auto = {
+        "schema_version": "2.0.0",
+        "catalog_version": "2026.04.28",
+        "as_of": "2026-04-28T00:00:00Z",
+        "source_mirror_commit": "abc1234",
+        "placeholders": {},
+        "dataset_keys": ["Reports:Test_Dataset"],
+        "raw_keys": ["Reports:Test_Dataset"],
+        "datasets": {
+            "Reports:Test_Dataset": {
+                "repo": "Reports",
+                "intra_repo_id": "Test_Dataset",
+                "resolvable": True,
+                "tiers": {
+                    "CURRENT": [
+                        {
+                            "path_template": "/path/",
+                            "filename_template": "FILE_{date}.zip",
+                            "filename_regex": ".*",
+                            "example": "FILE_20250101.zip",
+                            "cadence": "5min",
+                        }
+                    ]
+                },
+                "query_shape": None,
+                "schema_source": None,
+                "anomaly_note": None,
+            }
+        },
+    }
+    overlays = {
+        "Reports:Test_Dataset": {
+            "tiers": {
+                "NEW_TIER": {
+                    "path_template": "/new/",
+                    "filename_template": "NEW_{date}.zip",
+                    "filename_regex": "NEW_.*",
+                    "example": "NEW_20250101.zip",
+                    "cadence": "daily",
+                }
+            }
+        }
+    }
+
+    merged = merge(auto, overlays, {})
+
+    # NEW_TIER should exist and be a list with 1 element
+    new_tier = merged["datasets"]["Reports:Test_Dataset"]["tiers"]["NEW_TIER"]
+    assert isinstance(new_tier, list), "NEW_TIER should be a list"
+    assert len(new_tier) == 1, "NEW_TIER should be a 1-element list"
+    assert new_tier[0]["path_template"] == "/new/"
+    assert new_tier[0]["filename_template"] == "NEW_{date}.zip"
+
+
+def test_insert_curated_only_wraps_each_tier_dict(tmp_path) -> None:
+    """Task 5: RED test for merge-layer array adaptation.
+
+    When curated_only entry has tiers.ARCHIVE: {path_template: …, …},
+    the merged tiers["ARCHIVE"] must be [the_dict] (wrapped in list).
+    """
+    from scripts.merge_catalog import merge
+
+    auto = {
+        "schema_version": "2.0.0",
+        "catalog_version": "2026.04.28",
+        "as_of": "2026-04-28T00:00:00Z",
+        "source_mirror_commit": "abc1234",
+        "placeholders": {},
+        "dataset_keys": [],
+        "raw_keys": [],
+        "datasets": {},
+    }
+    overlays = {
+        "Reports:FakePlaceholder": {
+            "curated_only": True,
+            "resolvable": False,
+            "tiers": {
+                "ARCHIVE": {
+                    "path_template": "/Reports/ARCHIVE/FakePlaceholder/",
+                    "filename_template": None,
+                    "filename_regex": None,
+                    "example": "",
+                    "cadence": "none",
+                }
+            },
+            "anomaly_note": "Placeholder entry for testing.",
+        }
+    }
+
+    merged = merge(auto, overlays, {})
+
+    # ARCHIVE tier in the curated_only record should be a list
+    archive_tier = merged["datasets"]["Reports:FakePlaceholder"]["tiers"]["ARCHIVE"]
+    assert isinstance(archive_tier, list), "ARCHIVE tier should be a list"
+    assert len(archive_tier) == 1, "ARCHIVE tier should be a 1-element list"
+    assert archive_tier[0]["path_template"] == "/Reports/ARCHIVE/FakePlaceholder/"
+    assert archive_tier[0]["filename_template"] is None
