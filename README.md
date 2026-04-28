@@ -4,7 +4,7 @@
 [![Schema](https://img.shields.io/badge/schema-v1.0.0-green)](https://zhipenghe.me/nem-catalog/catalog.schema.json)
 [![PyPI](https://img.shields.io/pypi/v/nem-catalog)](https://pypi.org/project/nem-catalog/)
 [![License: MIT](https://img.shields.io/badge/license-MIT%20%2B%20CC0-brightgreen)](LICENSE)
-[![Last successful crawl](https://img.shields.io/badge/last%20crawl-2026--04--20-brightgreen)](https://github.com/ZhipengHe/nem-catalog/actions/workflows/weekly-refresh.yml)
+[![Last successful crawl](https://img.shields.io/badge/last%20crawl-2026--04--27-brightgreen)](https://github.com/ZhipengHe/nem-catalog/actions/workflows/weekly-refresh.yml)
 
 A versioned JSON catalog + JSON Schema that maps `(NEMWEB dataset key, time range) → candidate URLs`, covering all four NEMWEB repositories (`Reports`, `MMSDM`, `NEMDE`, `FCAS_Causer_Pays`). Released under MIT (code) and CC0 (catalog data).
 
