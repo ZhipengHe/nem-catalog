@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "catalog_version": "2026.04.18",
   "as_of": "2026-04-18T00:00:00Z",
   "source_mirror_commit": "79cbad2",
@@ -35,25 +35,29 @@
       "intra_repo_id": "DispatchIS_Reports",
       "resolvable": true,
       "tiers": {
-        "CURRENT": {
-          "path_template": "/Reports/CURRENT/DispatchIS_Reports/",
-          "filename_template": "PUBLIC_DISPATCHIS_{timestamp}_{aemo_id}.zip",
-          "filename_regex": "^PUBLIC_DISPATCHIS_\\d{12}_\\d{16}\\.zip$",
-          "example": "PUBLIC_DISPATCHIS_202604160445_0000000513144978.zip",
-          "cadence": "5min",
-          "time_granularity": "yyyymmddhhmm",
-          "retention_hint_unverified_days": 2,
-          "observed_range": {"from": "2026-04-16T00:00Z", "to": "2026-04-18T00:00Z"}
-        },
-        "ARCHIVE": {
-          "path_template": "/Reports/ARCHIVE/DispatchIS_Reports/",
-          "filename_template": "PUBLIC_DISPATCHIS_{date}.zip",
-          "filename_regex": "^PUBLIC_DISPATCHIS_\\d{8}\\.zip$",
-          "example": "PUBLIC_DISPATCHIS_20250407.zip",
-          "cadence": "daily_rollup",
-          "time_granularity": "yyyymmdd",
-          "observed_range": {"from": "2009-07-01", "to": "2026-03-31"}
-        }
+        "CURRENT": [
+          {
+            "path_template": "/Reports/CURRENT/DispatchIS_Reports/",
+            "filename_template": "PUBLIC_DISPATCHIS_{timestamp}_{aemo_id}.zip",
+            "filename_regex": "^PUBLIC_DISPATCHIS_\\d{12}_\\d{16}\\.zip$",
+            "example": "PUBLIC_DISPATCHIS_202604160445_0000000513144978.zip",
+            "cadence": "5min",
+            "time_granularity": "yyyymmddhhmm",
+            "retention_hint_unverified_days": 2,
+            "observed_range": {"from": "2026-04-16T00:00Z", "to": "2026-04-18T00:00Z"}
+          }
+        ],
+        "ARCHIVE": [
+          {
+            "path_template": "/Reports/ARCHIVE/DispatchIS_Reports/",
+            "filename_template": "PUBLIC_DISPATCHIS_{date}.zip",
+            "filename_regex": "^PUBLIC_DISPATCHIS_\\d{8}\\.zip$",
+            "example": "PUBLIC_DISPATCHIS_20250407.zip",
+            "cadence": "daily_rollup",
+            "time_granularity": "yyyymmdd",
+            "observed_range": {"from": "2009-07-01", "to": "2026-04-17"}
+          }
+        ]
       },
       "query_shape": {
         "inputs": [{"name": "date", "format": "yyyymmdd", "example": "20250407"}],
@@ -68,25 +72,29 @@
       "intra_repo_id": "PureTemporalRolling",
       "resolvable": true,
       "tiers": {
-        "CURRENT": {
-          "path_template": "/Reports/CURRENT/PureTemporalRolling/",
-          "filename_template": "ROLLING_{date}.zip",
-          "filename_regex": "^ROLLING_\\d{8}\\.zip$",
-          "example": "ROLLING_20260416.zip",
-          "cadence": "daily_rollup",
-          "time_granularity": "yyyymmdd",
-          "retention_hint_unverified_days": 2,
-          "observed_range": {"from": "2026-04-16", "to": "2026-04-18"}
-        },
-        "ARCHIVE": {
-          "path_template": "/Reports/ARCHIVE/PureTemporalRolling/",
-          "filename_template": "ARCHIVED_{date}.zip",
-          "filename_regex": "^ARCHIVED_\\d{8}\\.zip$",
-          "example": "ARCHIVED_20250407.zip",
-          "cadence": "daily_rollup",
-          "time_granularity": "yyyymmdd",
-          "observed_range": {"from": "2009-07-01", "to": "2026-04-15"}
-        }
+        "CURRENT": [
+          {
+            "path_template": "/Reports/CURRENT/PureTemporalRolling/",
+            "filename_template": "ROLLING_{date}.zip",
+            "filename_regex": "^ROLLING_\\d{8}\\.zip$",
+            "example": "ROLLING_20260416.zip",
+            "cadence": "daily_rollup",
+            "time_granularity": "yyyymmdd",
+            "retention_hint_unverified_days": 2,
+            "observed_range": {"from": "2026-04-16", "to": "2026-04-18"}
+          }
+        ],
+        "ARCHIVE": [
+          {
+            "path_template": "/Reports/ARCHIVE/PureTemporalRolling/",
+            "filename_template": "ARCHIVED_{date}.zip",
+            "filename_regex": "^ARCHIVED_\\d{8}\\.zip$",
+            "example": "ARCHIVED_20250407.zip",
+            "cadence": "daily_rollup",
+            "time_granularity": "yyyymmdd",
+            "observed_range": {"from": "2009-07-01", "to": "2026-04-15"}
+          }
+        ]
       },
       "query_shape": {
         "inputs": [{"name": "date", "format": "yyyymmdd", "example": "20260416"}],
@@ -101,14 +109,16 @@
       "intra_repo_id": "NEXT_DAY_OFFER_ENERGY)SPARSE",
       "resolvable": false,
       "tiers": {
-        "ARCHIVE": {
-          "path_template": "/Reports/ARCHIVE/NEXT_DAY_OFFER_ENERGY)SPARSE/",
-          "filename_template": null,
-          "filename_regex": null,
-          "example": "",
-          "cadence": "none",
-          "observed_range": null
-        }
+        "ARCHIVE": [
+          {
+            "path_template": "/Reports/ARCHIVE/NEXT_DAY_OFFER_ENERGY)SPARSE/",
+            "filename_template": null,
+            "filename_regex": null,
+            "example": "",
+            "cadence": "none",
+            "observed_range": null
+          }
+        ]
       },
       "query_shape": null,
       "schema_source": null,
@@ -119,24 +129,28 @@
       "intra_repo_id": "DISPATCHPRICE",
       "resolvable": true,
       "tiers": {
-        "DATA": {
-          "path_template": "/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{month}/MMSDM_Historical_Data_SQLLoader/DATA/",
-          "filename_template": "PUBLIC_ARCHIVE#DISPATCHPRICE#FILE{nn}#{yyyymmddHHMM}.zip",
-          "filename_regex": "^PUBLIC_ARCHIVE#DISPATCHPRICE#FILE\\d{2}#\\d{12}\\.zip$",
-          "example": "PUBLIC_ARCHIVE#DISPATCHPRICE#FILE01#202503312355.zip",
-          "cadence": "5min",
-          "time_granularity": "yyyymmddHHMM",
-          "observed_range": {"from": "2009-07", "to": "2026-03"}
-        },
-        "CTL": {
-          "path_template": "/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{month}/MMSDM_Historical_Data_SQLLoader/CTL/",
-          "filename_template": "PUBLIC_ARCHIVE#DISPATCHPRICE#FILE{nn}#{yyyymm}.ctl",
-          "filename_regex": "^PUBLIC_ARCHIVE#DISPATCHPRICE#FILE\\d{2}#\\d{6}\\.ctl$",
-          "example": "PUBLIC_ARCHIVE#DISPATCHPRICE#FILE01#202503.ctl",
-          "cadence": "monthly_bulk",
-          "time_granularity": "yyyymm",
-          "observed_range": {"from": "2009-07", "to": "2026-03"}
-        }
+        "DATA": [
+          {
+            "path_template": "/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{month}/MMSDM_Historical_Data_SQLLoader/DATA/",
+            "filename_template": "PUBLIC_ARCHIVE#DISPATCHPRICE#FILE{nn}#{yyyymmddHHMM}.zip",
+            "filename_regex": "^PUBLIC_ARCHIVE#DISPATCHPRICE#FILE\\d{2}#\\d{12}\\.zip$",
+            "example": "PUBLIC_ARCHIVE#DISPATCHPRICE#FILE01#202503312355.zip",
+            "cadence": "5min",
+            "time_granularity": "yyyymmddHHMM",
+            "observed_range": {"from": "2009-07", "to": "2026-03"}
+          }
+        ],
+        "CTL": [
+          {
+            "path_template": "/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{month}/MMSDM_Historical_Data_SQLLoader/CTL/",
+            "filename_template": "PUBLIC_ARCHIVE#DISPATCHPRICE#FILE{nn}#{yyyymm}.ctl",
+            "filename_regex": "^PUBLIC_ARCHIVE#DISPATCHPRICE#FILE\\d{2}#\\d{6}\\.ctl$",
+            "example": "PUBLIC_ARCHIVE#DISPATCHPRICE#FILE01#202503.ctl",
+            "cadence": "monthly_bulk",
+            "time_granularity": "yyyymm",
+            "observed_range": {"from": "2009-07", "to": "2026-03"}
+          }
+        ]
       },
       "query_shape": {
         "inputs": [{"name": "date", "format": "yyyymmdd", "example": "20250407"}],
@@ -151,14 +165,16 @@
       "intra_repo_id": "DOCUMENTATION_AUX",
       "resolvable": true,
       "tiers": {
-        "DOCUMENTATION": {
-          "path_template": "/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{month}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/",
-          "filename_template": null,
-          "filename_regex": null,
-          "example": "",
-          "cadence": "monthly_bulk",
-          "observed_range": null
-        }
+        "DOCUMENTATION": [
+          {
+            "path_template": "/Data_Archive/Wholesale_Electricity/MMSDM/{year}/MMSDM_{year}_{month}/MMSDM_Historical_Data_SQLLoader/DOCUMENTATION/",
+            "filename_template": null,
+            "filename_regex": null,
+            "example": "",
+            "cadence": "monthly_bulk",
+            "observed_range": null
+          }
+        ]
       },
       "query_shape": null,
       "schema_source": null,
@@ -169,15 +185,17 @@
       "intra_repo_id": "NemPriceSetter",
       "resolvable": true,
       "tiers": {
-        "NEMDE_Files": {
-          "path_template": "/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{month}/NEMDE_Market_Data/NEMDE_Files/",
-          "filename_template": "NemPriceSetter_{date}_xml.zip",
-          "filename_regex": "^NemPriceSetter_\\d{8}_xml\\.zip$",
-          "example": "NemPriceSetter_20090701_xml.zip",
-          "cadence": "daily",
-          "time_granularity": "yyyymmdd",
-          "observed_range": {"from": "2009-07-01", "to": "2026-04-01"}
-        }
+        "NEMDE_Files": [
+          {
+            "path_template": "/Data_Archive/Wholesale_Electricity/NEMDE/{year}/NEMDE_{year}_{month}/NEMDE_Market_Data/NEMDE_Files/",
+            "filename_template": "NemPriceSetter_{date}_xml.zip",
+            "filename_regex": "^NemPriceSetter_\\d{8}_xml\\.zip$",
+            "example": "NemPriceSetter_20090701_xml.zip",
+            "cadence": "daily",
+            "time_granularity": "yyyymmdd",
+            "observed_range": {"from": "2009-07-01", "to": "2026-04-01"}
+          }
+        ]
       },
       "query_shape": {
         "inputs": [{"name": "date", "format": "yyyymmdd", "example": "20090701"}],
@@ -192,15 +210,17 @@
       "intra_repo_id": "CAUSER_PAYS",
       "resolvable": true,
       "tiers": {
-        "ANNUAL": {
-          "path_template": "/Data_Archive/Wholesale_Electricity/FCAS_Causer_Pays/{year}/",
-          "filename_template": "{year}.txt",
-          "filename_regex": "^\\d{4}\\.txt$",
-          "example": "2011.txt",
-          "cadence": "annual",
-          "time_granularity": "yyyy",
-          "observed_range": {"from": "2011", "to": "2012"}
-        }
+        "ANNUAL": [
+          {
+            "path_template": "/Data_Archive/Wholesale_Electricity/FCAS_Causer_Pays/{year}/",
+            "filename_template": "{year}.txt",
+            "filename_regex": "^\\d{4}\\.txt$",
+            "example": "2011.txt",
+            "cadence": "annual",
+            "time_granularity": "yyyy",
+            "observed_range": {"from": "2011", "to": "2012"}
+          }
+        ]
       },
       "query_shape": {
         "inputs": [{"name": "year", "format": "yyyy", "example": "2011"}],

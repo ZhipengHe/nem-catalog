@@ -65,7 +65,7 @@ def test_resolve_returns_empty_when_all_tiers_miss_observed_range():
     from nem_catalog.catalog import Catalog
 
     data = {
-        "schema_version": "1.0.0",
+        "schema_version": "2.0.0",
         "catalog_version": "2026.04.18",
         "as_of": "2026-04-18T00:00:00Z",
         "placeholders": {},
@@ -77,16 +77,20 @@ def test_resolve_returns_empty_when_all_tiers_miss_observed_range():
                 "intra_repo_id": "AllObsMiss",
                 "resolvable": True,
                 "tiers": {
-                    "TIER_A": {
-                        "path_template": "/a/",
-                        "filename_template": "a_{date}.zip",
-                        "observed_range": {"from": "2020-01-01", "to": "2020-12-31"},
-                    },
-                    "TIER_B": {
-                        "path_template": "/b/",
-                        "filename_template": "b_{date}.zip",
-                        "observed_range": {"from": "2021-01-01", "to": "2021-12-31"},
-                    },
+                    "TIER_A": [
+                        {
+                            "path_template": "/a/",
+                            "filename_template": "a_{date}.zip",
+                            "observed_range": {"from": "2020-01-01", "to": "2020-12-31"},
+                        }
+                    ],
+                    "TIER_B": [
+                        {
+                            "path_template": "/b/",
+                            "filename_template": "b_{date}.zip",
+                            "observed_range": {"from": "2021-01-01", "to": "2021-12-31"},
+                        }
+                    ],
                 },
             }
         },
@@ -117,7 +121,7 @@ def test_resolve_returns_urls_when_tier_has_no_observed_range():
     from nem_catalog.catalog import Catalog
 
     data = {
-        "schema_version": "1.0.0",
+        "schema_version": "2.0.0",
         "catalog_version": "2026.04.18",
         "as_of": "2026-04-18T00:00:00Z",
         "placeholders": {},
@@ -129,12 +133,14 @@ def test_resolve_returns_urls_when_tier_has_no_observed_range():
                 "intra_repo_id": "NoObs",
                 "resolvable": True,
                 "tiers": {
-                    "ARCHIVE": {
-                        "path_template": "/test/",
-                        "filename_template": "file_{date}.zip",
-                        # observed_range deliberately omitted — curated tiers
-                        # can legitimately opt out (e.g. annual aggregates).
-                    }
+                    "ARCHIVE": [
+                        {
+                            "path_template": "/test/",
+                            "filename_template": "file_{date}.zip",
+                            # observed_range deliberately omitted — curated tiers
+                            # can legitimately opt out (e.g. annual aggregates).
+                        }
+                    ],
                 },
             }
         },
@@ -213,7 +219,7 @@ def test_resolve_raises_when_current_tier_has_aemo_id(catalog):
     with pytest.raises(NonResolvableTemplateError) as ei:
         catalog.resolve("Reports:DispatchIS_Reports", from_="2026-04-17", to_="2026-04-18")
     assert ei.value.dataset_key == "Reports:DispatchIS_Reports"
-    assert ei.value.tier == "CURRENT"
+    assert ei.value.tier == "CURRENT[0]"
     assert "aemo_id" in ei.value.tokens
 
 
@@ -248,7 +254,7 @@ def test_resolve_raises_when_all_tiers_are_non_resolvable(catalog):
     # DispatchIS_Reports inside retention window → CURRENT only → non-resolvable.
     with pytest.raises(NonResolvableTemplateError) as ei:
         catalog.resolve("Reports:DispatchIS_Reports", from_="2026-04-17", to_="2026-04-18")
-    assert ei.value.tier == "CURRENT"
+    assert ei.value.tier == "CURRENT[0]"
     assert "aemo_id" in ei.value.tokens
 
 
@@ -261,7 +267,7 @@ def test_resolve_raises_when_mmsdm_template_has_nn(catalog):
     with pytest.raises(NonResolvableTemplateError) as ei:
         catalog.resolve("MMSDM:DISPATCHPRICE", from_="2025-04-01", to_="2025-04-30", view="DATA")
     assert ei.value.dataset_key == "MMSDM:DISPATCHPRICE"
-    assert ei.value.tier == "DATA"
+    assert ei.value.tier == "DATA[0]"
     assert "nn" in ei.value.tokens
 
 
@@ -311,7 +317,7 @@ def test_resolve_substitutes_extended_temporal_tokens():
     from nem_catalog.catalog import Catalog
 
     raw = {
-        "schema_version": "1.0.0",
+        "schema_version": "2.0.0",
         "catalog_version": "test",
         "as_of": "2026-04-19T00:00:00Z",
         "placeholders": {},
@@ -323,12 +329,14 @@ def test_resolve_substitutes_extended_temporal_tokens():
                 "intra_repo_id": "YearMonthOnly",
                 "resolvable": True,
                 "tiers": {
-                    "ARCHIVE": {
-                        "path_template": "/test/",
-                        "filename_template": "MONTHLY_{yearmonth}.zip",
-                        "time_granularity": "yearmonth",
-                        "observed_range": {"from": "2020-01", "to": "2026-12"},
-                    }
+                    "ARCHIVE": [
+                        {
+                            "path_template": "/test/",
+                            "filename_template": "MONTHLY_{yearmonth}.zip",
+                            "time_granularity": "yearmonth",
+                            "observed_range": {"from": "2020-01", "to": "2026-12"},
+                        }
+                    ],
                 },
             },
             "Reports:DatetimeOnly": {
@@ -336,12 +344,14 @@ def test_resolve_substitutes_extended_temporal_tokens():
                 "intra_repo_id": "DatetimeOnly",
                 "resolvable": True,
                 "tiers": {
-                    "ARCHIVE": {
-                        "path_template": "/test/",
-                        "filename_template": "EVENT_{datetime}.zip",
-                        "time_granularity": "datetime",
-                        "observed_range": {"from": "2026-04-15", "to": "2026-04-20"},
-                    }
+                    "ARCHIVE": [
+                        {
+                            "path_template": "/test/",
+                            "filename_template": "EVENT_{datetime}.zip",
+                            "time_granularity": "datetime",
+                            "observed_range": {"from": "2026-04-15", "to": "2026-04-20"},
+                        }
+                    ],
                 },
             },
             "Reports:HourOnly": {
@@ -349,12 +359,14 @@ def test_resolve_substitutes_extended_temporal_tokens():
                 "intra_repo_id": "HourOnly",
                 "resolvable": True,
                 "tiers": {
-                    "ARCHIVE": {
-                        "path_template": "/test/",
-                        "filename_template": "HOURLY_{yyyymmddhh}.zip",
-                        "time_granularity": "yyyymmddhh",
-                        "observed_range": {"from": "2026-04-15", "to": "2026-04-20"},
-                    }
+                    "ARCHIVE": [
+                        {
+                            "path_template": "/test/",
+                            "filename_template": "HOURLY_{yyyymmddhh}.zip",
+                            "time_granularity": "yyyymmddhh",
+                            "observed_range": {"from": "2026-04-15", "to": "2026-04-20"},
+                        }
+                    ],
                 },
             },
         },

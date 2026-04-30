@@ -13,6 +13,12 @@ Merge semantics (see docs/architecture.md):
    c. Key absent from auto: FAIL immediately (suspected AEMO deletion).
 3. Auto-only dataset key: pass through unchanged.
 
+v2.0.0 array-shape contract: dataset.tiers[T] is a list of tier records, not
+a single dict. Curated YAML files continue to write one tier dict per tier
+name (e.g. ``tiers: {CURRENT: {field: value}}``); merge wraps each as a
+1-element list to match the v2.0.0 array shape, and broadcasts curated
+fields across all records in an existing auto tier list.
+
 Usage:
     python scripts/merge_catalog.py --auto patterns/auto/catalog.json \\
         --curated patterns/curated/ --out catalog.json
@@ -178,6 +184,11 @@ def _insert_curated_only(
         raise SystemExit(f"FAIL: curated_only key {key!r} is not in 'Repo:intra_repo_id' form")
     repo, intra_repo_id = key.split(":", 1)
     record = {k: v for k, v in overlay.items() if k != "curated_only"}
+    if "tiers" in record:
+        record["tiers"] = {
+            tier_name: ([tier_dict] if isinstance(tier_dict, dict) else tier_dict)
+            for tier_name, tier_dict in record["tiers"].items()
+        }
     # repo + intra_repo_id are derived from the key. If the YAML also sets
     # them, the values MUST match — accepting a divergent YAML value would
     # silently produce an inconsistent record (key says one thing, fields
@@ -218,19 +229,27 @@ def _merge_tiers(
     key: str, ds: dict[str, Any], curated_tiers: dict[str, Any], warnings: list[str]
 ) -> None:
     for tier_name, tier_overlay in curated_tiers.items():
+        if isinstance(tier_overlay, list):
+            raise SystemExit(
+                f"FAIL: curated YAML for {key!r} provides list-shape "
+                f"tiers.{tier_name} — this shape is reserved for the auto "
+                f"catalog only; curated YAML must use a single tier dict "
+                f"per tier name (the merge layer wraps it as a 1-element list)."
+            )
         if tier_name not in ds["tiers"]:
             warnings.append(f"{key}.tiers.{tier_name}: curated-only tier (auto has no such tier)")
-            ds["tiers"][tier_name] = tier_overlay
+            ds["tiers"][tier_name] = [tier_overlay]  # wrap as 1-element list
             continue
-        auto_tier = ds["tiers"][tier_name]
-        for field, curated_value in tier_overlay.items():
-            auto_value = auto_tier.get(field)
-            if auto_value is not None and auto_value != curated_value:
-                warnings.append(
-                    f"{key}.tiers.{tier_name}.{field}: "
-                    f"auto={auto_value!r} vs curated={curated_value!r}"
-                )
-            auto_tier[field] = curated_value
+        # auto tier is now a list of records — broadcast curated fields to each
+        for record in ds["tiers"][tier_name]:
+            for field, curated_value in tier_overlay.items():
+                auto_value = record.get(field)
+                if auto_value is not None and auto_value != curated_value:
+                    warnings.append(
+                        f"{key}.tiers.{tier_name}[*].{field}: "
+                        f"auto={auto_value!r} vs curated={curated_value!r}"
+                    )
+                record[field] = curated_value
 
 
 def validate(catalog: dict[str, Any]) -> None:

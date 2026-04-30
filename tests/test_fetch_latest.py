@@ -55,7 +55,7 @@ def test_cold_fetch_writes_cache(server, tmp_path, monkeypatch):
     _srv, url = server
     monkeypatch.setenv("NEM_CATALOG_URL", url)
     c = fetch_latest(cache_dir=tmp_path)
-    assert c.schema_version == "1.0.0"
+    assert c.schema_version == "2.0.0"
     cached = tmp_path / "catalog.json"
     assert cached.exists()
 
@@ -80,7 +80,7 @@ def test_network_error_with_cache_warns_and_serves_cached(server, tmp_path, monk
     srv.shutdown()
     # Now fetch again — should fall back to cache
     c = fetch_latest(cache_dir=tmp_path)
-    assert c.schema_version == "1.0.0"
+    assert c.schema_version == "2.0.0"
     assert any(
         "network" in str(w.message).lower() or "cache" in str(w.message).lower()
         for w in recwarn.list

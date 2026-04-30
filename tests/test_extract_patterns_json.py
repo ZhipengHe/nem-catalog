@@ -121,7 +121,7 @@ def test_write_json_includes_top_level_fields(tmp_path):
         source_mirror_commit="79cbad2",
     )
     data = json.loads(out.read_text())
-    assert data["schema_version"] == "1.0.0"
+    assert data["schema_version"] == "2.0.0"
     assert data["catalog_version"] == "2026.04.18"
     assert data["as_of"] == "2026-04-18T00:00:00Z"
     assert data["source_mirror_commit"] == "79cbad2"
@@ -200,10 +200,11 @@ def test_write_json_placeholders_cover_every_emitted_token(tmp_path):
     token_re = re.compile(r"\{(\w+)\}")
     used: set[str] = set()
     for rec in data["datasets"].values():
-        for tier in rec["tiers"].values():
-            for key in ("filename_template", "path_template"):
-                value = tier.get(key) or ""
-                used.update(token_re.findall(value))
+        for tier_list in rec["tiers"].values():
+            for tier in tier_list:
+                for key in ("filename_template", "path_template"):
+                    value = tier.get(key) or ""
+                    used.update(token_re.findall(value))
 
     missing = used - placeholders.keys()
     assert not missing, (

@@ -16,7 +16,7 @@ def catalog():
 
 
 def test_schema_version(catalog):
-    assert catalog.schema_version == "1.0.0"
+    assert catalog.schema_version == "2.0.0"
 
 
 def test_catalog_version(catalog):

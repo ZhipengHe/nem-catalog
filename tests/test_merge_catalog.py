@@ -24,7 +24,7 @@ def _write_auto(tmp_path: Path, datasets: dict[str, Any]) -> Path:
     return _write(
         tmp_path / "auto-catalog.json",
         {
-            "schema_version": "1.0.0",
+            "schema_version": "2.0.0",
             "catalog_version": "2026.04.18",
             "as_of": "2026-04-18T00:00:00Z",
             "source_mirror_commit": "deadbee",
@@ -46,7 +46,7 @@ def _write_curated(tmp_path: Path, name: str, content: dict[str, Any]) -> Path:
 def _minimal_auto_with_key(key: str) -> dict[str, Any]:
     repo, intra_repo_id = key.split(":", 1)
     return {
-        "schema_version": "1.0.0",
+        "schema_version": "2.0.0",
         "catalog_version": "2026.04.18",
         "as_of": "2026-04-18T00:00:00Z",
         "placeholders": {},
@@ -58,13 +58,15 @@ def _minimal_auto_with_key(key: str) -> dict[str, Any]:
                 "intra_repo_id": intra_repo_id,
                 "resolvable": True,
                 "tiers": {
-                    "T": {
-                        "path_template": "/x/",
-                        "filename_template": "x_{date}.zip",
-                        "filename_regex": r"^x_\d{8}\.zip$",
-                        "example": "x_20240101.zip",
-                        "observed_range": None,
-                    }
+                    "T": [
+                        {
+                            "path_template": "/x/",
+                            "filename_template": "x_{date}.zip",
+                            "filename_regex": r"^x_\d{8}\.zip$",
+                            "example": "x_20240101.zip",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -104,14 +106,16 @@ def test_curated_only_field_accepted(tmp_path: Path) -> None:
                 "intra_repo_id": "Foo",
                 "resolvable": True,
                 "tiers": {
-                    "CURRENT": {
-                        "path_template": "/Reports/CURRENT/Foo/",
-                        "filename_template": "foo_{date}.zip",
-                        "filename_regex": r"^foo_\d{8}\.zip$",
-                        "example": "foo_20240101.zip",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "CURRENT": [
+                        {
+                            "path_template": "/Reports/CURRENT/Foo/",
+                            "filename_template": "foo_{date}.zip",
+                            "filename_regex": r"^foo_\d{8}\.zip$",
+                            "example": "foo_20240101.zip",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -136,14 +140,16 @@ def test_field_overlap_curated_wins_with_warning(tmp_path: Path) -> None:
                 "intra_repo_id": "Foo",
                 "resolvable": True,
                 "tiers": {
-                    "CURRENT": {
-                        "path_template": "/Reports/CURRENT/Foo/",
-                        "filename_template": "foo_{date}.zip",
-                        "filename_regex": r"^foo_\d{8}\.zip$",
-                        "example": "foo_20240101.zip",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "CURRENT": [
+                        {
+                            "path_template": "/Reports/CURRENT/Foo/",
+                            "filename_template": "foo_{date}.zip",
+                            "filename_regex": r"^foo_\d{8}\.zip$",
+                            "example": "foo_20240101.zip",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -170,14 +176,16 @@ def test_auto_only_dataset_key_passes_through(tmp_path: Path) -> None:
                 "intra_repo_id": "Bar",
                 "resolvable": True,
                 "tiers": {
-                    "CURRENT": {
-                        "path_template": "/Reports/CURRENT/Bar/",
-                        "filename_template": "bar_{date}.zip",
-                        "filename_regex": r"^bar_\d{8}\.zip$",
-                        "example": "bar_20240101.zip",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "CURRENT": [
+                        {
+                            "path_template": "/Reports/CURRENT/Bar/",
+                            "filename_template": "bar_{date}.zip",
+                            "filename_regex": r"^bar_\d{8}\.zip$",
+                            "example": "bar_20240101.zip",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -203,14 +211,16 @@ def test_orphan_curated_key_warns_on_first_occurrence(tmp_path: Path) -> None:
                 "intra_repo_id": "Foo",
                 "resolvable": True,
                 "tiers": {
-                    "CURRENT": {
-                        "path_template": "/",
-                        "filename_template": "x",
-                        "filename_regex": "x",
-                        "example": "",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "CURRENT": [
+                        {
+                            "path_template": "/",
+                            "filename_template": "x",
+                            "filename_regex": "x",
+                            "example": "",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -245,14 +255,16 @@ def test_merge_applies_mmsdm_default_schema_source(tmp_path: Path) -> None:
                 "intra_repo_id": "FOO",
                 "resolvable": True,
                 "tiers": {
-                    "DATA": {
-                        "path_template": "/",
-                        "filename_template": "x",
-                        "filename_regex": "x",
-                        "example": "",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "DATA": [
+                        {
+                            "path_template": "/",
+                            "filename_template": "x",
+                            "filename_regex": "x",
+                            "example": "",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -284,14 +296,16 @@ def test_merge_validates_output_against_schema(tmp_path: Path) -> None:
                 "intra_repo_id": "Foo",
                 "resolvable": True,
                 "tiers": {
-                    "CURRENT": {
-                        "path_template": "/Reports/CURRENT/Foo/",
-                        "filename_template": "foo_{date}.zip",
-                        "filename_regex": r"^foo_\d{8}\.zip$",
-                        "example": "foo_20240101.zip",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "CURRENT": [
+                        {
+                            "path_template": "/Reports/CURRENT/Foo/",
+                            "filename_template": "foo_{date}.zip",
+                            "filename_regex": r"^foo_\d{8}\.zip$",
+                            "example": "foo_20240101.zip",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -469,14 +483,16 @@ def test_curated_only_shadows_auto_emits_warning(tmp_path: Path) -> None:
                 "intra_repo_id": "Collision",
                 "resolvable": True,
                 "tiers": {
-                    "CURRENT": {
-                        "path_template": "/Reports/CURRENT/Collision/",
-                        "filename_template": "collision_{date}.zip",
-                        "filename_regex": r"^collision_\d{8}\.zip$",
-                        "example": "collision_20240101.zip",
-                        "cadence": "5min",
-                        "observed_range": None,
-                    }
+                    "CURRENT": [
+                        {
+                            "path_template": "/Reports/CURRENT/Collision/",
+                            "filename_template": "collision_{date}.zip",
+                            "filename_regex": r"^collision_\d{8}\.zip$",
+                            "example": "collision_20240101.zip",
+                            "cadence": "5min",
+                            "observed_range": None,
+                        }
+                    ]
                 },
                 "query_shape": None,
                 "schema_source": None,
@@ -582,3 +598,170 @@ def test_last_crawl_fields_absent_when_env_unset(tmp_path, monkeypatch):
     merged = merge(auto, overlays={}, defaults={})
     assert "last_crawl_attempted_at" not in merged
     assert "last_crawl_completed_at" not in merged
+
+
+def test_merge_tiers_broadcasts_curated_field_to_all_records(tmp_path) -> None:
+    """Task 5: RED test for merge-layer array adaptation.
+
+    When auto has tiers["CURRENT"] = [rec1, rec2], and curated overlay sets
+    tiers.CURRENT.retention_hint_unverified_days = 2, the merged output must
+    have retention_hint_unverified_days == 2 on BOTH records.
+    """
+    from scripts.merge_catalog import merge
+
+    auto = {
+        "schema_version": "2.0.0",
+        "catalog_version": "2026.04.28",
+        "as_of": "2026-04-28T00:00:00Z",
+        "source_mirror_commit": "abc1234",
+        "placeholders": {},
+        "dataset_keys": ["Reports:Test_Dataset"],
+        "raw_keys": ["Reports:Test_Dataset"],
+        "datasets": {
+            "Reports:Test_Dataset": {
+                "repo": "Reports",
+                "intra_repo_id": "Test_Dataset",
+                "resolvable": True,
+                "tiers": {
+                    "CURRENT": [
+                        {
+                            "path_template": "/path/",
+                            "filename_template": "FILE_A_{date}.zip",
+                            "filename_regex": ".*",
+                            "example": "FILE_A_20250101.zip",
+                            "cadence": "5min",
+                        },
+                        {
+                            "path_template": "/path/",
+                            "filename_template": "FILE_B_{date}.zip",
+                            "filename_regex": ".*",
+                            "example": "FILE_B_20250101.zip",
+                            "cadence": "5min",
+                        },
+                    ]
+                },
+                "query_shape": None,
+                "schema_source": None,
+                "anomaly_note": None,
+            }
+        },
+    }
+    overlays = {
+        "Reports:Test_Dataset": {"tiers": {"CURRENT": {"retention_hint_unverified_days": 2}}}
+    }
+
+    merged = merge(auto, overlays, {})
+
+    # Both records should have the curated field broadcast to them
+    current_tier = merged["datasets"]["Reports:Test_Dataset"]["tiers"]["CURRENT"]
+    assert isinstance(current_tier, list), "CURRENT tier should be a list"
+    assert len(current_tier) == 2, "CURRENT tier should have 2 records"
+    assert current_tier[0]["retention_hint_unverified_days"] == 2
+    assert current_tier[1]["retention_hint_unverified_days"] == 2
+
+
+def test_merge_tiers_curated_only_tier_wraps_in_list(tmp_path) -> None:
+    """Task 5: RED test for merge-layer array adaptation.
+
+    When curated YAML provides a tiers.NEW_TIER: {…} entry that auto doesn't
+    have, the merged tiers["NEW_TIER"] must be [curated_dict] (list, not dict).
+    """
+    from scripts.merge_catalog import merge
+
+    auto = {
+        "schema_version": "2.0.0",
+        "catalog_version": "2026.04.28",
+        "as_of": "2026-04-28T00:00:00Z",
+        "source_mirror_commit": "abc1234",
+        "placeholders": {},
+        "dataset_keys": ["Reports:Test_Dataset"],
+        "raw_keys": ["Reports:Test_Dataset"],
+        "datasets": {
+            "Reports:Test_Dataset": {
+                "repo": "Reports",
+                "intra_repo_id": "Test_Dataset",
+                "resolvable": True,
+                "tiers": {
+                    "CURRENT": [
+                        {
+                            "path_template": "/path/",
+                            "filename_template": "FILE_{date}.zip",
+                            "filename_regex": ".*",
+                            "example": "FILE_20250101.zip",
+                            "cadence": "5min",
+                        }
+                    ]
+                },
+                "query_shape": None,
+                "schema_source": None,
+                "anomaly_note": None,
+            }
+        },
+    }
+    overlays = {
+        "Reports:Test_Dataset": {
+            "tiers": {
+                "NEW_TIER": {
+                    "path_template": "/new/",
+                    "filename_template": "NEW_{date}.zip",
+                    "filename_regex": "NEW_.*",
+                    "example": "NEW_20250101.zip",
+                    "cadence": "daily",
+                }
+            }
+        }
+    }
+
+    merged = merge(auto, overlays, {})
+
+    # NEW_TIER should exist and be a list with 1 element
+    new_tier = merged["datasets"]["Reports:Test_Dataset"]["tiers"]["NEW_TIER"]
+    assert isinstance(new_tier, list), "NEW_TIER should be a list"
+    assert len(new_tier) == 1, "NEW_TIER should be a 1-element list"
+    assert new_tier[0]["path_template"] == "/new/"
+    assert new_tier[0]["filename_template"] == "NEW_{date}.zip"
+
+
+def test_insert_curated_only_wraps_each_tier_dict(tmp_path) -> None:
+    """Task 5: RED test for merge-layer array adaptation.
+
+    When curated_only entry has tiers.ARCHIVE: {path_template: …, …},
+    the merged tiers["ARCHIVE"] must be [the_dict] (wrapped in list).
+    """
+    from scripts.merge_catalog import merge
+
+    auto = {
+        "schema_version": "2.0.0",
+        "catalog_version": "2026.04.28",
+        "as_of": "2026-04-28T00:00:00Z",
+        "source_mirror_commit": "abc1234",
+        "placeholders": {},
+        "dataset_keys": [],
+        "raw_keys": [],
+        "datasets": {},
+    }
+    overlays = {
+        "Reports:FakePlaceholder": {
+            "curated_only": True,
+            "resolvable": False,
+            "tiers": {
+                "ARCHIVE": {
+                    "path_template": "/Reports/ARCHIVE/FakePlaceholder/",
+                    "filename_template": None,
+                    "filename_regex": None,
+                    "example": "",
+                    "cadence": "none",
+                }
+            },
+            "anomaly_note": "Placeholder entry for testing.",
+        }
+    }
+
+    merged = merge(auto, overlays, {})
+
+    # ARCHIVE tier in the curated_only record should be a list
+    archive_tier = merged["datasets"]["Reports:FakePlaceholder"]["tiers"]["ARCHIVE"]
+    assert isinstance(archive_tier, list), "ARCHIVE tier should be a list"
+    assert len(archive_tier) == 1, "ARCHIVE tier should be a 1-element list"
+    assert archive_tier[0]["path_template"] == "/Reports/ARCHIVE/FakePlaceholder/"
+    assert archive_tier[0]["filename_template"] is None

@@ -14,7 +14,7 @@ FIXTURE = REPO_ROOT / "tests" / "fixtures" / "sample_catalog.json"
 def test_load_local_path_returns_catalog():
     c = load(str(FIXTURE))
     assert isinstance(c, Catalog)
-    assert c.schema_version == "1.0.0"
+    assert c.schema_version == "2.0.0"
     assert c.catalog_version == "2026.04.18"
 
 
@@ -36,9 +36,9 @@ def test_load_raises_on_malformed_json(tmp_path):
 
 
 def test_load_raises_on_incompatible_major(tmp_path):
-    incompatible = tmp_path / "v2.json"
+    incompatible = tmp_path / "v3.json"
     data = json.loads(FIXTURE.read_text())
-    data["schema_version"] = "2.0.0"
+    data["schema_version"] = "3.0.0"
     incompatible.write_text(json.dumps(data))
     with pytest.raises(IncompatibleCatalogError):
         load(str(incompatible))
@@ -46,13 +46,13 @@ def test_load_raises_on_incompatible_major(tmp_path):
 
 def test_load_accepts_compatible_minor_bump(tmp_path):
     """SDK ignores unknown optional fields on same major."""
-    compat = tmp_path / "v1.5.json"
+    compat = tmp_path / "v2.5.json"
     data = json.loads(FIXTURE.read_text())
-    data["schema_version"] = "1.5.0"
+    data["schema_version"] = "2.5.0"
     data["brand_new_optional_field"] = "future stuff"
     compat.write_text(json.dumps(data))
     c = load(str(compat))
-    assert c.schema_version == "1.5.0"
+    assert c.schema_version == "2.5.0"
 
 
 def test_load_accepts_http_url():
@@ -84,6 +84,6 @@ def test_load_accepts_http_url():
     try:
         c = load(f"http://{host}:{port}/catalog.json")
         assert isinstance(c, Catalog)
-        assert c.schema_version == "1.0.0"
+        assert c.schema_version == "2.0.0"
     finally:
         srv.shutdown()

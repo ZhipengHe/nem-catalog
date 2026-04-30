@@ -108,18 +108,25 @@ class Catalog:
         if dt_to < dt_from:
             raise ValueError(f"to_ ({to_}) must be >= from_ ({from_})")
 
-        tiers: dict[str, dict[str, Any]] = record["tiers"]
+        tiers: dict[str, list[dict[str, Any]]] = record["tiers"]
+        # Rolling-tier picker assumes uniform retention_hint_unverified_days
+        # across a tier's records (uniform-by-construction; merge layer
+        # broadcasts curated fields). Read from index [0].
         rolling_name: str | None = next(
-            (n for n, t in tiers.items() if t.get("retention_hint_unverified_days") is not None),
+            (
+                n
+                for n, recs in tiers.items()
+                if recs and recs[0].get("retention_hint_unverified_days") is not None
+            ),
             None,
         )
-        selected: dict[str, dict[str, Any]]
+        selected: dict[str, list[dict[str, Any]]]
         pre_retention = False
 
         if rolling_name is None:
             selected = dict(tiers)
         else:
-            days = int(tiers[rolling_name]["retention_hint_unverified_days"])
+            days = int(tiers[rolling_name][0]["retention_hint_unverified_days"])
             cutoff = self.as_of.replace(tzinfo=None) - timedelta(days=days)
             if dt_from >= cutoff:
                 selected = {rolling_name: tiers[rolling_name]}
@@ -141,17 +148,26 @@ class Catalog:
                 stacklevel=2,
             )
 
-        # STRICT is applied per-tier at expansion time, AFTER observed_range
-        # and straddle-partition filtering. If a tier has non-temporal tokens
-        # AND that tier would actually emit URLs for this range, skip it with
-        # a warning. If every candidate tier was skipped, raise. Rationale: a
-        # request that falls entirely in a pure-temporal ARCHIVE window must
-        # not be denied because the rolling CURRENT tier has {aemo_id}.
+        # STRICT (non-temporal token skipping) is applied per-record at
+        # expansion time, AFTER both straddle-partition filtering and
+        # per-record observed_range filtering. Both branches apply the
+        # same per-record observed_range check against the active expand
+        # window: a record whose observed_range doesn't overlap is silently
+        # skipped (sibling records in the same tier still expand). For
+        # rolling tiers the cutoff window is normally a tighter constraint
+        # than observed_range, so the per-record filter is a no-op for the
+        # common case; it matters when records within a multi-record tier
+        # have divergent observed_range (e.g. one filename family retired).
+        # If a record has non-temporal tokens AND would actually emit URLs
+        # for this range, skip it with a warning. If every selected record
+        # was skipped on tokens AND no URLs were built, raise
+        # NonResolvableTemplateError.
         urls: list[str] = []
-        skipped_tiers: list[tuple[str, frozenset[str]]] = []
+        # (tier_name, record_index, non_temporal_tokens)
+        skipped_records: list[tuple[str, int, frozenset[str]]] = []
 
         if rolling_name is not None:
-            for n, t in selected.items():
+            for n, recs in selected.items():
                 if n == rolling_name:
                     tier_from = max(dt_from, cutoff)
                     if tier_from > dt_to:
@@ -162,48 +178,58 @@ class Catalog:
                     if tier_to < dt_from:
                         continue
                     expand_from, expand_to = dt_from, tier_to
-                leftover = _non_temporal_tokens(t)
-                if leftover:
-                    skipped_tiers.append((n, leftover))
-                    continue
-                urls.extend(_expand_tier(t, expand_from, expand_to))
-            _warn_skipped_tiers(key, skipped_tiers)
-            if not urls and skipped_tiers:
-                n, leftover = skipped_tiers[0]
-                raise NonResolvableTemplateError(dataset_key=key, tier=n, tokens=leftover)
+                for i, rec in enumerate(recs):
+                    # Check observed_range FIRST (matches non-rolling branch order):
+                    # records out-of-range continue silently, so a record with both
+                    # non-temporal tokens AND stale observed_range doesn't spuriously
+                    # land in skipped_records and trigger NonResolvableTemplateError.
+                    obs = rec.get("observed_range")
+                    if obs and not _overlaps(expand_from, expand_to, obs):
+                        continue
+                    leftover = _non_temporal_tokens(rec)
+                    if leftover:
+                        skipped_records.append((n, i, leftover))
+                        continue
+                    urls.extend(_expand_tier(rec, expand_from, expand_to))
+            _warn_skipped_records(key, skipped_records)
+            if not urls and skipped_records:
+                n, i, leftover = skipped_records[0]
+                raise NonResolvableTemplateError(dataset_key=key, tier=f"{n}[{i}]", tokens=leftover)
             return urls
 
         any_overlap = False
-        tiers_with_obs = 0
-        for n, t in selected.items():
-            obs = t.get("observed_range")
-            if obs:
-                tiers_with_obs += 1
-                if not _overlaps(dt_from, dt_to, obs):
+        records_with_obs = 0
+        records_total = sum(len(recs) for recs in selected.values())
+        for n, recs in selected.items():
+            for i, rec in enumerate(recs):
+                obs = rec.get("observed_range")
+                if obs:
+                    records_with_obs += 1
+                    if not _overlaps(dt_from, dt_to, obs):
+                        continue
+                    any_overlap = True
+                leftover = _non_temporal_tokens(rec)
+                if leftover:
+                    skipped_records.append((n, i, leftover))
                     continue
-                any_overlap = True
-            leftover = _non_temporal_tokens(t)
-            if leftover:
-                skipped_tiers.append((n, leftover))
-                continue
-            urls.extend(_expand_tier(t, dt_from, dt_to))
-        _warn_skipped_tiers(key, skipped_tiers)
-        # Only short-circuit to empty when EVERY selected tier had an
+                urls.extend(_expand_tier(rec, dt_from, dt_to))
+        _warn_skipped_records(key, skipped_records)
+        # Only short-circuit to empty when EVERY selected record had an
         # observed_range AND none overlapped the request window. If any
-        # tier omits observed_range, treat coverage as unknown and trust
+        # record omits observed_range, treat coverage as unknown and trust
         # the URL set we built — gating on partial coverage data would
-        # silently drop legitimate URLs from curated tiers that opt out
+        # silently drop legitimate URLs from curated records that opt out
         # of observed_range.
-        if selected and tiers_with_obs == len(selected) and not any_overlap:
+        if records_total > 0 and records_with_obs == records_total and not any_overlap:
             warnings.warn(
                 f"resolve({key!r}, {from_!r}, {to_!r}): requested range is outside "
-                f"observed_range for all selected tiers — returning empty list.",
+                f"observed_range for all records — returning empty list.",
                 stacklevel=2,
             )
             return []
-        if not urls and skipped_tiers:
-            n, leftover = skipped_tiers[0]
-            raise NonResolvableTemplateError(dataset_key=key, tier=n, tokens=leftover)
+        if not urls and skipped_records:
+            n, i, leftover = skipped_records[0]
+            raise NonResolvableTemplateError(dataset_key=key, tier=f"{n}[{i}]", tokens=leftover)
         return urls
 
     def count(self, key: str, from_: str, to_: str, *, view: str | None = None) -> int:
@@ -277,21 +303,26 @@ def _expand_tier(tier: dict[str, Any], dt_from: datetime, dt_to: datetime) -> li
     return urls
 
 
-def _warn_skipped_tiers(key: str, skipped: list[tuple[str, frozenset[str]]]) -> None:
-    """Emit one UserWarning per tier skipped due to non-temporal placeholders.
+def _warn_skipped_records(
+    key: str,
+    skipped: list[tuple[str, int, frozenset[str]]],
+) -> None:
+    """Emit one UserWarning per RECORD skipped due to non-temporal placeholders.
 
-    A tier is skipped when it was a router candidate but its template contains
-    tokens the SDK cannot compute from a date range. The warning tells the
-    caller which tier was bypassed and which tokens were unresolvable — so
-    they know the returned URL set is partial.
+    A record is skipped when it was a router candidate but its template
+    contains tokens the SDK cannot compute from a date range. Sibling records
+    in the same tier still expand. The warning tells the caller which record
+    was bypassed (by tier name + 1-based index) and which tokens were
+    unresolvable — so they know the returned URL set is partial.
     """
-    for tier_name, tokens in skipped:
+    for tier_name, i, tokens in skipped:
         tok_str = ", ".join(sorted(tokens))
         warnings.warn(
-            f"resolve({key!r}): skipped tier {tier_name!r} — template contains "
-            f"non-temporal placeholder(s) {{{tok_str}}} that v0.1 cannot substitute. "
-            f"Inspect catalog.datasets[{key!r}]['tiers'][{tier_name!r}] for the raw "
-            f"template.",
+            f"resolve({key!r}): skipped tier {tier_name!r} record {i + 1} — "
+            f"template contains non-temporal placeholder(s) {{{tok_str}}} that "
+            f"v0.1 cannot substitute. Inspect "
+            f"catalog.datasets[{key!r}]['tiers'][{tier_name!r}][{i}] for the "
+            f"raw template.",
             stacklevel=3,
         )
 

@@ -1,14 +1,19 @@
 # nem-catalog cookbook (shell, R, Julia)
 
+> **Schema v2.0.0:** every tier is a JSON array of records (not a single object).
+> Use `[0]` to access the first (and usually only) record, or iterate the array
+> to handle datasets that carry multiple records per tier.
+
 ## Shell — expand a date range to URLs
 
 ```bash
 # Given a dataset key and a date range, produce URLs for wget/curl.
+# tiers.ARCHIVE is a JSON array in v2.0.0; [0] selects the first record.
 CATALOG=$(curl -s https://zhipenghe.me/nem-catalog/catalog.json)
 KEY="Reports:DispatchIS_Reports"
 
-PATH_TMPL=$(echo "$CATALOG" | jq -r ".datasets[\"$KEY\"].tiers.ARCHIVE.path_template")
-FILE_TMPL=$(echo "$CATALOG" | jq -r ".datasets[\"$KEY\"].tiers.ARCHIVE.filename_template")
+PATH_TMPL=$(echo "$CATALOG" | jq -r ".datasets[\"$KEY\"].tiers.ARCHIVE[0].path_template")
+FILE_TMPL=$(echo "$CATALOG" | jq -r ".datasets[\"$KEY\"].tiers.ARCHIVE[0].filename_template")
 
 for d in $(seq -f "%g" $(date -j -f "%Y-%m-%d" "2025-04-01" "+%s") 86400 $(date -j -f "%Y-%m-%d" "2025-04-07" "+%s")); do
   date_str=$(date -r $d "+%Y%m%d")
@@ -34,8 +39,11 @@ curl -s https://zhipenghe.me/nem-catalog/catalog.json \
 
 ```r
 library(jsonlite)
-catalog <- fromJSON("https://zhipenghe.me/nem-catalog/catalog.json")
-tier <- catalog$datasets$`Reports:DispatchIS_Reports`$tiers$ARCHIVE
+catalog <- fromJSON("https://zhipenghe.me/nem-catalog/catalog.json",
+                    simplifyDataFrame = FALSE)
+# tiers$ARCHIVE is a list of records in v2.0.0; [[1]] selects the first.
+# Iterate the list if a tier carries multiple records.
+tier <- catalog$datasets$`Reports:DispatchIS_Reports`$tiers$ARCHIVE[[1]]
 
 dates <- seq(as.Date("2025-04-01"), as.Date("2025-04-07"), by="day")
 urls <- sprintf(
@@ -48,9 +56,10 @@ urls <- sprintf(
 ## Julia (no installed package) — use JSON3
 
 ```julia
-using JSON3, HTTP
+using JSON3, HTTP, Dates
 catalog = JSON3.read(String(HTTP.get("https://zhipenghe.me/nem-catalog/catalog.json").body))
-tier = catalog.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE
+# tiers.ARCHIVE is a JSON array in v2.0.0; [1] selects the first record.
+tier = catalog.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE[1]
 
 dates = collect(Date("2025-04-01"):Day(1):Date("2025-04-07"))
 urls = ["https://nemweb.com.au" * tier.path_template *
@@ -62,8 +71,9 @@ urls = ["https://nemweb.com.au" * tier.path_template *
 
 ```bash
 # Build URL list, then download 4 at a time with wget.
+# tiers.ARCHIVE[0] selects the first record (v2.0.0 array shape).
 curl -s https://zhipenghe.me/nem-catalog/catalog.json \
-  | jq -r '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE | .path_template + .filename_template' \
+  | jq -r '.datasets["Reports:DispatchIS_Reports"].tiers.ARCHIVE[0] | .path_template + .filename_template' \
   | head -1 \
   | while read tmpl; do
       for d in $(seq -f "%08g" 20250401 20250407); do
