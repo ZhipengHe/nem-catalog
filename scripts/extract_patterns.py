@@ -1084,22 +1084,35 @@ def write_json(
 
         datasets[key]["tiers"].setdefault(tier_name, []).append(tier_record)
 
+    def _pick_probe(recs: list[dict]) -> str | None:
+        """Pick a deterministic probe_path: prefer non-/DUPLICATE/ paths.
+
+        For DUPLICATE_STRADDLE pairs the parent record may appear before or
+        after the /DUPLICATE/ sub-record depending on upstream emit order.
+        Preferring non-/DUPLICATE/ paths makes freshness_class deterministic
+        regardless of that order.
+        """
+        if not recs:
+            return None
+        for rec in recs:
+            path = rec.get("path_template")
+            if path and "/DUPLICATE/" not in path:
+                return path
+        # All records are /DUPLICATE/-only (theoretical) — fall back to first
+        return recs[0].get("path_template")
+
     # Join freshness signals onto every dataset.
     for _key, ds in datasets.items():
         tiers = ds.get("tiers", {})
         probe_path = None
-        # probe_path picks tiers[T][0] — for DUPLICATE_STRADDLE pairs the parent
-        # path is sorted before /DUPLICATE/ in emit order, so freshness_class
-        # is determined by the parent stream.
         for tier_name in ("CURRENT", "ARCHIVE", "DATA"):
-            recs = tiers.get(tier_name, [])
-            if recs and recs[0].get("path_template"):
-                probe_path = recs[0]["path_template"]
+            probe_path = _pick_probe(tiers.get(tier_name, []))
+            if probe_path:
                 break
         if probe_path is None:
             for recs in tiers.values():
-                if recs and recs[0].get("path_template"):
-                    probe_path = recs[0]["path_template"]
+                probe_path = _pick_probe(recs)
+                if probe_path:
                     break
         if policy is not None and probe_path:
             ds["freshness_class"] = policy.class_for(probe_path)  # type: ignore[attr-defined]

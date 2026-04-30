@@ -229,6 +229,13 @@ def _merge_tiers(
     key: str, ds: dict[str, Any], curated_tiers: dict[str, Any], warnings: list[str]
 ) -> None:
     for tier_name, tier_overlay in curated_tiers.items():
+        if isinstance(tier_overlay, list):
+            raise SystemExit(
+                f"FAIL: curated YAML for {key!r} provides list-shape "
+                f"tiers.{tier_name} — this shape is reserved for the auto "
+                f"catalog only; curated YAML must use a single tier dict "
+                f"per tier name (the merge layer wraps it as a 1-element list)."
+            )
         if tier_name not in ds["tiers"]:
             warnings.append(f"{key}.tiers.{tier_name}: curated-only tier (auto has no such tier)")
             ds["tiers"][tier_name] = [tier_overlay]  # wrap as 1-element list

@@ -31,8 +31,9 @@ class _WithDocsUrl(NemCatalogError):
 class IncompatibleCatalogError(_WithDocsUrl):
     """Catalog schema MAJOR version is not supported by this SDK.
 
-    SDK 0.1.x supports schemas with major == 1. Catalogs with major == 2 or
-    higher require an SDK upgrade.
+    SDK 0.2.x (from PR #22 forward) supports schemas with major == 2.
+    Older SDK 0.1.x releases supported major == 1. Catalogs with an
+    unsupported major version require an SDK upgrade.
     """
 
     _anchor = "incompatible-catalog"

@@ -148,16 +148,16 @@ class Catalog:
                 stacklevel=2,
             )
 
-        # STRICT is applied per-RECORD at expansion time, AFTER observed_range
-        # and straddle-partition filtering. If a record has non-temporal tokens
-        # AND that record would actually emit URLs for this range, skip it
-        # with a warning. Sibling records in the same tier still expand
-        # independently. If every selected record was skipped AND no URLs
-        # were built, raise NonResolvableTemplateError. Rationale: a request
-        # that falls entirely in a pure-temporal ARCHIVE window must not be
-        # denied because the rolling CURRENT tier has {aemo_id}; and within
-        # a single tier, one record with {aemo_id} must not block its
-        # pure-temporal sibling.
+        # STRICT (non-temporal token skipping) is applied per-record at
+        # expansion time, AFTER straddle-partition filtering for rolling
+        # tiers and AFTER observed_range filtering for non-rolling tiers.
+        # (Rolling tiers do not consult observed_range — the rolling cutoff
+        # IS the date constraint, and rolling-tier observed_range is set
+        # during the walk so it overlaps the cutoff window by construction.)
+        # If a record has non-temporal tokens AND would actually emit URLs
+        # for this range, skip it with a warning. Sibling records in the
+        # same tier still expand independently. If every selected record
+        # was skipped AND no URLs were built, raise NonResolvableTemplateError.
         urls: list[str] = []
         # (tier_name, record_index, non_temporal_tokens)
         skipped_records: list[tuple[str, int, frozenset[str]]] = []

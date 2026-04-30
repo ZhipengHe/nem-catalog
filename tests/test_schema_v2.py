@@ -13,9 +13,9 @@ SCHEMA = json.loads((REPO_ROOT / "schemas" / "catalog.schema.json").read_text())
 
 
 def test_schema_version_is_2_0_0(tmp_path):
-    """RED: write_json() should emit schema_version 2.0.0 for tier-as-array support.
+    """Asserts that write_json() emits schema_version 2.0.0 (landed in v2.0.0).
 
-    Currently emits 1.0.0; this test fails until the extractor is patched.
+    Verifies the extractor sets the correct schema version for tier-as-array support.
     """
     rows = [
         {
@@ -46,10 +46,11 @@ def test_schema_version_is_2_0_0(tmp_path):
 
 
 def test_dataset_tiers_is_array():
-    """RED: schema should define tiers.additionalProperties as array type.
+    """Asserts that the JSON Schema defines tiers.additionalProperties as array type.
 
-    Currently additionalProperties is {"$ref": "#/$defs/Tier"} (single object).
-    After fix, should be {"type": "array", "items": {"$ref": "#/$defs/Tier"}}.
+    Landed in v2.0.0. Verifies additionalProperties is
+    {"type": "array", "items": {"$ref": "#/$defs/Tier"}} rather than the
+    pre-v2 single-object form {"$ref": "#/$defs/Tier"}.
     """
     dataset_def = SCHEMA["$defs"]["Dataset"]
     tiers_prop = dataset_def["properties"]["tiers"]
@@ -69,11 +70,12 @@ def test_dataset_tiers_is_array():
 
 
 def test_writejson_emits_list_for_collision_fixture(tmp_path):
-    """RED: write_json() should emit tiers[T] as a list when multiple rows
-    share (repo, intra_repo_id, retention_tier) but differ in filename_template.
+    """Asserts that write_json() emits tiers[T] as a list when multiple rows
+    share (repo, intra_repo_id, retention_tier) but differ in filename_template
+    (landed in v2.0.0, issue #22).
 
-    Currently overwrites with last-write-wins (issue #22); after fix,
-    should collect into an array.
+    Verifies the multi-record collision case produces an array rather than
+    last-write-wins overwrite.
     """
     # Two rows: same dataset and tier, different filename templates (collision)
     rows = [

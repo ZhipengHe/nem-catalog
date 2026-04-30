@@ -10,15 +10,11 @@ calls .get() on what will become a list and raises TypeError or AttributeError.
 """
 
 import warnings
-from pathlib import Path
 
 import pytest
 
 from nem_catalog import Catalog
 from nem_catalog.errors import NonResolvableTemplateError
-
-REPO_ROOT = Path(__file__).parent.parent
-NEMWEB = "https://nemweb.com.au"
 
 
 def _make_catalog_v2(datasets: dict) -> Catalog:
