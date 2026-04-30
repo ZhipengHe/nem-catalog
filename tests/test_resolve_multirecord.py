@@ -282,6 +282,79 @@ def test_resolve_rolling_branch_per_record_observed_range_filter():
     assert len(urls) == 3, f"expected 3 URLs (3 days x 1 record), got {len(urls)}: {urls}"
 
 
+def test_resolve_rolling_observed_range_check_precedes_non_temporal_token_check():
+    """Test that observed_range filtering takes precedence over non-temporal token skip.
+
+    Given: a CURRENT tier with retention_hint_unverified_days=2, containing two records:
+             rec_stale.observed_range = 2024 + filename_template has {aemo_id}
+             rec_active.observed_range = recent + pure-temporal filename_template
+    When: resolve(key, recent_window) — request inside cutoff window.
+    Then: should return URLs from rec_active. rec_stale should be silently skipped
+          (observed_range filter culls it BEFORE the non-temporal-token check),
+          NOT added to skipped_records, NOT triggering a warning, and NOT raising
+          NonResolvableTemplateError.
+
+    Pins the check-order matching the non-rolling branch — without observed_range
+    being checked first, rec_stale's {aemo_id} would land in skipped_records and
+    spuriously trigger a warning (and could raise NonResolvableTemplateError if
+    rec_active happened to be absent or also stale).
+    """
+    datasets = {
+        "Test:RollingOrderingCheck": {
+            "repo": "Test",
+            "intra_repo_id": "RollingOrderingCheck",
+            "resolvable": True,
+            "tiers": {
+                "CURRENT": [
+                    {
+                        "path_template": "/rolling/stale/",
+                        "filename_template": "stale_{aemo_id}_{date}.zip",
+                        "filename_regex": ".*",
+                        "example": "stale_X_20240601.zip",
+                        "cadence": "5min",
+                        "retention_hint_unverified_days": 2,
+                        "observed_range": {"from": "2024-01-01", "to": "2024-12-31"},
+                    },
+                    {
+                        "path_template": "/rolling/active/",
+                        "filename_template": "active_{date}.csv",
+                        "filename_regex": ".*",
+                        "example": "active_20260428.csv",
+                        "cadence": "daily",
+                        "retention_hint_unverified_days": 2,
+                        "observed_range": {"from": "2026-04-01", "to": "2026-04-28"},
+                    },
+                ]
+            },
+            "query_shape": None,
+            "schema_source": None,
+            "anomaly_note": None,
+        }
+    }
+    cat = _make_catalog_v2(datasets)
+
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        urls = cat.resolve("Test:RollingOrderingCheck", from_="2026-04-26", to_="2026-04-28")
+
+    # rec_active produces 3 URLs; rec_stale is observed_range-skipped, no URLs.
+    assert all("active_" in u for u in urls), f"expected only rec_active URLs, got: {urls}"
+    assert len(urls) == 3, f"expected 3 URLs, got {len(urls)}: {urls}"
+
+    # Critical: rec_stale's {aemo_id} must NOT have produced a skipped-record
+    # warning. The observed_range filter culled rec_stale before the
+    # non-temporal-token check could fire.
+    skip_warnings = [
+        rec
+        for rec in w
+        if issubclass(rec.category, UserWarning) and "skipped" in str(rec.message).lower()
+    ]
+    assert skip_warnings == [], (
+        f"expected no skipped-record warnings (rec_stale should be observed_range-culled "
+        f"silently), got: {[str(r.message) for r in skip_warnings]}"
+    )
+
+
 def test_resolve_raises_when_every_record_is_non_temporal():
     """Test that resolve() raises NonResolvableTemplateError when no records can be resolved.
 

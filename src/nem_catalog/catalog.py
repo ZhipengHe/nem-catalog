@@ -179,12 +179,16 @@ class Catalog:
                         continue
                     expand_from, expand_to = dt_from, tier_to
                 for i, rec in enumerate(recs):
+                    # Check observed_range FIRST (matches non-rolling branch order):
+                    # records out-of-range continue silently, so a record with both
+                    # non-temporal tokens AND stale observed_range doesn't spuriously
+                    # land in skipped_records and trigger NonResolvableTemplateError.
+                    obs = rec.get("observed_range")
+                    if obs and not _overlaps(expand_from, expand_to, obs):
+                        continue
                     leftover = _non_temporal_tokens(rec)
                     if leftover:
                         skipped_records.append((n, i, leftover))
-                        continue
-                    obs = rec.get("observed_range")
-                    if obs and not _overlaps(expand_from, expand_to, obs):
                         continue
                     urls.extend(_expand_tier(rec, expand_from, expand_to))
             _warn_skipped_records(key, skipped_records)
