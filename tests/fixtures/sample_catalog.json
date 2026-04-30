@@ -55,7 +55,7 @@
             "example": "PUBLIC_DISPATCHIS_20250407.zip",
             "cadence": "daily_rollup",
             "time_granularity": "yyyymmdd",
-            "observed_range": {"from": "2009-07-01", "to": "2026-03-31"}
+            "observed_range": {"from": "2009-07-01", "to": "2026-04-17"}
           }
         ]
       },

@@ -149,15 +149,19 @@ class Catalog:
             )
 
         # STRICT (non-temporal token skipping) is applied per-record at
-        # expansion time, AFTER straddle-partition filtering for rolling
-        # tiers and AFTER observed_range filtering for non-rolling tiers.
-        # (Rolling tiers do not consult observed_range — the rolling cutoff
-        # IS the date constraint, and rolling-tier observed_range is set
-        # during the walk so it overlaps the cutoff window by construction.)
+        # expansion time, AFTER both straddle-partition filtering and
+        # per-record observed_range filtering. Both branches apply the
+        # same per-record observed_range check against the active expand
+        # window: a record whose observed_range doesn't overlap is silently
+        # skipped (sibling records in the same tier still expand). For
+        # rolling tiers the cutoff window is normally a tighter constraint
+        # than observed_range, so the per-record filter is a no-op for the
+        # common case; it matters when records within a multi-record tier
+        # have divergent observed_range (e.g. one filename family retired).
         # If a record has non-temporal tokens AND would actually emit URLs
-        # for this range, skip it with a warning. Sibling records in the
-        # same tier still expand independently. If every selected record
-        # was skipped AND no URLs were built, raise NonResolvableTemplateError.
+        # for this range, skip it with a warning. If every selected record
+        # was skipped on tokens AND no URLs were built, raise
+        # NonResolvableTemplateError.
         urls: list[str] = []
         # (tier_name, record_index, non_temporal_tokens)
         skipped_records: list[tuple[str, int, frozenset[str]]] = []
@@ -178,6 +182,9 @@ class Catalog:
                     leftover = _non_temporal_tokens(rec)
                     if leftover:
                         skipped_records.append((n, i, leftover))
+                        continue
+                    obs = rec.get("observed_range")
+                    if obs and not _overlaps(expand_from, expand_to, obs):
                         continue
                     urls.extend(_expand_tier(rec, expand_from, expand_to))
             _warn_skipped_records(key, skipped_records)

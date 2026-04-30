@@ -218,6 +218,70 @@ def test_resolve_per_record_observed_range_filter():
     )
 
 
+def test_resolve_rolling_branch_per_record_observed_range_filter():
+    """Test that observed_range filtering applies in the rolling-tier branch too.
+
+    Given: a CURRENT tier with retention_hint_unverified_days=2 (triggers the
+           rolling branch), containing two records with non-overlapping
+           observed_range:
+             rec_old.observed_range = {"from": "2024-01-01", "to": "2024-12-31"}
+             rec_new.observed_range = {"from": "2026-04-01", "to": "2026-04-28"}
+    When: resolve(key, "2026-04-26", "2026-04-28") — request inside cutoff window.
+    Then: should return URLs only from rec_new (rec_old's observed_range
+          doesn't overlap the request window).
+
+    This validates that per-record observed_range filtering is symmetric
+    across the rolling and non-rolling branches: a record whose observed
+    window is stale (e.g. retired filename family within a still-rolling
+    tier) is silently skipped while sibling records continue to expand.
+    """
+    datasets = {
+        "Test:RollingPerRecordObs": {
+            "repo": "Test",
+            "intra_repo_id": "RollingPerRecordObs",
+            "resolvable": True,
+            "tiers": {
+                "CURRENT": [
+                    {
+                        "path_template": "/rolling/old/",
+                        "filename_template": "old_{date}.csv",
+                        "filename_regex": ".*",
+                        "example": "old_20240601.csv",
+                        "cadence": "daily",
+                        "retention_hint_unverified_days": 2,
+                        "observed_range": {"from": "2024-01-01", "to": "2024-12-31"},
+                    },
+                    {
+                        "path_template": "/rolling/new/",
+                        "filename_template": "new_{date}.csv",
+                        "filename_regex": ".*",
+                        "example": "new_20260428.csv",
+                        "cadence": "daily",
+                        "retention_hint_unverified_days": 2,
+                        "observed_range": {"from": "2026-04-01", "to": "2026-04-28"},
+                    },
+                ]
+            },
+            "query_shape": None,
+            "schema_source": None,
+            "anomaly_note": None,
+        }
+    }
+    cat = _make_catalog_v2(datasets)
+
+    # Request the cutoff window (2026-04-26 through 2026-04-28). The rolling
+    # branch is selected because rec[0] carries retention_hint; the per-record
+    # observed_range filter then drops rec_old (whose 2024 window doesn't
+    # overlap) and keeps rec_new.
+    urls = cat.resolve("Test:RollingPerRecordObs", from_="2026-04-26", to_="2026-04-28")
+
+    assert all("new_" in u for u in urls), f"expected only rec_new URLs, got: {urls}"
+    assert not any("old_" in u for u in urls), f"unexpected rec_old URLs: {urls}"
+
+    # Daily cadence over 2026-04-26 to 2026-04-28 inclusive = 3 days x 1 record.
+    assert len(urls) == 3, f"expected 3 URLs (3 days x 1 record), got {len(urls)}: {urls}"
+
+
 def test_resolve_raises_when_every_record_is_non_temporal():
     """Test that resolve() raises NonResolvableTemplateError when no records can be resolved.
 
