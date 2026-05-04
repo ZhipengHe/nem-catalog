@@ -1,6 +1,6 @@
 # NEMWeb URL Conventions
 
-Empirically derived from 2863 IIS directory listings in `nemweb-mirror/`. 2549 listings contained files; 217772 filenames analyzed. **442 distinct datasets** across 4 of 4 repositories, 2363 (dataset, tier, path, pattern) rows.
+Empirically derived from 2863 IIS directory listings in `nemweb-mirror/`. 2549 listings contained files; 221708 filenames analyzed. **442 distinct datasets** across 4 of 4 repositories, 2365 (dataset, tier, path, pattern) rows.
 
 **Taxonomy** (per `reference/NEMWEB-STRUCTURE.md` §1):
 
@@ -12,24 +12,24 @@ Empirically derived from 2863 IIS directory listings in `nemweb-mirror/`. 2549 l
 
 **Known limitation — table-name evolution is NOT resolved here.** When AEMO renames a table (e.g. an MMSDM table's name string changes across MMS Data Model versions), the old name and new name appear here as two separate `(repo, intra_repo_id)` datasets. Merging them requires either parsing the `MMS Data Model/v*/` HTML docs inside the mirror, or supplying an alias map externally — both are out of scope for this script.
 
-## Repo: `Reports`  (96 datasets, 610 rows)
+## Repo: `Reports`  (96 datasets, 612 rows)
 
 ### `Reports` · `ANCILLARY_SERVICES_REPORTS`
 
-_1 pattern row, 7 files (snapshot), observed 2026-03-03 → 2026-04-14 (snapshot)_
+_1 pattern row, 9 files (snapshot), observed 2026-03-03 → 2026-04-28 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/ANCILLARY_SERVICES_REPORTS/` | `PUBLIC_ANCILLARY_SERVICES_{date}.zip` | `PUBLIC_ANCILLARY_SERVICES_\d{8}\.zip` | `PUBLIC_ANCILLARY_SERVICES_20260303.zip` | 7 | 2026-03-03 | 2026-04-14 |
+| `CURRENT` | `/Reports/CURRENT/ANCILLARY_SERVICES_REPORTS/` | `PUBLIC_ANCILLARY_SERVICES_{date}.zip` | `PUBLIC_ANCILLARY_SERVICES_\d{8}\.zip` | `PUBLIC_ANCILLARY_SERVICES_20260303.zip` | 9 | 2026-03-03 | 2026-04-28 |
 
 ### `Reports` · `Adjusted_Prices_Reports`
 
-_2 pattern rows, 3618 files (snapshot), observed 2025-05-01 → 2026-04-20 (snapshot)_
+_2 pattern rows, 4433 files (snapshot), observed 2025-05-01 → 2026-05-01 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Adjusted_Prices_Reports/` | `PUBLIC_PRICE_REVISION_DISPATCH_{date}.zip` | `PUBLIC_PRICE_REVISION_DISPATCH_\d{8}\.zip` | `PUBLIC_PRICE_REVISION_DISPATCH_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/Adjusted_Prices_Reports/` | `PUBLIC_PRICE_REVISION_DISPATCH_{datetime}_{aemo_id}.zip` | `PUBLIC_PRICE_REVISION_DISPATCH_\d{14}_\d{16}\.zip` | `PUBLIC_PRICE_REVISION_DISPATCH_20260223143431_0000000504787407.zip` | 3606 | 2026-02-23 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Adjusted_Prices_Reports/` | `PUBLIC_PRICE_REVISION_DISPATCH_{date}.zip` | `PUBLIC_PRICE_REVISION_DISPATCH_\d{8}\.zip` | `PUBLIC_PRICE_REVISION_DISPATCH_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Adjusted_Prices_Reports/` | `PUBLIC_PRICE_REVISION_DISPATCH_{datetime}_{aemo_id}.zip` | `PUBLIC_PRICE_REVISION_DISPATCH_\d{14}_\d{16}\.zip` | `PUBLIC_PRICE_REVISION_DISPATCH_20260310150508_0000000507214543.zip` | 4420 | 2026-03-10 | 2026-04-28 |
 
 ### `Reports` · `Alt_Limits`
 
@@ -54,28 +54,28 @@ _6 pattern rows, 34 files (snapshot), observed 2016-12-02 → 2026-04-18 (snapsh
 
 ### `Reports` · `Auction_Units_Reports`
 
-_1 pattern row, 224 files (snapshot), observed 2025-03-25 → 2026-04-17 (snapshot)_
+_1 pattern row, 224 files (snapshot), observed 2025-04-08 → 2026-05-01 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/Auction_Units_Reports/` | `AUCUNITS_{date}.R{d3}` | `AUCUNITS_\d{8}\.R\d{3}` | `AUCUNITS_20240825.R015` | 224 | 2025-03-25 | 2026-04-17 |
+| `CURRENT` | `/Reports/CURRENT/Auction_Units_Reports/` | `AUCUNITS_{date}.R{d3}` | `AUCUNITS_\d{8}\.R\d{3}` | `AUCUNITS_20240908.R015` | 224 | 2025-04-08 | 2026-05-01 |
 
 ### `Reports` · `Bidmove_Complete`
 
-_2 pattern rows, 72 files (snapshot), observed 2025-05-02 → 2026-04-20 (snapshot)_
+_2 pattern rows, 73 files (snapshot), observed 2025-05-02 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Bidmove_Complete/` | `PUBLIC_BIDMOVE_COMPLETE_{date}.zip` | `PUBLIC_BIDMOVE_COMPLETE_\d{8}\.zip` | `PUBLIC_BIDMOVE_COMPLETE_20250302.zip` | 12 | 2025-05-02 | 2026-04-02 |
-| `CURRENT` | `/Reports/CURRENT/Bidmove_Complete/` | `PUBLIC_BIDMOVE_COMPLETE_{date}_{aemo_id}.zip` | `PUBLIC_BIDMOVE_COMPLETE_\d{8}_\d{16}\.zip` | `PUBLIC_BIDMOVE_COMPLETE_20260219_0000000504277195.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Bidmove_Complete/` | `PUBLIC_BIDMOVE_COMPLETE_{date}.zip` | `PUBLIC_BIDMOVE_COMPLETE_\d{8}\.zip` | `PUBLIC_BIDMOVE_COMPLETE_20250302.zip` | 13 | 2025-05-02 | 2026-05-02 |
+| `CURRENT` | `/Reports/CURRENT/Bidmove_Complete/` | `PUBLIC_BIDMOVE_COMPLETE_{date}_{aemo_id}.zip` | `PUBLIC_BIDMOVE_COMPLETE_\d{8}_\d{16}\.zip` | `PUBLIC_BIDMOVE_COMPLETE_20260305_0000000506538398.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `Billing`
 
-_5 pattern rows, 544 files (snapshot), observed 2017-02-02 → 2026-04-02 (snapshot)_
+_5 pattern rows, 545 files (snapshot), observed 2017-02-02 → 2026-05-02 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Billing/` | `PUBLIC_BILLING_{date}.zip` | `PUBLIC_BILLING_\d{8}\.zip` | `PUBLIC_BILLING_20250302.zip` | 12 | 2025-05-02 | 2026-04-02 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Billing/` | `PUBLIC_BILLING_{date}.zip` | `PUBLIC_BILLING_\d{8}\.zip` | `PUBLIC_BILLING_20250302.zip` | 13 | 2025-05-02 | 2026-05-02 |
 | `CURRENT` | `/Reports/CURRENT/Billing/` | `PUBLIC_BILLING_DIRECT_FINAL_RECON_{year}Week{d1}REVISE_{datetime}.zip` | `PUBLIC_BILLING_DIRECT_FINAL_RECON_\d{4}Week\d{1}REVISE_\d{14}\.zip` | `PUBLIC_BILLING_DIRECT_FINAL_RECON_2020Week1REVISE_20200519132635.zip` | 1 | 2020-05-19 | 2020-05-19 |
 | `CURRENT` | `/Reports/CURRENT/Billing/` | `PUBLIC_BILLING_DIRECT_PROV_CRA_SPLIT_CAT_REG_{year}Week{d2}_{datetime}.zip` | `PUBLIC_BILLING_DIRECT_PROV_CRA_SPLIT_CAT_REG_\d{4}Week\d{2}_\d{14}\.zip` | `PUBLIC_BILLING_DIRECT_PROV_CRA_SPLIT_CAT_REG_2021Week17_20210519110609.zip` | 1 | 2021-05-19 | 2021-05-19 |
 | `CURRENT` | `/Reports/CURRENT/Billing/` | `PUBLIC_BILLING_DIRECT_PROV_RECON_{year}Week{d2}FINAL_{datetime}.zip` | `PUBLIC_BILLING_DIRECT_PROV_RECON_\d{4}Week\d{2}FINAL_\d{14}\.zip` | `PUBLIC_BILLING_DIRECT_PROV_RECON_2020Week45FINAL_20201202104406.zip` | 2 | 2020-12-02 | 2021-06-09 |
@@ -83,27 +83,27 @@ _5 pattern rows, 544 files (snapshot), observed 2017-02-02 → 2026-04-02 (snaps
 
 ### `Reports` · `CDEII`
 
-_5 pattern rows, 12 files (snapshot), observed 2026-02-20 → 2026-04-17 (snapshot)_
+_5 pattern rows, 12 files (snapshot), observed 2026-03-06 → 2026-05-01 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/CDEII/` | `CO{d1}EII_AVAILABLE_GENERATORS.CSV` | `CO\d{1}EII_AVAILABLE_GENERATORS\.CSV` | `CO2EII_AVAILABLE_GENERATORS.CSV` | 1 | 2026-04-17 | 2026-04-17 |
-| `CURRENT` | `/Reports/CURRENT/CDEII/` | `CO{d11}EII_AVAILABLE_GENERATORS_{year}_{d12}_{datetime}.CSV` | `CO\d{1}EII_AVAILABLE_GENERATORS_\d{4}_\d{1}_\d{14}\.CSV` | `CO2EII_AVAILABLE_GENERATORS_2026_7_20260220083314.CSV` | 3 | 2026-02-20 | 2026-03-06 |
-| `CURRENT` | `/Reports/CURRENT/CDEII/` | `CO{d1}EII_AVAILABLE_GENERATORS_{year}_{d2}_{datetime}.CSV` | `CO\d{1}EII_AVAILABLE_GENERATORS_\d{4}_\d{2}_\d{14}\.CSV` | `CO2EII_AVAILABLE_GENERATORS_2026_10_20260313111124.CSV` | 6 | 2026-03-13 | 2026-04-17 |
-| `CURRENT` | `/Reports/CURRENT/CDEII/` | `CO{d1}EII_SUMMARY_RESULTS.CSV` | `CO\d{1}EII_SUMMARY_RESULTS\.CSV` | `CO2EII_SUMMARY_RESULTS.CSV` | 1 | 2026-04-17 | 2026-04-17 |
-| `CURRENT` | `/Reports/CURRENT/CDEII/` | `CO{d1}EII_SUMMARY_RESULTS_{year}.CSV` | `CO\d{1}EII_SUMMARY_RESULTS_\d{4}\.CSV` | `CO2EII_SUMMARY_RESULTS_2026.CSV` | 1 | 2026-04-17 | 2026-04-17 |
+| `CURRENT` | `/Reports/CURRENT/CDEII/` | `CO{d1}EII_AVAILABLE_GENERATORS.CSV` | `CO\d{1}EII_AVAILABLE_GENERATORS\.CSV` | `CO2EII_AVAILABLE_GENERATORS.CSV` | 1 | 2026-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/CDEII/` | `CO{d11}EII_AVAILABLE_GENERATORS_{year}_{d12}_{datetime}.CSV` | `CO\d{1}EII_AVAILABLE_GENERATORS_\d{4}_\d{1}_\d{14}\.CSV` | `CO2EII_AVAILABLE_GENERATORS_2026_9_20260306103709.CSV` | 1 | 2026-03-06 | 2026-03-06 |
+| `CURRENT` | `/Reports/CURRENT/CDEII/` | `CO{d1}EII_AVAILABLE_GENERATORS_{year}_{d2}_{datetime}.CSV` | `CO\d{1}EII_AVAILABLE_GENERATORS_\d{4}_\d{2}_\d{14}\.CSV` | `CO2EII_AVAILABLE_GENERATORS_2026_10_20260313111124.CSV` | 8 | 2026-03-13 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/CDEII/` | `CO{d1}EII_SUMMARY_RESULTS.CSV` | `CO\d{1}EII_SUMMARY_RESULTS\.CSV` | `CO2EII_SUMMARY_RESULTS.CSV` | 1 | 2026-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/CDEII/` | `CO{d1}EII_SUMMARY_RESULTS_{year}.CSV` | `CO\d{1}EII_SUMMARY_RESULTS_\d{4}\.CSV` | `CO2EII_SUMMARY_RESULTS_2026.CSV` | 1 | 2026-05-01 | 2026-05-01 |
 
 ### `Reports` · `CSC_CSP_Settlements`
 
-_5 pattern rows, 33 files (snapshot), observed 2026-02-20 → 2026-04-17 (snapshot)_
+_5 pattern rows, 33 files (snapshot), observed 2026-03-06 → 2026-05-01 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/CSC_CSP_Settlements/` | `PUBLIC_BILLINGCSP_{year}WEEK{d1}FINAL_{datetime}_{aemo_id}.zip` | `PUBLIC_BILLINGCSP_\d{4}WEEK\d{1}FINAL_\d{14}_\d{16}\.zip` | `PUBLIC_BILLINGCSP_2026WEEK5FINAL_20260225111834_0000000505071174.zip` | 5 | 2026-02-25 | 2026-03-25 |
-| `CURRENT` | `/Reports/CURRENT/CSC_CSP_Settlements/` | `PUBLIC_BILLINGCSP_{year}WEEK{d1}PRELIM_{datetime}_{aemo_id}.zip` | `PUBLIC_BILLINGCSP_\d{4}WEEK\d{1}PRELIM_\d{14}_\d{16}\.zip` | `PUBLIC_BILLINGCSP_2026WEEK7PRELIM_20260220082904_0000000504301075.zip` | 3 | 2026-02-20 | 2026-03-06 |
-| `CURRENT` | `/Reports/CURRENT/CSC_CSP_Settlements/` | `PUBLIC_BILLINGCSP_{year}WEEK{d2}FINAL_{datetime}_{aemo_id}.zip` | `PUBLIC_BILLINGCSP_\d{4}WEEK\d{2}FINAL_\d{14}_\d{16}\.zip` | `PUBLIC_BILLINGCSP_2026WEEK10FINAL_20260401110532_0000000510763856.zip` | 3 | 2026-04-01 | 2026-04-17 |
-| `CURRENT` | `/Reports/CURRENT/CSC_CSP_Settlements/` | `PUBLIC_BILLINGCSP_{year}WEEK{d2}PRELIM_{datetime}_{aemo_id}.zip` | `PUBLIC_BILLINGCSP_\d{4}WEEK\d{2}PRELIM_\d{14}_\d{16}\.zip` | `PUBLIC_BILLINGCSP_2026WEEK10PRELIM_20260313110702_0000000507657613.zip` | 6 | 2026-03-13 | 2026-04-17 |
-| `CURRENT` | `/Reports/CURRENT/CSC_CSP_Settlements/` | `PUBLIC_BILLINGCSP_{year}WEEK{d2}REVISE_{datetime}_{aemo_id}.zip` | `PUBLIC_BILLINGCSP_\d{4}WEEK\d{2}REVISE_\d{14}_\d{16}\.zip` | `PUBLIC_BILLINGCSP_2025WEEK31REVISE_20260226112035_0000000505237166.zip` | 16 | 2026-02-24 | 2026-04-16 |
+| `CURRENT` | `/Reports/CURRENT/CSC_CSP_Settlements/` | `PUBLIC_BILLINGCSP_{year}WEEK{d1}FINAL_{datetime}_{aemo_id}.zip` | `PUBLIC_BILLINGCSP_\d{4}WEEK\d{1}FINAL_\d{14}_\d{16}\.zip` | `PUBLIC_BILLINGCSP_2026WEEK7FINAL_20260311111331_0000000507341120.zip` | 3 | 2026-03-11 | 2026-03-25 |
+| `CURRENT` | `/Reports/CURRENT/CSC_CSP_Settlements/` | `PUBLIC_BILLINGCSP_{year}WEEK{d1}PRELIM_{datetime}_{aemo_id}.zip` | `PUBLIC_BILLINGCSP_\d{4}WEEK\d{1}PRELIM_\d{14}_\d{16}\.zip` | `PUBLIC_BILLINGCSP_2026WEEK9PRELIM_20260306103319_0000000506576068.zip` | 1 | 2026-03-06 | 2026-03-06 |
+| `CURRENT` | `/Reports/CURRENT/CSC_CSP_Settlements/` | `PUBLIC_BILLINGCSP_{year}WEEK{d2}FINAL_{datetime}_{aemo_id}.zip` | `PUBLIC_BILLINGCSP_\d{4}WEEK\d{2}FINAL_\d{14}_\d{16}\.zip` | `PUBLIC_BILLINGCSP_2026WEEK10FINAL_20260401110532_0000000510763856.zip` | 5 | 2026-04-01 | 2026-04-30 |
+| `CURRENT` | `/Reports/CURRENT/CSC_CSP_Settlements/` | `PUBLIC_BILLINGCSP_{year}WEEK{d2}PRELIM_{datetime}_{aemo_id}.zip` | `PUBLIC_BILLINGCSP_\d{4}WEEK\d{2}PRELIM_\d{14}_\d{16}\.zip` | `PUBLIC_BILLINGCSP_2026WEEK10PRELIM_20260313110702_0000000507657613.zip` | 8 | 2026-03-13 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/CSC_CSP_Settlements/` | `PUBLIC_BILLINGCSP_{year}WEEK{d2}REVISE_{datetime}_{aemo_id}.zip` | `PUBLIC_BILLINGCSP_\d{4}WEEK\d{2}REVISE_\d{14}_\d{16}\.zip` | `PUBLIC_BILLINGCSP_2025WEEK33REVISE_20260312111239_0000000507501671.zip` | 16 | 2026-03-10 | 2026-04-30 |
 
 ### `Reports` · `Causer_Pays_Elements`
 
@@ -115,44 +115,44 @@ _1 pattern row, 31 files (snapshot), observed 2020-03-04 → 2025-04-15 (snapsho
 
 ### `Reports` · `Causer_Pays_Scada`
 
-_1 pattern row, 24 files (snapshot), observed 2025-04-14 → 2025-09-22 (snapshot)_
+_1 pattern row, 22 files (snapshot), observed 2025-04-28 → 2025-09-22 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Causer_Pays_Scada/` | `PUBLIC_CAUSER_PAYS_SCADA_{date}.zip` | `PUBLIC_CAUSER_PAYS_SCADA_\d{8}\.zip` | `PUBLIC_CAUSER_PAYS_SCADA_20250331.zip` | 24 | 2025-04-14 | 2025-09-22 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Causer_Pays_Scada/` | `PUBLIC_CAUSER_PAYS_SCADA_{date}.zip` | `PUBLIC_CAUSER_PAYS_SCADA_\d{8}\.zip` | `PUBLIC_CAUSER_PAYS_SCADA_20250414.zip` | 22 | 2025-04-28 | 2025-09-22 |
 
 ### `Reports` · `DAILYOCD`
 
-_1 pattern row, 45 files (snapshot), observed 2025-04-05 → 2026-04-01 (snapshot)_
+_1 pattern row, 46 files (snapshot), observed 2025-04-05 → 2026-04-21 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/DAILYOCD/` | `PUBLIC_DAILYOCD_{timestamp}_{datetime}.zip` | `PUBLIC_DAILYOCD_\d{12}_\d{14}\.zip` | `PUBLIC_DAILYOCD_202504040000_20250405040500.zip` | 45 | 2025-04-05 | 2026-04-01 |
+| `CURRENT` | `/Reports/CURRENT/DAILYOCD/` | `PUBLIC_DAILYOCD_{timestamp}_{datetime}.zip` | `PUBLIC_DAILYOCD_\d{12}_\d{14}\.zip` | `PUBLIC_DAILYOCD_202504040000_20250405040500.zip` | 46 | 2025-04-05 | 2026-04-21 |
 
 ### `Reports` · `DISPATCHFCST`
 
-_2 pattern rows, 1300 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot)_
+_2 pattern rows, 951 files (snapshot), observed 2025-04-25 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/DISPATCHFCST/` | `PUBLIC_DISPATCHFCST_{date}.zip` | `PUBLIC_DISPATCHFCST_\d{8}\.zip` | `PUBLIC_DISPATCHFCST_20250409.zip` | 375 | 2025-04-11 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/DISPATCHFCST/` | `PUBLIC_DISPATCHFCST_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCHFCST_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCHFCST_202604181445_0000000513537618.zip` | 925 | 2026-04-18 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/DISPATCHFCST/` | `PUBLIC_DISPATCHFCST_{date}.zip` | `PUBLIC_DISPATCHFCST_\d{8}\.zip` | `PUBLIC_DISPATCHFCST_20250423.zip` | 375 | 2025-04-25 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/DISPATCHFCST/` | `PUBLIC_DISPATCHFCST_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCHFCST_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCHFCST_202605021425_0000000515789285.zip` | 576 | 2026-05-02 | 2026-05-04 |
 
 ### `Reports` · `DISPATCHIS_PRICE_REVISIONS`
 
-_1 pattern row, 4681 files (snapshot), observed 2025-09-17 → 2026-04-20 (snapshot)_
+_1 pattern row, 5753 files (snapshot), observed 2025-09-17 → 2026-04-28 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/DISPATCHIS_PRICE_REVISIONS/` | `PUBLIC_PRICE_REVISION_DISPATCHIS_{datetime}_{aemo_id}.zip` | `PUBLIC_PRICE_REVISION_DISPATCHIS_\d{14}_\d{16}\.zip` | `PUBLIC_PRICE_REVISION_DISPATCHIS_20250301163013_0000000453111936.zip` | 4681 | 2025-09-17 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/DISPATCHIS_PRICE_REVISIONS/` | `PUBLIC_PRICE_REVISION_DISPATCHIS_{datetime}_{aemo_id}.zip` | `PUBLIC_PRICE_REVISION_DISPATCHIS_\d{14}_\d{16}\.zip` | `PUBLIC_PRICE_REVISION_DISPATCHIS_20250301163013_0000000453111936.zip` | 5753 | 2025-09-17 | 2026-04-28 |
 
 ### `Reports` · `DISPATCH_NEGATIVE_RESIDUE`
 
-_2 pattern rows, 578 files (snapshot), observed 2026-03-03 → 2026-04-20 (snapshot) · **anomaly:** casing_mismatch_vs_sibling_tier_
+_2 pattern rows, 577 files (snapshot), observed 2026-03-03 → 2026-05-04 (snapshot) · **anomaly:** casing_mismatch_vs_sibling_tier_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/DISPATCH_NEGATIVE_RESIDUE/` | `PUBLIC_DISPATCH_NEGATIVE_RESIDUE_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCH_NEGATIVE_RESIDUE_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCH_NEGATIVE_RESIDUE_202604181445_0000000513537055.zip` | 577 | 2026-04-18 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/DISPATCH_NEGATIVE_RESIDUE/` | `PUBLIC_DISPATCH_NEGATIVE_RESIDUE_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCH_NEGATIVE_RESIDUE_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCH_NEGATIVE_RESIDUE_202605021425_0000000515788733.zip` | 576 | 2026-05-02 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/DISPATCH_NEGATIVE_RESIDUE/DUPLICATE/` | `PUBLIC_DISPATCH_NEGATIVE_RESIDUE_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCH_NEGATIVE_RESIDUE_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCH_NEGATIVE_RESIDUE_202603031345_0000000506102388.zip` | 1 | 2026-03-03 | 2026-03-03 |
 
 ### `Reports` · `DWGM`
@@ -166,89 +166,89 @@ _2 pattern rows, 2 files (snapshot), observed 2016-09-29 → 2016-09-29 (snapsho
 
 ### `Reports` · `Daily_Reports`
 
-_2 pattern rows, 72 files (snapshot), observed 2025-05-01 → 2026-04-20 (snapshot)_
+_2 pattern rows, 73 files (snapshot), observed 2025-05-01 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Daily_Reports/` | `PUBLIC_DAILY_{date}.zip` | `PUBLIC_DAILY_\d{8}\.zip` | `PUBLIC_DAILY_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/Daily_Reports/` | `PUBLIC_DAILY_{timestamp}_{datetime}.zip` | `PUBLIC_DAILY_\d{12}_\d{14}\.zip` | `PUBLIC_DAILY_202602190000_20260220040503.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Daily_Reports/` | `PUBLIC_DAILY_{date}.zip` | `PUBLIC_DAILY_\d{8}\.zip` | `PUBLIC_DAILY_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Daily_Reports/` | `PUBLIC_DAILY_{timestamp}_{datetime}.zip` | `PUBLIC_DAILY_\d{12}_\d{14}\.zip` | `PUBLIC_DAILY_202603050000_20260306040507.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `Directions_Reconciliation`
 
-_5 pattern rows, 32 files (snapshot), observed 2026-02-24 → 2026-04-14 (snapshot)_
+_5 pattern rows, 32 files (snapshot), observed 2026-03-12 → 2026-04-30 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/Directions_Reconciliation/` | `PUBLIC_BILLING_DIRECT_FINAL_CRA_SPLIT_CAT_REG_{year}Week{d2}_{datetime}.zip` | `PUBLIC_BILLING_DIRECT_FINAL_CRA_SPLIT_CAT_REG_\d{4}Week\d{2}_\d{14}\.zip` | `PUBLIC_BILLING_DIRECT_FINAL_CRA_SPLIT_CAT_REG_2025Week31_20260226115204.zip` | 10 | 2026-02-24 | 2026-04-14 |
-| `CURRENT` | `/Reports/CURRENT/Directions_Reconciliation/` | `PUBLIC_BILLING_DIRECT_FINAL_RECON_{year}Week{d2}REVISE_{datetime}.zip` | `PUBLIC_BILLING_DIRECT_FINAL_RECON_\d{4}Week\d{2}REVISE_\d{14}\.zip` | `PUBLIC_BILLING_DIRECT_FINAL_RECON_2025Week31REVISE_20260226111908.zip` | 10 | 2026-02-24 | 2026-04-14 |
-| `CURRENT` | `/Reports/CURRENT/Directions_Reconciliation/` | `PUBLIC_BILLING_DIRECT_PROV_CRA_SPLIT_CAT_REG_{year}Week{d2}_{datetime}.zip` | `PUBLIC_BILLING_DIRECT_PROV_CRA_SPLIT_CAT_REG_\d{4}Week\d{2}_\d{14}\.zip` | `PUBLIC_BILLING_DIRECT_PROV_CRA_SPLIT_CAT_REG_2025Week41_20260224113329.zip` | 6 | 2026-02-24 | 2026-04-14 |
-| `CURRENT` | `/Reports/CURRENT/Directions_Reconciliation/` | `PUBLIC_BILLING_DIRECT_PROV_RECON_{year}Week{d2}FINAL_{datetime}.zip` | `PUBLIC_BILLING_DIRECT_PROV_RECON_\d{4}Week\d{2}FINAL_\d{14}\.zip` | `PUBLIC_BILLING_DIRECT_PROV_RECON_2026Week11FINAL_20260410114716.zip` | 1 | 2026-04-10 | 2026-04-10 |
-| `CURRENT` | `/Reports/CURRENT/Directions_Reconciliation/` | `PUBLIC_BILLING_DIRECT_PROV_RECON_{year}Week{d2}REVISE_{datetime}.zip` | `PUBLIC_BILLING_DIRECT_PROV_RECON_\d{4}Week\d{2}REVISE_\d{14}\.zip` | `PUBLIC_BILLING_DIRECT_PROV_RECON_2025Week41REVISE_20260224110940.zip` | 5 | 2026-02-24 | 2026-04-14 |
+| `CURRENT` | `/Reports/CURRENT/Directions_Reconciliation/` | `PUBLIC_BILLING_DIRECT_FINAL_CRA_SPLIT_CAT_REG_{year}Week{d2}_{datetime}.zip` | `PUBLIC_BILLING_DIRECT_FINAL_CRA_SPLIT_CAT_REG_\d{4}Week\d{2}_\d{14}\.zip` | `PUBLIC_BILLING_DIRECT_FINAL_CRA_SPLIT_CAT_REG_2025Week33_20260312113753.zip` | 8 | 2026-03-12 | 2026-04-28 |
+| `CURRENT` | `/Reports/CURRENT/Directions_Reconciliation/` | `PUBLIC_BILLING_DIRECT_FINAL_RECON_{year}Week{d2}REVISE_{datetime}.zip` | `PUBLIC_BILLING_DIRECT_FINAL_RECON_\d{4}Week\d{2}REVISE_\d{14}\.zip` | `PUBLIC_BILLING_DIRECT_FINAL_RECON_2025Week33REVISE_20260312111134.zip` | 8 | 2026-03-12 | 2026-04-28 |
+| `CURRENT` | `/Reports/CURRENT/Directions_Reconciliation/` | `PUBLIC_BILLING_DIRECT_PROV_CRA_SPLIT_CAT_REG_{year}Week{d2}_{datetime}.zip` | `PUBLIC_BILLING_DIRECT_PROV_CRA_SPLIT_CAT_REG_\d{4}Week\d{2}_\d{14}\.zip` | `PUBLIC_BILLING_DIRECT_PROV_CRA_SPLIT_CAT_REG_2025Week44_20260317113733.zip` | 8 | 2026-03-17 | 2026-04-30 |
+| `CURRENT` | `/Reports/CURRENT/Directions_Reconciliation/` | `PUBLIC_BILLING_DIRECT_PROV_RECON_{year}Week{d2}FINAL_{datetime}.zip` | `PUBLIC_BILLING_DIRECT_PROV_RECON_\d{4}Week\d{2}FINAL_\d{14}\.zip` | `PUBLIC_BILLING_DIRECT_PROV_RECON_2026Week11FINAL_20260410114716.zip` | 3 | 2026-04-10 | 2026-04-30 |
+| `CURRENT` | `/Reports/CURRENT/Directions_Reconciliation/` | `PUBLIC_BILLING_DIRECT_PROV_RECON_{year}Week{d2}REVISE_{datetime}.zip` | `PUBLIC_BILLING_DIRECT_PROV_RECON_\d{4}Week\d{2}REVISE_\d{14}\.zip` | `PUBLIC_BILLING_DIRECT_PROV_RECON_2025Week44REVISE_20260317111411.zip` | 5 | 2026-03-17 | 2026-04-28 |
 
 ### `Reports` · `DispatchIS_Reports`
 
-_2 pattern rows, 952 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot)_
+_2 pattern rows, 952 files (snapshot), observed 2025-04-25 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/DispatchIS_Reports/` | `PUBLIC_DISPATCHIS_{date}.zip` | `PUBLIC_DISPATCHIS_\d{8}\.zip` | `PUBLIC_DISPATCHIS_20250409.zip` | 375 | 2025-04-11 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/DispatchIS_Reports/` | `PUBLIC_DISPATCHIS_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCHIS_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCHIS_202604181445_0000000513537596.zip` | 577 | 2026-04-18 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/DispatchIS_Reports/` | `PUBLIC_DISPATCHIS_{date}.zip` | `PUBLIC_DISPATCHIS_\d{8}\.zip` | `PUBLIC_DISPATCHIS_20250423.zip` | 375 | 2025-04-25 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/DispatchIS_Reports/` | `PUBLIC_DISPATCHIS_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCHIS_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCHIS_202605021425_0000000515789266.zip` | 577 | 2026-05-02 | 2026-05-04 |
 
 ### `Reports` · `Dispatch_IRSR`
 
-_3 pattern rows, 953 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot)_
+_3 pattern rows, 952 files (snapshot), observed 2025-04-25 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Dispatch_IRSR/` | `PUBLIC_DISPATCH_IRSR_{date}.zip` | `PUBLIC_DISPATCH_IRSR_\d{8}\.zip` | `PUBLIC_DISPATCH_IRSR_20250409.zip` | 375 | 2025-04-11 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/Dispatch_IRSR/` | `PUBLIC_DISPATCH_IRSR_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCH_IRSR_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCH_IRSR_202604181445_0000000513537804.zip` | 577 | 2026-04-18 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Dispatch_IRSR/` | `PUBLIC_DISPATCH_IRSR_{date}.zip` | `PUBLIC_DISPATCH_IRSR_\d{8}\.zip` | `PUBLIC_DISPATCH_IRSR_20250423.zip` | 375 | 2025-04-25 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/Dispatch_IRSR/` | `PUBLIC_DISPATCH_IRSR_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCH_IRSR_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCH_IRSR_202605021425_0000000515789315.zip` | 576 | 2026-05-02 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/Dispatch_IRSR/DUPLICATE/` | `PUBLIC_DISPATCH_IRSR_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCH_IRSR_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCH_IRSR_202511281730_0000000491450210.zip` | 1 | 2025-11-28 | 2025-11-28 |
 
 ### `Reports` · `Dispatch_Negative_Residue`
 
-_1 pattern row, 375 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot) · **anomaly:** casing_mismatch_vs_sibling_tier_
+_1 pattern row, 375 files (snapshot), observed 2025-04-25 → 2026-05-04 (snapshot) · **anomaly:** casing_mismatch_vs_sibling_tier_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Dispatch_Negative_Residue/` | `DISPATCH_NEGATIVE_RESIDUE_{date}.zip` | `DISPATCH_NEGATIVE_RESIDUE_\d{8}\.zip` | `DISPATCH_NEGATIVE_RESIDUE_20250409.zip` | 375 | 2025-04-11 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Dispatch_Negative_Residue/` | `DISPATCH_NEGATIVE_RESIDUE_{date}.zip` | `DISPATCH_NEGATIVE_RESIDUE_\d{8}\.zip` | `DISPATCH_NEGATIVE_RESIDUE_20250423.zip` | 375 | 2025-04-25 | 2026-05-04 |
 
 ### `Reports` · `Dispatch_Reports`
 
-_2 pattern rows, 952 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot)_
+_2 pattern rows, 951 files (snapshot), observed 2025-04-25 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Dispatch_Reports/` | `PUBLIC_DISPATCH_{date}.zip` | `PUBLIC_DISPATCH_\d{8}\.zip` | `PUBLIC_DISPATCH_20250409.zip` | 375 | 2025-04-11 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/Dispatch_Reports/` | `PUBLIC_DISPATCH_{timestamp}_{datetime}_LEGACY.zip` | `PUBLIC_DISPATCH_\d{12}_\d{14}_LEGACY\.zip` | `PUBLIC_DISPATCH_202604181445_20260418144016_LEGACY.zip` | 577 | 2026-04-18 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Dispatch_Reports/` | `PUBLIC_DISPATCH_{date}.zip` | `PUBLIC_DISPATCH_\d{8}\.zip` | `PUBLIC_DISPATCH_20250423.zip` | 375 | 2025-04-25 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/Dispatch_Reports/` | `PUBLIC_DISPATCH_{timestamp}_{datetime}_LEGACY.zip` | `PUBLIC_DISPATCH_\d{12}_\d{14}_LEGACY\.zip` | `PUBLIC_DISPATCH_202605021425_20260502142009_LEGACY.zip` | 576 | 2026-05-02 | 2026-05-04 |
 
 ### `Reports` · `Dispatch_SCADA`
 
-_3 pattern rows, 953 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot)_
+_3 pattern rows, 953 files (snapshot), observed 2025-04-25 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Dispatch_SCADA/` | `PUBLIC_DISPATCHSCADA_{date}.zip` | `PUBLIC_DISPATCHSCADA_\d{8}\.zip` | `PUBLIC_DISPATCHSCADA_20250409.zip` | 375 | 2025-04-11 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/Dispatch_SCADA/` | `PUBLIC_DISPATCHSCADA_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCHSCADA_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCHSCADA_202604181445_0000000513537601.zip` | 577 | 2026-04-18 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Dispatch_SCADA/` | `PUBLIC_DISPATCHSCADA_{date}.zip` | `PUBLIC_DISPATCHSCADA_\d{8}\.zip` | `PUBLIC_DISPATCHSCADA_20250423.zip` | 375 | 2025-04-25 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/Dispatch_SCADA/` | `PUBLIC_DISPATCHSCADA_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCHSCADA_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCHSCADA_202605021425_0000000515789271.zip` | 577 | 2026-05-02 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/Dispatch_SCADA/DUPLICATE/` | `PUBLIC_DISPATCHSCADA_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCHSCADA_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCHSCADA_202508121115_0000000475994495.zip` | 1 | 2025-08-12 | 2025-08-12 |
 
 ### `Reports` · `Dispatchprices_PRE_AP`
 
-_3 pattern rows, 953 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot)_
+_3 pattern rows, 953 files (snapshot), observed 2025-04-25 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Dispatchprices_PRE_AP/` | `PUBLIC_DISPATCHPRICES_PRE_AP_{date}.zip` | `PUBLIC_DISPATCHPRICES_PRE_AP_\d{8}\.zip` | `PUBLIC_DISPATCHPRICES_PRE_AP_20250409.zip` | 375 | 2025-04-11 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/Dispatchprices_PRE_AP/` | `PUBLIC_DISPATCHPRICES_PRE_AP_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCHPRICES_PRE_AP_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCHPRICES_PRE_AP_202604181445_0000000513537600.zip` | 577 | 2026-04-18 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Dispatchprices_PRE_AP/` | `PUBLIC_DISPATCHPRICES_PRE_AP_{date}.zip` | `PUBLIC_DISPATCHPRICES_PRE_AP_\d{8}\.zip` | `PUBLIC_DISPATCHPRICES_PRE_AP_20250423.zip` | 375 | 2025-04-25 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/Dispatchprices_PRE_AP/` | `PUBLIC_DISPATCHPRICES_PRE_AP_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCHPRICES_PRE_AP_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCHPRICES_PRE_AP_202605021425_0000000515789270.zip` | 577 | 2026-05-02 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/Dispatchprices_PRE_AP/DUPLICATE/` | `PUBLIC_DISPATCHPRICES_PRE_AP_{timestamp}_{aemo_id}.zip` | `PUBLIC_DISPATCHPRICES_PRE_AP_\d{12}_\d{16}\.zip` | `PUBLIC_DISPATCHPRICES_PRE_AP_202508121115_0000000475994494.zip` | 1 | 2025-08-12 | 2025-08-12 |
 
 ### `Reports` · `ECGS`
 
-_14 pattern rows, 15 files (snapshot), observed 2026-03-10 → 2026-04-20 (snapshot)_
+_14 pattern rows, 15 files (snapshot), observed 2026-04-20 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/ECGS/` | `INT{d3}_V{d11}_ECGS_CONTACTS_{d12}.CSV` | `INT\d{3}_V\d{1}_ECGS_CONTACTS_\d{1}\.CSV` | `INT934_V4_ECGS_CONTACTS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/ECGS/ECGS_Notices/` | `INT{d3}A_V{d11}_SYSTEM_NOTICES_{d12}.csv` | `INT\d{3}A_V\d{1}_SYSTEM_NOTICES_\d{1}\.csv` | `INT929A_V4_SYSTEM_NOTICES_1.csv` | 1 | 2026-03-10 | 2026-03-10 |
+| `CURRENT` | `/Reports/CURRENT/ECGS/` | `int{d3}_v{d11}_ecgs_contacts_{d12}.csv` | `int\d{3}_v\d{1}_ecgs_contacts_\d{1}\.csv` | `int934_v4_ecgs_contacts_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/ECGS/ECGS_Notices/` | `int{d3}a_v{d11}_system_notices_{d12}.csv` | `int\d{3}a_v\d{1}_system_notices_\d{1}\.csv` | `int929a_v4_system_notices_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/ECGS/ECGS_Notices/Attachments/` | `{datetime} - AEMO ECGS GSAR Minutes {d2} November {year}.pdf` | `\d{14}\ \-\ AEMO\ ECGS\ GSAR\ Minutes\ \d{2}\ November\ \d{4}\.pdf` | `20251126170617 - AEMO ECGS GSAR Minutes 26 November 2025.pdf` | 1 | 2026-04-20 | 2026-04-20 |
 | `CURRENT` | `/Reports/CURRENT/ECGS/ECGS_Notices/Attachments/` | `{datetime} - Direction Revocation Notice, QGP Failure Event.pdf` | `\d{14}\ \-\ Direction\ Revocation\ Notice,\ QGP\ Failure\ Event\.pdf` | `20241210093730 - Direction Revocation Notice, QGP Failure Event.pdf` | 1 | 2026-04-20 | 2026-04-20 |
 | `CURRENT` | `/Reports/CURRENT/ECGS/ECGS_Notices/Attachments/` | `{datetime} - ECGS Industry Conference Attendance List {d1} March {year}.pdf` | `\d{14}\ \-\ ECGS\ Industry\ Conference\ Attendance\ List\ \d{1}\ March\ \d{4}\.pdf` | `20240307131831 - ECGS Industry Conference Attendance List 5 March 2024.pdf` | 1 | 2026-04-20 | 2026-04-20 |
@@ -264,54 +264,54 @@ _14 pattern rows, 15 files (snapshot), observed 2026-03-10 → 2026-04-20 (snaps
 
 ### `Reports` · `FPP`
 
-_1 pattern row, 1034 files (snapshot), observed 2024-12-14 → 2026-04-19 (snapshot)_
+_1 pattern row, 1071 files (snapshot), observed 2024-12-14 → 2026-05-03 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/FPP/` | `PUBLIC_FPP_DCF_{timestamp}_{aemo_id}.zip` | `PUBLIC_FPP_DCF_\d{12}_\d{16}\.zip` | `PUBLIC_FPP_DCF_202412141802_0000000443338900.zip` | 1034 | 2024-12-14 | 2026-04-19 |
+| `CURRENT` | `/Reports/CURRENT/FPP/` | `PUBLIC_FPP_DCF_{timestamp}_{aemo_id}.zip` | `PUBLIC_FPP_DCF_\d{12}_\d{16}\.zip` | `PUBLIC_FPP_DCF_202412141802_0000000443338900.zip` | 1071 | 2024-12-14 | 2026-05-03 |
 
 ### `Reports` · `FPPDAILY`
 
-_6 pattern rows, 263 files (snapshot), observed 2025-05-01 → 2026-04-20 (snapshot)_
+_6 pattern rows, 267 files (snapshot), observed 2025-05-01 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/FPPDAILY/` | `PUBLIC_NEXT_DAY_FPPMW_{d1}_{date}.zip` | `PUBLIC_NEXT_DAY_FPPMW_\d{1}_\d{8}\.zip` | `PUBLIC_NEXT_DAY_FPPMW_2_20250912.zip` | 30 | 2025-11-25 | 2026-04-17 |
-| `ARCHIVE` | `/Reports/ARCHIVE/FPPDAILY/` | `PUBLIC_NEXT_DAY_FPPMW_{date}.zip` | `PUBLIC_NEXT_DAY_FPPMW_\d{8}\.zip` | `PUBLIC_NEXT_DAY_FPPMW_20250331.zip` | 41 | 2025-05-01 | 2026-04-19 |
-| `ARCHIVE` | `/Reports/ARCHIVE/FPPDAILY/` | `PUBLIC_NEXT_DAY_FPP_{date}.zip` | `PUBLIC_NEXT_DAY_FPP_\d{8}\.zip` | `PUBLIC_NEXT_DAY_FPP_20250331.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/FPPDAILY/` | `PUBLIC_NEXT_DAY_FPPMW_{d1}_{datetime}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_FPPMW_\d{1}_\d{14}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_FPPMW_2_20260220070046_0000000504291041.zip` | 60 | 2026-02-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/FPPDAILY/` | `PUBLIC_NEXT_DAY_FPPMW_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_FPPMW_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_FPPMW_20260220_0000000504291040.zip` | 60 | 2026-02-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/FPPDAILY/` | `PUBLIC_NEXT_DAY_FPP_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_FPP_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_FPP_20260219_0000000504291039.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/FPPDAILY/` | `PUBLIC_NEXT_DAY_FPPMW_{d1}_{date}.zip` | `PUBLIC_NEXT_DAY_FPPMW_\d{1}_\d{8}\.zip` | `PUBLIC_NEXT_DAY_FPPMW_2_20250912.zip` | 32 | 2025-11-25 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/FPPDAILY/` | `PUBLIC_NEXT_DAY_FPPMW_{date}.zip` | `PUBLIC_NEXT_DAY_FPPMW_\d{8}\.zip` | `PUBLIC_NEXT_DAY_FPPMW_20250331.zip` | 43 | 2025-05-01 | 2026-05-03 |
+| `ARCHIVE` | `/Reports/ARCHIVE/FPPDAILY/` | `PUBLIC_NEXT_DAY_FPP_{date}.zip` | `PUBLIC_NEXT_DAY_FPP_\d{8}\.zip` | `PUBLIC_NEXT_DAY_FPP_20250331.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/FPPDAILY/` | `PUBLIC_NEXT_DAY_FPPMW_{d1}_{datetime}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_FPPMW_\d{1}_\d{14}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_FPPMW_2_20260306070048_0000000506551647.zip` | 60 | 2026-03-06 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/FPPDAILY/` | `PUBLIC_NEXT_DAY_FPPMW_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_FPPMW_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_FPPMW_20260306_0000000506551646.zip` | 59 | 2026-03-06 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/FPPDAILY/` | `PUBLIC_NEXT_DAY_FPP_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_FPP_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_FPP_20260305_0000000506551645.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `FPPRATES`
 
-_2 pattern rows, 952 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot)_
+_2 pattern rows, 951 files (snapshot), observed 2025-04-25 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/FPPRATES/` | `PUBLIC_FPP_RATES_{date}.zip` | `PUBLIC_FPP_RATES_\d{8}\.zip` | `PUBLIC_FPP_RATES_20250409.zip` | 375 | 2025-04-11 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/FPPRATES/` | `PUBLIC_FPP_RATES_{timestamp}_{aemo_id}.zip` | `PUBLIC_FPP_RATES_\d{12}_\d{16}\.zip` | `PUBLIC_FPP_RATES_202604181435_0000000513537497.zip` | 577 | 2026-04-18 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/FPPRATES/` | `PUBLIC_FPP_RATES_{date}.zip` | `PUBLIC_FPP_RATES_\d{8}\.zip` | `PUBLIC_FPP_RATES_20250423.zip` | 375 | 2025-04-25 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/FPPRATES/` | `PUBLIC_FPP_RATES_{timestamp}_{aemo_id}.zip` | `PUBLIC_FPP_RATES_\d{12}_\d{16}\.zip` | `PUBLIC_FPP_RATES_202605021420_0000000515789547.zip` | 576 | 2026-05-02 | 2026-05-04 |
 
 ### `Reports` · `FPPRUN`
 
-_2 pattern rows, 952 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot)_
+_2 pattern rows, 951 files (snapshot), observed 2025-04-25 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/FPPRUN/` | `PUBLIC_FPP_RUN_{date}.zip` | `PUBLIC_FPP_RUN_\d{8}\.zip` | `PUBLIC_FPP_RUN_20250409.zip` | 375 | 2025-04-11 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/FPPRUN/` | `PUBLIC_FPP_RUN_{timestamp}_{aemo_id}.zip` | `PUBLIC_FPP_RUN_\d{12}_\d{16}\.zip` | `PUBLIC_FPP_RUN_202604181435_0000000513537494.zip` | 577 | 2026-04-18 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/FPPRUN/` | `PUBLIC_FPP_RUN_{date}.zip` | `PUBLIC_FPP_RUN_\d{8}\.zip` | `PUBLIC_FPP_RUN_20250423.zip` | 375 | 2025-04-25 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/FPPRUN/` | `PUBLIC_FPP_RUN_{timestamp}_{aemo_id}.zip` | `PUBLIC_FPP_RUN_\d{12}_\d{16}\.zip` | `PUBLIC_FPP_RUN_202605021420_0000000515789544.zip` | 576 | 2026-05-02 | 2026-05-04 |
 
 ### `Reports` · `FPP_HIST_REG_PERF`
 
-_1 pattern row, 49 files (snapshot), observed 2025-06-12 → 2026-04-18 (snapshot)_
+_1 pattern row, 51 files (snapshot), observed 2025-06-12 → 2026-05-02 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/FPP_HIST_REG_PERF/` | `PUBLIC_FPP_HIST_REGION_PERFORMANCE_{datetime}_{aemo_id}.zip` | `PUBLIC_FPP_HIST_REGION_PERFORMANCE_\d{14}_\d{16}\.zip` | `PUBLIC_FPP_HIST_REGION_PERFORMANCE_20250517180634_0000000463700812.zip` | 49 | 2025-06-12 | 2026-04-18 |
+| `CURRENT` | `/Reports/CURRENT/FPP_HIST_REG_PERF/` | `PUBLIC_FPP_HIST_REGION_PERFORMANCE_{datetime}_{aemo_id}.zip` | `PUBLIC_FPP_HIST_REGION_PERFORMANCE_\d{14}_\d{16}\.zip` | `PUBLIC_FPP_HIST_REGION_PERFORMANCE_20250517180634_0000000463700812.zip` | 51 | 2025-06-12 | 2026-05-02 |
 
 ### `Reports` · `GBB`
 
-_85 pattern rows, 2416 files (snapshot), observed 2019-11-20 → 2026-04-19 (snapshot)_
+_85 pattern rows, 2430 files (snapshot), observed 2019-11-20 → 2026-05-03 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
@@ -396,42 +396,42 @@ _85 pattern rows, 2416 files (snapshot), observed 2019-11-20 → 2026-04-19 (sna
 | `CURRENT` | `/Reports/CURRENT/GBB/DUPLICATE/` | `GasBBShortTermCapacityOutlook.CSV` | `GasBBShortTermCapacityOutlook\.CSV` | `GasBBShortTermCapacityOutlook.CSV` | 1 | 2025-12-06 | 2025-12-06 |
 | `CURRENT` | `/Reports/CURRENT/GBB/DUPLICATE/` | `GasBBUncontractedCapacityOutlookFuture.csv` | `GasBBUncontractedCapacityOutlookFuture\.csv` | `GasBBUncontractedCapacityOutlookFuture.csv` | 1 | 2026-03-08 | 2026-03-08 |
 | `CURRENT` | `/Reports/CURRENT/GBB/DUPLICATE/` | `GasBBUncontractedCapacityOutlookFuture_{datetime}.csv` | `GasBBUncontractedCapacityOutlookFuture_\d{14}\.csv` | `GasBBUncontractedCapacityOutlookFuture_20251028023835.csv` | 19 | 2025-10-28 | 2026-03-08 |
-| `CURRENT` | `/Reports/CURRENT/GBB/ForecastUtilisation/` | `GBB_ForecastUtilisation.CSV` | `GBB_ForecastUtilisation\.CSV` | `GBB_ForecastUtilisation.CSV` | 1 | 2026-04-19 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/GBB/ForecastUtilisation/` | `GBB_ForecastUtilisation_{date}.CSV` | `GBB_ForecastUtilisation_\d{8}\.CSV` | `GBB_ForecastUtilisation_20210804.CSV` | 1720 | 2021-08-04 | 2026-04-19 |
+| `CURRENT` | `/Reports/CURRENT/GBB/ForecastUtilisation/` | `GBB_ForecastUtilisation.CSV` | `GBB_ForecastUtilisation\.CSV` | `GBB_ForecastUtilisation.CSV` | 1 | 2026-05-03 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/GBB/ForecastUtilisation/` | `GBB_ForecastUtilisation_{date}.CSV` | `GBB_ForecastUtilisation_\d{8}\.CSV` | `GBB_ForecastUtilisation_20210804.CSV` | 1734 | 2021-08-04 | 2026-05-03 |
 | `CURRENT` | `/Reports/CURRENT/GBB/GBB_PIPELINE_CONNECTION_FLOW/` | `GASBB_PIPELINE_CONNECTION_FLOW_{year}.zip` | `GASBB_PIPELINE_CONNECTION_FLOW_\d{4}\.zip` | `GASBB_PIPELINE_CONNECTION_FLOW_2019.zip` | 8 | 2021-07-27 | 2026-04-18 |
 | `CURRENT` | `/Reports/CURRENT/GBB/GBB_PIPELINE_CONNECTION_FLOW/` | `PipelineConnectionFlow_History.csv` | `PipelineConnectionFlow_History\.csv` | `PipelineConnectionFlow_History.csv` | 1 | 2019-11-20 | 2019-11-20 |
 
 ### `Reports` · `GSH`
 
-_26 pattern rows, 979 files (snapshot), observed 2025-05-01 → 2026-04-20 (snapshot)_
+_26 pattern rows, 1039 files (snapshot), observed 2025-05-01 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/GSH/Benchmark_Price/` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_{date}.zip` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_\d{8}\.zip` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_20250401.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_AUCTION_CURTAILMENT_NOTICE/` | `PUBLIC_AUCTIONCURTAILMENTNOTICE _{date}.zip` | `PUBLIC_AUCTIONCURTAILMENTNOTICE\ _\d{8}\.zip` | `PUBLIC_AUCTIONCURTAILMENTNOTICE _20250401.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_AUCTION_PRICE_VOLUME/` | `PUBLIC_AUCTIONPRICEVOLUME_{date}.zip` | `PUBLIC_AUCTIONPRICEVOLUME_\d{8}\.zip` | `PUBLIC_AUCTIONPRICEVOLUME_20250401.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_AUCTION_QUANTITIES/` | `PUBLIC_AUCTIONQUANTITIES_{date}.zip` | `PUBLIC_AUCTIONQUANTITIES_\d{8}\.zip` | `PUBLIC_AUCTIONQUANTITIES_20250401.zip` | 12 | 2025-05-01 | 2026-04-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/GSH/Benchmark_Price/` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_{date}.zip` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_\d{8}\.zip` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_20250401.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_AUCTION_CURTAILMENT_NOTICE/` | `PUBLIC_AUCTIONCURTAILMENTNOTICE _{date}.zip` | `PUBLIC_AUCTIONCURTAILMENTNOTICE\ _\d{8}\.zip` | `PUBLIC_AUCTIONCURTAILMENTNOTICE _20250401.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_AUCTION_PRICE_VOLUME/` | `PUBLIC_AUCTIONPRICEVOLUME_{date}.zip` | `PUBLIC_AUCTIONPRICEVOLUME_\d{8}\.zip` | `PUBLIC_AUCTIONPRICEVOLUME_20250401.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_AUCTION_QUANTITIES/` | `PUBLIC_AUCTIONQUANTITIES_{date}.zip` | `PUBLIC_AUCTIONQUANTITIES_\d{8}\.zip` | `PUBLIC_AUCTIONQUANTITIES_20250401.zip` | 13 | 2025-05-01 | 2026-05-01 |
 | `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_CAPACITY_TRANSACTION/` | `PUBLIC_SECONDARYCAPACITYTRADES_{date}.zip` | `PUBLIC_SECONDARYCAPACITYTRADES_\d{8}\.zip` | `PUBLIC_SECONDARYCAPACITYTRADES_20260101.zip` | 1 | 2026-02-02 | 2026-02-02 |
 | `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_CAPACITY_TRANSFER_AUCTION_NOTICE/` | `PUBLIC_CAPACITYTRANSFERAUCTIONNOTICE_{date}.zip` | `PUBLIC_CAPACITYTRANSFERAUCTIONNOTICE_\d{8}\.zip` | `PUBLIC_CAPACITYTRANSFERAUCTIONNOTICE_20260301.zip` | 1 | 2026-04-01 | 2026-04-01 |
-| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_Daily_Trans_Summary/` | `PUBLIC_DAILYTRANSACTIONSUMMARY_{date}.zip` | `PUBLIC_DAILYTRANSACTIONSUMMARY_\d{8}\.zip` | `PUBLIC_DAILYTRANSACTIONSUMMARY_20250401.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_Historical_Trans_Summary/` | `PUBLIC_HISTORICALTRANSACTIONSUMMARY_{date}.zip` | `PUBLIC_HISTORICALTRANSACTIONSUMMARY_\d{8}\.zip` | `PUBLIC_HISTORICALTRANSACTIONSUMMARY_20250401.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_Participants/` | `PUBLIC_REGISTEREDPARTICIPANTS_{date}.zip` | `PUBLIC_REGISTEREDPARTICIPANTS_\d{8}\.zip` | `PUBLIC_REGISTEREDPARTICIPANTS_20250401.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_REGISTERED_FACILITIES/` | `PUBLIC_REGISTEREDFACILITIES_{date}.zip` | `PUBLIC_REGISTEREDFACILITIES_\d{8}\.zip` | `PUBLIC_REGISTEREDFACILITIES_20250401.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_REGISTERED_SERVICE_POINTS/` | `PUBLIC_REGISTEREDSERVICEPOINTS_{date}.zip` | `PUBLIC_REGISTEREDSERVICEPOINTS_\d{8}\.zip` | `PUBLIC_REGISTEREDSERVICEPOINTS_20250401.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_REVISED_AUCTION_QUANTITIES/` | `PUBLIC_REVISEDAUCTIONQUANTITIES_{date}.zip` | `PUBLIC_REVISEDAUCTIONQUANTITIES_\d{8}\.zip` | `PUBLIC_REVISEDAUCTIONQUANTITIES_20250401.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_ZONE_CURTAILMENT_INFORMATION/` | `PUBLIC_ZONECURTAILMENTINFORMATION_{date}.zip` | `PUBLIC_ZONECURTAILMENTINFORMATION_\d{8}\.zip` | `PUBLIC_ZONECURTAILMENTINFORMATION_20260301.zip` | 1 | 2026-04-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/GSH/Benchmark_Price/` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_{date}.zip` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_\d{8}\.zip` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_20260115.zip` | 96 | 2026-01-15 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/GSH/Benchmark_Price/` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_{date}_{aemo_id}.zip` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_\d{8}_\d{16}\.zip` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_20260115_0000000498888759.zip` | 94 | 2026-01-15 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/GSH/GSH_AUCTION_CURTAILMENT_NOTICE/` | `PUBLIC_AUCTIONCURTAILMENTNOTICE_{date}_{aemo_id}.zip` | `PUBLIC_AUCTIONCURTAILMENTNOTICE_\d{8}_\d{16}\.zip` | `PUBLIC_AUCTIONCURTAILMENTNOTICE_20260126_0000000500497250.zip` | 161 | 2026-01-26 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/GSH/GSH_AUCTION_PRICE_VOLUME/` | `PUBLIC_AUCTIONPRICEVOLUME_{date}_{aemo_id}.zip` | `PUBLIC_AUCTIONPRICEVOLUME_\d{8}_\d{16}\.zip` | `PUBLIC_AUCTIONPRICEVOLUME_20260115_0000000498872444.zip` | 95 | 2026-01-15 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/GSH/GSH_AUCTION_QUANTITIES/` | `PUBLIC_AUCTIONQUANTITIES_{date}_{aemo_id}.zip` | `PUBLIC_AUCTIONQUANTITIES_\d{8}_\d{16}\.zip` | `PUBLIC_AUCTIONQUANTITIES_20260115_0000000498869206.zip` | 95 | 2026-01-15 | 2026-04-19 |
+| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_Daily_Trans_Summary/` | `PUBLIC_DAILYTRANSACTIONSUMMARY_{date}.zip` | `PUBLIC_DAILYTRANSACTIONSUMMARY_\d{8}\.zip` | `PUBLIC_DAILYTRANSACTIONSUMMARY_20250401.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_Historical_Trans_Summary/` | `PUBLIC_HISTORICALTRANSACTIONSUMMARY_{date}.zip` | `PUBLIC_HISTORICALTRANSACTIONSUMMARY_\d{8}\.zip` | `PUBLIC_HISTORICALTRANSACTIONSUMMARY_20250401.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_Participants/` | `PUBLIC_REGISTEREDPARTICIPANTS_{date}.zip` | `PUBLIC_REGISTEREDPARTICIPANTS_\d{8}\.zip` | `PUBLIC_REGISTEREDPARTICIPANTS_20250401.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_REGISTERED_FACILITIES/` | `PUBLIC_REGISTEREDFACILITIES_{date}.zip` | `PUBLIC_REGISTEREDFACILITIES_\d{8}\.zip` | `PUBLIC_REGISTEREDFACILITIES_20250401.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_REGISTERED_SERVICE_POINTS/` | `PUBLIC_REGISTEREDSERVICEPOINTS_{date}.zip` | `PUBLIC_REGISTEREDSERVICEPOINTS_\d{8}\.zip` | `PUBLIC_REGISTEREDSERVICEPOINTS_20250401.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_REVISED_AUCTION_QUANTITIES/` | `PUBLIC_REVISEDAUCTIONQUANTITIES_{date}.zip` | `PUBLIC_REVISEDAUCTIONQUANTITIES_\d{8}\.zip` | `PUBLIC_REVISEDAUCTIONQUANTITIES_20250401.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/GSH/GSH_ZONE_CURTAILMENT_INFORMATION/` | `PUBLIC_ZONECURTAILMENTINFORMATION_{date}.zip` | `PUBLIC_ZONECURTAILMENTINFORMATION_\d{8}\.zip` | `PUBLIC_ZONECURTAILMENTINFORMATION_20260301.zip` | 2 | 2026-04-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/GSH/Benchmark_Price/` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_{date}.zip` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_\d{8}\.zip` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_20260129.zip` | 96 | 2026-01-29 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/GSH/Benchmark_Price/` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_{date}_{aemo_id}.zip` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_\d{8}_\d{16}\.zip` | `PUBLIC_WALLUMBILLABENCHMARKPRICE_20260129_0000000501028655.zip` | 94 | 2026-01-29 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/GSH/GSH_AUCTION_CURTAILMENT_NOTICE/` | `PUBLIC_AUCTIONCURTAILMENTNOTICE_{date}_{aemo_id}.zip` | `PUBLIC_AUCTIONCURTAILMENTNOTICE_\d{8}_\d{16}\.zip` | `PUBLIC_AUCTIONCURTAILMENTNOTICE_20260204_0000000501904278.zip` | 208 | 2026-02-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/GSH/GSH_AUCTION_PRICE_VOLUME/` | `PUBLIC_AUCTIONPRICEVOLUME_{date}_{aemo_id}.zip` | `PUBLIC_AUCTIONPRICEVOLUME_\d{8}_\d{16}\.zip` | `PUBLIC_AUCTIONPRICEVOLUME_20260129_0000000501013001.zip` | 95 | 2026-01-29 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/GSH/GSH_AUCTION_QUANTITIES/` | `PUBLIC_AUCTIONQUANTITIES_{date}_{aemo_id}.zip` | `PUBLIC_AUCTIONQUANTITIES_\d{8}_\d{16}\.zip` | `PUBLIC_AUCTIONQUANTITIES_20260129_0000000501009726.zip` | 95 | 2026-01-29 | 2026-05-03 |
 | `CURRENT` | `/Reports/CURRENT/GSH/GSH_CAPACITY_TRANSFER_AUCTION_NOTICE/` | `PUBLIC_CAPACITYTRANSFERAUCTIONNOTICE_{date}_{aemo_id}.zip` | `PUBLIC_CAPACITYTRANSFERAUCTIONNOTICE_\d{8}_\d{16}\.zip` | `PUBLIC_CAPACITYTRANSFERAUCTIONNOTICE_20260310_0000000507230799.zip` | 2 | 2026-03-10 | 2026-03-11 |
-| `CURRENT` | `/Reports/CURRENT/GSH/GSH_Daily_Trans_Summary/` | `PUBLIC_DAILYTRANSACTIONSUMMARY_{date}_{aemo_id}.zip` | `PUBLIC_DAILYTRANSACTIONSUMMARY_\d{8}_\d{16}\.zip` | `PUBLIC_DAILYTRANSACTIONSUMMARY_20260115_0000000498889279.zip` | 95 | 2026-01-15 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/GSH/GSH_Historical_Trans_Summary/` | `PUBLIC_HISTORICALTRANSACTIONSUMMARY_{date}_{aemo_id}.zip` | `PUBLIC_HISTORICALTRANSACTIONSUMMARY_\d{8}_\d{16}\.zip` | `PUBLIC_HISTORICALTRANSACTIONSUMMARY_20260115_0000000498889282.zip` | 95 | 2026-01-15 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/GSH/GSH_Participants/` | `PUBLIC_REGISTEREDPARTICIPANTS_{date}_{aemo_id}.zip` | `PUBLIC_REGISTEREDPARTICIPANTS_\d{8}_\d{16}\.zip` | `PUBLIC_REGISTEREDPARTICIPANTS_20260119_0000000499458542.zip` | 14 | 2026-01-19 | 2026-04-02 |
-| `CURRENT` | `/Reports/CURRENT/GSH/GSH_REGISTERED_FACILITIES/` | `PUBLIC_REGISTEREDFACILITIES_{date}_{aemo_id}.zip` | `PUBLIC_REGISTEREDFACILITIES_\d{8}_\d{16}\.zip` | `PUBLIC_REGISTEREDFACILITIES_20260201_0000000501355053.zip` | 3 | 2026-02-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/GSH/GSH_REGISTERED_SERVICE_POINTS/` | `PUBLIC_REGISTEREDSERVICEPOINTS_{date}_{aemo_id}.zip` | `PUBLIC_REGISTEREDSERVICEPOINTS_\d{8}_\d{16}\.zip` | `PUBLIC_REGISTEREDSERVICEPOINTS_20260201_0000000501355054.zip` | 3 | 2026-02-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/GSH/GSH_REVISED_AUCTION_QUANTITIES/` | `PUBLIC_REVISEDAUCTIONQUANTITIES_{date}_{aemo_id}.zip` | `PUBLIC_REVISEDAUCTIONQUANTITIES_\d{8}_\d{16}\.zip` | `PUBLIC_REVISEDAUCTIONQUANTITIES_20260116_0000000499005383.zip` | 95 | 2026-01-16 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/GSH/GSH_Daily_Trans_Summary/` | `PUBLIC_DAILYTRANSACTIONSUMMARY_{date}_{aemo_id}.zip` | `PUBLIC_DAILYTRANSACTIONSUMMARY_\d{8}_\d{16}\.zip` | `PUBLIC_DAILYTRANSACTIONSUMMARY_20260129_0000000501029110.zip` | 95 | 2026-01-29 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/GSH/GSH_Historical_Trans_Summary/` | `PUBLIC_HISTORICALTRANSACTIONSUMMARY_{date}_{aemo_id}.zip` | `PUBLIC_HISTORICALTRANSACTIONSUMMARY_\d{8}_\d{16}\.zip` | `PUBLIC_HISTORICALTRANSACTIONSUMMARY_20260129_0000000501029113.zip` | 95 | 2026-01-29 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/GSH/GSH_Participants/` | `PUBLIC_REGISTEREDPARTICIPANTS_{date}_{aemo_id}.zip` | `PUBLIC_REGISTEREDPARTICIPANTS_\d{8}_\d{16}\.zip` | `PUBLIC_REGISTEREDPARTICIPANTS_20260130_0000000501144160.zip` | 14 | 2026-01-30 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/GSH/GSH_REGISTERED_FACILITIES/` | `PUBLIC_REGISTEREDFACILITIES_{date}_{aemo_id}.zip` | `PUBLIC_REGISTEREDFACILITIES_\d{8}_\d{16}\.zip` | `PUBLIC_REGISTEREDFACILITIES_20260201_0000000501355053.zip` | 4 | 2026-02-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/GSH/GSH_REGISTERED_SERVICE_POINTS/` | `PUBLIC_REGISTEREDSERVICEPOINTS_{date}_{aemo_id}.zip` | `PUBLIC_REGISTEREDSERVICEPOINTS_\d{8}_\d{16}\.zip` | `PUBLIC_REGISTEREDSERVICEPOINTS_20260201_0000000501355054.zip` | 4 | 2026-02-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/GSH/GSH_REVISED_AUCTION_QUANTITIES/` | `PUBLIC_REVISEDAUCTIONQUANTITIES_{date}_{aemo_id}.zip` | `PUBLIC_REVISEDAUCTIONQUANTITIES_\d{8}_\d{16}\.zip` | `PUBLIC_REVISEDAUCTIONQUANTITIES_20260130_0000000501143734.zip` | 95 | 2026-01-30 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/GSH/GSH_ZONE_CURTAILMENT_INFORMATION/` | `PUBLIC_ZONECURTAILMENTINFORMATION_{date}_{aemo_id}.zip` | `PUBLIC_ZONECURTAILMENTINFORMATION_\d{8}_\d{16}\.zip` | `PUBLIC_ZONECURTAILMENTINFORMATION_20260315_0000000508038113.zip` | 8 | 2026-03-15 | 2026-04-01 |
 
 ### `Reports` · `Gas_Supply_Guarantee`
@@ -449,23 +449,23 @@ _6 pattern rows, 6 files (snapshot), observed 2018-08-07 → 2022-09-30 (snapsho
 
 ### `Reports` · `HighImpactOutages`
 
-_4 pattern rows, 707 files (snapshot), observed 2017-04-19 → 2026-04-20 (snapshot)_
+_4 pattern rows, 711 files (snapshot), observed 2017-04-19 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/HighImpactOutages/` | `High_Impact_Outages_{date}.csv` | `High_Impact_Outages_\d{8}\.csv` | `High_Impact_Outages_20210830.csv` | 217 | 2021-08-30 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/HighImpactOutages/` | `High_Impact_Outages_{date}.pdf` | `High_Impact_Outages_\d{8}\.pdf` | `High_Impact_Outages_20170410.pdf` | 467 | 2017-04-19 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/HighImpactOutages/` | `High_Impact_Outages_{date}.csv` | `High_Impact_Outages_\d{8}\.csv` | `High_Impact_Outages_20210830.csv` | 219 | 2021-08-30 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/HighImpactOutages/` | `High_Impact_Outages_{date}.pdf` | `High_Impact_Outages_\d{8}\.pdf` | `High_Impact_Outages_20170410.pdf` | 469 | 2017-04-19 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/HighImpactOutages/` | `High_Impact_Outages_{date}.xlsx` | `High_Impact_Outages_\d{8}\.xlsx` | `High_Impact_Outages_20220228.xlsx` | 21 | 2022-02-28 | 2025-02-24 |
 | `CURRENT` | `/Reports/CURRENT/HighImpactOutages/` | `{d1}_days_High_Impact_Outages_{date}.csv` | `\d{1}_days_High_Impact_Outages_\d{8}\.csv` | `7_days_High_Impact_Outages_20230116.csv` | 2 | 2022-11-28 | 2023-01-16 |
 
 ### `Reports` · `HistDemand`
 
-_2 pattern rows, 72 files (snapshot), observed 2025-05-01 → 2026-04-20 (snapshot)_
+_2 pattern rows, 73 files (snapshot), observed 2025-05-01 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/HistDemand/` | `PUBLIC_HISTDEMAND_{date}.zip` | `PUBLIC_HISTDEMAND_\d{8}\.zip` | `PUBLIC_HISTDEMAND_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/HistDemand/` | `PUBLIC_HISTDEMAND_{date}_{aemo_id}.zip` | `PUBLIC_HISTDEMAND_\d{8}_\d{16}\.zip` | `PUBLIC_HISTDEMAND_20260219_0000000504260404.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/HistDemand/` | `PUBLIC_HISTDEMAND_{date}.zip` | `PUBLIC_HISTDEMAND_\d{8}\.zip` | `PUBLIC_HISTDEMAND_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/HistDemand/` | `PUBLIC_HISTDEMAND_{date}_{aemo_id}.zip` | `PUBLIC_HISTDEMAND_\d{8}_\d{16}\.zip` | `PUBLIC_HISTDEMAND_20260305_0000000506522125.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `IBEI`
 
@@ -477,12 +477,12 @@ _1 pattern row, 12 files (snapshot), observed 2016-09-29 → 2026-04-17 (snapsho
 
 ### `Reports` · `MCCDispatch`
 
-_3 pattern rows, 955 files (snapshot), observed 2017-03-25 → 2026-04-20 (snapshot)_
+_3 pattern rows, 954 files (snapshot), observed 2017-03-25 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/MCCDispatch/` | `PUBLIC_MCCDISPATCH_{date}.zip` | `PUBLIC_MCCDISPATCH_\d{8}\.zip` | `PUBLIC_MCCDISPATCH_20250409.zip` | 375 | 2025-04-11 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/MCCDispatch/` | `PUBLIC_MCCDISPATCH_{timestamp}_{aemo_id}.zip` | `PUBLIC_MCCDISPATCH_\d{12}_\d{16}\.zip` | `PUBLIC_MCCDISPATCH_202604181445_0000000513537683.zip` | 577 | 2026-04-18 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/MCCDispatch/` | `PUBLIC_MCCDISPATCH_{date}.zip` | `PUBLIC_MCCDISPATCH_\d{8}\.zip` | `PUBLIC_MCCDISPATCH_20250423.zip` | 375 | 2025-04-25 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/MCCDispatch/` | `PUBLIC_MCCDISPATCH_{timestamp}_{aemo_id}.zip` | `PUBLIC_MCCDISPATCH_\d{12}_\d{16}\.zip` | `PUBLIC_MCCDISPATCH_202605021425_0000000515789297.zip` | 576 | 2026-05-02 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/MCCDispatch/DUPLICATE/` | `PUBLIC_MCCDISPATCH_{timestamp}_{aemo_id}.zip` | `PUBLIC_MCCDISPATCH_\d{12}_\d{16}\.zip` | `PUBLIC_MCCDISPATCH_201703251930_0000000282129407.zip` | 3 | 2017-03-25 | 2026-03-03 |
 
 ### `Reports` · `MMSDataModelReport`
@@ -576,166 +576,166 @@ _82 pattern rows, 374 files (snapshot), observed 2019-04-17 → 2026-04-14 (snap
 
 ### `Reports` · `MTPASA_DUIDAvailability`
 
-_2 pattern rows, 7429 files (snapshot), observed 2020-08-20 → 2026-04-20 (snapshot)_
+_2 pattern rows, 7485 files (snapshot), observed 2020-08-20 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/MTPASA_DUIDAvailability/` | `PUBLIC_MTPASADUIDAVAILABILITY_{date}.zip` | `PUBLIC_MTPASADUIDAVAILABILITY_\d{8}\.zip` | `PUBLIC_MTPASADUIDAVAILABILITY_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/MTPASA_DUIDAvailability/` | `PUBLIC_MTPASADUIDAVAILABILITY_{timestamp}_{aemo_id}.zip` | `PUBLIC_MTPASADUIDAVAILABILITY_\d{12}_\d{16}\.zip` | `PUBLIC_MTPASADUIDAVAILABILITY_202008201200_0000000327353179.zip` | 7417 | 2020-08-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/MTPASA_DUIDAvailability/` | `PUBLIC_MTPASADUIDAVAILABILITY_{date}.zip` | `PUBLIC_MTPASADUIDAVAILABILITY_\d{8}\.zip` | `PUBLIC_MTPASADUIDAVAILABILITY_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/MTPASA_DUIDAvailability/` | `PUBLIC_MTPASADUIDAVAILABILITY_{timestamp}_{aemo_id}.zip` | `PUBLIC_MTPASADUIDAVAILABILITY_\d{12}_\d{16}\.zip` | `PUBLIC_MTPASADUIDAVAILABILITY_202008201200_0000000327353179.zip` | 7472 | 2020-08-20 | 2026-05-04 |
 
 ### `Reports` · `MTPASA_RegionAvailability`
 
-_2 pattern rows, 221 files (snapshot), observed 2025-05-01 → 2026-04-20 (snapshot)_
+_2 pattern rows, 226 files (snapshot), observed 2025-05-01 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/MTPASA_RegionAvailability/` | `PUBLIC_MTPASAREGIONAVAILABILITY_{date}.zip` | `PUBLIC_MTPASAREGIONAVAILABILITY_\d{8}\.zip` | `PUBLIC_MTPASAREGIONAVAILABILITY_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/MTPASA_RegionAvailability/` | `PUBLIC_MTPASAREGIONAVAILABILITY_{timestamp}_{aemo_id}.zip` | `PUBLIC_MTPASAREGIONAVAILABILITY_\d{12}_\d{16}\.zip` | `PUBLIC_MTPASAREGIONAVAILABILITY_202602191500_0000000504193752.zip` | 209 | 2026-02-19 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/MTPASA_RegionAvailability/` | `PUBLIC_MTPASAREGIONAVAILABILITY_{date}.zip` | `PUBLIC_MTPASAREGIONAVAILABILITY_\d{8}\.zip` | `PUBLIC_MTPASAREGIONAVAILABILITY_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/MTPASA_RegionAvailability/` | `PUBLIC_MTPASAREGIONAVAILABILITY_{timestamp}_{aemo_id}.zip` | `PUBLIC_MTPASAREGIONAVAILABILITY_\d{12}_\d{16}\.zip` | `PUBLIC_MTPASAREGIONAVAILABILITY_202603051500_0000000506454217.zip` | 213 | 2026-03-05 | 2026-05-04 |
 
 ### `Reports` · `Marginal_Loss_Factors`
 
-_1 pattern row, 2015 files (snapshot), observed 2020-10-14 → 2026-04-20 (snapshot)_
+_1 pattern row, 2029 files (snapshot), observed 2020-10-14 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/Marginal_Loss_Factors/` | `MLF_{datetime}.zip` | `MLF_\d{14}\.zip` | `MLF_20201014090001.zip` | 2015 | 2020-10-14 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/Marginal_Loss_Factors/` | `MLF_{datetime}.zip` | `MLF_\d{14}\.zip` | `MLF_20201014090001.zip` | 2029 | 2020-10-14 | 2026-05-04 |
 
 ### `Reports` · `Market_Notice`
 
-_1 pattern row, 8033 files (snapshot), observed 2026-02-19 → 2026-04-20 (snapshot)_
+_1 pattern row, 9463 files (snapshot), observed 2026-03-05 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/Market_Notice/` | `NEMITWEB{d1}_MKTNOTICE_{date}.R{yearmonth}` | `NEMITWEB\d{1}_MKTNOTICE_\d{8}\.R\d{6}` | `NEMITWEB1_MKTNOTICE_20260219.R133781` | 8033 | 2026-02-19 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/Market_Notice/` | `NEMITWEB{d1}_MKTNOTICE_{date}.R{yearmonth}` | `NEMITWEB\d{1}_MKTNOTICE_\d{8}\.R\d{6}` | `NEMITWEB1_MKTNOTICE_20260304.R134427` | 9463 | 2026-03-05 | 2026-05-04 |
 
 ### `Reports` · `Medium_Term_PASA_Reports`
 
-_2 pattern rows, 20 files (snapshot), observed 2025-05-01 → 2026-04-14 (snapshot)_
+_2 pattern rows, 21 files (snapshot), observed 2025-05-01 → 2026-05-01 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Medium_Term_PASA_Reports/` | `PUBLIC_MTPASA_{date}.zip` | `PUBLIC_MTPASA_\d{8}\.zip` | `PUBLIC_MTPASA_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/Medium_Term_PASA_Reports/` | `PUBLIC_MTPASA_{timestamp}_{aemo_id}.zip` | `PUBLIC_MTPASA_\d{12}_\d{16}\.zip` | `PUBLIC_MTPASA_202602230100_0000000504937712.zip` | 8 | 2026-02-24 | 2026-04-14 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Medium_Term_PASA_Reports/` | `PUBLIC_MTPASA_{date}.zip` | `PUBLIC_MTPASA_\d{8}\.zip` | `PUBLIC_MTPASA_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Medium_Term_PASA_Reports/` | `PUBLIC_MTPASA_{timestamp}_{aemo_id}.zip` | `PUBLIC_MTPASA_\d{12}_\d{16}\.zip` | `PUBLIC_MTPASA_202603090100_0000000507192074.zip` | 8 | 2026-03-10 | 2026-04-28 |
 
 ### `Reports` · `Mktsusp_Pricing`
 
-_1 pattern row, 9 files (snapshot), observed 2026-02-21 → 2026-04-19 (snapshot)_
+_1 pattern row, 9 files (snapshot), observed 2026-03-07 → 2026-05-02 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/Mktsusp_Pricing/` | `PUBLIC_MARKET_SUSPENSION_SCHEDULE_{datetime}_{aemo_id}.zip` | `PUBLIC_MARKET_SUSPENSION_SCHEDULE_\d{14}_\d{16}\.zip` | `PUBLIC_MARKET_SUSPENSION_SCHEDULE_20260221235515_0000000504549958.zip` | 9 | 2026-02-21 | 2026-04-19 |
+| `CURRENT` | `/Reports/CURRENT/Mktsusp_Pricing/` | `PUBLIC_MARKET_SUSPENSION_SCHEDULE_{datetime}_{aemo_id}.zip` | `PUBLIC_MARKET_SUSPENSION_SCHEDULE_\d{14}_\d{16}\.zip` | `PUBLIC_MARKET_SUSPENSION_SCHEDULE_20260307235521_0000000506815715.zip` | 9 | 2026-03-07 | 2026-05-02 |
 
 ### `Reports` · `NEXT_DAY_AVAIL_SUBMISS_CLUSTER`
 
-_2 pattern rows, 72 files (snapshot), observed 2025-05-01 → 2026-04-20 (snapshot)_
+_2 pattern rows, 73 files (snapshot), observed 2025-05-01 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/NEXT_DAY_AVAIL_SUBMISS_CLUSTER/` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_CLUSTER_{date}.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_CLUSTER_\d{8}\.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_CLUSTER_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/NEXT_DAY_AVAIL_SUBMISS_CLUSTER/` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_CLUSTER_{datetime}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_CLUSTER_\d{14}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_CLUSTER_20260220041111_0000000504273701.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/NEXT_DAY_AVAIL_SUBMISS_CLUSTER/` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_CLUSTER_{date}.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_CLUSTER_\d{8}\.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_CLUSTER_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/NEXT_DAY_AVAIL_SUBMISS_CLUSTER/` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_CLUSTER_{datetime}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_CLUSTER_\d{14}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_CLUSTER_20260306041043_0000000506535033.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `NEXT_DAY_AVAIL_SUBMISS_DAY`
 
-_2 pattern rows, 72 files (snapshot), observed 2025-05-01 → 2026-04-20 (snapshot)_
+_2 pattern rows, 73 files (snapshot), observed 2025-05-01 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/NEXT_DAY_AVAIL_SUBMISS_DAY/` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_DAY_{date}.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_DAY_\d{8}\.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_DAY_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/NEXT_DAY_AVAIL_SUBMISS_DAY/` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_DAY_{datetime}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_DAY_\d{14}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_DAY_20260220041114_0000000504273703.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/NEXT_DAY_AVAIL_SUBMISS_DAY/` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_DAY_{date}.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_DAY_\d{8}\.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_DAY_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/NEXT_DAY_AVAIL_SUBMISS_DAY/` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_DAY_{datetime}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_DAY_\d{14}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_AVAIL_SUBMISS_DAY_20260306041045_0000000506535035.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `NEXT_DAY_MCCDISPATCH`
 
-_2 pattern rows, 72 files (snapshot), observed 2025-05-02 → 2026-04-20 (snapshot)_
+_2 pattern rows, 73 files (snapshot), observed 2025-05-02 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/NEXT_DAY_MCCDISPATCH/` | `PUBLIC_NEXT_DAY_MCCDISPATCH_{date}.zip` | `PUBLIC_NEXT_DAY_MCCDISPATCH_\d{8}\.zip` | `PUBLIC_NEXT_DAY_MCCDISPATCH_20250302.zip` | 12 | 2025-05-02 | 2026-04-02 |
-| `CURRENT` | `/Reports/CURRENT/NEXT_DAY_MCCDISPATCH/` | `PUBLIC_NEXT_DAY_MCCDISPATCH_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_MCCDISPATCH_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_MCCDISPATCH_20260219_0000000504277197.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/NEXT_DAY_MCCDISPATCH/` | `PUBLIC_NEXT_DAY_MCCDISPATCH_{date}.zip` | `PUBLIC_NEXT_DAY_MCCDISPATCH_\d{8}\.zip` | `PUBLIC_NEXT_DAY_MCCDISPATCH_20250302.zip` | 13 | 2025-05-02 | 2026-05-02 |
+| `CURRENT` | `/Reports/CURRENT/NEXT_DAY_MCCDISPATCH/` | `PUBLIC_NEXT_DAY_MCCDISPATCH_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_MCCDISPATCH_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_MCCDISPATCH_20260305_0000000506538400.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `Network`
 
-_2 pattern rows, 404 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot)_
+_2 pattern rows, 404 files (snapshot), observed 2025-04-25 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Network/` | `PUBLIC_NETWORK_{date}.zip` | `PUBLIC_NETWORK_\d{8}\.zip` | `PUBLIC_NETWORK_20250328.zip` | 54 | 2025-04-11 | 2026-04-17 |
-| `CURRENT` | `/Reports/CURRENT/Network/` | `PUBLIC_NETWORK_{datetime}_{aemo_id}.zip` | `PUBLIC_NETWORK_\d{14}_\d{16}\.zip` | `PUBLIC_NETWORK_20260413150023_0000000512728647.zip` | 350 | 2026-04-13 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Network/` | `PUBLIC_NETWORK_{date}.zip` | `PUBLIC_NETWORK_\d{8}\.zip` | `PUBLIC_NETWORK_20250411.zip` | 54 | 2025-04-25 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Network/` | `PUBLIC_NETWORK_{datetime}_{aemo_id}.zip` | `PUBLIC_NETWORK_\d{14}_\d{16}\.zip` | `PUBLIC_NETWORK_20260427143009_0000000515002835.zip` | 350 | 2026-04-27 | 2026-05-04 |
 
 ### `Reports` · `Next_Day_Actual_Gen`
 
-_4 pattern rows, 74 files (snapshot), observed 2016-09-29 → 2026-04-20 (snapshot)_
+_4 pattern rows, 75 files (snapshot), observed 2016-09-29 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
 | `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Actual_Gen/` | `NEW TEXT DOCUMENT.TXT` | `NEW\ TEXT\ DOCUMENT\.TXT` | `NEW TEXT DOCUMENT.TXT` | 1 | 2016-09-29 | 2016-09-29 |
-| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Actual_Gen/` | `NEXT_DAY_ACTUAL_GEN_{date}.zip` | `NEXT_DAY_ACTUAL_GEN_\d{8}\.zip` | `NEXT_DAY_ACTUAL_GEN_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Actual_Gen/` | `NEXT_DAY_ACTUAL_GEN_{date}.zip` | `NEXT_DAY_ACTUAL_GEN_\d{8}\.zip` | `NEXT_DAY_ACTUAL_GEN_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
 | `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Actual_Gen/` | `_ZA{d5}` | `_ZA\d{5}` | `_ZA01492` | 1 | 2016-09-29 | 2016-09-29 |
-| `CURRENT` | `/Reports/CURRENT/Next_Day_Actual_Gen/` | `PUBLIC_NEXT_DAY_ACTUAL_GEN_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_ACTUAL_GEN_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_ACTUAL_GEN_20260219_0000000504273700.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/Next_Day_Actual_Gen/` | `PUBLIC_NEXT_DAY_ACTUAL_GEN_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_ACTUAL_GEN_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_ACTUAL_GEN_20260305_0000000506535032.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `Next_Day_Dispatch`
 
-_2 pattern rows, 407 files (snapshot), observed 2025-03-22 → 2026-04-20 (snapshot)_
+_2 pattern rows, 408 files (snapshot), observed 2025-04-05 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Dispatch/` | `PUBLIC_NEXT_DAY_DISPATCH_{date}.zip` | `PUBLIC_NEXT_DAY_DISPATCH_\d{8}\.zip` | `PUBLIC_NEXT_DAY_DISPATCH_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/Next_Day_Dispatch/` | `PUBLIC_NEXT_DAY_DISPATCH_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_DISPATCH_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_DISPATCH_20250321_0000000455927547.zip` | 395 | 2025-03-22 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Dispatch/` | `PUBLIC_NEXT_DAY_DISPATCH_{date}.zip` | `PUBLIC_NEXT_DAY_DISPATCH_\d{8}\.zip` | `PUBLIC_NEXT_DAY_DISPATCH_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Next_Day_Dispatch/` | `PUBLIC_NEXT_DAY_DISPATCH_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_DISPATCH_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_DISPATCH_20250404_0000000457854509.zip` | 395 | 2025-04-05 | 2026-05-04 |
 
 ### `Reports` · `Next_Day_Intermittent_DS`
 
-_3 pattern rows, 75 files (snapshot), observed 2020-03-14 → 2026-04-20 (snapshot)_
+_3 pattern rows, 76 files (snapshot), observed 2020-03-14 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Intermittent_DS/` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_{date}.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_\d{8}\.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/Next_Day_Intermittent_DS/` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_20260219_0000000504273708.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Intermittent_DS/` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_{date}.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_\d{8}\.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Next_Day_Intermittent_DS/` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_20260305_0000000506535040.zip` | 60 | 2026-03-06 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/Next_Day_Intermittent_DS/DUPLICATE/` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_DS_20200313_0000000320315048.zip` | 3 | 2020-03-14 | 2020-10-20 |
 
 ### `Reports` · `Next_Day_Intermittent_Gen_Scada`
 
-_2 pattern rows, 72 files (snapshot), observed 2025-05-01 → 2026-04-20 (snapshot)_
+_2 pattern rows, 73 files (snapshot), observed 2025-05-01 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Intermittent_Gen_Scada/` | `PUBLIC_NEXT_DAY_INTERMITTENT_GEN_SCADA_{date}.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_GEN_SCADA_\d{8}\.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_GEN_SCADA_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/Next_Day_Intermittent_Gen_Scada/` | `PUBLIC_NEXT_DAY_INTERMITTENT_GEN_SCADA_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_GEN_SCADA_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_GEN_SCADA_20260219_0000000504273709.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Intermittent_Gen_Scada/` | `PUBLIC_NEXT_DAY_INTERMITTENT_GEN_SCADA_{date}.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_GEN_SCADA_\d{8}\.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_GEN_SCADA_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Next_Day_Intermittent_Gen_Scada/` | `PUBLIC_NEXT_DAY_INTERMITTENT_GEN_SCADA_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_GEN_SCADA_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_INTERMITTENT_GEN_SCADA_20260305_0000000506535041.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `Next_Day_Offer_Energy_SPARSE`
 
-_2 pattern rows, 72 files (snapshot), observed 2025-05-01 → 2026-04-20 (snapshot)_
+_2 pattern rows, 73 files (snapshot), observed 2025-05-01 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Offer_Energy_SPARSE/` | `PUBLIC_NEXT_DAY_OFFER_ENERGY_SPARSE_{date}.zip` | `PUBLIC_NEXT_DAY_OFFER_ENERGY_SPARSE_\d{8}\.zip` | `PUBLIC_NEXT_DAY_OFFER_ENERGY_SPARSE_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/Next_Day_Offer_Energy_SPARSE/` | `PUBLIC_NEXT_DAY_OFFER_ENERGY_SPARSE_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_OFFER_ENERGY_SPARSE_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_OFFER_ENERGY_SPARSE_20260219_0000000504277199.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Offer_Energy_SPARSE/` | `PUBLIC_NEXT_DAY_OFFER_ENERGY_SPARSE_{date}.zip` | `PUBLIC_NEXT_DAY_OFFER_ENERGY_SPARSE_\d{8}\.zip` | `PUBLIC_NEXT_DAY_OFFER_ENERGY_SPARSE_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Next_Day_Offer_Energy_SPARSE/` | `PUBLIC_NEXT_DAY_OFFER_ENERGY_SPARSE_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_OFFER_ENERGY_SPARSE_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_OFFER_ENERGY_SPARSE_20260305_0000000506538402.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `Next_Day_Offer_FCAS_SPARSE`
 
-_2 pattern rows, 72 files (snapshot), observed 2025-05-01 → 2026-04-20 (snapshot)_
+_2 pattern rows, 73 files (snapshot), observed 2025-05-01 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Offer_FCAS_SPARSE/` | `PUBLIC_NEXT_DAY_OFFER_FCAS_SPARSE_{date}.zip` | `PUBLIC_NEXT_DAY_OFFER_FCAS_SPARSE_\d{8}\.zip` | `PUBLIC_NEXT_DAY_OFFER_FCAS_SPARSE_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/Next_Day_Offer_FCAS_SPARSE/` | `PUBLIC_NEXT_DAY_OFFER_FCAS_SPARSE_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_OFFER_FCAS_SPARSE_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_OFFER_FCAS_SPARSE_20260219_0000000504277203.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_Offer_FCAS_SPARSE/` | `PUBLIC_NEXT_DAY_OFFER_FCAS_SPARSE_{date}.zip` | `PUBLIC_NEXT_DAY_OFFER_FCAS_SPARSE_\d{8}\.zip` | `PUBLIC_NEXT_DAY_OFFER_FCAS_SPARSE_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Next_Day_Offer_FCAS_SPARSE/` | `PUBLIC_NEXT_DAY_OFFER_FCAS_SPARSE_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_OFFER_FCAS_SPARSE_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_OFFER_FCAS_SPARSE_20260305_0000000506538406.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `Next_Day_PreDispatch`
 
-_3 pattern rows, 78 files (snapshot), observed 2017-08-31 → 2026-04-20 (snapshot)_
+_3 pattern rows, 79 files (snapshot), observed 2017-08-31 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_PreDispatch/` | `PUBLIC_NEXT_DAY_PREDISPATCH_{date}.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_\d{8}\.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_20250302.zip` | 12 | 2025-05-02 | 2026-04-02 |
-| `CURRENT` | `/Reports/CURRENT/Next_Day_PreDispatch/` | `PUBLIC_NEXT_DAY_PREDISPATCH_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_20260219_0000000504277206.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_PreDispatch/` | `PUBLIC_NEXT_DAY_PREDISPATCH_{date}.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_\d{8}\.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_20250302.zip` | 13 | 2025-05-02 | 2026-05-02 |
+| `CURRENT` | `/Reports/CURRENT/Next_Day_PreDispatch/` | `PUBLIC_NEXT_DAY_PREDISPATCH_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_20260305_0000000506538409.zip` | 60 | 2026-03-06 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/Next_Day_PreDispatch/DUPLICATE/` | `PUBLIC_NEXT_DAY_PREDISPATCH_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_20170830_0000000286881960.zip` | 6 | 2017-08-31 | 2020-08-23 |
 
 ### `Reports` · `Next_Day_PreDispatchD`
 
-_2 pattern rows, 72 files (snapshot), observed 2025-05-02 → 2026-04-20 (snapshot)_
+_2 pattern rows, 73 files (snapshot), observed 2025-05-02 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_PreDispatchD/` | `PUBLIC_NEXT_DAY_PREDISPATCH_D_{date}.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_D_\d{8}\.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_D_20250302.zip` | 12 | 2025-05-02 | 2026-04-02 |
-| `CURRENT` | `/Reports/CURRENT/Next_Day_PreDispatchD/` | `PUBLIC_NEXT_DAY_PREDISPATCH_D_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_D_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_D_20260219_0000000504277207.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Next_Day_PreDispatchD/` | `PUBLIC_NEXT_DAY_PREDISPATCH_D_{date}.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_D_\d{8}\.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_D_20250302.zip` | 13 | 2025-05-02 | 2026-05-02 |
+| `CURRENT` | `/Reports/CURRENT/Next_Day_PreDispatchD/` | `PUBLIC_NEXT_DAY_PREDISPATCH_D_{date}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_D_\d{8}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_PREDISPATCH_D_20260305_0000000506538410.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `Next_Day_Trading`
 
@@ -747,97 +747,97 @@ _1 pattern row, 1703 files (snapshot), observed 2017-02-02 → 2021-10-01 (snaps
 
 ### `Reports` · `Operational_Demand`
 
-_13 pattern rows, 11926 files (snapshot), observed 2025-04-13 → 2026-04-20 (snapshot)_
+_13 pattern rows, 11928 files (snapshot), observed 2025-04-27 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand/ACTUAL_DAILY/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_{date}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_\d{8}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand/ACTUAL_DAILY_AREA/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_AREA_{date}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_AREA_\d{8}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_AREA_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand/ACTUAL_HH/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_{date}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_\d{8}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_20250330.zip` | 54 | 2025-04-13 | 2026-04-19 |
-| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand/ACTUAL_HH_AREA/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_AREA_{date}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_AREA_\d{8}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_AREA_20250401.zip` | 53 | 2025-04-15 | 2026-04-14 |
-| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand/FORECAST_HH/` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_{date}.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_\d{8}\.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_20250330.zip` | 54 | 2025-04-13 | 2026-04-19 |
-| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand/FORECAST_HH_AREA/` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_{date}.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_\d{8}\.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_20250401.zip` | 53 | 2025-04-15 | 2026-04-14 |
-| `CURRENT` | `/Reports/CURRENT/Operational_Demand/ACTUAL_{d1}MIN/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_{d1}MIN_{timestamp}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_\d{1}MIN_\d{12}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_5MIN_202604191435_20260419150543.zip` | 48 | 2026-04-19 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/Operational_Demand/ACTUAL_DAILY/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_{date}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_\d{8}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_20260219_20260220044001.zip` | 60 | 2026-02-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/Operational_Demand/ACTUAL_DAILY_AREA/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_AREA_{timestamp}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_AREA_\d{12}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_AREA_202602190400_20260220044001.zip` | 60 | 2026-02-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/Operational_Demand/ACTUAL_HH/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_{timestamp}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_\d{12}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_202602191500_20260219150017.zip` | 2880 | 2026-02-19 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/Operational_Demand/ACTUAL_HH_AREA/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_AREA_{timestamp}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_AREA_\d{12}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_AREA_202602191500_20260219150017.zip` | 2880 | 2026-02-19 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/Operational_Demand/FORECAST_HH/` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_{timestamp}_{datetime}.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_\d{12}_\d{14}\.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_202602191530_20260219150220.zip` | 2880 | 2026-02-19 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/Operational_Demand/FORECAST_HH_AREA/` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_{timestamp}_{datetime}.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_\d{12}_\d{14}\.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_202602191530_20260219150220.zip` | 2880 | 2026-02-19 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand/ACTUAL_DAILY/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_{date}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_\d{8}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand/ACTUAL_DAILY_AREA/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_AREA_{date}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_AREA_\d{8}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_AREA_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand/ACTUAL_HH/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_{date}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_\d{8}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_20250413.zip` | 54 | 2025-04-27 | 2026-05-03 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand/ACTUAL_HH_AREA/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_AREA_{date}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_AREA_\d{8}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_AREA_20250415.zip` | 53 | 2025-04-29 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand/FORECAST_HH/` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_{date}.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_\d{8}\.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_20250413.zip` | 54 | 2025-04-27 | 2026-05-03 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand/FORECAST_HH_AREA/` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_{date}.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_\d{8}\.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_20250415.zip` | 53 | 2025-04-29 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Operational_Demand/ACTUAL_{d1}MIN/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_{d1}MIN_{timestamp}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_\d{1}MIN_\d{12}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_5MIN_202605031405_20260503143535.zip` | 48 | 2026-05-03 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/Operational_Demand/ACTUAL_DAILY/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_{date}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_\d{8}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_20260305_20260306044000.zip` | 60 | 2026-03-06 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/Operational_Demand/ACTUAL_DAILY_AREA/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_AREA_{timestamp}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_AREA_\d{12}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_DAILY_AREA_202603050400_20260306044000.zip` | 60 | 2026-03-06 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/Operational_Demand/ACTUAL_HH/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_{timestamp}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_\d{12}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_202603051430_20260305143021.zip` | 2880 | 2026-03-05 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/Operational_Demand/ACTUAL_HH_AREA/` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_AREA_{timestamp}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_AREA_\d{12}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEMAND_HH_AREA_202603051430_20260305143021.zip` | 2880 | 2026-03-05 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/Operational_Demand/FORECAST_HH/` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_{timestamp}_{datetime}.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_\d{12}_\d{14}\.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_202603051500_20260305143235.zip` | 2880 | 2026-03-05 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/Operational_Demand/FORECAST_HH_AREA/` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_{timestamp}_{datetime}.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_\d{12}_\d{14}\.zip` | `PUBLIC_FORECAST_OPERATIONAL_DEMAND_HH_AREA_202603051500_20260305143235.zip` | 2880 | 2026-03-05 | 2026-05-04 |
 
 ### `Reports` · `Operational_Demand_Less_SNSG`
 
-_5 pattern rows, 21900 files (snapshot), observed 2025-01-30 → 2026-04-20 (snapshot)_
+_5 pattern rows, 22586 files (snapshot), observed 2025-01-30 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand_Less_SNSG/ACTUAL_DAILY/` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_DAILY_{date}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_DAILY_\d{8}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_DAILY_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand_Less_SNSG/ACTUAL_HH/` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_HH_{date}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_HH_\d{8}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_HH_20250401.zip` | 53 | 2025-04-15 | 2026-04-14 |
-| `CURRENT` | `/Reports/CURRENT/Operational_Demand_Less_SNSG/ACTUAL_DAILY/` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_DAILY_{timestamp}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_DAILY_\d{12}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_DAILY_202501300400_20250131044000.zip` | 445 | 2025-01-31 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/Operational_Demand_Less_SNSG/ACTUAL_HH/` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_HH_{timestamp}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_HH_\d{12}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_HH_202501301100_20250130110005.zip` | 21389 | 2025-01-30 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand_Less_SNSG/ACTUAL_DAILY/` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_DAILY_{date}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_DAILY_\d{8}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_DAILY_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Operational_Demand_Less_SNSG/ACTUAL_HH/` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_HH_{date}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_HH_\d{8}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_HH_20250415.zip` | 53 | 2025-04-29 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Operational_Demand_Less_SNSG/ACTUAL_DAILY/` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_DAILY_{timestamp}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_DAILY_\d{12}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_DAILY_202501300400_20250131044000.zip` | 459 | 2025-01-31 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/Operational_Demand_Less_SNSG/ACTUAL_HH/` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_HH_{timestamp}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_HH_\d{12}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_HH_202501301100_20250130110005.zip` | 22060 | 2025-01-30 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/Operational_Demand_Less_SNSG/ACTUAL_UPDATE/` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_UPDATE_{timestamp}_{datetime}.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_UPDATE_\d{12}_\d{14}\.zip` | `PUBLIC_ACTUAL_OPERATIONAL_DEM_LESS_SNSG_UPDATE_202501310900_20250131115609.zip` | 1 | 2025-01-31 | 2025-01-31 |
 
 ### `Reports` · `P5MINFCST`
 
-_3 pattern rows, 953 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot)_
+_3 pattern rows, 952 files (snapshot), observed 2025-04-25 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/P{d1}MINFCST/` | `PUBLIC_P{d1}MINFCST_{date}.zip` | `PUBLIC_P\d{1}MINFCST_\d{8}\.zip` | `PUBLIC_P5MINFCST_20250409.zip` | 375 | 2025-04-11 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/P{d1}MINFCST/` | `PUBLIC_P{d1}MINFCST_{timestamp}_{aemo_id}.zip` | `PUBLIC_P\d{1}MINFCST_\d{12}_\d{16}\.zip` | `PUBLIC_P5MINFCST_202604181442_0000000513537812.zip` | 577 | 2026-04-18 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/P{d1}MINFCST/` | `PUBLIC_P{d1}MINFCST_{date}.zip` | `PUBLIC_P\d{1}MINFCST_\d{8}\.zip` | `PUBLIC_P5MINFCST_20250423.zip` | 375 | 2025-04-25 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/P{d1}MINFCST/` | `PUBLIC_P{d1}MINFCST_{timestamp}_{aemo_id}.zip` | `PUBLIC_P\d{1}MINFCST_\d{12}_\d{16}\.zip` | `PUBLIC_P5MINFCST_202605021420_0000000515789323.zip` | 576 | 2026-05-02 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/P{d1}MINFCST/DUPLICATE/` | `PUBLIC_P{d1}MINFCST_{timestamp}_{aemo_id}.zip` | `PUBLIC_P\d{1}MINFCST_\d{12}_\d{16}\.zip` | `PUBLIC_P5MINFCST_202603031336_0000000506102444.zip` | 1 | 2026-03-03 | 2026-03-03 |
 
 ### `Reports` · `P5_Reports`
 
-_3 pattern rows, 952 files (snapshot), observed 2025-04-11 → 2026-04-20 (snapshot)_
+_3 pattern rows, 953 files (snapshot), observed 2025-04-25 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/P{d1}_Reports/` | `PUBLIC_P{d1}MIN_{date}.zip` | `PUBLIC_P\d{1}MIN_\d{8}\.zip` | `PUBLIC_P5MIN_20250409.zip` | 375 | 2025-04-11 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/P{d1}_Reports/` | `PUBLIC_P{d1}MIN_{timestamp}_{datetime}.zip` | `PUBLIC_P\d{1}MIN_\d{12}_\d{14}\.zip` | `PUBLIC_P5MIN_202604181445_20260418144212.zip` | 576 | 2026-04-18 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/P{d1}_Reports/` | `PUBLIC_P{d1}MIN_{date}.zip` | `PUBLIC_P\d{1}MIN_\d{8}\.zip` | `PUBLIC_P5MIN_20250423.zip` | 375 | 2025-04-25 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/P{d1}_Reports/` | `PUBLIC_P{d1}MIN_{timestamp}_{datetime}.zip` | `PUBLIC_P\d{1}MIN_\d{12}_\d{14}\.zip` | `PUBLIC_P5MIN_202605021425_20260502142041.zip` | 577 | 2026-05-02 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/P{d1}_Reports/DUPLICATE/` | `PUBLIC_P{d1}MIN_{timestamp}_{datetime}.zip` | `PUBLIC_P\d{1}MIN_\d{12}_\d{14}\.zip` | `PUBLIC_P5MIN_202603031345_20260303134116.zip` | 1 | 2026-03-03 | 2026-03-03 |
 
 ### `Reports` · `PD7Day`
 
-_1 pattern row, 180 files (snapshot), observed 2026-02-19 → 2026-04-20 (snapshot)_
+_1 pattern row, 180 files (snapshot), observed 2026-03-05 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/PD{d1}Day/` | `PUBLIC_PD{d1}DAY_{datetime}_{aemo_id}.zip` | `PUBLIC_PD\d{1}DAY_\d{14}_\d{16}\.zip` | `PUBLIC_PD7DAY_20260219174025_0000000504209569.zip` | 180 | 2026-02-19 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/PD{d1}Day/` | `PUBLIC_PD{d1}DAY_{datetime}_{aemo_id}.zip` | `PUBLIC_PD\d{1}DAY_\d{14}_\d{16}\.zip` | `PUBLIC_PD7DAY_20260305174103_0000000506470563.zip` | 180 | 2026-03-05 | 2026-05-04 |
 
 ### `Reports` · `PDPASA`
 
-_2 pattern rows, 726 files (snapshot), observed 2025-04-17 → 2026-04-20 (snapshot)_
+_2 pattern rows, 725 files (snapshot), observed 2025-05-01 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/PDPASA/` | `PUBLIC_PDPASA_{date}.zip` | `PUBLIC_PDPASA_\d{8}\.zip` | `PUBLIC_PDPASA_20250403.zip` | 53 | 2025-04-17 | 2026-04-16 |
-| `CURRENT` | `/Reports/CURRENT/PDPASA/` | `PUBLIC_PDPASA_{timestamp}_{aemo_id}.zip` | `PUBLIC_PDPASA_\d{12}_\d{16}\.zip` | `PUBLIC_PDPASA_202604061500_0000000511603075.zip` | 673 | 2026-04-06 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/PDPASA/` | `PUBLIC_PDPASA_{date}.zip` | `PUBLIC_PDPASA_\d{8}\.zip` | `PUBLIC_PDPASA_20250417.zip` | 53 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/PDPASA/` | `PUBLIC_PDPASA_{timestamp}_{aemo_id}.zip` | `PUBLIC_PDPASA_\d{12}_\d{16}\.zip` | `PUBLIC_PDPASA_202604201500_0000000513857560.zip` | 672 | 2026-04-20 | 2026-05-04 |
 
 ### `Reports` · `PDPASA_DUIDAVAILABILITY`
 
-_1 pattern row, 8 files (snapshot), observed 2025-09-01 → 2026-04-01 (snapshot) · **anomaly:** casing_mismatch_vs_sibling_tier_
+_1 pattern row, 9 files (snapshot), observed 2025-09-01 → 2026-05-01 (snapshot) · **anomaly:** casing_mismatch_vs_sibling_tier_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/PDPASA_DUIDAVAILABILITY/` | `PUBLIC_PDPASA_DUIDAVAILABILITY_{date}.zip` | `PUBLIC_PDPASA_DUIDAVAILABILITY_\d{8}\.zip` | `PUBLIC_PDPASA_DUIDAVAILABILITY_20250701.zip` | 8 | 2025-09-01 | 2026-04-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/PDPASA_DUIDAVAILABILITY/` | `PUBLIC_PDPASA_DUIDAVAILABILITY_{date}.zip` | `PUBLIC_PDPASA_DUIDAVAILABILITY_\d{8}\.zip` | `PUBLIC_PDPASA_DUIDAVAILABILITY_20250701.zip` | 9 | 2025-09-01 | 2026-05-01 |
 
 ### `Reports` · `PDPASA_DUIDAvailability`
 
-_1 pattern row, 2880 files (snapshot), observed 2026-02-19 → 2026-04-20 (snapshot) · **anomaly:** casing_mismatch_vs_sibling_tier_
+_1 pattern row, 2880 files (snapshot), observed 2026-03-05 → 2026-05-04 (snapshot) · **anomaly:** casing_mismatch_vs_sibling_tier_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/PDPASA_DUIDAvailability/` | `PUBLIC_PDPASA_DUIDAVAILABILITY_{timestamp}_{aemo_id}.zip` | `PUBLIC_PDPASA_DUIDAVAILABILITY_\d{12}_\d{16}\.zip` | `PUBLIC_PDPASA_DUIDAVAILABILITY_202602191530_0000000504191990.zip` | 2880 | 2026-02-19 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/PDPASA_DUIDAvailability/` | `PUBLIC_PDPASA_DUIDAVAILABILITY_{timestamp}_{aemo_id}.zip` | `PUBLIC_PDPASA_DUIDAVAILABILITY_\d{12}_\d{16}\.zip` | `PUBLIC_PDPASA_DUIDAVAILABILITY_202603051500_0000000506449237.zip` | 2880 | 2026-03-05 | 2026-05-04 |
 
 ### `Reports` · `PREDISPATCHFCST`
 
-_2 pattern rows, 726 files (snapshot), observed 2025-04-13 → 2026-04-20 (snapshot)_
+_2 pattern rows, 726 files (snapshot), observed 2025-04-27 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/PREDISPATCHFCST/` | `PUBLIC_PREDISPATCHFCST_{date}.zip` | `PUBLIC_PREDISPATCHFCST_\d{8}\.zip` | `PUBLIC_PREDISPATCHFCST_20250330.zip` | 54 | 2025-04-13 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/PREDISPATCHFCST/` | `PUBLIC_PREDISPATCHFCST_{timestamp}_{aemo_id}.zip` | `PUBLIC_PREDISPATCHFCST_\d{12}_\d{16}\.zip` | `PUBLIC_PREDISPATCHFCST_202604061530_0000000511606184.zip` | 672 | 2026-04-06 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/PREDISPATCHFCST/` | `PUBLIC_PREDISPATCHFCST_{date}.zip` | `PUBLIC_PREDISPATCHFCST_\d{8}\.zip` | `PUBLIC_PREDISPATCHFCST_20250413.zip` | 54 | 2025-04-27 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/PREDISPATCHFCST/` | `PUBLIC_PREDISPATCHFCST_{timestamp}_{aemo_id}.zip` | `PUBLIC_PREDISPATCHFCST_\d{12}_\d{16}\.zip` | `PUBLIC_PREDISPATCHFCST_202604201500_0000000513857191.zip` | 672 | 2026-04-20 | 2026-05-04 |
 
 ### `Reports` · `PasaSnap`
 
@@ -849,96 +849,96 @@ _1 pattern row, 1 files (snapshot), observed 2016-09-29 → 2016-09-29 (snapshot
 
 ### `Reports` · `PredispatchIS_Reports`
 
-_3 pattern rows, 736 files (snapshot), observed 2016-10-23 → 2026-04-20 (snapshot)_
+_3 pattern rows, 735 files (snapshot), observed 2016-10-23 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/PredispatchIS_Reports/` | `PUBLIC_PREDISPATCHIS_{date1}_{date2}.zip` | `PUBLIC_PREDISPATCHIS_\d{8}_\d{8}\.zip` | `PUBLIC_PREDISPATCHIS_20250330_20250405.zip` | 54 | 2025-04-13 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/PredispatchIS_Reports/` | `PUBLIC_PREDISPATCHIS_{timestamp}_{datetime}.zip` | `PUBLIC_PREDISPATCHIS_\d{12}_\d{14}\.zip` | `PUBLIC_PREDISPATCHIS_202604061500_20260406143242.zip` | 673 | 2026-04-06 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/PredispatchIS_Reports/` | `PUBLIC_PREDISPATCHIS_{date1}_{date2}.zip` | `PUBLIC_PREDISPATCHIS_\d{8}_\d{8}\.zip` | `PUBLIC_PREDISPATCHIS_20250413_20250419.zip` | 54 | 2025-04-27 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/PredispatchIS_Reports/` | `PUBLIC_PREDISPATCHIS_{timestamp}_{datetime}.zip` | `PUBLIC_PREDISPATCHIS_\d{12}_\d{14}\.zip` | `PUBLIC_PREDISPATCHIS_202604201500_20260420143215.zip` | 672 | 2026-04-20 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/PredispatchIS_Reports/DUPLICATE/` | `PUBLIC_PREDISPATCHIS_{timestamp}_{datetime}.zip` | `PUBLIC_PREDISPATCHIS_\d{12}_\d{14}\.zip` | `PUBLIC_PREDISPATCHIS_201610231430_20161023140222.zip` | 9 | 2016-10-23 | 2019-07-11 |
 
 ### `Reports` · `Predispatch_IRSR`
 
-_2 pattern rows, 726 files (snapshot), observed 2025-04-13 → 2026-04-20 (snapshot)_
+_2 pattern rows, 726 files (snapshot), observed 2025-04-27 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Predispatch_IRSR/` | `PUBLIC_PREDISPATCH_IRSR_{date1}_{date2}.zip` | `PUBLIC_PREDISPATCH_IRSR_\d{8}_\d{8}\.zip` | `PUBLIC_PREDISPATCH_IRSR_20250330_20250405.zip` | 54 | 2025-04-13 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/Predispatch_IRSR/` | `PUBLIC_PREDISPATCH_IRSR_{timestamp}_{aemo_id}.zip` | `PUBLIC_PREDISPATCH_IRSR_\d{12}_\d{16}\.zip` | `PUBLIC_PREDISPATCH_IRSR_202604061530_0000000511606148.zip` | 672 | 2026-04-06 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Predispatch_IRSR/` | `PUBLIC_PREDISPATCH_IRSR_{date1}_{date2}.zip` | `PUBLIC_PREDISPATCH_IRSR_\d{8}_\d{8}\.zip` | `PUBLIC_PREDISPATCH_IRSR_20250413_20250419.zip` | 54 | 2025-04-27 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/Predispatch_IRSR/` | `PUBLIC_PREDISPATCH_IRSR_{timestamp}_{aemo_id}.zip` | `PUBLIC_PREDISPATCH_IRSR_\d{12}_\d{16}\.zip` | `PUBLIC_PREDISPATCH_IRSR_202604201500_0000000513857183.zip` | 672 | 2026-04-20 | 2026-05-04 |
 
 ### `Reports` · `Predispatch_Reports`
 
-_2 pattern rows, 726 files (snapshot), observed 2025-04-13 → 2026-04-20 (snapshot)_
+_2 pattern rows, 726 files (snapshot), observed 2025-04-27 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Predispatch_Reports/` | `PUBLIC_PREDISPATCH_{date1}_{date2}.zip` | `PUBLIC_PREDISPATCH_\d{8}_\d{8}\.zip` | `PUBLIC_PREDISPATCH_20250330_20250405.zip` | 54 | 2025-04-13 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/Predispatch_Reports/` | `PUBLIC_PREDISPATCH_{timestamp}_{datetime}_LEGACY.zip` | `PUBLIC_PREDISPATCH_\d{12}_\d{14}_LEGACY\.zip` | `PUBLIC_PREDISPATCH_202604061530_20260406150239_LEGACY.zip` | 672 | 2026-04-06 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Predispatch_Reports/` | `PUBLIC_PREDISPATCH_{date1}_{date2}.zip` | `PUBLIC_PREDISPATCH_\d{8}_\d{8}\.zip` | `PUBLIC_PREDISPATCH_20250413_20250419.zip` | 54 | 2025-04-27 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/Predispatch_Reports/` | `PUBLIC_PREDISPATCH_{timestamp}_{datetime}_LEGACY.zip` | `PUBLIC_PREDISPATCH_\d{12}_\d{14}_LEGACY\.zip` | `PUBLIC_PREDISPATCH_202604201500_20260420143215_LEGACY.zip` | 672 | 2026-04-20 | 2026-05-04 |
 
 ### `Reports` · `Predispatch_Sensitivities`
 
-_3 pattern rows, 727 files (snapshot), observed 2025-04-16 → 2026-04-20 (snapshot)_
+_3 pattern rows, 726 files (snapshot), observed 2025-04-30 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Predispatch_Sensitivities/` | `PUBLIC_PREDISPATCH_SENSITIVITIES_{date1}_{date2}.zip` | `PUBLIC_PREDISPATCH_SENSITIVITIES_\d{8}_\d{8}\.zip` | `PUBLIC_PREDISPATCH_SENSITIVITIES_20250402_20250408.zip` | 53 | 2025-04-16 | 2026-04-15 |
-| `CURRENT` | `/Reports/CURRENT/Predispatch_Sensitivities/` | `PUBLIC_PREDISPATCH_SENSITIVITIES_{datetime}_{aemo_id}.zip` | `PUBLIC_PREDISPATCH_SENSITIVITIES_\d{14}_\d{16}\.zip` | `PUBLIC_PREDISPATCH_SENSITIVITIES_20260406144127_0000000511603692.zip` | 673 | 2026-04-06 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Predispatch_Sensitivities/` | `PUBLIC_PREDISPATCH_SENSITIVITIES_{date1}_{date2}.zip` | `PUBLIC_PREDISPATCH_SENSITIVITIES_\d{8}_\d{8}\.zip` | `PUBLIC_PREDISPATCH_SENSITIVITIES_20250416_20250422.zip` | 53 | 2025-04-30 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Predispatch_Sensitivities/` | `PUBLIC_PREDISPATCH_SENSITIVITIES_{datetime}_{aemo_id}.zip` | `PUBLIC_PREDISPATCH_SENSITIVITIES_\d{14}_\d{16}\.zip` | `PUBLIC_PREDISPATCH_SENSITIVITIES_20260420143949_0000000513858043.zip` | 672 | 2026-04-20 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/Predispatch_Sensitivities/DUPLICATE/` | `PUBLIC_PREDISPATCH_SENSITIVITIES_{datetime}_{aemo_id}.zip` | `PUBLIC_PREDISPATCH_SENSITIVITIES_\d{14}_\d{16}\.zip` | `PUBLIC_PREDISPATCH_SENSITIVITIES_20260303134002_0000000506103520.zip` | 1 | 2026-03-03 | 2026-03-03 |
 
 ### `Reports` · `Public_Prices`
 
-_2 pattern rows, 72 files (snapshot), observed 2025-05-01 → 2026-04-20 (snapshot)_
+_2 pattern rows, 73 files (snapshot), observed 2025-05-01 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Public_Prices/` | `PUBLIC_PRICES_{date}.zip` | `PUBLIC_PRICES_\d{8}\.zip` | `PUBLIC_PRICES_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/Public_Prices/` | `PUBLIC_PRICES_{timestamp}_{datetime}.zip` | `PUBLIC_PRICES_\d{12}_\d{14}\.zip` | `PUBLIC_PRICES_202602190000_20260220040502.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Public_Prices/` | `PUBLIC_PRICES_{date}.zip` | `PUBLIC_PRICES_\d{8}\.zip` | `PUBLIC_PRICES_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Public_Prices/` | `PUBLIC_PRICES_{timestamp}_{datetime}.zip` | `PUBLIC_PRICES_\d{12}_\d{14}\.zip` | `PUBLIC_PRICES_202603050000_20260306040505.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `ROOFTOP_PV`
 
-_12 pattern rows, 4350 files (snapshot), observed 2025-04-15 → 2026-04-20 (snapshot)_
+_12 pattern rows, 4350 files (snapshot), observed 2025-04-29 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/ROOFTOP_PV/ACTUAL/` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_{date}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_\d{8}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_20250403.zip` | 53 | 2025-04-17 | 2026-04-16 |
-| `ARCHIVE` | `/Reports/ARCHIVE/ROOFTOP_PV/ACTUAL/` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_{date}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_\d{8}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_20250403.zip` | 53 | 2025-04-17 | 2026-04-16 |
-| `ARCHIVE` | `/Reports/ARCHIVE/ROOFTOP_PV/ACTUAL_AREA/` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_AREA_{date}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_AREA_\d{8}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_AREA_20250401.zip` | 53 | 2025-04-15 | 2026-04-14 |
-| `ARCHIVE` | `/Reports/ARCHIVE/ROOFTOP_PV/ACTUAL_AREA/` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_AREA_{date}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_AREA_\d{8}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_AREA_20250401.zip` | 53 | 2025-04-15 | 2026-04-14 |
-| `ARCHIVE` | `/Reports/ARCHIVE/ROOFTOP_PV/FORECAST/` | `PUBLIC_ROOFTOP_PV_FORECAST_{date}.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_\d{8}\.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_20250403.zip` | 53 | 2025-04-17 | 2026-04-16 |
-| `ARCHIVE` | `/Reports/ARCHIVE/ROOFTOP_PV/FORECAST_AREA/` | `PUBLIC_ROOFTOP_PV_FORECAST_AREA_{date}.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_AREA_\d{8}\.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_AREA_20250401.zip` | 53 | 2025-04-15 | 2026-04-14 |
-| `CURRENT` | `/Reports/CURRENT/ROOFTOP_PV/ACTUAL/` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_{datetime}_{aemo_id}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_\d{14}_\d{16}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_20260406150000_0000000511605825.zip` | 672 | 2026-04-06 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/ROOFTOP_PV/ACTUAL/` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_{datetime}_{aemo_id}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_\d{14}_\d{16}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_20260406150000_0000000511605827.zip` | 672 | 2026-04-06 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/ROOFTOP_PV/ACTUAL_AREA/` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_AREA_{datetime}_{aemo_id}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_AREA_\d{14}_\d{16}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_AREA_20260406150000_0000000511605826.zip` | 672 | 2026-04-06 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/ROOFTOP_PV/ACTUAL_AREA/` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_AREA_{datetime}_{aemo_id}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_AREA_\d{14}_\d{16}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_AREA_20260406150000_0000000511605828.zip` | 672 | 2026-04-06 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/ROOFTOP_PV/FORECAST/` | `PUBLIC_ROOFTOP_PV_FORECAST_{datetime}_{aemo_id}.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_\d{14}_\d{16}\.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_20260406150000_0000000511605823.zip` | 672 | 2026-04-06 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/ROOFTOP_PV/FORECAST_AREA/` | `PUBLIC_ROOFTOP_PV_FORECAST_AREA_{datetime}_{aemo_id}.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_AREA_\d{14}_\d{16}\.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_AREA_20260406150000_0000000511605824.zip` | 672 | 2026-04-06 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/ROOFTOP_PV/ACTUAL/` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_{date}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_\d{8}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_20250417.zip` | 53 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/ROOFTOP_PV/ACTUAL/` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_{date}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_\d{8}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_20250417.zip` | 53 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/ROOFTOP_PV/ACTUAL_AREA/` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_AREA_{date}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_AREA_\d{8}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_AREA_20250415.zip` | 53 | 2025-04-29 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/ROOFTOP_PV/ACTUAL_AREA/` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_AREA_{date}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_AREA_\d{8}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_AREA_20250415.zip` | 53 | 2025-04-29 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/ROOFTOP_PV/FORECAST/` | `PUBLIC_ROOFTOP_PV_FORECAST_{date}.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_\d{8}\.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_20250417.zip` | 53 | 2025-05-01 | 2026-05-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/ROOFTOP_PV/FORECAST_AREA/` | `PUBLIC_ROOFTOP_PV_FORECAST_AREA_{date}.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_AREA_\d{8}\.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_AREA_20250415.zip` | 53 | 2025-04-29 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/ROOFTOP_PV/ACTUAL/` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_{datetime}_{aemo_id}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_\d{14}_\d{16}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_20260420143000_0000000513856920.zip` | 672 | 2026-04-20 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/ROOFTOP_PV/ACTUAL/` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_{datetime}_{aemo_id}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_\d{14}_\d{16}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_20260420143000_0000000513856922.zip` | 672 | 2026-04-20 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/ROOFTOP_PV/ACTUAL_AREA/` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_AREA_{datetime}_{aemo_id}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_AREA_\d{14}_\d{16}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_MEASUREMENT_AREA_20260420143000_0000000513856921.zip` | 672 | 2026-04-20 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/ROOFTOP_PV/ACTUAL_AREA/` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_AREA_{datetime}_{aemo_id}.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_AREA_\d{14}_\d{16}\.zip` | `PUBLIC_ROOFTOP_PV_ACTUAL_SATELLITE_AREA_20260420143000_0000000513856923.zip` | 672 | 2026-04-20 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/ROOFTOP_PV/FORECAST/` | `PUBLIC_ROOFTOP_PV_FORECAST_{datetime}_{aemo_id}.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_\d{14}_\d{16}\.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_20260420143000_0000000513856918.zip` | 672 | 2026-04-20 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/ROOFTOP_PV/FORECAST_AREA/` | `PUBLIC_ROOFTOP_PV_FORECAST_AREA_{datetime}_{aemo_id}.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_AREA_\d{14}_\d{16}\.zip` | `PUBLIC_ROOFTOP_PV_FORECAST_AREA_20260420143000_0000000513856919.zip` | 672 | 2026-04-20 | 2026-05-04 |
 
 ### `Reports` · `Regional_Summary_Report`
 
-_1 pattern row, 224 files (snapshot), observed 2025-03-25 → 2026-04-17 (snapshot)_
+_1 pattern row, 224 files (snapshot), observed 2025-04-08 → 2026-05-01 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/Regional_Summary_Report/` | `RSR_{date}.R{d3}` | `RSR_\d{8}\.R\d{3}` | `RSR_20240825.R015` | 224 | 2025-03-25 | 2026-04-17 |
+| `CURRENT` | `/Reports/CURRENT/Regional_Summary_Report/` | `RSR_{date}.R{d3}` | `RSR_\d{8}\.R\d{3}` | `RSR_20240908.R015` | 224 | 2025-04-08 | 2026-05-01 |
 
 ### `Reports` · `SEVENDAYOUTLOOK_FULL`
 
-_3 pattern rows, 2928 files (snapshot), observed 2017-02-06 → 2026-04-20 (snapshot)_
+_3 pattern rows, 2928 files (snapshot), observed 2017-02-06 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/SEVENDAYOUTLOOK_FULL/` | `PUBLIC_SEVENDAYOUTLOOK_FULL_{date}.zip` | `PUBLIC_SEVENDAYOUTLOOK_FULL_\d{8}\.zip` | `PUBLIC_SEVENDAYOUTLOOK_FULL_20250330.zip` | 54 | 2025-04-13 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/SEVENDAYOUTLOOK_FULL/` | `PUBLIC_SEVENDAYOUTLOOK_FULL_{datetime}_{aemo_id}.zip` | `PUBLIC_SEVENDAYOUTLOOK_FULL_\d{14}_\d{16}\.zip` | `PUBLIC_SEVENDAYOUTLOOK_FULL_20260219150518_0000000504192437.zip` | 2873 | 2026-02-19 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/SEVENDAYOUTLOOK_FULL/` | `PUBLIC_SEVENDAYOUTLOOK_FULL_{date}.zip` | `PUBLIC_SEVENDAYOUTLOOK_FULL_\d{8}\.zip` | `PUBLIC_SEVENDAYOUTLOOK_FULL_20250413.zip` | 54 | 2025-04-27 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/SEVENDAYOUTLOOK_FULL/` | `PUBLIC_SEVENDAYOUTLOOK_FULL_{datetime}_{aemo_id}.zip` | `PUBLIC_SEVENDAYOUTLOOK_FULL_\d{14}_\d{16}\.zip` | `PUBLIC_SEVENDAYOUTLOOK_FULL_20260305143534_0000000506449641.zip` | 2873 | 2026-03-05 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/SEVENDAYOUTLOOK_FULL/DUPLICATE/` | `PUBLIC_SEVENDAYOUTLOOK_FULL_{datetime}_{aemo_id}.zip` | `PUBLIC_SEVENDAYOUTLOOK_FULL_\d{14}_\d{16}\.zip` | `PUBLIC_SEVENDAYOUTLOOK_FULL_20170206123430_0000000280715734.zip` | 1 | 2017-02-06 | 2017-02-06 |
 
 ### `Reports` · `SEVENDAYOUTLOOK_PEAK`
 
-_2 pattern rows, 2927 files (snapshot), observed 2025-04-13 → 2026-04-20 (snapshot)_
+_2 pattern rows, 2927 files (snapshot), observed 2025-04-27 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/SEVENDAYOUTLOOK_PEAK/` | `PUBLIC_SEVENDAYOUTLOOK_PEAK_{date}.zip` | `PUBLIC_SEVENDAYOUTLOOK_PEAK_\d{8}\.zip` | `PUBLIC_SEVENDAYOUTLOOK_PEAK_20250330.zip` | 54 | 2025-04-13 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/SEVENDAYOUTLOOK_PEAK/` | `PUBLIC_SEVENDAYOUTLOOK_PEAK_{datetime}_{aemo_id}.zip` | `PUBLIC_SEVENDAYOUTLOOK_PEAK_\d{14}_\d{16}\.zip` | `PUBLIC_SEVENDAYOUTLOOK_PEAK_20260219150518_0000000504192438.zip` | 2873 | 2026-02-19 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/SEVENDAYOUTLOOK_PEAK/` | `PUBLIC_SEVENDAYOUTLOOK_PEAK_{date}.zip` | `PUBLIC_SEVENDAYOUTLOOK_PEAK_\d{8}\.zip` | `PUBLIC_SEVENDAYOUTLOOK_PEAK_20250413.zip` | 54 | 2025-04-27 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/SEVENDAYOUTLOOK_PEAK/` | `PUBLIC_SEVENDAYOUTLOOK_PEAK_{datetime}_{aemo_id}.zip` | `PUBLIC_SEVENDAYOUTLOOK_PEAK_\d{14}_\d{16}\.zip` | `PUBLIC_SEVENDAYOUTLOOK_PEAK_20260305143534_0000000506449642.zip` | 2873 | 2026-03-05 | 2026-05-04 |
 
 ### `Reports` · `SRA_Bids`
 
@@ -950,11 +950,11 @@ _1 pattern row, 4 files (snapshot), observed 2025-06-16 → 2026-03-16 (snapshot
 
 ### `Reports` · `SRA_NSR_RECONCILIATION`
 
-_1 pattern row, 4 files (snapshot), observed 2025-04-22 → 2026-01-21 (snapshot)_
+_1 pattern row, 7 files (snapshot), observed 2025-04-22 → 2026-04-22 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/SRA_NSR_RECONCILIATION/` | `PUBLIC_SRAFINANCIALS_RECONCILIATION_{year}_{d1}_{datetime}.zip` | `PUBLIC_SRAFINANCIALS_RECONCILIATION_\d{4}_\d{1}_\d{14}\.zip` | `PUBLIC_SRAFINANCIALS_RECONCILIATION_2025_2_20250422111540.zip` | 4 | 2025-04-22 | 2026-01-21 |
+| `CURRENT` | `/Reports/CURRENT/SRA_NSR_RECONCILIATION/` | `PUBLIC_SRAFINANCIALS_RECONCILIATION_{year}_{d1}_{datetime}.zip` | `PUBLIC_SRAFINANCIALS_RECONCILIATION_\d{4}_\d{1}_\d{14}\.zip` | `PUBLIC_SRAFINANCIALS_RECONCILIATION_2025_2_20250422111540.zip` | 7 | 2025-04-22 | 2026-04-22 |
 
 ### `Reports` · `SRA_Offers`
 
@@ -974,92 +974,92 @@ _1 pattern row, 48 files (snapshot), observed 2025-06-16 → 2026-03-16 (snapsho
 
 ### `Reports` · `SSM_ENABLEMENT_COSTS`
 
-_1 pattern row, 123 files (snapshot), observed 2025-12-02 → 2026-04-20 (snapshot)_
+_1 pattern row, 137 files (snapshot), observed 2025-12-02 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/SSM_ENABLEMENT_COSTS/` | `PUBLIC_NEXT_DAY_ENABLEMENT_COSTS_{date}_{yearmonth}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_ENABLEMENT_COSTS_\d{8}_\d{6}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_ENABLEMENT_COSTS_20251202_120016_0000000492027787.zip` | 123 | 2025-12-02 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/SSM_ENABLEMENT_COSTS/` | `PUBLIC_NEXT_DAY_ENABLEMENT_COSTS_{date}_{yearmonth}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_ENABLEMENT_COSTS_\d{8}_\d{6}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_ENABLEMENT_COSTS_20251202_120016_0000000492027787.zip` | 137 | 2025-12-02 | 2026-05-04 |
 
 ### `Reports` · `SSM_ENABLEMENT_PERIOD`
 
-_1 pattern row, 123 files (snapshot), observed 2025-12-02 → 2026-04-20 (snapshot)_
+_1 pattern row, 137 files (snapshot), observed 2025-12-02 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/SSM_ENABLEMENT_PERIOD/` | `PUBLIC_NEXT_DAY_ENABLEMENT_PERIOD_{date}_{yearmonth}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_ENABLEMENT_PERIOD_\d{8}_\d{6}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_ENABLEMENT_PERIOD_20251202_120016_0000000492027788.zip` | 123 | 2025-12-02 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/SSM_ENABLEMENT_PERIOD/` | `PUBLIC_NEXT_DAY_ENABLEMENT_PERIOD_{date}_{yearmonth}_{aemo_id}.zip` | `PUBLIC_NEXT_DAY_ENABLEMENT_PERIOD_\d{8}_\d{6}_\d{16}\.zip` | `PUBLIC_NEXT_DAY_ENABLEMENT_PERIOD_20251202_120016_0000000492027788.zip` | 137 | 2025-12-02 | 2026-05-04 |
 
 ### `Reports` · `STPASA_DUIDAVAILABILITY`
 
-_1 pattern row, 8 files (snapshot), observed 2025-09-01 → 2026-04-01 (snapshot) · **anomaly:** casing_mismatch_vs_sibling_tier_
+_1 pattern row, 9 files (snapshot), observed 2025-09-01 → 2026-05-01 (snapshot) · **anomaly:** casing_mismatch_vs_sibling_tier_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/STPASA_DUIDAVAILABILITY/` | `PUBLIC_STPASA_DUIDAVAILABILITY_{date}.zip` | `PUBLIC_STPASA_DUIDAVAILABILITY_\d{8}\.zip` | `PUBLIC_STPASA_DUIDAVAILABILITY_20250701.zip` | 8 | 2025-09-01 | 2026-04-01 |
+| `ARCHIVE` | `/Reports/ARCHIVE/STPASA_DUIDAVAILABILITY/` | `PUBLIC_STPASA_DUIDAVAILABILITY_{date}.zip` | `PUBLIC_STPASA_DUIDAVAILABILITY_\d{8}\.zip` | `PUBLIC_STPASA_DUIDAVAILABILITY_20250701.zip` | 9 | 2025-09-01 | 2026-05-01 |
 
 ### `Reports` · `STPASA_DUIDAvailability`
 
-_1 pattern row, 1436 files (snapshot), observed 2026-02-19 → 2026-04-20 (snapshot) · **anomaly:** casing_mismatch_vs_sibling_tier_
+_1 pattern row, 1436 files (snapshot), observed 2026-03-05 → 2026-05-04 (snapshot) · **anomaly:** casing_mismatch_vs_sibling_tier_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/STPASA_DUIDAvailability/` | `PUBLIC_STPASA_DUIDAVAILABILITY_{timestamp}_{aemo_id}.zip` | `PUBLIC_STPASA_DUIDAVAILABILITY_\d{12}_\d{16}\.zip` | `PUBLIC_STPASA_DUIDAVAILABILITY_202602191500_0000000504191689.zip` | 1436 | 2026-02-19 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/STPASA_DUIDAvailability/` | `PUBLIC_STPASA_DUIDAVAILABILITY_{timestamp}_{aemo_id}.zip` | `PUBLIC_STPASA_DUIDAVAILABILITY_\d{12}_\d{16}\.zip` | `PUBLIC_STPASA_DUIDAVAILABILITY_202603051500_0000000506452175.zip` | 1436 | 2026-03-05 | 2026-05-04 |
 
 ### `Reports` · `STTM`
 
-_94 pattern rows, 174 files (snapshot), observed 2016-09-29 → 2026-04-20 (snapshot)_
+_94 pattern rows, 174 files (snapshot), observed 2016-09-29 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `CURRENTDAY.ZIP` | `CURRENTDAY\.ZIP` | `CURRENTDAY.ZIP` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `DAY{d2}.ZIP` | `DAY\d{2}\.ZIP` | `DAY01.ZIP` | 31 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}B_V{d1}_STTM_PRICES_RPT_{d2}.CSV` | `INT\d{3}B_V\d{1}_STTM_PRICES_RPT_\d{2}\.CSV` | `INT685B_V1_STTM_PRICES_RPT_13.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_ALLOCATION_WARNING_LIMIT_THRESHOLDS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_ALLOCATION_WARNING_LIMIT_THRESHOLDS_RPT_\d{1}\.CSV` | `INT688_V1_ALLOCATION_WARNING_LIMIT_THRESHOLDS_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_BID_OFFER_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_BID_OFFER_RPT_\d{1}\.CSV` | `INT659_V1_BID_OFFER_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_CONTINGENCY_GAS_BIDS_AND_OFFERS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_CONTINGENCY_GAS_BIDS_AND_OFFERS_RPT_\d{1}\.CSV` | `INT660_V1_CONTINGENCY_GAS_BIDS_AND_OFFERS_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_CUMULATIVE_PRICE_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_CUMULATIVE_PRICE_RPT_\d{1}\.CSV` | `INT672_V1_CUMULATIVE_PRICE_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_DAILY_PROVISIONAL_CAPACITY_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_DAILY_PROVISIONAL_CAPACITY_RPT_\d{1}\.CSV` | `INT681_V1_DAILY_PROVISIONAL_CAPACITY_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_DAILY_PROVISIONAL_MOS_ALLOCATION_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_DAILY_PROVISIONAL_MOS_ALLOCATION_RPT_\d{1}\.CSV` | `INT664_V1_DAILY_PROVISIONAL_MOS_ALLOCATION_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_DEFAULT_ALLOCATION_NOTICE_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_DEFAULT_ALLOCATION_NOTICE_RPT_\d{1}\.CSV` | `INT675_V1_DEFAULT_ALLOCATION_NOTICE_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_DEVIATION_PRICE_DATA_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_DEVIATION_PRICE_DATA_RPT_\d{1}\.CSV` | `INT690_V1_DEVIATION_PRICE_DATA_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_DP_FLAG_DATA_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_DP_FLAG_DATA_RPT_\d{1}\.CSV` | `INT680_V1_DP_FLAG_DATA_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_EXPOST_FACILITY_ALLOCATION_QUANTITY_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_EXPOST_FACILITY_ALLOCATION_QUANTITY_RPT_\d{1}\.CSV` | `INT689_V1_EXPOST_FACILITY_ALLOCATION_QUANTITY_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_EX_ANTE_MARKET_PRICE_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_EX_ANTE_MARKET_PRICE_RPT_\d{1}\.CSV` | `INT651_V1_EX_ANTE_MARKET_PRICE_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_EX_ANTE_PIPELINE_PRICE_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_EX_ANTE_PIPELINE_PRICE_RPT_\d{1}\.CSV` | `INT653_V3_EX_ANTE_PIPELINE_PRICE_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_EX_ANTE_SCHEDULE_QUANTITY_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_EX_ANTE_SCHEDULE_QUANTITY_RPT_\d{1}\.CSV` | `INT652_V1_EX_ANTE_SCHEDULE_QUANTITY_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_EX_POST_MARKET_DATA_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_EX_POST_MARKET_DATA_RPT_\d{1}\.CSV` | `INT657_V2_EX_POST_MARKET_DATA_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_FACILITY_HUB_CAPACITY_DATA_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_FACILITY_HUB_CAPACITY_DATA_RPT_\d{1}\.CSV` | `INT687_V1_FACILITY_HUB_CAPACITY_DATA_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_HUB_FACILITY_DEFINITION_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_HUB_FACILITY_DEFINITION_RPT_\d{1}\.CSV` | `INT671_V1_HUB_FACILITY_DEFINITION_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_LATEST_ALLOCATION_QUANTITY_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_LATEST_ALLOCATION_QUANTITY_RPT_\d{1}\.CSV` | `INT658_V1_LATEST_ALLOCATION_QUANTITY_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_MARKET_NOTICE_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_MARKET_NOTICE_RPT_\d{1}\.CSV` | `INT666_V1_MARKET_NOTICE_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_MARKET_PARAMETERS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_MARKET_PARAMETERS_RPT_\d{1}\.CSV` | `INT667_V1_MARKET_PARAMETERS_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_MOS_STACK_DATA_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_MOS_STACK_DATA_RPT_\d{1}\.CSV` | `INT665_V1_MOS_STACK_DATA_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_NET_MARKET_BALANCE_DAILY_AMOUNTS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_NET_MARKET_BALANCE_DAILY_AMOUNTS_RPT_\d{1}\.CSV` | `INT678_V1_NET_MARKET_BALANCE_DAILY_AMOUNTS_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_NET_MARKET_BALANCE_SETTLEMENT_AMOUNTS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_NET_MARKET_BALANCE_SETTLEMENT_AMOUNTS_RPT_\d{1}\.CSV` | `INT679_V1_NET_MARKET_BALANCE_SETTLEMENT_AMOUNTS_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_PROVISIONAL_DEVIATION_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_PROVISIONAL_DEVIATION_RPT_\d{1}\.CSV` | `INT662_V1_PROVISIONAL_DEVIATION_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_PROVISIONAL_MARKET_PRICE_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_PROVISIONAL_MARKET_PRICE_RPT_\d{1}\.CSV` | `INT654_V1_PROVISIONAL_MARKET_PRICE_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_PROVISIONAL_PIPELINE_DATA_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_PROVISIONAL_PIPELINE_DATA_RPT_\d{1}\.CSV` | `INT656_V2_PROVISIONAL_PIPELINE_DATA_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_PROVISIONAL_SCHEDULE_QUANTITY_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_PROVISIONAL_SCHEDULE_QUANTITY_RPT_\d{1}\.CSV` | `INT655_V1_PROVISIONAL_SCHEDULE_QUANTITY_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_PROVISIONAL_USED_MOS_STEPS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_PROVISIONAL_USED_MOS_STEPS_RPT_\d{1}\.CSV` | `INT683_V1_PROVISIONAL_USED_MOS_STEPS_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_PROVISIONAL_VARIATION_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_PROVISIONAL_VARIATION_RPT_\d{1}\.CSV` | `INT663_V1_PROVISIONAL_VARIATION_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_REGISTERED_PARTICIPANTS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_REGISTERED_PARTICIPANTS_RPT_\d{1}\.CSV` | `INT670_V1_REGISTERED_PARTICIPANTS_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_ROLLING_AVERAGE_PRICE_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_ROLLING_AVERAGE_PRICE_RPT_\d{1}\.CSV` | `INT676_V1_ROLLING_AVERAGE_PRICE_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_SCHEDULE_LOG_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_SCHEDULE_LOG_RPT_\d{1}\.CSV` | `INT668_V1_SCHEDULE_LOG_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_SETTLEMENT_MOS_AND_CAPACITY_DATA_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_SETTLEMENT_MOS_AND_CAPACITY_DATA_RPT_\d{1}\.CSV` | `INT682_V1_SETTLEMENT_MOS_AND_CAPACITY_DATA_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_SETTLEMENT_USED_MOS_STEPS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_SETTLEMENT_USED_MOS_STEPS_RPT_\d{1}\.CSV` | `INT684_V1_SETTLEMENT_USED_MOS_STEPS_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_SETTLEMENT_VERSION_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_SETTLEMENT_VERSION_RPT_\d{1}\.CSV` | `INT669_V1_SETTLEMENT_VERSION_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_STTM_CTP_REGISTER_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_STTM_CTP_REGISTER_RPT_\d{1}\.CSV` | `INT691_V1_STTM_CTP_REGISTER_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d1}_STTM_PRICES_RPT_{d2}.CSV` | `INT\d{3}_V\d{1}_STTM_PRICES_RPT_\d{2}\.CSV` | `INT685_V1_STTM_PRICES_RPT_13.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_TOTAL_CONTINGENCY_BID_OFFER_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_TOTAL_CONTINGENCY_BID_OFFER_RPT_\d{1}\.CSV` | `INT673_V1_TOTAL_CONTINGENCY_BID_OFFER_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `CurrentDay.zip` | `CurrentDay\.zip` | `CurrentDay.zip` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `DAY{d2}.ZIP` | `DAY\d{2}\.ZIP` | `DAY03.ZIP` | 14 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `Day{d2}.zip` | `Day\d{2}\.zip` | `Day01.zip` | 17 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}B_V{d1}_STTM_PRICES_RPT_{d2}.CSV` | `INT\d{3}B_V\d{1}_STTM_PRICES_RPT_\d{2}\.CSV` | `INT685B_V1_STTM_PRICES_RPT_13.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_BID_OFFER_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_BID_OFFER_RPT_\d{1}\.CSV` | `INT659_V1_BID_OFFER_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_DAILY_PROVISIONAL_MOS_ALLOCATION_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_DAILY_PROVISIONAL_MOS_ALLOCATION_RPT_\d{1}\.CSV` | `INT664_V1_DAILY_PROVISIONAL_MOS_ALLOCATION_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_DEFAULT_ALLOCATION_NOTICE_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_DEFAULT_ALLOCATION_NOTICE_RPT_\d{1}\.CSV` | `INT675_V1_DEFAULT_ALLOCATION_NOTICE_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_DP_FLAG_DATA_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_DP_FLAG_DATA_RPT_\d{1}\.CSV` | `INT680_V1_DP_FLAG_DATA_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_EX_ANTE_SCHEDULE_QUANTITY_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_EX_ANTE_SCHEDULE_QUANTITY_RPT_\d{1}\.CSV` | `INT652_V1_EX_ANTE_SCHEDULE_QUANTITY_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_EX_POST_MARKET_DATA_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_EX_POST_MARKET_DATA_RPT_\d{1}\.CSV` | `INT657_V2_EX_POST_MARKET_DATA_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_FACILITY_HUB_CAPACITY_DATA_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_FACILITY_HUB_CAPACITY_DATA_RPT_\d{1}\.CSV` | `INT687_V1_FACILITY_HUB_CAPACITY_DATA_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_HUB_FACILITY_DEFINITION_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_HUB_FACILITY_DEFINITION_RPT_\d{1}\.CSV` | `INT671_V1_HUB_FACILITY_DEFINITION_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_NET_MARKET_BALANCE_DAILY_AMOUNTS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_NET_MARKET_BALANCE_DAILY_AMOUNTS_RPT_\d{1}\.CSV` | `INT678_V1_NET_MARKET_BALANCE_DAILY_AMOUNTS_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_PROVISIONAL_DEVIATION_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_PROVISIONAL_DEVIATION_RPT_\d{1}\.CSV` | `INT662_V1_PROVISIONAL_DEVIATION_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_PROVISIONAL_PIPELINE_DATA_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_PROVISIONAL_PIPELINE_DATA_RPT_\d{1}\.CSV` | `INT656_V2_PROVISIONAL_PIPELINE_DATA_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_PROVISIONAL_SCHEDULE_QUANTITY_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_PROVISIONAL_SCHEDULE_QUANTITY_RPT_\d{1}\.CSV` | `INT655_V1_PROVISIONAL_SCHEDULE_QUANTITY_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_PROVISIONAL_USED_MOS_STEPS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_PROVISIONAL_USED_MOS_STEPS_RPT_\d{1}\.CSV` | `INT683_V1_PROVISIONAL_USED_MOS_STEPS_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_ROLLING_AVERAGE_PRICE_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_ROLLING_AVERAGE_PRICE_RPT_\d{1}\.CSV` | `INT676_V1_ROLLING_AVERAGE_PRICE_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_SCHEDULE_LOG_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_SCHEDULE_LOG_RPT_\d{1}\.CSV` | `INT668_V1_SCHEDULE_LOG_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_SETTLEMENT_MOS_AND_CAPACITY_DATA_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_SETTLEMENT_MOS_AND_CAPACITY_DATA_RPT_\d{1}\.CSV` | `INT682_V1_SETTLEMENT_MOS_AND_CAPACITY_DATA_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_SETTLEMENT_USED_MOS_STEPS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_SETTLEMENT_USED_MOS_STEPS_RPT_\d{1}\.CSV` | `INT684_V1_SETTLEMENT_USED_MOS_STEPS_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d11}_SETTLEMENT_VERSION_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_SETTLEMENT_VERSION_RPT_\d{1}\.CSV` | `INT669_V1_SETTLEMENT_VERSION_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `INT{d3}_V{d1}_STTM_PRICES_RPT_{d2}.CSV` | `INT\d{3}_V\d{1}_STTM_PRICES_RPT_\d{2}\.CSV` | `INT685_V1_STTM_PRICES_RPT_13.CSV` | 1 | 2026-05-04 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_sttm_prices.htm` | `int\d{3}_sttm_prices\.htm` | `int685_sttm_prices.htm` | 1 | 2026-04-20 | 2026-04-20 |
 | `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_sttm_prices_original.htm` | `int\d{3}_sttm_prices_original\.htm` | `int685_sttm_prices_original.htm` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_allocation_quantity_rpt_{d12}.csv` | `int\d{3}_v\d{1}_allocation_quantity_rpt_\d{1}\.csv` | `int658_v1_allocation_quantity_rpt_1.csv` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d31}_v{d11}_bid_offer_-&#x{d12}b;{yearmonth}CC-BDB{d13}-{d21}B{d14}-B{d32}-A{d22}ADA{d15}AB{d33}&#x{d16}d;-v{d7}.csv` | `int\d{3}_v\d{1}_bid_offer_\-\&\#x\d{1}b;\d{6}CC\-BDB\d{1}\-\d{2}B\d{1}\-B\d{3}\-A\d{2}ADA\d{1}AB\d{3}\&\#x\d{1}d;\-v\d{7}\.csv` | `int659_v1_bid_offer_-&#x7b;703546CC-BDB3-47B6-B705-A29ADA3AB466&#x7d;-v5318095.csv` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_contingency_gas_called_scheduled_bid_offer_rpt_{d12}.csv` | `int\d{3}_v\d{1}_contingency_gas_called_scheduled_bid_offer_rpt_\d{1}\.csv` | `int661_v1_contingency_gas_called_scheduled_bid_offer_rpt_1.csv` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_contingency_gas_price_rpt_{d12}.csv` | `int\d{3}_v\d{1}_contingency_gas_price_rpt_\d{1}\.csv` | `int677_v1_contingency_gas_price_rpt_1.csv` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_ex_ante_pipeline_price_rpt_{d12}.csv` | `int\d{3}_v\d{1}_ex_ante_pipeline_price_rpt_\d{1}\.csv` | `int653_v1_ex_ante_pipeline_price_rpt_1.csv` | 2 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_ex_post_market_data_rpt_{d12}.csv` | `int\d{3}_v\d{1}_ex_post_market_data_rpt_\d{1}\.csv` | `int657_v1_ex_post_market_data_rpt_1.csv` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_provisional_pipeline_data_rpt_{d12}.csv` | `int\d{3}_v\d{1}_provisional_pipeline_data_rpt_\d{1}\.csv` | `int656_v1_provisional_pipeline_data_rpt_1.csv` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_total_contingency_gas_schedules_rpt_{d12}.csv` | `int\d{3}_v\d{1}_total_contingency_gas_schedules_rpt_\d{1}\.csv` | `int674_v1_total_contingency_gas_schedules_rpt_1.csv` | 1 | 2026-04-20 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_allocation_quantity_rpt_{d12}.csv` | `int\d{3}_v\d{1}_allocation_quantity_rpt_\d{1}\.csv` | `int658_v1_allocation_quantity_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_allocation_warning_limit_thresholds_rpt_{d12}.csv` | `int\d{3}_v\d{1}_allocation_warning_limit_thresholds_rpt_\d{1}\.csv` | `int688_v1_allocation_warning_limit_thresholds_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d31}_v{d11}_bid_offer_-&#x{d12}b;{yearmonth}CC-BDB{d13}-{d21}B{d14}-B{d32}-A{d22}ADA{d15}AB{d33}&#x{d16}d;-v{d7}.csv` | `int\d{3}_v\d{1}_bid_offer_\-\&\#x\d{1}b;\d{6}CC\-BDB\d{1}\-\d{2}B\d{1}\-B\d{3}\-A\d{2}ADA\d{1}AB\d{3}\&\#x\d{1}d;\-v\d{7}\.csv` | `int659_v1_bid_offer_-&#x7b;703546CC-BDB3-47B6-B705-A29ADA3AB466&#x7d;-v5318095.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_contingency_gas_bids_and_offers_rpt_{d12}.csv` | `int\d{3}_v\d{1}_contingency_gas_bids_and_offers_rpt_\d{1}\.csv` | `int660_v1_contingency_gas_bids_and_offers_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_contingency_gas_called_scheduled_bid_offer_rpt_{d12}.csv` | `int\d{3}_v\d{1}_contingency_gas_called_scheduled_bid_offer_rpt_\d{1}\.csv` | `int661_v1_contingency_gas_called_scheduled_bid_offer_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_contingency_gas_price_rpt_{d12}.csv` | `int\d{3}_v\d{1}_contingency_gas_price_rpt_\d{1}\.csv` | `int677_v1_contingency_gas_price_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_cumulative_price_rpt_{d12}.csv` | `int\d{3}_v\d{1}_cumulative_price_rpt_\d{1}\.csv` | `int672_v1_cumulative_price_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_daily_provisional_capacity_rpt_{d12}.csv` | `int\d{3}_v\d{1}_daily_provisional_capacity_rpt_\d{1}\.csv` | `int681_v1_daily_provisional_capacity_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_deviation_price_data_rpt_{d12}.csv` | `int\d{3}_v\d{1}_deviation_price_data_rpt_\d{1}\.csv` | `int690_v1_deviation_price_data_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_ex_ante_market_price_rpt_{d12}.csv` | `int\d{3}_v\d{1}_ex_ante_market_price_rpt_\d{1}\.csv` | `int651_v1_ex_ante_market_price_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_ex_ante_pipeline_price_rpt_{d12}.csv` | `int\d{3}_v\d{1}_ex_ante_pipeline_price_rpt_\d{1}\.csv` | `int653_v1_ex_ante_pipeline_price_rpt_1.csv` | 3 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_ex_post_market_data_rpt_{d12}.csv` | `int\d{3}_v\d{1}_ex_post_market_data_rpt_\d{1}\.csv` | `int657_v1_ex_post_market_data_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_expost_facility_allocation_quantity_rpt_{d12}.csv` | `int\d{3}_v\d{1}_expost_facility_allocation_quantity_rpt_\d{1}\.csv` | `int689_v1_expost_facility_allocation_quantity_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_latest_allocation_quantity_rpt_{d12}.csv` | `int\d{3}_v\d{1}_latest_allocation_quantity_rpt_\d{1}\.csv` | `int658_v1_latest_allocation_quantity_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_market_notice_rpt_{d12}.csv` | `int\d{3}_v\d{1}_market_notice_rpt_\d{1}\.csv` | `int666_v1_market_notice_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_market_parameters_rpt_{d12}.csv` | `int\d{3}_v\d{1}_market_parameters_rpt_\d{1}\.csv` | `int667_v1_market_parameters_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_mos_stack_data_rpt_{d12}.csv` | `int\d{3}_v\d{1}_mos_stack_data_rpt_\d{1}\.csv` | `int665_v1_mos_stack_data_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_net_market_balance_settlement_amounts_rpt_{d12}.csv` | `int\d{3}_v\d{1}_net_market_balance_settlement_amounts_rpt_\d{1}\.csv` | `int679_v1_net_market_balance_settlement_amounts_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_provisional_market_price_rpt_{d12}.csv` | `int\d{3}_v\d{1}_provisional_market_price_rpt_\d{1}\.csv` | `int654_v1_provisional_market_price_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_provisional_pipeline_data_rpt_{d12}.csv` | `int\d{3}_v\d{1}_provisional_pipeline_data_rpt_\d{1}\.csv` | `int656_v1_provisional_pipeline_data_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_provisional_variation_rpt_{d12}.csv` | `int\d{3}_v\d{1}_provisional_variation_rpt_\d{1}\.csv` | `int663_v1_provisional_variation_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_registered_participants_rpt_{d12}.csv` | `int\d{3}_v\d{1}_registered_participants_rpt_\d{1}\.csv` | `int670_v1_registered_participants_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_sttm_ctp_register_rpt_{d12}.csv` | `int\d{3}_v\d{1}_sttm_ctp_register_rpt_\d{1}\.csv` | `int691_v1_sttm_ctp_register_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_total_contingency_bid_offer_rpt_{d12}.csv` | `int\d{3}_v\d{1}_total_contingency_bid_offer_rpt_\d{1}\.csv` | `int673_v1_total_contingency_bid_offer_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}_v{d11}_total_contingency_gas_schedules_rpt_{d12}.csv` | `int\d{3}_v\d{1}_total_contingency_gas_schedules_rpt_\d{1}\.csv` | `int674_v1_total_contingency_gas_schedules_rpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}b_sttm_prices.xml` | `int\d{3}b_sttm_prices\.xml` | `int685b_sttm_prices.xml` | 1 | 2026-04-20 | 2026-04-20 |
 | `CURRENT` | `/Reports/CURRENT/STTM/` | `int{d3}b_sttm_prices_original.xml` | `int\d{3}b_sttm_prices_original\.xml` | `int685b_sttm_prices_original.xml` | 1 | 2026-04-20 | 2026-04-20 |
 | `CURRENT` | `/Reports/CURRENT/STTM/Contingency_Gas/` | `STTM CG Determination (revised) {yearmonth}.pdf` | `STTM\ CG\ Determination\ \(revised\)\ \d{6}\.pdf` | `STTM CG Determination (revised) 230715.pdf` | 1 | 2016-09-29 | 2016-09-29 |
@@ -1107,22 +1107,22 @@ _94 pattern rows, 174 files (snapshot), observed 2016-09-29 → 2026-04-20 (snap
 
 ### `Reports` · `Settlements`
 
-_3 pattern rows, 5321 files (snapshot), observed 2017-02-02 → 2026-04-20 (snapshot)_
+_3 pattern rows, 5347 files (snapshot), observed 2017-02-02 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Settlements/` | `PUBLIC_SETTLEMENTS_{date}.zip` | `PUBLIC_SETTLEMENTS_\d{8}\.zip` | `PUBLIC_SETTLEMENTS_20250302.zip` | 12 | 2025-05-02 | 2026-04-02 |
-| `CURRENT` | `/Reports/CURRENT/Settlements/` | `PUBLIC_SETTLEMENTS_EXTN_{datetime}_{aemo_id}.zip` | `PUBLIC_SETTLEMENTS_EXTN_\d{14}_\d{16}\.zip` | `PUBLIC_SETTLEMENTS_EXTN_20260205085710_0000000501995342.zip` | 20 | 2026-02-05 | 2026-04-16 |
-| `CURRENT` | `/Reports/CURRENT/Settlements/` | `PUBLIC_SETTLEMENTS_{datetime}_{aemo_id}.zip` | `PUBLIC_SETTLEMENTS_\d{14}_\d{16}\.zip` | `PUBLIC_SETTLEMENTS_20170202011150_0000000280585184.zip` | 5289 | 2017-02-02 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Settlements/` | `PUBLIC_SETTLEMENTS_{date}.zip` | `PUBLIC_SETTLEMENTS_\d{8}\.zip` | `PUBLIC_SETTLEMENTS_20250302.zip` | 13 | 2025-05-02 | 2026-05-02 |
+| `CURRENT` | `/Reports/CURRENT/Settlements/` | `PUBLIC_SETTLEMENTS_EXTN_{datetime}_{aemo_id}.zip` | `PUBLIC_SETTLEMENTS_EXTN_\d{14}_\d{16}\.zip` | `PUBLIC_SETTLEMENTS_EXTN_20260205085710_0000000501995342.zip` | 23 | 2026-02-05 | 2026-04-30 |
+| `CURRENT` | `/Reports/CURRENT/Settlements/` | `PUBLIC_SETTLEMENTS_{datetime}_{aemo_id}.zip` | `PUBLIC_SETTLEMENTS_\d{14}_\d{16}\.zip` | `PUBLIC_SETTLEMENTS_20170202011150_0000000280585184.zip` | 5311 | 2017-02-02 | 2026-05-04 |
 
 ### `Reports` · `Short_Term_PASA_Reports`
 
-_2 pattern rows, 1452 files (snapshot), observed 2025-05-01 → 2026-04-20 (snapshot)_
+_2 pattern rows, 1453 files (snapshot), observed 2025-05-01 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Short_Term_PASA_Reports/` | `PUBLIC_STPASA_{date}.zip` | `PUBLIC_STPASA_\d{8}\.zip` | `PUBLIC_STPASA_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/Short_Term_PASA_Reports/` | `PUBLIC_STPASA_{timestamp}_{aemo_id}.zip` | `PUBLIC_STPASA_\d{12}_\d{16}\.zip` | `PUBLIC_STPASA_202602191500_0000000504193048.zip` | 1440 | 2026-02-19 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Short_Term_PASA_Reports/` | `PUBLIC_STPASA_{date}.zip` | `PUBLIC_STPASA_\d{8}\.zip` | `PUBLIC_STPASA_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/Short_Term_PASA_Reports/` | `PUBLIC_STPASA_{timestamp}_{aemo_id}.zip` | `PUBLIC_STPASA_\d{12}_\d{16}\.zip` | `PUBLIC_STPASA_202603051500_0000000506453781.zip` | 1440 | 2026-03-05 | 2026-05-04 |
 
 ### `Reports` · `SupplyDemand`
 
@@ -1137,147 +1137,149 @@ _4 pattern rows, 4 files (snapshot), observed 2016-09-29 → 2016-09-29 (snapsho
 
 ### `Reports` · `TradingIS_Reports`
 
-_3 pattern rows, 4088 files (snapshot), observed 2025-04-13 → 2026-04-20 (snapshot)_
+_3 pattern rows, 4088 files (snapshot), observed 2025-04-27 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/TradingIS_Reports/` | `PUBLIC_TRADINGIS_{date1}_{date2}.zip` | `PUBLIC_TRADINGIS_\d{8}_\d{8}\.zip` | `PUBLIC_TRADINGIS_20250330_20250405.zip` | 54 | 2025-04-13 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/TradingIS_Reports/` | `PUBLIC_TRADINGIS_{timestamp}_{aemo_id}.zip` | `PUBLIC_TRADINGIS_\d{12}_\d{16}\.zip` | `PUBLIC_TRADINGIS_202604061445_0000000511603572.zip` | 4033 | 2026-04-06 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/TradingIS_Reports/` | `PUBLIC_TRADINGIS_{date1}_{date2}.zip` | `PUBLIC_TRADINGIS_\d{8}_\d{8}\.zip` | `PUBLIC_TRADINGIS_20250413_20250419.zip` | 54 | 2025-04-27 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/TradingIS_Reports/` | `PUBLIC_TRADINGIS_{timestamp}_{aemo_id}.zip` | `PUBLIC_TRADINGIS_\d{12}_\d{16}\.zip` | `PUBLIC_TRADINGIS_202604201425_0000000513855811.zip` | 4033 | 2026-04-20 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/TradingIS_Reports/DUPLICATE/` | `PUBLIC_TRADINGIS_{timestamp}_{aemo_id}.zip` | `PUBLIC_TRADINGIS_\d{12}_\d{16}\.zip` | `PUBLIC_TRADINGIS_202603031345_0000000506103565.zip` | 1 | 2026-03-03 | 2026-03-03 |
 
 ### `Reports` · `Trading_Cumulative_Price`
 
-_3 pattern rows, 4089 files (snapshot), observed 2020-08-23 → 2026-04-20 (snapshot)_
+_3 pattern rows, 4089 files (snapshot), observed 2020-08-23 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Trading_Cumulative_Price/` | `PUBLIC_TRADING_CUMULATIVE_PRICE_{date1}_{date2}.zip` | `PUBLIC_TRADING_CUMULATIVE_PRICE_\d{8}_\d{8}\.zip` | `PUBLIC_TRADING_CUMULATIVE_PRICE_20250330_20250405.zip` | 54 | 2025-04-13 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/Trading_Cumulative_Price/` | `PUBLIC_TRADING_CUMULATIVE_PRICE_{timestamp}_{aemo_id}.zip` | `PUBLIC_TRADING_CUMULATIVE_PRICE_\d{12}_\d{16}\.zip` | `PUBLIC_TRADING_CUMULATIVE_PRICE_202604061445_0000000511603574.zip` | 4033 | 2026-04-06 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Trading_Cumulative_Price/` | `PUBLIC_TRADING_CUMULATIVE_PRICE_{date1}_{date2}.zip` | `PUBLIC_TRADING_CUMULATIVE_PRICE_\d{8}_\d{8}\.zip` | `PUBLIC_TRADING_CUMULATIVE_PRICE_20250413_20250419.zip` | 54 | 2025-04-27 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/Trading_Cumulative_Price/` | `PUBLIC_TRADING_CUMULATIVE_PRICE_{timestamp}_{aemo_id}.zip` | `PUBLIC_TRADING_CUMULATIVE_PRICE_\d{12}_\d{16}\.zip` | `PUBLIC_TRADING_CUMULATIVE_PRICE_202604201425_0000000513855813.zip` | 4033 | 2026-04-20 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/Trading_Cumulative_Price/DUPLICATE/` | `PUBLIC_TRADING_CUMULATIVE_PRICE_{timestamp}_{aemo_id}.zip` | `PUBLIC_TRADING_CUMULATIVE_PRICE_\d{12}_\d{16}\.zip` | `PUBLIC_TRADING_CUMULATIVE_PRICE_202008230200_0000000327476381.zip` | 2 | 2020-08-23 | 2025-08-12 |
 
 ### `Reports` · `Trading_IRSR`
 
-_2 pattern rows, 4087 files (snapshot), observed 2025-04-13 → 2026-04-20 (snapshot)_
+_2 pattern rows, 4087 files (snapshot), observed 2025-04-27 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/Trading_IRSR/` | `PUBLIC_TRADING_IRSR_{date1}_{date2}.zip` | `PUBLIC_TRADING_IRSR_\d{8}_\d{8}\.zip` | `PUBLIC_TRADING_IRSR_20250330_20250405.zip` | 54 | 2025-04-13 | 2026-04-19 |
-| `CURRENT` | `/Reports/CURRENT/Trading_IRSR/` | `PUBLIC_TRADING_IRSR_{timestamp}_{aemo_id}.zip` | `PUBLIC_TRADING_IRSR_\d{12}_\d{16}\.zip` | `PUBLIC_TRADING_IRSR_202604061445_0000000511603684.zip` | 4033 | 2026-04-06 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/Trading_IRSR/` | `PUBLIC_TRADING_IRSR_{date1}_{date2}.zip` | `PUBLIC_TRADING_IRSR_\d{8}_\d{8}\.zip` | `PUBLIC_TRADING_IRSR_20250413_20250419.zip` | 54 | 2025-04-27 | 2026-05-03 |
+| `CURRENT` | `/Reports/CURRENT/Trading_IRSR/` | `PUBLIC_TRADING_IRSR_{timestamp}_{aemo_id}.zip` | `PUBLIC_TRADING_IRSR_\d{12}_\d{16}\.zip` | `PUBLIC_TRADING_IRSR_202604201425_0000000513855868.zip` | 4033 | 2026-04-20 | 2026-05-04 |
 
 ### `Reports` · `VicGas`
 
-_91 pattern rows, 126 files (snapshot), observed 2026-04-20 → 2026-04-20 (snapshot)_
+_93 pattern rows, 126 files (snapshot), observed 2026-04-20 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `CURRENTDAY.ZIP` | `CURRENTDAY\.ZIP` | `CURRENTDAY.ZIP` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}A_V{d11}_DAILY_ZONAL_HEATING_{d12}.CSV` | `INT\d{3}A_V\d{1}_DAILY_ZONAL_HEATING_\d{1}\.CSV` | `INT139A_V4_DAILY_ZONAL_HEATING_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}A_V{d11}_DAILY_ZONAL_HV_{d12}.CSV` | `INT\d{3}A_V\d{1}_DAILY_ZONAL_HV_\d{1}\.CSV` | `INT839A_V1_DAILY_ZONAL_HV_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}A_V{d11}_EST_ANCILLARY_PAYMENTS_{d12}.CSV` | `INT\d{3}A_V\d{1}_EST_ANCILLARY_PAYMENTS_\d{1}\.CSV` | `INT117A_V4_EST_ANCILLARY_PAYMENTS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}A_V{d11}_SYSTEM_NOTICES_{d12}.CSV` | `INT\d{3}A_V\d{1}_SYSTEM_NOTICES_\d{1}\.CSV` | `INT029A_V4_SYSTEM_NOTICES_1.CSV` | 2 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}A_V{d11}_UPLIFT_BREAKDOWN_SETT_{d12}.CSV` | `INT\d{3}A_V\d{1}_UPLIFT_BREAKDOWN_SETT_\d{1}\.CSV` | `INT322A_V4_UPLIFT_BREAKDOWN_SETT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}B_V{d11}_ANCILLARY_PAYMENTS_{d12}.CSV` | `INT\d{3}B_V\d{1}_ANCILLARY_PAYMENTS_\d{1}\.CSV` | `INT117B_V4_ANCILLARY_PAYMENTS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}B_V{d11}_INDICATIVE_LOCATIONAL_PRICE_{d12}.CSV` | `INT\d{3}B_V\d{1}_INDICATIVE_LOCATIONAL_PRICE_\d{1}\.CSV` | `INT039B_V4_INDICATIVE_LOCATIONAL_PRICE_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}B_V{d11}_INDICATIVE_MKT_PRICE_{d12}.CSV` | `INT\d{3}B_V\d{1}_INDICATIVE_MKT_PRICE_\d{1}\.CSV` | `INT037B_V4_INDICATIVE_MKT_PRICE_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}B_V{d11}_NFTC_{d12}.CSV` | `INT\d{3}B_V\d{1}_NFTC_\d{1}\.CSV` | `INT112B_V4_NFTC_1.CSV` | 2 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}B_V{d11}_UPLIFT_BREAKDOWN_PRUD_{d12}.CSV` | `INT\d{3}B_V\d{1}_UPLIFT_BREAKDOWN_PRUD_\d{1}\.CSV` | `INT322B_V4_UPLIFT_BREAKDOWN_PRUD_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}C_V{d11}_INDICATIVE_PRICE_{d12}.CSV` | `INT\d{3}C_V\d{1}_INDICATIVE_PRICE_\d{1}\.CSV` | `INT037C_V4_INDICATIVE_PRICE_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}C_V{d11}_SSC_{d12}.CSV` | `INT\d{3}C_V\d{1}_SSC_\d{1}\.CSV` | `INT112C_V4_SSC_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}D_V{d11}_ZFTC_{d12}.CSV` | `INT\d{3}D_V\d{1}_ZFTC_\d{1}\.CSV` | `INT112D_V4_ZFTC_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_ACTUAL_LINEPACK_{d12}.CSV` | `INT\d{3}_V\d{1}_ACTUAL_LINEPACK_\d{1}\.CSV` | `INT128_V4_ACTUAL_LINEPACK_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_AGG_AMDQ_TRANSFERRED_{d12}.CSV` | `INT\d{3}_V\d{1}_AGG_AMDQ_TRANSFERRED_\d{1}\.CSV` | `INT261_V4_AGG_AMDQ_TRANSFERRED_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_ALLOCATED_INJECTIONS_WITHDRAWALS_{d12}.CSV` | `INT\d{3}_V\d{1}_ALLOCATED_INJECTIONS_WITHDRAWALS_\d{1}\.CSV` | `INT313_V4_ALLOCATED_INJECTIONS_WITHDRAWALS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_BIDS_AT_BID_CUTOFF_TIMES_PREV_{d12}_{d13}.CSV` | `INT\d{3}_V\d{1}_BIDS_AT_BID_CUTOFF_TIMES_PREV_\d{1}_\d{1}\.CSV` | `INT131_V4_BIDS_AT_BID_CUTOFF_TIMES_PREV_2_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_BID_STACK_{d12}.CSV` | `INT\d{3}_V\d{1}_BID_STACK_\d{1}\.CSV` | `INT314_V4_BID_STACK_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_BMP_VERSION_NON_PTS_{d12}.CSV` | `INT\d{3}_V\d{1}_BMP_VERSION_NON_PTS_\d{1}\.CSV` | `INT438_V4_BMP_VERSION_NON_PTS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CCAUCTION_AUCTION_QTY_{d12}.CSV` | `INT\d{3}_V\d{1}_CCAUCTION_AUCTION_QTY_\d{1}\.CSV` | `INT343_V4_CCAUCTION_AUCTION_QTY_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CCAUCTION_BID_STACK_{d12}.CSV` | `INT\d{3}_V\d{1}_CCAUCTION_BID_STACK_\d{1}\.CSV` | `INT339_V4_CCAUCTION_BID_STACK_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CCAUCTION_QTY_WON_ALL_{d12}.CSV` | `INT\d{3}_V\d{1}_CCAUCTION_QTY_WON_ALL_\d{1}\.CSV` | `INT353_V4_CCAUCTION_QTY_WON_ALL_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CCAUCTION_QTY_WON_{d12}.CSV` | `INT\d{3}_V\d{1}_CCAUCTION_QTY_WON_\d{1}\.CSV` | `INT353_V4_CCAUCTION_QTY_WON_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CCAUCTION_SYS_CAPABILITY_{d12}.CSV` | `INT\d{3}_V\d{1}_CCAUCTION_SYS_CAPABILITY_\d{1}\.CSV` | `INT342_V4_CCAUCTION_SYS_CAPABILITY_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CCAUCTION_ZONE_{d12}.CSV` | `INT\d{3}_V\d{1}_CCAUCTION_ZONE_\d{1}\.CSV` | `INT345_V4_CCAUCTION_ZONE_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CCREGISTRY_SUMMARY_{d12}.CSV` | `INT\d{3}_V\d{1}_CCREGISTRY_SUMMARY_\d{1}\.CSV` | `INT351_V4_CCREGISTRY_SUMMARY_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CCTRANSFER_{d12}.CSV` | `INT\d{3}_V\d{1}_CCTRANSFER_\d{1}\.CSV` | `INT348_V4_CCTRANSFER_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_COMPRESSOR_CHAR_{d12}.CSV` | `INT\d{3}_V\d{1}_COMPRESSOR_CHAR_\d{1}\.CSV` | `INT260_V4_COMPRESSOR_CHAR_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CTM_TO_HV_ZONE_MAPPING_{d12}.CSV` | `INT\d{3}_V\d{1}_CTM_TO_HV_ZONE_MAPPING_\d{1}\.CSV` | `INT188_V4_CTM_TO_HV_ZONE_MAPPING_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CUMULATIVE_PRICE_{d12}.CSV` | `INT\d{3}_V\d{1}_CUMULATIVE_PRICE_\d{1}\.CSV` | `INT199_V4_CUMULATIVE_PRICE_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CUSTOMER_TRANSFERS_{d12}.CSV` | `INT\d{3}_V\d{1}_CUSTOMER_TRANSFERS_\d{1}\.CSV` | `INT311_V5_CUSTOMER_TRANSFERS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_DAILY_ZONAL_HV_{d12}.CSV` | `INT\d{3}_V\d{1}_DAILY_ZONAL_HV_\d{1}\.CSV` | `INT539_V4_DAILY_ZONAL_HV_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_DECLARED_DAILY_STATE_HEATING_VALUE_{d12}.CSV` | `INT\d{3}_V\d{1}_DECLARED_DAILY_STATE_HEATING_VALUE_\d{1}\.CSV` | `INT139_V4_DECLARED_DAILY_STATE_HEATING_VALUE_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_DEMAND_FORECAST_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_DEMAND_FORECAST_RPT_\d{1}\.CSV` | `INT153_V4_DEMAND_FORECAST_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_DETAILS_OF_ORGANISATIONS_{d12}.CSV` | `INT\d{3}_V\d{1}_DETAILS_OF_ORGANISATIONS_\d{1}\.CSV` | `INT125_V8_DETAILS_OF_ORGANISATIONS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_DFPC_{d12}.CSV` | `INT\d{3}_V\d{1}_DFPC_\d{1}\.CSV` | `INT112_V4_DFPC_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_DFS_DATA_{d12}.CSV` | `INT\d{3}_V\d{1}_DFS_DATA_\d{1}\.CSV` | `INT126_V4_DFS_DATA_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_ECGS_CONTACTS_{d12}.CSV` | `INT\d{3}_V\d{1}_ECGS_CONTACTS_\d{1}\.CSV` | `INT934_V4_ECGS_CONTACTS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_EDDACT_{d12}.CSV` | `INT\d{3}_V\d{1}_EDDACT_\d{1}\.CSV` | `INT091_V4_EDDACT_1.CSV` | 2 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_ERFTDAILYNSLRPT_{d12}.CSV` | `INT\d{3}_V\d{1}_ERFTDAILYNSLRPT_\d{1}\.CSV` | `INT871_V1_ERFTDAILYNSLRPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_GAS_COMPOSITION_DATA_{d12}.CSV` | `INT\d{3}_V\d{1}_GAS_COMPOSITION_DATA_\d{1}\.CSV` | `INT176_V4_GAS_COMPOSITION_DATA_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_GAS_CONSUMPTION_{d12}.CSV` | `INT\d{3}_V\d{1}_GAS_CONSUMPTION_\d{1}\.CSV` | `INT287_V4_GAS_CONSUMPTION_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_GAS_QUALITY_DATA_{d12}.CSV` | `INT\d{3}_V\d{1}_GAS_QUALITY_DATA_\d{1}\.CSV` | `INT140_V5_GAS_QUALITY_DATA_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_HEATING_VALUES_{d12}.CSV` | `INT\d{3}_V\d{1}_HEATING_VALUES_\d{1}\.CSV` | `INT047_V4_HEATING_VALUES_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_HOURLY_SCADA_PRESSURES_AT_MCE_NODES_{d12}.CSV` | `INT\d{3}_V\d{1}_HOURLY_SCADA_PRESSURES_AT_MCE_NODES_\d{1}\.CSV` | `INT276_V4_HOURLY_SCADA_PRESSURES_AT_MCE_NODES_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_INJECTION_SCALING_FACTORS_{d12}.CSV` | `INT\d{3}_V\d{1}_INJECTION_SCALING_FACTORS_\d{1}\.CSV` | `INT597_V4_INJECTION_SCALING_FACTORS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_LATEST_NSL_NON_PTS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_LATEST_NSL_NON_PTS_RPT_\d{1}\.CSV` | `INT471_V4_LATEST_NSL_NON_PTS_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_LATEST_NSL_{d12}.CSV` | `INT\d{3}_V\d{1}_LATEST_NSL_\d{1}\.CSV` | `INT171_V4_LATEST_NSL_1.CSV` | 2 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_LATEST_TOTAL_HOURLY_NSL_{d12}.CSV` | `INT\d{3}_V\d{1}_LATEST_TOTAL_HOURLY_NSL_\d{1}\.CSV` | `INT271_V4_LATEST_TOTAL_HOURLY_NSL_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_LINEPACK_BALANCE_{d12}.CSV` | `INT\d{3}_V\d{1}_LINEPACK_BALANCE_\d{1}\.CSV` | `INT089_V4_LINEPACK_BALANCE_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_LINEPACK_WITH_ZONES_{d12}.CSV` | `INT\d{3}_V\d{1}_LINEPACK_WITH_ZONES_\d{1}\.CSV` | `INT257_V4_LINEPACK_WITH_ZONES_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_LNG_MONITOR_{d12}.CSV` | `INT\d{3}_V\d{1}_LNG_MONITOR_\d{1}\.CSV` | `INT263_V4_LNG_MONITOR_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_MARKET_AND_REFERENCE_PRICES_{d12}.CSV` | `INT\d{3}_V\d{1}_MARKET_AND_REFERENCE_PRICES_\d{1}\.CSV` | `INT041_V4_MARKET_AND_REFERENCE_PRICES_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_MCE_FACTOR_{d12}.CSV` | `INT\d{3}_V\d{1}_MCE_FACTOR_\d{1}\.CSV` | `INT256_V4_MCE_FACTOR_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_MCE_NODES_{d12}.CSV` | `INT\d{3}_V\d{1}_MCE_NODES_\d{1}\.CSV` | `INT258_V4_MCE_NODES_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_MONTHLY_CUMULATIVE_IMB_POS_{d12}.CSV` | `INT\d{3}_V\d{1}_MONTHLY_CUMULATIVE_IMB_POS_\d{1}\.CSV` | `INT583_V4_MONTHLY_CUMULATIVE_IMB_POS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_NEWSTREETLISTING_{d12}.CSV` | `INT\d{3}_V\d{1}_NEWSTREETLISTING_\d{1}\.CSV` | `INT898_V1_NEWSTREETLISTING_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_OPERATIONAL_GAS_{d12}.CSV` | `INT\d{3}_V\d{1}_OPERATIONAL_GAS_\d{1}\.CSV` | `INT316_V4_OPERATIONAL_GAS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_OPERATIONAL_METER_READINGS_{d12}.CSV` | `INT\d{3}_V\d{1}_OPERATIONAL_METER_READINGS_\d{1}\.CSV` | `INT236_V4_OPERATIONAL_METER_READINGS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_OUT_OF_MERIT_ORDER_GAS_{d12}.CSV` | `INT\d{3}_V\d{1}_OUT_OF_MERIT_ORDER_GAS_\d{1}\.CSV` | `INT291_V4_OUT_OF_MERIT_ORDER_GAS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_PIPE_SEGMENT_{d12}.CSV` | `INT\d{3}_V\d{1}_PIPE_SEGMENT_\d{1}\.CSV` | `INT259_V4_PIPE_SEGMENT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_PRICE_AND_WITHDRAWALS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_PRICE_AND_WITHDRAWALS_RPT_\d{1}\.CSV` | `INT310_V1_PRICE_AND_WITHDRAWALS_RPT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_PRICE_AND_WITHDRAWALS_{d12}.CSV` | `INT\d{3}_V\d{1}_PRICE_AND_WITHDRAWALS_\d{1}\.CSV` | `INT310_V4_PRICE_AND_WITHDRAWALS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_PUBLIC_METERING_DATA_{d12}.CSV` | `INT\d{3}_V\d{1}_PUBLIC_METERING_DATA_\d{1}\.CSV` | `INT150_V4_PUBLIC_METERING_DATA_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_PUBLISHED_DAILY_HEATING_VALUE_NON_PTS_{d12}.CSV` | `INT\d{3}_V\d{1}_PUBLISHED_DAILY_HEATING_VALUE_NON_PTS_\d{1}\.CSV` | `INT439_V4_PUBLISHED_DAILY_HEATING_VALUE_NON_PTS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SCHEDULED_RUN_LOG_{d12}_{d13}.CSV` | `INT\d{3}_V\d{1}_SCHEDULED_RUN_LOG_\d{1}_\d{1}\.CSV` | `INT108_V4_SCHEDULED_RUN_LOG_7_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SCHED_MIN_QTY_LINEPACK_{d12}.CSV` | `INT\d{3}_V\d{1}_SCHED_MIN_QTY_LINEPACK_\d{1}\.CSV` | `INT152_V4_SCHED_MIN_QTY_LINEPACK_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SCHED_SYSTEM_TOTAL_{d12}.CSV` | `INT\d{3}_V\d{1}_SCHED_SYSTEM_TOTAL_\d{1}\.CSV` | `INT235_V4_SCHED_SYSTEM_TOTAL_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SCHED_WITHDRAWALS_{d12}.CSV` | `INT\d{3}_V\d{1}_SCHED_WITHDRAWALS_\d{1}\.CSV` | `INT050_V4_SCHED_WITHDRAWALS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SDPC_{d12}.CSV` | `INT\d{3}_V\d{1}_SDPC_\d{1}\.CSV` | `INT111_V5_SDPC_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SETTLEMENTS_ACTIVITY_{d12}.CSV` | `INT\d{3}_V\d{1}_SETTLEMENTS_ACTIVITY_\d{1}\.CSV` | `INT312_V4_SETTLEMENTS_ACTIVITY_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SETTLEMENT_VERSIONS_{d12}.CSV` | `INT\d{3}_V\d{1}_SETTLEMENT_VERSIONS_\d{1}\.CSV` | `INT538_V4_SETTLEMENT_VERSIONS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SETTLEMENT_VERSION_{d12}.CSV` | `INT\d{3}_V\d{1}_SETTLEMENT_VERSION_\d{1}\.CSV` | `INT138_V4_SETTLEMENT_VERSION_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SPARE_CAPACITY_LIMITS_{d12}.CSV` | `INT\d{3}_V\d{1}_SPARE_CAPACITY_LIMITS_\d{1}\.CSV` | `INT262_V4_SPARE_CAPACITY_LIMITS_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_TIE_BREAKING_EVENT_{d12}.CSV` | `INT\d{3}_V\d{1}_TIE_BREAKING_EVENT_\d{1}\.CSV` | `INT381_V4_TIE_BREAKING_EVENT_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_TOTAL_GAS_WITHDRAWN_{d12}.CSV` | `INT\d{3}_V\d{1}_TOTAL_GAS_WITHDRAWN_\d{1}\.CSV` | `INT079_V4_TOTAL_GAS_WITHDRAWN_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_TUOS_ZONE_POSTCODE_MAP_{d12}.CSV` | `INT\d{3}_V\d{1}_TUOS_ZONE_POSTCODE_MAP_\d{1}\.CSV` | `INT284_V4_TUOS_ZONE_POSTCODE_MAP_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_UPLIFT_CAP_{d12}.CSV` | `INT\d{3}_V\d{1}_UPLIFT_CAP_\d{1}\.CSV` | `INT135_V4_UPLIFT_CAP_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_WEIGHTED_AVERAGE_DAILY_PRICES_{d12}.CSV` | `INT\d{3}_V\d{1}_WEIGHTED_AVERAGE_DAILY_PRICES_\d{1}\.CSV` | `INT042_V4_WEIGHTED_AVERAGE_DAILY_PRICES_1.CSV` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `PUBLICRPTS{d2}.ZIP` | `PUBLICRPTS\d{2}\.ZIP` | `PUBLICRPTS01.ZIP` | 31 | 2026-04-20 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `CurrentDay.zip` | `CurrentDay\.zip` | `CurrentDay.zip` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}A_V{d11}_DAILY_ZONAL_HEATING_{d12}.CSV` | `INT\d{3}A_V\d{1}_DAILY_ZONAL_HEATING_\d{1}\.CSV` | `INT139A_V4_DAILY_ZONAL_HEATING_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}A_V{d11}_DAILY_ZONAL_HV_{d12}.CSV` | `INT\d{3}A_V\d{1}_DAILY_ZONAL_HV_\d{1}\.CSV` | `INT839A_V1_DAILY_ZONAL_HV_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}A_V{d11}_EST_ANCILLARY_PAYMENTS_{d12}.CSV` | `INT\d{3}A_V\d{1}_EST_ANCILLARY_PAYMENTS_\d{1}\.CSV` | `INT117A_V4_EST_ANCILLARY_PAYMENTS_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}A_V{d11}_SYSTEM_NOTICES_{d12}.CSV` | `INT\d{3}A_V\d{1}_SYSTEM_NOTICES_\d{1}\.CSV` | `INT929A_V4_SYSTEM_NOTICES_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}B_V{d11}_INDICATIVE_LOCATIONAL_PRICE_{d12}.CSV` | `INT\d{3}B_V\d{1}_INDICATIVE_LOCATIONAL_PRICE_\d{1}\.CSV` | `INT039B_V4_INDICATIVE_LOCATIONAL_PRICE_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}B_V{d11}_INDICATIVE_MKT_PRICE_{d12}.CSV` | `INT\d{3}B_V\d{1}_INDICATIVE_MKT_PRICE_\d{1}\.CSV` | `INT037B_V4_INDICATIVE_MKT_PRICE_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}B_V{d11}_NFTC_{d12}.CSV` | `INT\d{3}B_V\d{1}_NFTC_\d{1}\.CSV` | `INT112B_V4_NFTC_1.CSV` | 2 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}B_V{d11}_UPLIFT_BREAKDOWN_PRUD_{d12}.CSV` | `INT\d{3}B_V\d{1}_UPLIFT_BREAKDOWN_PRUD_\d{1}\.CSV` | `INT322B_V4_UPLIFT_BREAKDOWN_PRUD_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}C_V{d11}_SSC_{d12}.CSV` | `INT\d{3}C_V\d{1}_SSC_\d{1}\.CSV` | `INT112C_V4_SSC_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}D_V{d11}_ZFTC_{d12}.CSV` | `INT\d{3}D_V\d{1}_ZFTC_\d{1}\.CSV` | `INT112D_V4_ZFTC_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_AGG_AMDQ_TRANSFERRED_{d12}.CSV` | `INT\d{3}_V\d{1}_AGG_AMDQ_TRANSFERRED_\d{1}\.CSV` | `INT261_V4_AGG_AMDQ_TRANSFERRED_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_BIDS_AT_BID_CUTOFF_TIMES_PREV_{d12}_{d13}.CSV` | `INT\d{3}_V\d{1}_BIDS_AT_BID_CUTOFF_TIMES_PREV_\d{1}_\d{1}\.CSV` | `INT131_V4_BIDS_AT_BID_CUTOFF_TIMES_PREV_2_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_BMP_VERSION_NON_PTS_{d12}.CSV` | `INT\d{3}_V\d{1}_BMP_VERSION_NON_PTS_\d{1}\.CSV` | `INT438_V4_BMP_VERSION_NON_PTS_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CCAUCTION_AUCTION_QTY_{d12}.CSV` | `INT\d{3}_V\d{1}_CCAUCTION_AUCTION_QTY_\d{1}\.CSV` | `INT343_V4_CCAUCTION_AUCTION_QTY_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CCAUCTION_SYS_CAPABILITY_{d12}.CSV` | `INT\d{3}_V\d{1}_CCAUCTION_SYS_CAPABILITY_\d{1}\.CSV` | `INT342_V4_CCAUCTION_SYS_CAPABILITY_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CCAUCTION_ZONE_{d12}.CSV` | `INT\d{3}_V\d{1}_CCAUCTION_ZONE_\d{1}\.CSV` | `INT345_V4_CCAUCTION_ZONE_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CCREGISTRY_SUMMARY_{d12}.CSV` | `INT\d{3}_V\d{1}_CCREGISTRY_SUMMARY_\d{1}\.CSV` | `INT351_V4_CCREGISTRY_SUMMARY_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CTM_TO_HV_ZONE_MAPPING_{d12}.CSV` | `INT\d{3}_V\d{1}_CTM_TO_HV_ZONE_MAPPING_\d{1}\.CSV` | `INT188_V4_CTM_TO_HV_ZONE_MAPPING_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CUMULATIVE_PRICE_{d12}.CSV` | `INT\d{3}_V\d{1}_CUMULATIVE_PRICE_\d{1}\.CSV` | `INT199_V4_CUMULATIVE_PRICE_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_CUSTOMER_TRANSFERS_{d12}.CSV` | `INT\d{3}_V\d{1}_CUSTOMER_TRANSFERS_\d{1}\.CSV` | `INT311_V5_CUSTOMER_TRANSFERS_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_DECLARED_DAILY_STATE_HEATING_VALUE_{d12}.CSV` | `INT\d{3}_V\d{1}_DECLARED_DAILY_STATE_HEATING_VALUE_\d{1}\.CSV` | `INT139_V4_DECLARED_DAILY_STATE_HEATING_VALUE_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_DEMAND_FORECAST_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_DEMAND_FORECAST_RPT_\d{1}\.CSV` | `INT153_V4_DEMAND_FORECAST_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_DFPC_{d12}.CSV` | `INT\d{3}_V\d{1}_DFPC_\d{1}\.CSV` | `INT112_V4_DFPC_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_EDDACT_{d12}.CSV` | `INT\d{3}_V\d{1}_EDDACT_\d{1}\.CSV` | `INT091_V4_EDDACT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_GAS_COMPOSITION_DATA_{d12}.CSV` | `INT\d{3}_V\d{1}_GAS_COMPOSITION_DATA_\d{1}\.CSV` | `INT176_V4_GAS_COMPOSITION_DATA_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_HEATING_VALUES_{d12}.CSV` | `INT\d{3}_V\d{1}_HEATING_VALUES_\d{1}\.CSV` | `INT047_V4_HEATING_VALUES_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_INJECTION_SCALING_FACTORS_{d12}.CSV` | `INT\d{3}_V\d{1}_INJECTION_SCALING_FACTORS_\d{1}\.CSV` | `INT597_V4_INJECTION_SCALING_FACTORS_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_LATEST_NSL_NON_PTS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_LATEST_NSL_NON_PTS_RPT_\d{1}\.CSV` | `INT471_V4_LATEST_NSL_NON_PTS_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_LATEST_NSL_{d12}.CSV` | `INT\d{3}_V\d{1}_LATEST_NSL_\d{1}\.CSV` | `INT171_V4_LATEST_NSL_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_LATEST_TOTAL_HOURLY_NSL_{d12}.CSV` | `INT\d{3}_V\d{1}_LATEST_TOTAL_HOURLY_NSL_\d{1}\.CSV` | `INT271_V4_LATEST_TOTAL_HOURLY_NSL_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_LINEPACK_BALANCE_{d12}.CSV` | `INT\d{3}_V\d{1}_LINEPACK_BALANCE_\d{1}\.CSV` | `INT089_V4_LINEPACK_BALANCE_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_LINEPACK_WITH_ZONES_{d12}.CSV` | `INT\d{3}_V\d{1}_LINEPACK_WITH_ZONES_\d{1}\.CSV` | `INT257_V4_LINEPACK_WITH_ZONES_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_LNG_MONITOR_{d12}.CSV` | `INT\d{3}_V\d{1}_LNG_MONITOR_\d{1}\.CSV` | `INT263_V4_LNG_MONITOR_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_MARKET_AND_REFERENCE_PRICES_{d12}.CSV` | `INT\d{3}_V\d{1}_MARKET_AND_REFERENCE_PRICES_\d{1}\.CSV` | `INT041_V4_MARKET_AND_REFERENCE_PRICES_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_MCE_NODES_{d12}.CSV` | `INT\d{3}_V\d{1}_MCE_NODES_\d{1}\.CSV` | `INT258_V4_MCE_NODES_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_NEWSTREETLISTING_{d12}.CSV` | `INT\d{3}_V\d{1}_NEWSTREETLISTING_\d{1}\.CSV` | `INT898_V1_NEWSTREETLISTING_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_OPERATIONAL_METER_READINGS_{d12}.CSV` | `INT\d{3}_V\d{1}_OPERATIONAL_METER_READINGS_\d{1}\.CSV` | `INT236_V4_OPERATIONAL_METER_READINGS_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_OUT_OF_MERIT_ORDER_GAS_{d12}.CSV` | `INT\d{3}_V\d{1}_OUT_OF_MERIT_ORDER_GAS_\d{1}\.CSV` | `INT291_V4_OUT_OF_MERIT_ORDER_GAS_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_PIPE_SEGMENT_{d12}.CSV` | `INT\d{3}_V\d{1}_PIPE_SEGMENT_\d{1}\.CSV` | `INT259_V4_PIPE_SEGMENT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_PRICE_AND_WITHDRAWALS_RPT_{d12}.CSV` | `INT\d{3}_V\d{1}_PRICE_AND_WITHDRAWALS_RPT_\d{1}\.CSV` | `INT310_V1_PRICE_AND_WITHDRAWALS_RPT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_PUBLIC_METERING_DATA_{d12}.CSV` | `INT\d{3}_V\d{1}_PUBLIC_METERING_DATA_\d{1}\.CSV` | `INT150_V4_PUBLIC_METERING_DATA_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_PUBLISHED_DAILY_HEATING_VALUE_NON_PTS_{d12}.CSV` | `INT\d{3}_V\d{1}_PUBLISHED_DAILY_HEATING_VALUE_NON_PTS_\d{1}\.CSV` | `INT439_V4_PUBLISHED_DAILY_HEATING_VALUE_NON_PTS_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SCHEDULED_RUN_LOG_{d12}_{d13}.CSV` | `INT\d{3}_V\d{1}_SCHEDULED_RUN_LOG_\d{1}_\d{1}\.CSV` | `INT108_V4_SCHEDULED_RUN_LOG_7_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SCHED_SYSTEM_TOTAL_{d12}.CSV` | `INT\d{3}_V\d{1}_SCHED_SYSTEM_TOTAL_\d{1}\.CSV` | `INT235_V4_SCHED_SYSTEM_TOTAL_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SCHED_WITHDRAWALS_{d12}.CSV` | `INT\d{3}_V\d{1}_SCHED_WITHDRAWALS_\d{1}\.CSV` | `INT050_V4_SCHED_WITHDRAWALS_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SDPC_{d12}.CSV` | `INT\d{3}_V\d{1}_SDPC_\d{1}\.CSV` | `INT111_V5_SDPC_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SETTLEMENT_VERSION_{d12}.CSV` | `INT\d{3}_V\d{1}_SETTLEMENT_VERSION_\d{1}\.CSV` | `INT138_V4_SETTLEMENT_VERSION_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_SPARE_CAPACITY_LIMITS_{d12}.CSV` | `INT\d{3}_V\d{1}_SPARE_CAPACITY_LIMITS_\d{1}\.CSV` | `INT262_V4_SPARE_CAPACITY_LIMITS_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_TIE_BREAKING_EVENT_{d12}.CSV` | `INT\d{3}_V\d{1}_TIE_BREAKING_EVENT_\d{1}\.CSV` | `INT381_V4_TIE_BREAKING_EVENT_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_TOTAL_GAS_WITHDRAWN_{d12}.CSV` | `INT\d{3}_V\d{1}_TOTAL_GAS_WITHDRAWN_\d{1}\.CSV` | `INT079_V4_TOTAL_GAS_WITHDRAWN_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `INT{d3}_V{d11}_UPLIFT_CAP_{d12}.CSV` | `INT\d{3}_V\d{1}_UPLIFT_CAP_\d{1}\.CSV` | `INT135_V4_UPLIFT_CAP_1.CSV` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `PublicRpts{d2}.zip` | `PublicRpts\d{2}\.zip` | `PublicRpts01.zip` | 31 | 2026-05-04 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d2}_linepack_{d1}.csv` | `int\d{2}_linepack_\d{1}\.csv` | `int89_linepack_1.csv` | 1 | 2026-04-20 | 2026-04-20 |
 | `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_{d2}.csv` | `int\d{3}_\d{2}\.csv` | `int157_13.csv` | 1 | 2026-04-20 | 2026-04-20 |
 | `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_ancillary_payments_rpt_{d1}.csv` | `int\d{3}_ancillary_payments_rpt_\d{1}\.csv` | `int117_ancillary_payments_rpt_1.csv` | 1 | 2026-04-20 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_actual_linepack_{d12}.csv` | `int\d{3}_v\d{1}_actual_linepack_\d{1}\.csv` | `int128_v4_actual_linepack_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_actual_linepack_{d12}~{datetime}.csv` | `int\d{3}_v\d{1}_actual_linepack_\d{1}\~\d{14}\.csv` | `int128_v4_actual_linepack_1~20120908043621.csv` | 2 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_customer_transfers_{d12}.csv` | `int\d{3}_v\d{1}_customer_transfers_\d{1}\.csv` | `int311_v4_customer_transfers_1.csv` | 1 | 2026-04-20 | 2026-04-20 |
-| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_details_of_organisations_{d12}.csv` | `int\d{3}_v\d{1}_details_of_organisations_\d{1}\.csv` | `int125_v7_details_of_organisations_1.csv` | 1 | 2026-04-20 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_allocated_injections_withdrawals_{d12}.csv` | `int\d{3}_v\d{1}_allocated_injections_withdrawals_\d{1}\.csv` | `int313_v4_allocated_injections_withdrawals_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_bid_stack_{d12}.csv` | `int\d{3}_v\d{1}_bid_stack_\d{1}\.csv` | `int314_v4_bid_stack_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_ccauction_bid_stack_{d12}.csv` | `int\d{3}_v\d{1}_ccauction_bid_stack_\d{1}\.csv` | `int339_v4_ccauction_bid_stack_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_ccauction_qty_won_{d12}.csv` | `int\d{3}_v\d{1}_ccauction_qty_won_\d{1}\.csv` | `int353_v4_ccauction_qty_won_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_ccauction_qty_won_all_{d12}.csv` | `int\d{3}_v\d{1}_ccauction_qty_won_all_\d{1}\.csv` | `int353_v4_ccauction_qty_won_all_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_cctransfer_{d12}.csv` | `int\d{3}_v\d{1}_cctransfer_\d{1}\.csv` | `int348_v4_cctransfer_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_compressor_char_{d12}.csv` | `int\d{3}_v\d{1}_compressor_char_\d{1}\.csv` | `int260_v4_compressor_char_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_customer_transfers_{d12}.csv` | `int\d{3}_v\d{1}_customer_transfers_\d{1}\.csv` | `int311_v4_customer_transfers_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_daily_zonal_hv_{d12}.csv` | `int\d{3}_v\d{1}_daily_zonal_hv_\d{1}\.csv` | `int539_v4_daily_zonal_hv_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_details_of_organisations_{d12}.csv` | `int\d{3}_v\d{1}_details_of_organisations_\d{1}\.csv` | `int125_v7_details_of_organisations_1.csv` | 2 | 2026-04-20 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_dfs_data_{d12}.csv` | `int\d{3}_v\d{1}_dfs_data_\d{1}\.csv` | `int126_v4_dfs_data_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_ecgs_contacts_{d12}.csv` | `int\d{3}_v\d{1}_ecgs_contacts_\d{1}\.csv` | `int934_v4_ecgs_contacts_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_eddact_{d12}.csv` | `int\d{3}_v\d{1}_eddact_\d{1}\.csv` | `int891_v1_eddact_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_erftdailynslrpt_{d12}.csv` | `int\d{3}_v\d{1}_erftdailynslrpt_\d{1}\.csv` | `int871_v1_erftdailynslrpt_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_gas_consumption_{d12}.csv` | `int\d{3}_v\d{1}_gas_consumption_\d{1}\.csv` | `int287_v4_gas_consumption_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_gas_quality_data_{d12}.csv` | `int\d{3}_v\d{1}_gas_quality_data_\d{1}\.csv` | `int140_v5_gas_quality_data_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_hourly_scada_pressures_at_mce_nodes_{d12}.csv` | `int\d{3}_v\d{1}_hourly_scada_pressures_at_mce_nodes_\d{1}\.csv` | `int276_v4_hourly_scada_pressures_at_mce_nodes_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_latest_nsl_{d12}.csv` | `int\d{3}_v\d{1}_latest_nsl_\d{1}\.csv` | `int571_v4_latest_nsl_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_mce_factor_{d12}.csv` | `int\d{3}_v\d{1}_mce_factor_\d{1}\.csv` | `int256_v4_mce_factor_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_monthly_cumulative_imb_pos_{d12}.csv` | `int\d{3}_v\d{1}_monthly_cumulative_imb_pos_\d{1}\.csv` | `int583_v4_monthly_cumulative_imb_pos_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d1}_op_sched_{d2}.csv` | `int\d{3}_v\d{1}_op_sched_\d{2}\.csv` | `int180_v4_op_sched_77.csv` | 1 | 2026-04-20 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_operational_gas_{d12}.csv` | `int\d{3}_v\d{1}_operational_gas_\d{1}\.csv` | `int316_v4_operational_gas_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_price_and_withdrawals_{d12}.csv` | `int\d{3}_v\d{1}_price_and_withdrawals_\d{1}\.csv` | `int310_v4_price_and_withdrawals_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_sched_min_qty_linepack_{d12}.csv` | `int\d{3}_v\d{1}_sched_min_qty_linepack_\d{1}\.csv` | `int152_v4_sched_min_qty_linepack_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_sdpc_{d12}.csv` | `int\d{3}_v\d{1}_sdpc_\d{1}\.csv` | `int111_v4_sdpc_1.csv` | 1 | 2026-04-20 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_settlement_versions_{d12}.csv` | `int\d{3}_v\d{1}_settlement_versions_\d{1}\.csv` | `int538_v4_settlement_versions_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_settlements_activity_{d12}.csv` | `int\d{3}_v\d{1}_settlements_activity_\d{1}\.csv` | `int312_v4_settlements_activity_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_settlements_activity_report_{d12}.csv` | `int\d{3}_v\d{1}_settlements_activity_report_\d{1}\.csv` | `int312_v1_settlements_activity_report_1.csv` | 1 | 2026-04-20 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_tuos_zone_postcode_map_{d12}.csv` | `int\d{3}_v\d{1}_tuos_zone_postcode_map_\d{1}\.csv` | `int284_v4_tuos_zone_postcode_map_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
 | `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d1}_uplift_cap~{datetime}.csv` | `int\d{3}_v\d{1}_uplift_cap\~\d{14}\.csv` | `int135_v4_uplift_cap~20100817153329.csv` | 1 | 2026-04-20 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}_v{d11}_weighted_average_daily_prices_{d12}.csv` | `int\d{3}_v\d{1}_weighted_average_daily_prices_\d{1}\.csv` | `int042_v4_weighted_average_daily_prices_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}a_v{d11}_system_notices_{d12}.csv` | `int\d{3}a_v\d{1}_system_notices_\d{1}\.csv` | `int029a_v4_system_notices_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}a_v{d11}_uplift_breakdown_sett_{d12}.csv` | `int\d{3}a_v\d{1}_uplift_breakdown_sett_\d{1}\.csv` | `int322a_v4_uplift_breakdown_sett_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}b_v{d11}_ancillary_payments_{d12}.csv` | `int\d{3}b_v\d{1}_ancillary_payments_\d{1}\.csv` | `int117b_v4_ancillary_payments_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
+| `CURRENT` | `/Reports/CURRENT/VicGas/` | `int{d3}c_v{d11}_indicative_price_{d12}.csv` | `int\d{3}c_v\d{1}_indicative_price_\d{1}\.csv` | `int037c_v4_indicative_price_1.csv` | 1 | 2026-05-04 | 2026-05-04 |
 
 ### `Reports` · `Vwa_Fcas_Prices`
 
-_1 pattern row, 60 files (snapshot), observed 2026-02-20 → 2026-04-20 (snapshot)_
+_1 pattern row, 60 files (snapshot), observed 2026-03-06 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `CURRENT` | `/Reports/CURRENT/Vwa_Fcas_Prices/` | `PUBLIC_VWAFCASPRICES_{timestamp}_{datetime}.zip` | `PUBLIC_VWAFCASPRICES_\d{12}_\d{14}\.zip` | `PUBLIC_VWAFCASPRICES_202602190000_20260220040503.zip` | 60 | 2026-02-20 | 2026-04-20 |
+| `CURRENT` | `/Reports/CURRENT/Vwa_Fcas_Prices/` | `PUBLIC_VWAFCASPRICES_{timestamp}_{datetime}.zip` | `PUBLIC_VWAFCASPRICES_\d{12}_\d{14}\.zip` | `PUBLIC_VWAFCASPRICES_202603050000_20260306040505.zip` | 60 | 2026-03-06 | 2026-05-04 |
 
 ### `Reports` · `WDR_CAPACITY_NO_SCADA`
 
-_2 pattern rows, 1654 files (snapshot), observed 2021-10-22 → 2026-04-20 (snapshot)_
+_2 pattern rows, 1669 files (snapshot), observed 2021-10-22 → 2026-05-04 (snapshot)_
 
 | Tier | Path template | Filename template | Regex | Sample | Files (snap) | First seen (snap) | Last seen (snap) |
 |---|---|---|---|---|---:|---|---|
-| `ARCHIVE` | `/Reports/ARCHIVE/WDR_CAPACITY_NO_SCADA/` | `PUBLIC_WDR_CAPACITY_NO_SCADA_{date}.zip` | `PUBLIC_WDR_CAPACITY_NO_SCADA_\d{8}\.zip` | `PUBLIC_WDR_CAPACITY_NO_SCADA_20250301.zip` | 12 | 2025-05-01 | 2026-04-01 |
-| `CURRENT` | `/Reports/CURRENT/WDR_CAPACITY_NO_SCADA/` | `PUBLIC_WDR_CAPACITY_NO_SCADA_{date}_{aemo_id}.zip` | `PUBLIC_WDR_CAPACITY_NO_SCADA_\d{8}_\d{16}\.zip` | `PUBLIC_WDR_CAPACITY_NO_SCADA_20211021_0000000351232024.zip` | 1642 | 2021-10-22 | 2026-04-20 |
+| `ARCHIVE` | `/Reports/ARCHIVE/WDR_CAPACITY_NO_SCADA/` | `PUBLIC_WDR_CAPACITY_NO_SCADA_{date}.zip` | `PUBLIC_WDR_CAPACITY_NO_SCADA_\d{8}\.zip` | `PUBLIC_WDR_CAPACITY_NO_SCADA_20250301.zip` | 13 | 2025-05-01 | 2026-05-01 |
+| `CURRENT` | `/Reports/CURRENT/WDR_CAPACITY_NO_SCADA/` | `PUBLIC_WDR_CAPACITY_NO_SCADA_{date}_{aemo_id}.zip` | `PUBLIC_WDR_CAPACITY_NO_SCADA_\d{8}_\d{16}\.zip` | `PUBLIC_WDR_CAPACITY_NO_SCADA_20211021_0000000351232024.zip` | 1656 | 2021-10-22 | 2026-05-04 |
 
 ### `Reports` · `Weekly_Constraint_Reports`
 
